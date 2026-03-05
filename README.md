@@ -2,6 +2,8 @@
 
 A comprehensive web-based management platform for The Smile Factory Arcade & Family Fun Center, located in Brigantine, NJ. Built with Next.js, Supabase, and modern web technologies.
 
+First Deployment link https://smile-factory.vercel.app/
+
 ## Overview
 
 The SFMS consists of three main interfaces:
