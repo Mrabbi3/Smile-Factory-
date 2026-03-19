@@ -74,7 +74,14 @@ export function useAuth() {
       }
     )
 
-    return () => subscription.unsubscribe()
+    const fallback = setTimeout(() => {
+      setState((s) => (s.loading ? { ...s, loading: false, user: null, profile: null, role: null } : s))
+    }, 10000)
+
+    return () => {
+      clearTimeout(fallback)
+      subscription.unsubscribe()
+    }
   }, [])
 
   const signOut = async () => {
