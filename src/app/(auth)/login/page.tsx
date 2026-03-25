@@ -1,10 +1,10 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { Suspense } from 'react'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { toast } from 'sonner'
-import { createClient } from '@/lib/supabase/client'
+import { useSearchParams } from 'next/navigation'
+import { useActionState } from 'react'
+import { useFormStatus } from 'react-dom'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -17,6 +17,7 @@ import {
   CardTitle,
 } from '@/components/ui/card'
 import { Loader2 } from 'lucide-react'
+import { signIn } from './actions'
 
 export default function LoginPage() {
   return (
@@ -26,78 +27,20 @@ export default function LoginPage() {
   )
 }
 
+function SubmitButton() {
+  const { pending } = useFormStatus()
+  return (
+    <Button type="submit" className="w-full" disabled={pending}>
+      {pending && <Loader2 className="mr-2 size-4 animate-spin" />}
+      Sign In
+    </Button>
+  )
+}
+
 function LoginForm() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const redirectTo = searchParams.get('redirect')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [loading, setLoading] = useState(false)
-
-  const [ready, setReady] = useState(false)
-
-  useEffect(() => {
-    const supabase = createClient()
-    supabase.auth.signOut().finally(() => setReady(true))
-  }, [])
-
-  const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-
-    try {
-      const supabase = createClient()
-
-      const { error } = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
-
-      if (error) {
-        toast.error(error.message)
-        return
-      }
-
-      const {
-        data: { user },
-      } = await supabase.auth.getUser()
-
-      if (!user) {
-        toast.error('Unable to retrieve user information')
-        return
-      }
-
-      const { data: profile, error: profileError } = await supabase
-        .from('profiles')
-        .select('role')
-        .eq('id', user.id)
-        .single()
-
-      if (profileError) {
-        console.error('Profile fetch error:', profileError)
-      }
-
-      let destination: string
-      if (redirectTo) {
-        destination = redirectTo
-      } else {
-        const staffRoles = ['owner', 'manager', 'employee']
-        if (profile?.role && staffRoles.includes(profile.role)) {
-          destination = '/admin/dashboard'
-        } else {
-          destination = '/customer/dashboard'
-        }
-      }
-
-      toast.success('Welcome back!')
-      window.location.href = destination
-    } catch (err) {
-      console.error('Login error:', err)
-      toast.error('An unexpected error occurred. Please check your connection and try again.')
-    } finally {
-      setLoading(false)
-    }
-  }
+  const [state, formAction] = useActionState(signIn, null)
 
   return (
     <Card>
@@ -107,16 +50,19 @@ function LoginForm() {
           Enter your credentials to access your account
         </CardDescription>
       </CardHeader>
-      <form onSubmit={handleLogin}>
+      <form action={formAction}>
+        {redirectTo && <input type="hidden" name="redirect" value={redirectTo} />}
         <CardContent className="space-y-4">
+          {state?.error && (
+            <p className="text-sm text-destructive text-center">{state.error}</p>
+          )}
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
+              name="email"
               type="email"
               placeholder="you@example.com"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
               required
               autoComplete="email"
             />
@@ -133,20 +79,16 @@ function LoginForm() {
             </div>
             <Input
               id="password"
+              name="password"
               type="password"
               placeholder="••••••••"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
               required
               autoComplete="current-password"
             />
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" className="w-full" disabled={loading || !ready}>
-            {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
-            {!ready ? 'Preparing...' : 'Sign In'}
-          </Button>
+          <SubmitButton />
           <p className="text-center text-sm text-muted-foreground">
             Don&apos;t have an account?{' '}
             <Link href="/register" className="text-primary hover:underline">

@@ -1,11 +1,10 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useAuth } from '@/hooks/use-auth'
 import { TopBar } from '@/components/admin/top-bar'
-import { Skeleton } from '@/components/ui/skeleton'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import {
   Sheet,
@@ -73,52 +72,8 @@ export default function CustomerLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { user, profile, loading, role, signOut } = useAuth()
-  const router = useRouter()
+  const { profile, loading, role, signOut } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(false)
-  const hasInitialized = useRef(false)
-
-  useEffect(() => {
-    if (loading) return
-    hasInitialized.current = true
-    if (!user) {
-      window.location.href = '/login'
-    }
-  }, [loading, user])
-
-  if (loading && !hasInitialized.current) {
-    return (
-      <div className="flex h-svh">
-        <div className="hidden w-64 border-r lg:block">
-          <div className="flex h-14 items-center gap-2 border-b px-4">
-            <Skeleton className="h-6 w-6 rounded-full" />
-            <Skeleton className="h-5 w-32" />
-          </div>
-          <div className="space-y-2 p-4">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <Skeleton key={i} className="h-8 w-full" />
-            ))}
-          </div>
-        </div>
-        <div className="flex flex-1 flex-col">
-          <div className="flex h-14 items-center border-b px-4">
-            <Skeleton className="h-5 w-40" />
-            <div className="ml-auto flex items-center gap-3">
-              <Skeleton className="h-8 w-8 rounded-full" />
-              <Skeleton className="h-5 w-24" />
-            </div>
-          </div>
-          <div className="flex-1 p-6">
-            <Skeleton className="h-64 w-full" />
-          </div>
-        </div>
-      </div>
-    )
-  }
-
-  if (!user && !loading) {
-    return null
-  }
 
   return (
     <div className="flex h-svh overflow-hidden">
@@ -135,8 +90,8 @@ export default function CustomerLayout({
 
       <div className="flex flex-1 flex-col overflow-hidden">
         <TopBar
-          profile={profile}
-          role={role}
+          profile={loading ? null : profile}
+          role={loading ? null : role}
           onSignOut={async () => {
             await signOut()
             window.location.href = '/login'

@@ -1,9 +1,9 @@
 'use client'
 
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useMemo, useCallback } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import type { Profile, UserRole } from '@/types/database'
-import type { User } from '@supabase/supabase-js'
+import type { User, Session } from '@supabase/supabase-js'
 
 interface AuthState {
   user: User | null
@@ -19,84 +19,91 @@ export function useAuth() {
     loading: true,
     role: null,
   })
-  const supabase = createClient()
+  const supabase = useMemo(() => createClient(), [])
   const profileCache = useRef<{ userId: string; profile: Profile | null } | null>(null)
 
-  useEffect(() => {
-    const fetchProfile = async (user: User) => {
-      if (profileCache.current?.userId === user.id) {
-        return profileCache.current.profile
-      }
-      const { data: profile, error } = await supabase
+  const fetchProfile = useCallback(async (userId: string): Promise<Profile | null> => {
+    if (profileCache.current?.userId === userId) {
+      return profileCache.current.profile
+    }
+    try {
+      const { data, error } = await supabase
         .from('profiles')
         .select('*')
-        .eq('id', user.id)
+        .eq('id', userId)
         .single()
 
       if (error) {
-        console.error('Failed to fetch profile:', error)
+        console.error('Profile fetch error:', error.message)
+        return null
       }
 
-      const result = (profile as Profile | null) ?? null
-      profileCache.current = { userId: user.id, profile: result }
-      return result
+      const profile = (data as Profile | null) ?? null
+      profileCache.current = { userId, profile }
+      return profile
+    } catch {
+      return null
     }
+  }, [supabase])
 
-    const getUser = async () => {
-      try {
-        const { data: { session } } = await supabase.auth.getSession()
-        if (session?.user) {
-          const profile = await fetchProfile(session.user)
-          setState({ user: session.user, profile, loading: false, role: profile?.role ?? null })
-        } else {
-          setState({ user: null, profile: null, loading: false, role: null })
-        }
-      } catch (err) {
-        console.error('Auth error:', err)
-        setState({ user: null, profile: null, loading: false, role: null })
-      }
+  const handleSession = useCallback(async (session: Session | null) => {
+    if (session?.user) {
+      const profile = await fetchProfile(session.user.id)
+      setState({
+        user: session.user,
+        profile,
+        loading: false,
+        role: profile?.role ?? null,
+      })
+    } else {
+      profileCache.current = null
+      setState({ user: null, profile: null, loading: false, role: null })
     }
+  }, [fetchProfile])
 
-    getUser()
+  useEffect(() => {
+    let cancelled = false
 
+    // Initial session load
+    supabase.auth.getSession().then(({ data: { session } }) => {
+      if (cancelled) return
+      handleSession(session)
+    }).catch(() => {
+      if (cancelled) return
+      setState({ user: null, profile: null, loading: false, role: null })
+    })
+
+    // Listen for auth changes
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        if (event === 'TOKEN_REFRESHED' && state.user?.id === session?.user?.id) {
-          return
-        }
-        if (session?.user) {
-          const profile = await fetchProfile(session.user)
-          setState({ user: session.user, profile, loading: false, role: profile?.role ?? null })
-        } else {
-          profileCache.current = null
-          setState({ user: null, profile: null, loading: false, role: null })
-        }
+      (_event, session) => {
+        if (cancelled) return
+        handleSession(session)
       }
     )
 
-    const fallback = setTimeout(() => {
-      setState((s) => (s.loading ? { ...s, loading: false, user: null, profile: null, role: null } : s))
-    }, 10000)
-
     return () => {
-      clearTimeout(fallback)
+      cancelled = true
       subscription.unsubscribe()
     }
-  }, [])
+  }, [supabase, handleSession])
 
-  const signOut = async () => {
+  const signOut = useCallback(async () => {
     await supabase.auth.signOut()
+    profileCache.current = null
     setState({ user: null, profile: null, loading: false, role: null })
-  }
+  }, [supabase])
 
   const hasRole = (roles: UserRole[]) => {
     return state.role !== null && roles.includes(state.role)
   }
 
-  const isOwner = () => hasRole(['owner'])
-  const isManager = () => hasRole(['owner', 'manager'])
-  const isEmployee = () => hasRole(['owner', 'manager', 'employee'])
-  const isCustomer = () => state.role === 'customer'
-
-  return { ...state, signOut, hasRole, isOwner, isManager, isEmployee, isCustomer }
+  return {
+    ...state,
+    signOut,
+    hasRole,
+    isOwner: () => hasRole(['owner']),
+    isManager: () => hasRole(['owner', 'manager']),
+    isEmployee: () => hasRole(['owner', 'manager', 'employee']),
+    isCustomer: () => state.role === 'customer',
+  }
 }

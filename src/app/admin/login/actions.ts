@@ -27,14 +27,6 @@ export async function verifyStaffKey(
     return { error: 'Invalid access key' }
   }
 
-  // Sign out any existing session so the user sees the login form
-  try {
-    const supabase = await createClient()
-    await supabase.auth.signOut()
-  } catch {
-    // Ignore sign-out errors
-  }
-
   const cookieStore = await cookies()
   cookieStore.set(STAFF_COOKIE_NAME, '1', {
     httpOnly: true,
@@ -44,5 +36,15 @@ export async function verifyStaffKey(
     path: '/',
   })
 
+  // Check if user already has an active session
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (user) {
+    // User is already logged in, go straight to admin dashboard
+    redirect('/admin/dashboard')
+  }
+
+  // Otherwise redirect to login page
   redirect('/login')
 }

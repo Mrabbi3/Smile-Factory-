@@ -17,14 +17,7 @@ export async function updateSession(request: NextRequest) {
   const isPublicPage = path === '/' || path.startsWith('/about') || path.startsWith('/pricing') || path.startsWith('/parties') || path.startsWith('/gallery') || path.startsWith('/contact') || path.startsWith('/offline') || path.startsWith('/auth/callback')
   const isProtected = path.startsWith('/admin') || path.startsWith('/customer')
 
-  if (isAuthPage || isAdminLoginPage || isPublicPage) {
-    return supabaseResponse
-  }
-
-  if (!isProtected) {
-    return supabaseResponse
-  }
-
+  // Create the Supabase client with cookie handling to keep session alive
   const supabase = createServerClient(
     supabaseUrl,
     supabaseKey,
@@ -46,21 +39,16 @@ export async function updateSession(request: NextRequest) {
     }
   )
 
-  const { data: { session } } = await supabase.auth.getSession()
-  const user = session?.user ?? null
+  // Use getUser() to validate and refresh the session token
+  const { data: { user } } = await supabase.auth.getUser()
 
-  const isAdminArea =
-    path.startsWith('/admin') ||
-    path.startsWith('/pos') ||
-    path.startsWith('/inventory') ||
-    path.startsWith('/machines') ||
-    path.startsWith('/work-orders') ||
-    path.startsWith('/employees') ||
-    path.startsWith('/expenses') ||
-    path.startsWith('/reports') ||
-    path.startsWith('/documents') ||
-    path.startsWith('/coupons')
+  // Public and auth pages — let them through
+  if (isAuthPage || isAdminLoginPage || isPublicPage || !isProtected) {
+    return supabaseResponse
+  }
 
+  // Protected routes — check auth
+  const isAdminArea = path.startsWith('/admin')
   const staffCookie = request.cookies.get('staff_access_verified')?.value
 
   if (isAdminArea && !isAdminLoginPage) {
