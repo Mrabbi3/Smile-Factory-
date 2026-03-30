@@ -1,0 +1,28 @@
+{
+    "id":  10,
+    "jsonrpc":  "2.0",
+    "result":  {
+                   "content":  [
+                                   {
+                                       "text":  "{\"name\":\"projects/14509537999559108262/screens/337ffe1c1c544bb8ba0834f675067d3c\",\"title\":\"Home Page - Enhanced Logo Branding\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/278df6b9232544c58dd09b5b099f19b6\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0uj3pyEEyguCb49Qbzi3ht2uHKPNVoz_i9XuhPv67gf_YVpO3Ox7Qrn-r3X7eseKczE_OEhgKoFnU9kzo3uFGD1mFVanDEEeJbbrNQkc8rDOruVWeXHOkwNifdPL5Iz5dwhpyQPsw7gfuSI9cFNjXI1vWPChGWV0kr8oyVqUKJfvx_4vgMTJJOoLoQsXeqdKqeZyelZWGQTSJo222e9NWwvvv9EBwgwaLGf1Z4_6FWGp4MIcBZ6pw_3YP2Na\"},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/615a014cb5364e708560f3de4c33fd73\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2YzYjAzNjI5MTQ3NjRkMjJiNjIwYWM4ZmNmMTBkMjVmEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"10064\",\"deviceType\":\"DESKTOP\"}",
+                                       "type":  "text"
+                                   }
+                               ],
+                   "structuredContent":  {
+                                             "deviceType":  "DESKTOP",
+                                             "height":  "10064",
+                                             "htmlCode":  {
+                                                              "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2YzYjAzNjI5MTQ3NjRkMjJiNjIwYWM4ZmNmMTBkMjVmEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                              "mimeType":  "text/html",
+                                                              "name":  "projects/14509537999559108262/files/615a014cb5364e708560f3de4c33fd73"
+                                                          },
+                                             "name":  "projects/14509537999559108262/screens/337ffe1c1c544bb8ba0834f675067d3c",
+                                             "screenshot":  {
+                                                                "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0uj3pyEEyguCb49Qbzi3ht2uHKPNVoz_i9XuhPv67gf_YVpO3Ox7Qrn-r3X7eseKczE_OEhgKoFnU9kzo3uFGD1mFVanDEEeJbbrNQkc8rDOruVWeXHOkwNifdPL5Iz5dwhpyQPsw7gfuSI9cFNjXI1vWPChGWV0kr8oyVqUKJfvx_4vgMTJJOoLoQsXeqdKqeZyelZWGQTSJo222e9NWwvvv9EBwgwaLGf1Z4_6FWGp4MIcBZ6pw_3YP2Na",
+                                                                "name":  "projects/14509537999559108262/files/278df6b9232544c58dd09b5b099f19b6"
+                                                            },
+                                             "title":  "Home Page - Enhanced Logo Branding",
+                                             "width":  "2560"
+                                         }
+               }
+}

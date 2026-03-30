@@ -1,7 +1,6 @@
 import Link from 'next/link'
-import { Gamepad2, MapPin, Phone, Clock, Mail } from 'lucide-react'
-import { Separator } from '@/components/ui/separator'
-import { SITE_NAME, BUSINESS_INFO } from '@/lib/constants'
+import { MapPin, Phone, Clock, Ticket, Coins } from 'lucide-react'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -15,108 +14,87 @@ const quickLinks = [
 ]
 
 export function Footer() {
+  const factoryPattern =
+    "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E\")"
+
   return (
-    <footer className="border-t bg-muted/40">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="mb-4 flex items-center gap-2.5">
-              <div className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
-                <Gamepad2 className="size-5" />
-              </div>
-              <span className="text-lg font-bold tracking-tight">{SITE_NAME}</span>
-            </Link>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
-              Brigantine&apos;s favorite family arcade since {BUSINESS_INFO.established}. Over{' '}
-              {BUSINESS_INFO.machineCount} games, birthday parties, and fun for all ages!
-            </p>
+    <footer className="relative border-t border-zinc-200 bg-zinc-50 text-zinc-800">
+      <div className="pointer-events-none absolute inset-0 opacity-10" style={{ backgroundImage: factoryPattern }} />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-4">
+        <div>
+          <div className="mb-8">
+            <img src="/branding/smile-factory-logo.png" alt="The Smile Factory Logo" className="h-24 w-auto" />
           </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
-              Quick Links
-            </h3>
-            <ul className="space-y-2.5">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
-              Hours
-            </h3>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
-                <div>
-                  <p className="font-medium text-foreground">Mon &ndash; Fri</p>
-                  <p>{BUSINESS_INFO.hours.weekday}</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
-                <div>
-                  <p className="font-medium text-foreground">Sat &ndash; Sun</p>
-                  <p>{BUSINESS_INFO.hours.weekend}</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
-              Contact
-            </h3>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
-                <span>{BUSINESS_INFO.address}</span>
-              </li>
-              <li className="flex items-center gap-2">
-                <Phone className="size-4 shrink-0 text-primary" />
-                <a
-                  href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}
-                  className="transition-colors hover:text-primary"
-                >
-                  {BUSINESS_INFO.phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-2">
-                <Mail className="size-4 shrink-0 text-primary" />
-                <a
-                  href="mailto:info@thesmilefactoryarcade.com"
-                  className="transition-colors hover:text-primary"
-                >
-                  info@thesmilefactoryarcade.com
-                </a>
-              </li>
-            </ul>
-          </div>
+          <p className="text-md leading-relaxed text-zinc-500">
+            Making families smile in Brigantine since {BUSINESS_INFO.established}. Quality games, great prizes, and unforgettable memories.
+          </p>
         </div>
 
-        <Separator className="my-8" />
+        <div>
+          <h4 className="mb-8 text-lg font-black uppercase tracking-[0.2em] text-zinc-900">Quick Links</h4>
+          <ul className="space-y-4 text-zinc-500">
+            {quickLinks.slice(0, 6).map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="inline-flex items-center gap-2 transition hover:text-red-600">
+                  <span className="size-1.5 rounded-full bg-red-600" />
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
 
-        <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
-          </p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="/contact" className="transition-colors hover:text-primary">
-              Privacy Policy
-            </Link>
-            <Link href="/contact" className="transition-colors hover:text-primary">
-              Terms
-            </Link>
-          </div>
+        <div>
+          <h4 className="mb-8 text-lg font-black uppercase tracking-[0.2em] text-zinc-900">Legal &amp; Info</h4>
+          <ul className="space-y-4 text-zinc-500">
+            {[{ label: 'Privacy Policy', href: '/contact' }, { label: 'Terms of Service', href: '/contact' }, { label: 'Safety Rules', href: '/contact' }, { label: 'Feedback', href: '/contact' }].map((link) => (
+              <li key={link.label}>
+                <Link href={link.href} className="inline-flex items-center gap-2 transition hover:text-red-600">
+                  <span className="size-1.5 rounded-full bg-red-600" />
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-8 text-lg font-black uppercase tracking-[0.2em] text-zinc-900">Connect</h4>
+          <ul className="space-y-6 text-zinc-500">
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 size-5 text-red-600" />
+              <span>{BUSINESS_INFO.address}</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Phone className="mt-0.5 size-5 text-red-600" />
+              <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} className="transition hover:text-red-600">
+                {BUSINESS_INFO.phone}
+              </a>
+            </li>
+            <li className="flex items-start gap-3">
+              <Clock className="mt-0.5 size-5 text-red-600" />
+              <div className="flex flex-col">
+                <span>Sat-Sun: {BUSINESS_INFO.hours.weekend}</span>
+                <span>Mon-Fri: {BUSINESS_INFO.hours.weekday}</span>
+              </div>
+            </li>
+            <li>
+              <Link href="/admin/login" className="inline-block rounded-lg bg-red-600 px-6 py-2 text-xs font-black uppercase tracking-[0.2em] text-white shadow-md transition hover:opacity-90">
+                Staff Login
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="relative flex flex-col items-center justify-between gap-4 border-t border-zinc-200 bg-zinc-100/50 px-8 py-8 text-center md:flex-row">
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-400">
+          &copy; {new Date().getFullYear()} The Smile Factory Arcade. Built for Joy.
+        </p>
+        <div className="flex gap-6 text-zinc-400">
+          <Ticket className="size-4" />
+          <Coins className="size-4" />
+          <Phone className="size-4" />
         </div>
       </div>
     </footer>

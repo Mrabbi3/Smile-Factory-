@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Gallery | SMILE FACTORY</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF0000",
+                        "surface": "#fcfcfc",
+                        "on-surface": "#2d2f2f",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#FF0000",
+                        "secondary": "#a03646",
+                        "surface-container-highest": "#dbdddd",
+                        "on-surface-variant": "#5a5c5c",
+                        "secondary-container": "#ffc2c6",
+                        "on-secondary-container": "#852233",
+                        "tertiary": "#7b40a2",
+                        "surface-container-high": "#e1e3e3",
+                        "surface-container-lowest": "#ffffff"
+                    },
+                    fontFamily: {
+                        "headline": ["Epilogue"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .diamond-plate {
+            background-color: #fcfcfc;
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l2 13 13 2-13 2-2 13-2-13-13-2 13-2z' fill='%23f1f1f1' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+        .blueprint-gears {
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20zm0-25c2.2 0 4-1.8 4-4V45c0-2.2-1.8-4-4-4s-4 1.8-4 4v6c0 2.2 1.8 4 4 4zm43.3 18c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zm11.7 43.3c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4s-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4zm-18 43.3c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zM100 155c-2.2 0-4 1.8-4 4v6c0 2.2 1.8 4 4 4s4-1.8 4-4v-6c0-2.2-1.8-4-4-4zm-43.3-18c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7zM45 100c0-2.2-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4s1.8 4 4 4h6c2.2 0 4-1.8 4-4zm11.7-43.3c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7z' fill='%23e5e7eb' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+        .glass-nav {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary selection:bg-opacity-30 diamond-plate">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm border-b border-gray-100">
+<div class="flex justify-between items-center px-4 md:px-8 py-3 md:py-4 max-w-full w-full relative">
+<!-- Logo -->
+<div class="flex items-center gap-2 shrink-0">
+<img alt="The Smile Factory Logo" class="w-auto h-12 md:h-16" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<!-- Desktop Navigation: Centered Links -->
+<div class="hidden lg:flex items-center space-x-6 xl:space-x-10 absolute left-1/2 -translate-x-1/2">
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Home</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">About</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Pricing</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Parties</a>
+<a class="text-primary border-b-2 pb-0.5 font-headline font-bold transition-all border-primary text-sm uppercase tracking-tight" href="#">Gallery</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Contact</a>
+</div>
+<!-- Right Side: CTAs -->
+<div class="flex items-center gap-3 md:gap-4 shrink-0">
+<div class="hidden sm:flex items-center gap-4 mr-2">
+<a class="text-zinc-600 font-headline font-bold hover:text-red-600 transition-colors text-sm" href="#">Sign In</a>
+</div>
+<button class="bg-primary text-on-primary px-4 md:px-6 py-2.5 rounded-full font-bold hover:opacity-80 transition-all active:scale-95 shadow-md flex items-center gap-2 text-xs md:text-sm">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+<span>Book a Party</span>
+</button>
+</div>
+</div>
+</nav>
+<main class="pt-24 min-h-screen blueprint-gears">
+<!-- Hero Section -->
+<section class="relative px-8 py-20 max-w-screen-2xl mx-auto overflow-hidden">
+<div class="flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-6">
+<span class="inline-block px-4 py-1.5 bg-red-100 text-primary text-xs font-black tracking-widest uppercase rounded-full border border-red-200">Visual Archive</span>
+<h1 class="text-6xl md:text-8xl font-black text-on-surface font-headline leading-[0.9] tracking-tighter italic uppercase">
+                    THE <span class="text-primary">SMILE</span><br/>FACTORY
+                </h1>
+<p class="text-xl text-on-surface-variant max-w-xl font-body leading-relaxed">
+                    Step into the assembly line of joy. From the high-score heroics to the neon-drenched birthday celebrations, witness the factory in full production mode.
+                </p>
+</div>
+<div class="flex-1 w-full aspect-video rounded-lg overflow-hidden bg-surface-container-highest shadow-2xl relative group border-4 border-zinc-900">
+<img alt="vibrant modern arcade atmosphere" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRqxQMIfbMsobI7blIRPeqQeN3HD-09OMIs8Q7iVK1uhKpWv4v2WvxlQxiOV8o1XcwM2Q2twUk3jm9KM9L1w0Csv17eN4L4jTfls_qTZTjpDG82-GV4T_Vs7y-aA5e0y5Bm-EIxDlVhwsVWd0E1KMrsRPpmyheEEIOdu8L8aYC3O1brelvwiZ5RpiiKX1KTQ3aUnmBBmuRCDj1JOdC0NwW3L5hXpKnplcRt7QYhDIhkoZ6japlOpyvn-5SNB6vwgsQVKWZgaxeVCNU"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply pointer-events-none"></div>
+</div>
+</div>
+</section>
+<!-- Gallery Sections Grid -->
+<section class="px-8 py-16 max-w-screen-2xl mx-auto space-y-32">
+<!-- Arcade Action -->
+<div class="space-y-8">
+<div class="flex items-end justify-between border-b-2 border-primary/10 pb-4">
+<h2 class="text-4xl font-black font-headline tracking-tight uppercase italic">Arcade Action</h2>
+<span class="text-primary font-black tracking-tighter text-6xl opacity-10">01</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="col-span-1 md:col-span-2 aspect-[16/9] rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="vintage arcade controls" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEsfvhjTAj_tSPOhxvHz8nLHKOZ-W9USzZt1WdCYNca5s4zQgzzLpP5JP4PP88QdGrASCl1KgSnjRzAO1sSajrqFHqvsKCf3IT8aY2YkDoov5Yfbhp6FSS1PDL9fzSO-oDyxnqkJ2yCdAWdRpUFAEbtkeJl0YIhSuBU2jsvxX4ib_cPQTzmjcSkiFarOvI4iR2RsMs4l-yiU6oX6T2wLyfFvtgBjFYm0lUbiy6oLubjZznvUxvBhUhZ0_5Gp-0VLQ0rheATv3kcPpo"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="gamer portrait" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1Hh3gzM4eVIdTAQVyFQdIOwn1PtoUOMsGBtVU-_I1TDVoG_3rj7ctCWJDsHcb6wPA0Ru4IiMNEPq8kaIvm_dePGaN0tlvEYaQvhEKWCMSaTfcaXB9lY6hKSJAU5gb-xSuBPvSyrQCLRBG47mgIUAyJD-AaWj-_l6otOerrKm27kHSOq30wiIRvmUU7tVylAuQhnHqQYImji3zGSvHyx493OR8827hUzjdKMReSwpsOXG-8LSOGvEFsRHOjj4eBVw052byNk8Qut1j"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="racing game" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA53EM1mhJUhRnrLDPgcSd_lOvSsV6QvHKho5dcgkA-THg2TTvaFosVjXI3d1oQeRhcu4zVTt2rGT-ED-WTFXNz9DNvPYp-in5oRvlMzMQ_HdcEfPbqjH9U_W4ADpC2lP0hXpQtNES3zToq-aal3O7P_UYBhUcLAFjXLvXjxLpjx-PYaijYEgzn4smtTSrBaDTbk6OpGQI7MWV4uQ61yPht11fai8OTnK41koUdn7PE4b8W5VdhipMk2jos_xgJE7xtaJwQW83xEeT7"/>
+</div>
+<div class="col-span-1 md:col-span-2 aspect-[21/9] rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="motion blur lights" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBafAWr28OLg3XRaV7H2xRS470u9r_gn1Jq1OiR3keKvuW4IwGzscYrqSJ6zH52wJlmEPT7wucjPH0elnXRbuMe9ulpoj_RyLf2FKmL-bLfZKPif9E-SyB43Fx2hkE9-MjMwGJa-GQ5YoFwuDqCg14iN-Hk43mGrlKyXM87g9QNSu1uOW0jJrJPZSBLtOAUgRsoBl179n3NNMaZ49X9WYF0eSKvp4ucxCyUMaXvbk0K47mf1mZuKPlbkhkh0BRGKwgFgp-y_FJzGY3L"/>
+</div>
+</div>
+</div>
+<!-- Birthday Smiles -->
+<div class="space-y-8">
+<div class="flex items-end justify-between border-b-2 border-primary/10 pb-4">
+<h2 class="text-4xl font-black font-headline tracking-tight uppercase italic">Birthday Smiles</h2>
+<span class="text-primary font-black tracking-tighter text-6xl opacity-10">02</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="aspect-[3/4] rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="kids celebrating birthday" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJirPbte1gF1sq2JDTGd6m7R6svQX7gbJpqGSLwKmvbi3aPKmDf4IGpqpNlN2h6prvSAtSivyxzwvd0_Je4lIEHUIaMS_ISJMBIjnDWisWsia9c6BFvEuT0xhXWSIGV5ogB8_YHZqyMs4vMlRR2lCBfX5lDDfRVjGiGHJ09fULJ6mtMWqqygxwpcEwkEd38Y5V6yF4bR1vSyGtZUg9AeJL-m7VOLPA0VDzo0IeRv4O5UFBpIeYlCAkERFO9anYoOJ53pU_wRkDF5hJ"/>
+</div>
+<div class="aspect-[3/4] rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="birthday cake close up" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDr7GfL8dp3vVskVJ0Kr4uXgTKUFu72qi0IKB7XTfvleeA2UhP6mj9DQP7K4MPDxNQ0TWp_TKpDO1CCbFbuyZrXDiDkZ9B8wsUdjgZ2o9lBbHPsX5oKmMiug7SJnVzFX4bW8VywswGikDw1l2my1TTay5mZyqrWi1ecix3fxgcPgD25CCHL8EIlcAiki8C0IYa_LxLCQAsu05LywpZ9dXbv5_cDNM7xCG1JS3XiILwyE5w9jSToT4Rf1PNrpLcpxECkHdBnhPq1XA_R"/>
+</div>
+<div class="aspect-[3/4] rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="friends playing together" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDkQ87f_sJFgxtXXlQnOIOZIKf7Rl4G_o9X-HpS0tUs6KZjp9DpcXQEmISKPstdI0r26hqnuY3WXlkph6duBBB4X9FfvUwN5yhJUWqv4tnztMrwHeXwI8Nyoy3ABb_pqLSw5fZDFKTLcaAHioM7XHWkFgkA641bKvO9-Xtj_-iSpV6pgRtsJBDpzR8JiHSLO2U4GTjGNpSMAewDInWcl8ieriv0ppp9YYXjsCOd0-BqYYOqGIoj8v4oMpCoepeQZBiipdyaknBlZQTq"/>
+</div>
+<div class="aspect-[3/4] rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="party atmosphere lighting" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCIU3txix9aFmMJV7lw3ZtuJzCxJzBLdrLIt8T30Vl76vAb2ya3KGqkJy2AtfUPK7GUl0s8a6kl-FCdr0Z7HmHRa8EVP8yJndCdV895vrBQnMyE0Y9SmqTh8aX6pPeZCyOvAe1mm6TF3paL2NYIN22LUEFXpjIDcMbt0m9lUE-LjtU0lLnTRQemZB4ZmoGfPNuAMK1kLd9xmHr_0l4Rr5RQizmAEkVjQLMQIVR2qUM3bD38TNZh930Y_CeEZ4AXnjrX7LPhBUCyame3"/>
+</div>
+</div>
+</div>
+<!-- Prize Winners -->
+<div class="space-y-8">
+<div class="flex items-end justify-between border-b-2 border-primary/10 pb-4">
+<h2 class="text-4xl font-black font-headline tracking-tight uppercase italic">Prize Winners</h2>
+<span class="text-primary font-black tracking-tighter text-6xl opacity-10">03</span>
+</div>
+<div class="flex flex-col md:flex-row gap-8">
+<div class="flex-1 bg-surface-container-lowest rounded-lg p-8 shadow-sm border-l-8 border-primary">
+<div class="flex items-center gap-4 mb-6">
+<span class="material-symbols-outlined text-primary text-4xl" data-icon="stars" data-weight="fill">stars</span>
+<h3 class="text-2xl font-black font-headline tracking-tighter italic">JACKPOT JUNCTION</h3>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div class="aspect-square rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="prize wall" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCv18nWHGY8PvCh6giclIoG-lBtZNyngITqcC_HNPT5_jNcOUWIV13ll169ooiuEGYXi9NW60qluX7KA-0EJh465aTqR-EJ03CKhZSp1kPq1HjUFLtTG79D__-EamQh8O87Zv12Epgj9KP-m5_6aR270lR5WmPSr7ceX1-YV6ynbI5pHmuqdvbl6W_ZGmq4YYjA0rL0owPV7nn9UGElYTHCvfXxBH2wEsdwKdWzW4jshPG_sBHPMQ7BXydfTwvQYX-Z2QKsoBiDY6Y9"/>
+</div>
+<div class="aspect-square rounded-lg overflow-hidden border-[6px] border-zinc-900 shadow-xl group">
+<img alt="happy winner" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcIeFdzbHTKjdB9hC5k_fyCW5yhx9eJVkrnLd27vJ1PKKAKPJooXUF3N7Qxh-4Bu4QGiX_JgiCEsny3QnyH3xItdNobIVdbW90VtIiUVBmJSwm9AOfWou_vlgTrruETJ8Fi_MdQBHKBi30mvb5ZUhq9gB4MHHT8_YxQmv8MfaCxE76sz2Rj_8VMMg23KdF-Lz5apkjOslC5knCejeMMOCkrsg46thwZb4ecy2DpxsdPyHDdBnHARFEER9jYCYGnGOg-LEWeVjAq7At"/>
+</div>
+</div>
+</div>
+<div class="flex-1 space-y-4">
+<div class="bg-surface-container-high rounded-lg p-6 flex items-center justify-between group hover:bg-white transition-colors cursor-default border border-zinc-100">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-white font-black font-headline">LF</div>
+<div>
+<p class="font-bold">Leo F. - Mega Prize</p>
+<p class="text-sm opacity-60">Won a Nintendo Switch</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-primary" data-icon="emoji_events">emoji_events</span>
+</div>
+<div class="bg-surface-container-high rounded-lg p-6 flex items-center justify-between group hover:bg-white transition-colors cursor-default border border-zinc-100">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-white font-black font-headline">SK</div>
+<div>
+<p class="font-bold">Sarah K. - Ticket King</p>
+<p class="text-sm opacity-60">150,000 Tickets in one session</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-secondary" data-icon="local_activity">local_activity</span>
+</div>
+<div class="bg-surface-container-high rounded-lg p-6 flex items-center justify-between group hover:bg-white transition-colors cursor-default border border-zinc-100">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-zinc-900 flex items-center justify-center text-white font-black font-headline">MJ</div>
+<div>
+<p class="font-bold">Marcus J. - High Score</p>
+<p class="text-sm opacity-60">Pac-Man Global Rank #4</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-zinc-900" data-icon="videogame_asset">videogame_asset</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Join the Factory Floor Feed -->
+<div class="space-y-12">
+<div class="text-center space-y-4">
+<h2 class="text-5xl font-black font-headline tracking-tighter uppercase italic">Join the Factory Floor</h2>
+<p class="text-on-surface-variant font-medium">Tag your wins with <span class="text-primary font-black">#SMILEFACTORYARCADE</span> for a chance to be featured.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Instagram shots with 4px black borders as per visual style -->
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="tokens in hand" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxFYhMQh3oEnPU3Za4pjWVKfgKeHBoOJ5TmRtJE0tmqzkVK09169CR6xE6fbPuWUFukZTrSEOY0asfCc8yw7F3o8UWu1UzPP-X8sPrvwJkF_CdEBlVmlUzlZ019R4Jw9zktSFHxnPNwK-oNlXmgn7nqjV9Ga1LbnR3FLuvcklNDykmZ-zlpJsxwx5z9xekz5v7e009zVEkSB2RKiPTPegVyNzmveoHFVSYHOUn0TCPIqjdcp4QfxE92zCHsBWsCWv9D4i5HAAVoMQ4"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="game graphics" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw6QRejWNU4xW-BaHWBXTWbjB0L-C2v6HVESWy2itTyx7jXgddk3it1UxGGkn8qb4KNBcvclUam38IHvOazAA8T6XFRJPcZRk3duYTF5Fa0OZueTQ3sLQfyHtqUZAwb4XcmJOVGkBBJGW765nazsQCUMP_QIRmVPJI0ZbXu03keMRqBoQRQr5QI4I3FV72P6oXmvujL77otAsLviydpPhe71WOgRS1MZyRp39XubqT7v7yLoPRPCArHW-SoHB5cxGxMMeJFbaxLtuq"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="arcade floor reflections" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7-G03Q0HqzpNMzvHi6-HeTuePuEs4uQ-dqVnl5Gb79gPhkaFryycs5_AVTwadMrXHa9ndRQURYt2zjfm_jrKoQueNvx8t-Fqi4Q0s8L3gbBmC1B6rSTPqFMZjXvEOu-MTVjvOtztRvU2QlJG6PMqWfbdKMr1gb7yN1yrm7t7BJ835w-j5JR6caF2yHmEOcAGSusZgWpQwQfgAt41aweOA-KmoSMHrIg7yDkqnkGcumhecRqxkYje1Uy0qe-wYD9atTe1hf3n15Jfr"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="red button press" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCKE6uy2p3FnIvYdtVb00hbG_XBfsghgoGd3Nh3fhVt5idFIE8Kn2xZaRE0I_-lk2o5kMnFyuXymf6ADJ_G20CiqcmFasV14krngRnlfhSKY5e2NnFKzqnT6cyrokx4LUzJytNEjst85iewFVm8aVaZ7kaIwcp-fj-ubA6TuvpryebbwiVxo-YM-9bieV2i8M2PpJt9DrlH_ww5RjHtAZQ7Au9qihs-pbUpjtvljdaWhnaSGkPK4e-bPwEzs0PUbL2esdBuT0LdXgbb"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+<!-- Row 2 -->
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="kids at prize machine" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDmsfqt98uIX49IBJcyTqf4p6axhAF8PZxFhm-vY60pLWpnsnJFF1-qAdWszPdgUEcoKqCG9xKPK2paM9T3qPrQC3wFc8Gr0efz4-Axj6OfbypYFrfjktmwAE75B6GdP90WOl94VkR0tS3JLWAud-k1K1orxYbChBRYbb188_eB34IXSrGX_OEbf7Qe05-3CoRe6AOmhyclpEDoZoSj1i2tEl4l5Os9-AMV0-GbgPmHbr5hDTvPNUCLVmhVz7mQphYRGhQlI724EZzl"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="tickets dispenser" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBPDVSu67OBlAFBCw_sQJNGFt0CaE3CsHc3sc8qrR0eL9293kg0C1SUGbRBvRQi8XZtGx5eQkCUaF29pVivjBWYO97pIPPk_qeupiL63d9xJ1zlN5MD_RBBdzcBL6tFutda4uN8n0phCkHRvASO5I0DxLPGvI75Vo3OJUg6RZMg8JjepmEjVmKDzcFjAyPbEz6VyOD7kYVYfkQa5IPYKfa_OM8g_iOpV29y8zZdzOM2jxvlup-QAD1-eCTr8e7yVBDrDWNXdigS0rDy"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="classic controller" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBpCfjj2OVJ8C8Ncpel4U3AOV2kFiMTn-qo948G4DOq1IZKeCmLF8rVATRrHIEhoumDpTTQUk8l921y76CPhhpDH2A_CYvpenMt8LId88PhYmvvB4kmGeXM4-QvwhIdfsS_39-yeLPV8firUfne5SY79wf5PMRjbLD1M8pxbJDyVI0MKV-L-4x5v9-KtyTshBUNKjn_qUdRkh6a9Xi722vd0OkpK4HuamBfgkVYaoQmetC0mI1DuYR0HY14FN-y5rf5x48BNthB-fn-"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+<div class="aspect-square bg-zinc-900 rounded-lg overflow-hidden border-4 border-black shadow-lg group relative">
+<img alt="arcade neon sign" class="w-full h-full object-cover group-hover:opacity-75 transition-opacity duration-300" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4Lbf0W5SPQgdi-vSUG_USG6jQq6YmiqAMAl5-db7WFfYROjz-naHrEGRwko4OoPFp7AeGOcpFaZt-I5jWBsaOMAtflktY9In-8hkqu3mKcjewdOgom0zuOnhITzRsPHEuv5Go6Okq-lydwkl_ow1V0cjYGzMS4eu0IET545OsDrubSYGY2dpDyZ9IwXv0E-OTLub7rjj-KzhxcyCW5tXpJw0nnXD3Rxp0Br7glEIh-28_cfBb9v_0OnqIH0Pag0wv_R_STjEINeTl"/>
+<div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-white text-3xl" data-icon="favorite" data-weight="fill">favorite</span>
+</div>
+</div>
+</div>
+<div class="flex justify-center">
+<button class="px-10 py-4 bg-zinc-900 text-white rounded-full font-black uppercase tracking-widest hover:bg-primary transition-colors flex items-center gap-2 shadow-lg">
+                    Load More Action
+                    <span class="material-symbols-outlined" data-icon="refresh">refresh</span>
+</button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-zinc-50 text-zinc-800 relative border-t border-zinc-200">
+<div class="absolute inset-0 blueprint-gears opacity-10 pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 w-full relative z-10 max-w-screen-2xl mx-auto">
+<div class="md:col-span-1 flex flex-col items-center text-center md:items-start md:text-left">
+<div class="mb-8">
+<img alt="The Smile Factory Logo" class="w-auto h-24" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<p class="text-sm text-zinc-500 leading-relaxed font-body">Making families smile in Brigantine since 2006. Quality games, great prizes, and unforgettable memories.</p>
+</div>
+<div>
+<h4 class="font-black text-on-surface text-lg mb-8 uppercase tracking-widest font-headline italic">Quick Links</h4>
+<ul class="space-y-4 text-zinc-500 font-medium font-body text-sm">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Home</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Pricing</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Birthday Parties</a></li>
+<li><a class="font-bold text-primary flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Games Gallery</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-on-surface text-lg mb-8 uppercase tracking-widest font-headline italic">Legal &amp; Info</h4>
+<ul class="space-y-4 text-zinc-500 font-medium font-body text-sm">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Terms of Service</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Safety Rules</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Feedback</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-on-surface text-lg mb-8 uppercase tracking-widest font-headline italic">Connect</h4>
+<ul class="space-y-6 text-zinc-500 font-medium font-body text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>1307 W Brigantine Ave # B, Brigantine, NJ 08203</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<span>(609) 266-3866</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<div class="flex flex-col">
+<span>Sat-Sun: 10am - 10pm</span>
+<span>Mon-Fri: 12pm - 10pm</span>
+</div>
+</li>
+<li><a class="bg-primary text-white px-6 py-2 rounded-lg font-black uppercase text-xs tracking-widest hover:opacity-90 transition-all inline-block shadow-md font-headline" href="#">Staff Login</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-12 py-8 border-t border-zinc-200 text-center text-xs text-zinc-400 font-black tracking-widest uppercase">
+            © 2024 THE SMILE FACTORY ARCADE. BUILT FOR JOY.
+        </div>
+</footer>
+</main>
+</body></html>

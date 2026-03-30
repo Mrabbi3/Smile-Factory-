@@ -1,0 +1,140 @@
+{
+    "id":  8,
+    "jsonrpc":  "2.0",
+    "result":  {
+                   "content":  [
+                                   {
+                                       "text":  "{\"screens\":[{\"name\":\"projects/14509537999559108262/screens/bc86bb1fc5814262a2e705b56af5822b\",\"title\":\"About Page - Refined (No Workforce)\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/25281862e66e4a67b5aa47b75c5d061d\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0ujTbuq4v4-C_PY-Qur7yF3gru1YAJsaZC8VXqfy1-A5ABp_9g2x2tQru5JOCnafsNUZTnpdkwD5bSDREGiHnC9HKfmY4iCDl-cPL6KHuxIoiFkwo6BXrnAAR9nVUf1HMsBXadYx_BMMeTFr_vySElpJiIjaUdBXNmSWgKmJrtRlu4xn0yGPfclOWfW_vDtrOb-yyPWm9trlXMepSKBOBjIG_XwYPaoNNnzuD0VDWufOk2ZihG4wJDaD49M\"},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/a66a5f1c04eb4ca1a4e709f8620f8712\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzNkMmYyZDEwY2Y1YzQzZGJhNGU2Njk5NDUyOGI0NGQ2EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"7672\",\"deviceType\":\"DESKTOP\"},{\"name\":\"projects/14509537999559108262/screens/4e60d31ed39e451b8935e349a6e15cb0\",\"title\":\"Parties Page - Classic Package Updated\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/2345541ed9114c279c9b349f7ca6b7c7\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0uhwICsr_uIpcdrJGgS34LGAYw4ktKtGWfPsk-kMzi4TXGbcft8x31i8w-ILhSKTfkQNhK5INRLCPrjbAaXBFgOGGE-GtmVPTC2FKP9y-6NQp-_TNbqdwHxYfOMuf0g_mVkWr_cAeMTf9-0dOelhq2QOiVFsM8Gj_J4_cHTaQfQRfE4wPpPJPYhz_78e7qvKLG0YMwgjAvN7wgeQwnis_Z_jnnNRfdE0iwA2rYhIY_LkUOzXHxwCptat4Afp\"},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/4e91cfd7107046fc8baacc3092df1142\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzMwYWFhZTZiMGU4MzQwNTBhNjhmODMwZmRjYjUxMWE3EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"7184\",\"deviceType\":\"DESKTOP\"},{\"name\":\"projects/14509537999559108262/screens/8792bcd467374578aadb8e7c5b862c88\",\"title\":\"Pricing Page - Enhanced Logo Branding\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/01ee96fd25174d98b93d8a30efc4c624\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0ujunhyGMQ_Uh2IBcpTMakjgWa5lL1VbE1FwKg_vtheEkIiqdmnTAzlJ9idi3bJrgUP6aUOXvtR8BVc706MpNwgR2dJO_nKmq3lYmhLL0avw-fbe6AjNcBIM5arAJyHqY9nSC5fRuLPOhVr0e1QdLuY9aZJscst0aJQy4ZcLa1_JwKtqVJ3AdPSDWhSp96p8RPl1ZX1kqr5c_8FfxnYdLqqTMQAKKIEJdvC7Dmhoi74y3J4WDT3y6OulNitA\"},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/f1616e2326904f4583389f22e7bd554b\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2I3Mjk2NDg5ZGFhMTRjN2U4OGZlOWY1NmZhMzdiMzIwEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"6070\",\"deviceType\":\"DESKTOP\"},{\"name\":\"projects/14509537999559108262/screens/49827a4f1bd544c9b562c5b2715afc5f\",\"title\":\"Gallery Page - Refined Red Theme (Updated)\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/0e5307d4ca554c62850049043abb6ffe\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0uiFv8_jW3_YRyLTMCGyEUXVXrXjSNeFGvvC1cnUbXsJlsi4QIJPU0SYAaETSaWfAag31RAfQ_hRIAKfCT30EqwXdSjXYi0kGEGJyWp_8h40m4QXbunjGZmANeyc7vz5crEb9SzXpeHOUldTJKpCCh2lPMzXqwbSS45_N9KXkPBLIns4A_mf7d5AcafMyLBL_do4NFSUSpulOsA7rl-VejnqFURmVab472PO2SRgepG3FKy9DpWtz_40dipe\"},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/0044c560bab549d7adb3799a0e4c69f9\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzA2NzBjZjMyM2NiNTRlNjg4YTY0MDNiMWVlNzMwZWU4EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"8920\",\"deviceType\":\"DESKTOP\"},{\"name\":\"projects/14509537999559108262/screens/3582817220250596724\",\"title\":\"Smile_Factory.png\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/3582817220250596717\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0\"},\"htmlCode\":{},\"width\":\"720\",\"height\":\"693\"},{\"name\":\"projects/14509537999559108262/screens/337ffe1c1c544bb8ba0834f675067d3c\",\"title\":\"Home Page - Enhanced Logo Branding\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/278df6b9232544c58dd09b5b099f19b6\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0uj3pyEEyguCb49Qbzi3ht2uHKPNVoz_i9XuhPv67gf_YVpO3Ox7Qrn-r3X7eseKczE_OEhgKoFnU9kzo3uFGD1mFVanDEEeJbbrNQkc8rDOruVWeXHOkwNifdPL5Iz5dwhpyQPsw7gfuSI9cFNjXI1vWPChGWV0kr8oyVqUKJfvx_4vgMTJJOoLoQsXeqdKqeZyelZWGQTSJo222e9NWwvvv9EBwgwaLGf1Z4_6FWGp4MIcBZ6pw_3YP2Na\"},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/615a014cb5364e708560f3de4c33fd73\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2YzYjAzNjI5MTQ3NjRkMjJiNjIwYWM4ZmNmMTBkMjVmEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"10064\",\"deviceType\":\"DESKTOP\"},{\"name\":\"projects/14509537999559108262/screens/4c1ccaedff364ff3ba6d6cb35b3383ee\",\"title\":\"The Smile Factory Arcade Prototype\",\"screenshot\":{},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/a156a1b10d524cf7898b8f25141355dd\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzMwOWRjMWJjOTM2MDQ3NGJhZjdjZjVjYmY0NWQ0YjQyEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"1280\",\"height\":\"1024\",\"deviceType\":\"DESKTOP\"},{\"name\":\"projects/14509537999559108262/screens/7ab25f7de7704b2c84141b72914122da\",\"title\":\"Contact Page - Refined Red Theme (Updated)\",\"screenshot\":{\"name\":\"projects/14509537999559108262/files/2e1a3701ba2d4b73ac0da87b1e77bc93\",\"downloadUrl\":\"https://lh3.googleusercontent.com/aida/ADBb0ugQtYMMHADTnUOnI42t6xgJw55xfrJku_OsWMNkYF7DuTZzqhPU_T6HKqbj6bH9FukDW60jfn0CSwPU4N_q1vzW9wtJ0MAxMb_vq27a9GoduLRZbUxC-AluxpJCTLIxykSGHr0LmKOQqmSwDc4K0QKi1Rdre1KeSTsWKV0MLu31bOFyTbVEeub4myJNdVuLHO2KO4aHr32cPHQVLKgJHm-vcm_xTs41qOz0hku9gXtTo0xE2sFoKiXUD08s\"},\"htmlCode\":{\"name\":\"projects/14509537999559108262/files/84baf64732e1414db9c1d0a519f6f49d\",\"downloadUrl\":\"https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzA4ZDY4MjE4ZGZmYTQzYmViZjkwN2M0ZDg3ZDMwNWY4EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086\",\"mimeType\":\"text/html\"},\"width\":\"2560\",\"height\":\"4190\",\"deviceType\":\"DESKTOP\"}]}",
+                                       "type":  "text"
+                                   }
+                               ],
+                   "structuredContent":  {
+                                             "screens":  [
+                                                             {
+                                                                 "deviceType":  "DESKTOP",
+                                                                 "height":  "7672",
+                                                                 "htmlCode":  {
+                                                                                  "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzNkMmYyZDEwY2Y1YzQzZGJhNGU2Njk5NDUyOGI0NGQ2EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                                                  "mimeType":  "text/html",
+                                                                                  "name":  "projects/14509537999559108262/files/a66a5f1c04eb4ca1a4e709f8620f8712"
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/bc86bb1fc5814262a2e705b56af5822b",
+                                                                 "screenshot":  {
+                                                                                    "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0ujTbuq4v4-C_PY-Qur7yF3gru1YAJsaZC8VXqfy1-A5ABp_9g2x2tQru5JOCnafsNUZTnpdkwD5bSDREGiHnC9HKfmY4iCDl-cPL6KHuxIoiFkwo6BXrnAAR9nVUf1HMsBXadYx_BMMeTFr_vySElpJiIjaUdBXNmSWgKmJrtRlu4xn0yGPfclOWfW_vDtrOb-yyPWm9trlXMepSKBOBjIG_XwYPaoNNnzuD0VDWufOk2ZihG4wJDaD49M",
+                                                                                    "name":  "projects/14509537999559108262/files/25281862e66e4a67b5aa47b75c5d061d"
+                                                                                },
+                                                                 "title":  "About Page - Refined (No Workforce)",
+                                                                 "width":  "2560"
+                                                             },
+                                                             {
+                                                                 "deviceType":  "DESKTOP",
+                                                                 "height":  "7184",
+                                                                 "htmlCode":  {
+                                                                                  "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzMwYWFhZTZiMGU4MzQwNTBhNjhmODMwZmRjYjUxMWE3EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                                                  "mimeType":  "text/html",
+                                                                                  "name":  "projects/14509537999559108262/files/4e91cfd7107046fc8baacc3092df1142"
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/4e60d31ed39e451b8935e349a6e15cb0",
+                                                                 "screenshot":  {
+                                                                                    "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0uhwICsr_uIpcdrJGgS34LGAYw4ktKtGWfPsk-kMzi4TXGbcft8x31i8w-ILhSKTfkQNhK5INRLCPrjbAaXBFgOGGE-GtmVPTC2FKP9y-6NQp-_TNbqdwHxYfOMuf0g_mVkWr_cAeMTf9-0dOelhq2QOiVFsM8Gj_J4_cHTaQfQRfE4wPpPJPYhz_78e7qvKLG0YMwgjAvN7wgeQwnis_Z_jnnNRfdE0iwA2rYhIY_LkUOzXHxwCptat4Afp",
+                                                                                    "name":  "projects/14509537999559108262/files/2345541ed9114c279c9b349f7ca6b7c7"
+                                                                                },
+                                                                 "title":  "Parties Page - Classic Package Updated",
+                                                                 "width":  "2560"
+                                                             },
+                                                             {
+                                                                 "deviceType":  "DESKTOP",
+                                                                 "height":  "6070",
+                                                                 "htmlCode":  {
+                                                                                  "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2I3Mjk2NDg5ZGFhMTRjN2U4OGZlOWY1NmZhMzdiMzIwEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                                                  "mimeType":  "text/html",
+                                                                                  "name":  "projects/14509537999559108262/files/f1616e2326904f4583389f22e7bd554b"
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/8792bcd467374578aadb8e7c5b862c88",
+                                                                 "screenshot":  {
+                                                                                    "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0ujunhyGMQ_Uh2IBcpTMakjgWa5lL1VbE1FwKg_vtheEkIiqdmnTAzlJ9idi3bJrgUP6aUOXvtR8BVc706MpNwgR2dJO_nKmq3lYmhLL0avw-fbe6AjNcBIM5arAJyHqY9nSC5fRuLPOhVr0e1QdLuY9aZJscst0aJQy4ZcLa1_JwKtqVJ3AdPSDWhSp96p8RPl1ZX1kqr5c_8FfxnYdLqqTMQAKKIEJdvC7Dmhoi74y3J4WDT3y6OulNitA",
+                                                                                    "name":  "projects/14509537999559108262/files/01ee96fd25174d98b93d8a30efc4c624"
+                                                                                },
+                                                                 "title":  "Pricing Page - Enhanced Logo Branding",
+                                                                 "width":  "2560"
+                                                             },
+                                                             {
+                                                                 "deviceType":  "DESKTOP",
+                                                                 "height":  "8920",
+                                                                 "htmlCode":  {
+                                                                                  "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzA2NzBjZjMyM2NiNTRlNjg4YTY0MDNiMWVlNzMwZWU4EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                                                  "mimeType":  "text/html",
+                                                                                  "name":  "projects/14509537999559108262/files/0044c560bab549d7adb3799a0e4c69f9"
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/49827a4f1bd544c9b562c5b2715afc5f",
+                                                                 "screenshot":  {
+                                                                                    "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0uiFv8_jW3_YRyLTMCGyEUXVXrXjSNeFGvvC1cnUbXsJlsi4QIJPU0SYAaETSaWfAag31RAfQ_hRIAKfCT30EqwXdSjXYi0kGEGJyWp_8h40m4QXbunjGZmANeyc7vz5crEb9SzXpeHOUldTJKpCCh2lPMzXqwbSS45_N9KXkPBLIns4A_mf7d5AcafMyLBL_do4NFSUSpulOsA7rl-VejnqFURmVab472PO2SRgepG3FKy9DpWtz_40dipe",
+                                                                                    "name":  "projects/14509537999559108262/files/0e5307d4ca554c62850049043abb6ffe"
+                                                                                },
+                                                                 "title":  "Gallery Page - Refined Red Theme (Updated)",
+                                                                 "width":  "2560"
+                                                             },
+                                                             {
+                                                                 "height":  "693",
+                                                                 "htmlCode":  {
+
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/3582817220250596724",
+                                                                 "screenshot":  {
+                                                                                    "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0",
+                                                                                    "name":  "projects/14509537999559108262/files/3582817220250596717"
+                                                                                },
+                                                                 "title":  "Smile_Factory.png",
+                                                                 "width":  "720"
+                                                             },
+                                                             {
+                                                                 "deviceType":  "DESKTOP",
+                                                                 "height":  "10064",
+                                                                 "htmlCode":  {
+                                                                                  "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sX2YzYjAzNjI5MTQ3NjRkMjJiNjIwYWM4ZmNmMTBkMjVmEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                                                  "mimeType":  "text/html",
+                                                                                  "name":  "projects/14509537999559108262/files/615a014cb5364e708560f3de4c33fd73"
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/337ffe1c1c544bb8ba0834f675067d3c",
+                                                                 "screenshot":  {
+                                                                                    "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0uj3pyEEyguCb49Qbzi3ht2uHKPNVoz_i9XuhPv67gf_YVpO3Ox7Qrn-r3X7eseKczE_OEhgKoFnU9kzo3uFGD1mFVanDEEeJbbrNQkc8rDOruVWeXHOkwNifdPL5Iz5dwhpyQPsw7gfuSI9cFNjXI1vWPChGWV0kr8oyVqUKJfvx_4vgMTJJOoLoQsXeqdKqeZyelZWGQTSJo222e9NWwvvv9EBwgwaLGf1Z4_6FWGp4MIcBZ6pw_3YP2Na",
+                                                                                    "name":  "projects/14509537999559108262/files/278df6b9232544c58dd09b5b099f19b6"
+                                                                                },
+                                                                 "title":  "Home Page - Enhanced Logo Branding",
+                                                                 "width":  "2560"
+                                                             },
+                                                             {
+                                                                 "deviceType":  "DESKTOP",
+                                                                 "height":  "1024",
+                                                                 "htmlCode":  {
+                                                                                  "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzMwOWRjMWJjOTM2MDQ3NGJhZjdjZjVjYmY0NWQ0YjQyEgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                                                  "mimeType":  "text/html",
+                                                                                  "name":  "projects/14509537999559108262/files/a156a1b10d524cf7898b8f25141355dd"
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/4c1ccaedff364ff3ba6d6cb35b3383ee",
+                                                                 "screenshot":  {
+
+                                                                                },
+                                                                 "title":  "The Smile Factory Arcade Prototype",
+                                                                 "width":  "1280"
+                                                             },
+                                                             {
+                                                                 "deviceType":  "DESKTOP",
+                                                                 "height":  "4190",
+                                                                 "htmlCode":  {
+                                                                                  "downloadUrl":  "https://contribution.usercontent.google.com/download?c=CgthaWRhX2NvZGVmeBJ8Eh1hcHBfY29tcGFuaW9uX2dlbmVyYXRlZF9maWxlcxpbCiVodG1sXzA4ZDY4MjE4ZGZmYTQzYmViZjkwN2M0ZDg3ZDMwNWY4EgsSBxCUroyv5xcYAZIBJAoKcHJvamVjdF9pZBIWQhQxNDUwOTUzNzk5OTU1OTEwODI2Mg\u0026filename=\u0026opi=89354086",
+                                                                                  "mimeType":  "text/html",
+                                                                                  "name":  "projects/14509537999559108262/files/84baf64732e1414db9c1d0a519f6f49d"
+                                                                              },
+                                                                 "name":  "projects/14509537999559108262/screens/7ab25f7de7704b2c84141b72914122da",
+                                                                 "screenshot":  {
+                                                                                    "downloadUrl":  "https://lh3.googleusercontent.com/aida/ADBb0ugQtYMMHADTnUOnI42t6xgJw55xfrJku_OsWMNkYF7DuTZzqhPU_T6HKqbj6bH9FukDW60jfn0CSwPU4N_q1vzW9wtJ0MAxMb_vq27a9GoduLRZbUxC-AluxpJCTLIxykSGHr0LmKOQqmSwDc4K0QKi1Rdre1KeSTsWKV0MLu31bOFyTbVEeub4myJNdVuLHO2KO4aHr32cPHQVLKgJHm-vcm_xTs41qOz0hku9gXtTo0xE2sFoKiXUD08s",
+                                                                                    "name":  "projects/14509537999559108262/files/2e1a3701ba2d4b73ac0da87b1e77bc93"
+                                                                                },
+                                                                 "title":  "Contact Page - Refined Red Theme (Updated)",
+                                                                 "width":  "2560"
+                                                             }
+                                                         ]
+                                         }
+               }
+}

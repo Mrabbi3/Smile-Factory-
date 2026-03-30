@@ -10,6 +10,14 @@ The SFMS consists of three main interfaces:
 2. **Admin Dashboard** - Full operational management for owners, managers, and employees
 3. **Customer Portal** - Personal accounts with booking, loyalty tracking, and purchase history
 
+## Documentation
+
+- `docs/ARCHITECTURE.md` - System architecture overview
+- `docs/API.md` - API and integration notes
+- `docs/DATABASE.md` - Database design and schema notes
+- `docs/DEPLOYMENT.md` - Deployment guidance
+- `docs/PUBLIC_SITE_IMPLEMENTATION.md` - Detailed record of the public-site redesign and UX implementation
+
 ## Tech Stack
 
 | Technology | Purpose |

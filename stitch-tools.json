@@ -1,0 +1,1074 @@
+[
+    {
+        "annotations":  {
+                            "destructiveHint":  false,
+                            "openWorldHint":  false,
+                            "readOnlyHint":  true
+                        },
+        "description":  "Retrieves the details of a specific Stitch project using its project name.\n",
+        "inputSchema":  {
+                            "description":  "Request message for GetProject.",
+                            "properties":  {
+                                               "name":  {
+                                                            "description":  "Required. Identifier. The resource name of the project to retrieve. Format: `projects/{project}` Example: `projects/4044680601076201931`",
+                                                            "type":  "string",
+                                                            "x-google-identifier":  true
+                                                        }
+                                           },
+                            "required":  [
+                                             "name"
+                                         ],
+                            "type":  "object"
+                        },
+        "name":  "get_project",
+        "outputSchema":  {
+                             "$defs":  {
+                                           "DesignTheme":  {
+                                                               "description":  "The theme of the design. Next ID: 21 LINT.IfChange",
+                                                               "properties":  {
+                                                                                  "backgroundDark":  {
+                                                                                                         "deprecated":  true,
+                                                                                                         "description":  "Optional. DEPRECATED: The background color for dark mode (hex format, e.g., \"#1a1a1a\").",
+                                                                                                         "type":  "string"
+                                                                                                     },
+                                                                                  "backgroundLight":  {
+                                                                                                          "deprecated":  true,
+                                                                                                          "description":  "Optional. DEPRECATED: The background color for light mode (hex format, e.g., \"#f8f8f8\").",
+                                                                                                          "type":  "string"
+                                                                                                      },
+                                                                                  "bodyFont":  {
+                                                                                                   "description":  "Optional. Body font.",
+                                                                                                   "enum":  [
+                                                                                                                "FONT_UNSPECIFIED",
+                                                                                                                "BE_VIETNAM_PRO",
+                                                                                                                "EPILOGUE",
+                                                                                                                "INTER",
+                                                                                                                "LEXEND",
+                                                                                                                "MANROPE",
+                                                                                                                "NEWSREADER",
+                                                                                                                "NOTO_SERIF",
+                                                                                                                "PLUS_JAKARTA_SANS",
+                                                                                                                "PUBLIC_SANS",
+                                                                                                                "SPACE_GROTESK",
+                                                                                                                "SPLINE_SANS",
+                                                                                                                "WORK_SANS",
+                                                                                                                "DOMINE",
+                                                                                                                "LIBRE_CASLON_TEXT",
+                                                                                                                "EB_GARAMOND",
+                                                                                                                "LITERATA",
+                                                                                                                "SOURCE_SERIF_FOUR",
+                                                                                                                "MONTSERRAT",
+                                                                                                                "METROPOLIS",
+                                                                                                                "SOURCE_SANS_THREE",
+                                                                                                                "NUNITO_SANS",
+                                                                                                                "ARIMO",
+                                                                                                                "HANKEN_GROTESK",
+                                                                                                                "RUBIK",
+                                                                                                                "GEIST",
+                                                                                                                "DM_SANS",
+                                                                                                                "IBM_PLEX_SANS",
+                                                                                                                "SORA"
+                                                                                                            ],
+                                                                                                   "type":  "string",
+                                                                                                   "x-google-enum-descriptions":  [
+                                                                                                                                      "Unspecified font.",
+                                                                                                                                      "Be Vietnam Pro font.",
+                                                                                                                                      "Epilogue font.",
+                                                                                                                                      "Inter font.",
+                                                                                                                                      "Lexend font.",
+                                                                                                                                      "Manrope font.",
+                                                                                                                                      "Newsreader font.",
+                                                                                                                                      "Noto Serif font.",
+                                                                                                                                      "Plus Jakarta Sans font.",
+                                                                                                                                      "Public Sans font.",
+                                                                                                                                      "Space Grotesk font.",
+                                                                                                                                      "Spline Sans font.",
+                                                                                                                                      "Work Sans font.",
+                                                                                                                                      "Domine font.",
+                                                                                                                                      "Libre Caslon Text font.",
+                                                                                                                                      "EB Garamond font.",
+                                                                                                                                      "Literata font.",
+                                                                                                                                      "Source Serif 4 font.",
+                                                                                                                                      "Montserrat font.",
+                                                                                                                                      "Metropolis font.",
+                                                                                                                                      "Source Sans 3 font.",
+                                                                                                                                      "Nunito Sans font.",
+                                                                                                                                      "Arimo font.",
+                                                                                                                                      "Hanken Grotesk font.",
+                                                                                                                                      "Rubik font.",
+                                                                                                                                      "Geist font.",
+                                                                                                                                      "DM Sans font.",
+                                                                                                                                      "IBM Plex Sans font.",
+                                                                                                                                      "Sora font."
+                                                                                                                                  ]
+                                                                                               },
+                                                                                  "colorMode":  {
+                                                                                                    "description":  "Required. The mode of appearance of the design.",
+                                                                                                    "enum":  [
+                                                                                                                 "COLOR_MODE_UNSPECIFIED",
+                                                                                                                 "LIGHT",
+                                                                                                                 "DARK"
+                                                                                                             ],
+                                                                                                    "type":  "string",
+                                                                                                    "x-google-enum-descriptions":  [
+                                                                                                                                       "Unspecified color mode.",
+                                                                                                                                       "Light mode.",
+                                                                                                                                       "Dark mode."
+                                                                                                                                   ]
+                                                                                                },
+                                                                                  "colorVariant":  {
+                                                                                                       "description":  "Optional. The variant of the dynamic color system.",
+                                                                                                       "enum":  [
+                                                                                                                    "COLOR_VARIANT_UNSPECIFIED",
+                                                                                                                    "MONOCHROME",
+                                                                                                                    "NEUTRAL",
+                                                                                                                    "TONAL_SPOT",
+                                                                                                                    "VIBRANT",
+                                                                                                                    "EXPRESSIVE",
+                                                                                                                    "FIDELITY",
+                                                                                                                    "CONTENT",
+                                                                                                                    "RAINBOW",
+                                                                                                                    "FRUIT_SALAD"
+                                                                                                                ],
+                                                                                                       "type":  "string",
+                                                                                                       "x-google-enum-descriptions":  [
+                                                                                                                                          "Unspecified color variant.",
+                                                                                                                                          "Monochrome variant.",
+                                                                                                                                          "Neutral variant.",
+                                                                                                                                          "Tonal spot variant.",
+                                                                                                                                          "Vibrant variant.",
+                                                                                                                                          "Expressive variant.",
+                                                                                                                                          "Fidelity variant.",
+                                                                                                                                          "Content variant.",
+                                                                                                                                          "Rainbow variant.",
+                                                                                                                                          "Fruit salad variant."
+                                                                                                                                      ]
+                                                                                                   },
+                                                                                  "customColor":  {
+                                                                                                      "description":  "Optional. A custom theme primary color, or a seed color for the dynamic color system (hex format, e.g., \"#ff0000\").",
+                                                                                                      "type":  "string"
+                                                                                                  },
+                                                                                  "description":  {
+                                                                                                      "deprecated":  true,
+                                                                                                      "description":  "Optional. A brief description of the theme aesthetic.",
+                                                                                                      "type":  "string"
+                                                                                                  },
+                                                                                  "designMd":  {
+                                                                                                   "description":  "Optional. A markdown file that describes the design system.",
+                                                                                                   "type":  "string"
+                                                                                               },
+                                                                                  "font":  {
+                                                                                               "deprecated":  true,
+                                                                                               "description":  "Optional. DEPRECATED: The font of the design. Planned to be deprecated in favor of `headline_font`, `body_font`, and `label_font`.",
+                                                                                               "enum":  [
+                                                                                                            "FONT_UNSPECIFIED",
+                                                                                                            "BE_VIETNAM_PRO",
+                                                                                                            "EPILOGUE",
+                                                                                                            "INTER",
+                                                                                                            "LEXEND",
+                                                                                                            "MANROPE",
+                                                                                                            "NEWSREADER",
+                                                                                                            "NOTO_SERIF",
+                                                                                                            "PLUS_JAKARTA_SANS",
+                                                                                                            "PUBLIC_SANS",
+                                                                                                            "SPACE_GROTESK",
+                                                                                                            "SPLINE_SANS",
+                                                                                                            "WORK_SANS",
+                                                                                                            "DOMINE",
+                                                                                                            "LIBRE_CASLON_TEXT",
+                                                                                                            "EB_GARAMOND",
+                                                                                                            "LITERATA",
+                                                                                                            "SOURCE_SERIF_FOUR",
+                                                                                                            "MONTSERRAT",
+                                                                                                            "METROPOLIS",
+                                                                                                            "SOURCE_SANS_THREE",
+                                                                                                            "NUNITO_SANS",
+                                                                                                            "ARIMO",
+                                                                                                            "HANKEN_GROTESK",
+                                                                                                            "RUBIK",
+                                                                                                            "GEIST",
+                                                                                                            "DM_SANS",
+                                                                                                            "IBM_PLEX_SANS",
+                                                                                                            "SORA"
+                                                                                                        ],
+                                                                                               "type":  "string",
+                                                                                               "x-google-enum-descriptions":  [
+                                                                                                                                  "Unspecified font.",
+                                                                                                                                  "Be Vietnam Pro font.",
+                                                                                                                                  "Epilogue font.",
+                                                                                                                                  "Inter font.",
+                                                                                                                                  "Lexend font.",
+                                                                                                                                  "Manrope font.",
+                                                                                                                                  "Newsreader font.",
+                                                                                                                                  "Noto Serif font.",
+                                                                                                                                  "Plus Jakarta Sans font.",
+                                                                                                                                  "Public Sans font.",
+                                                                                                                                  "Space Grotesk font.",
+                                                                                                                                  "Spline Sans font.",
+                                                                                                                                  "Work Sans font.",
+                                                                                                                                  "Domine font.",
+                                                                                                                                  "Libre Caslon Text font.",
+                                                                                                                                  "EB Garamond font.",
+                                                                                                                                  "Literata font.",
+                                                                                                                                  "Source Serif 4 font.",
+                                                                                                                                  "Montserrat font.",
+                                                                                                                                  "Metropolis font.",
+                                                                                                                                  "Source Sans 3 font.",
+                                                                                                                                  "Nunito Sans font.",
+                                                                                                                                  "Arimo font.",
+                                                                                                                                  "Hanken Grotesk font.",
+                                                                                                                                  "Rubik font.",
+                                                                                                                                  "Geist font.",
+                                                                                                                                  "DM Sans font.",
+                                                                                                                                  "IBM Plex Sans font.",
+                                                                                                                                  "Sora font."
+                                                                                                                              ]
+                                                                                           },
+                                                                                  "headlineFont":  {
+                                                                                                       "description":  "Optional. Headline font.",
+                                                                                                       "enum":  [
+                                                                                                                    "FONT_UNSPECIFIED",
+                                                                                                                    "BE_VIETNAM_PRO",
+                                                                                                                    "EPILOGUE",
+                                                                                                                    "INTER",
+                                                                                                                    "LEXEND",
+                                                                                                                    "MANROPE",
+                                                                                                                    "NEWSREADER",
+                                                                                                                    "NOTO_SERIF",
+                                                                                                                    "PLUS_JAKARTA_SANS",
+                                                                                                                    "PUBLIC_SANS",
+                                                                                                                    "SPACE_GROTESK",
+                                                                                                                    "SPLINE_SANS",
+                                                                                                                    "WORK_SANS",
+                                                                                                                    "DOMINE",
+                                                                                                                    "LIBRE_CASLON_TEXT",
+                                                                                                                    "EB_GARAMOND",
+                                                                                                                    "LITERATA",
+                                                                                                                    "SOURCE_SERIF_FOUR",
+                                                                                                                    "MONTSERRAT",
+                                                                                                                    "METROPOLIS",
+                                                                                                                    "SOURCE_SANS_THREE",
+                                                                                                                    "NUNITO_SANS",
+                                                                                                                    "ARIMO",
+                                                                                                                    "HANKEN_GROTESK",
+                                                                                                                    "RUBIK",
+                                                                                                                    "GEIST",
+                                                                                                                    "DM_SANS",
+                                                                                                                    "IBM_PLEX_SANS",
+                                                                                                                    "SORA"
+                                                                                                                ],
+                                                                                                       "type":  "string",
+                                                                                                       "x-google-enum-descriptions":  [
+                                                                                                                                          "Unspecified font.",
+                                                                                                                                          "Be Vietnam Pro font.",
+                                                                                                                                          "Epilogue font.",
+                                                                                                                                          "Inter font.",
+                                                                                                                                          "Lexend font.",
+                                                                                                                                          "Manrope font.",
+                                                                                                                                          "Newsreader font.",
+                                                                                                                                          "Noto Serif font.",
+                                                                                                                                          "Plus Jakarta Sans font.",
+                                                                                                                                          "Public Sans font.",
+                                                                                                                                          "Space Grotesk font.",
+                                                                                                                                          "Spline Sans font.",
+                                                                                                                                          "Work Sans font.",
+                                                                                                                                          "Domine font.",
+                                                                                                                                          "Libre Caslon Text font.",
+                                                                                                                                          "EB Garamond font.",
+                                                                                                                                          "Literata font.",
+                                                                                                                                          "Source Serif 4 font.",
+                                                                                                                                          "Montserrat font.",
+                                                                                                                                          "Metropolis font.",
+                                                                                                                                          "Source Sans 3 font.",
+                                                                                                                                          "Nunito Sans font.",
+                                                                                                                                          "Arimo font.",
+                                                                                                                                          "Hanken Grotesk font.",
+                                                                                                                                          "Rubik font.",
+                                                                                                                                          "Geist font.",
+                                                                                                                                          "DM Sans font.",
+                                                                                                                                          "IBM Plex Sans font.",
+                                                                                                                                          "Sora font."
+                                                                                                                                      ]
+                                                                                                   },
+                                                                                  "labelFont":  {
+                                                                                                    "description":  "Optional. Label font.",
+                                                                                                    "enum":  [
+                                                                                                                 "FONT_UNSPECIFIED",
+                                                                                                                 "BE_VIETNAM_PRO",
+                                                                                                                 "EPILOGUE",
+                                                                                                                 "INTER",
+                                                                                                                 "LEXEND",
+                                                                                                                 "MANROPE",
+                                                                                                                 "NEWSREADER",
+                                                                                                                 "NOTO_SERIF",
+                                                                                                                 "PLUS_JAKARTA_SANS",
+                                                                                                                 "PUBLIC_SANS",
+                                                                                                                 "SPACE_GROTESK",
+                                                                                                                 "SPLINE_SANS",
+                                                                                                                 "WORK_SANS",
+                                                                                                                 "DOMINE",
+                                                                                                                 "LIBRE_CASLON_TEXT",
+                                                                                                                 "EB_GARAMOND",
+                                                                                                                 "LITERATA",
+                                                                                                                 "SOURCE_SERIF_FOUR",
+                                                                                                                 "MONTSERRAT",
+                                                                                                                 "METROPOLIS",
+                                                                                                                 "SOURCE_SANS_THREE",
+                                                                                                                 "NUNITO_SANS",
+                                                                                                                 "ARIMO",
+                                                                                                                 "HANKEN_GROTESK",
+                                                                                                                 "RUBIK",
+                                                                                                                 "GEIST",
+                                                                                                                 "DM_SANS",
+                                                                                                                 "IBM_PLEX_SANS",
+                                                                                                                 "SORA"
+                                                                                                             ],
+                                                                                                    "type":  "string",
+                                                                                                    "x-google-enum-descriptions":  [
+                                                                                                                                       "Unspecified font.",
+                                                                                                                                       "Be Vietnam Pro font.",
+                                                                                                                                       "Epilogue font.",
+                                                                                                                                       "Inter font.",
+                                                                                                                                       "Lexend font.",
+                                                                                                                                       "Manrope font.",
+                                                                                                                                       "Newsreader font.",
+                                                                                                                                       "Noto Serif font.",
+                                                                                                                                       "Plus Jakarta Sans font.",
+                                                                                                                                       "Public Sans font.",
+                                                                                                                                       "Space Grotesk font.",
+                                                                                                                                       "Spline Sans font.",
+                                                                                                                                       "Work Sans font.",
+                                                                                                                                       "Domine font.",
+                                                                                                                                       "Libre Caslon Text font.",
+                                                                                                                                       "EB Garamond font.",
+                                                                                                                                       "Literata font.",
+                                                                                                                                       "Source Serif 4 font.",
+                                                                                                                                       "Montserrat font.",
+                                                                                                                                       "Metropolis font.",
+                                                                                                                                       "Source Sans 3 font.",
+                                                                                                                                       "Nunito Sans font.",
+                                                                                                                                       "Arimo font.",
+                                                                                                                                       "Hanken Grotesk font.",
+                                                                                                                                       "Rubik font.",
+                                                                                                                                       "Geist font.",
+                                                                                                                                       "DM Sans font.",
+                                                                                                                                       "IBM Plex Sans font.",
+                                                                                                                                       "Sora font."
+                                                                                                                                   ]
+                                                                                                },
+                                                                                  "namedColors":  {
+                                                                                                      "additionalProperties":  {
+                                                                                                                                   "type":  "string"
+                                                                                                                               },
+                                                                                                      "description":  "Optional. The color scheme of the design. This is a map of color names to hex color codes. Example: {\"primary\": \"#ff0000\", \"secondary\": \"#00ff00\", \"tertiary\": \"#0000ff\"}",
+                                                                                                      "type":  "object"
+                                                                                                  },
+                                                                                  "overrideNeutralColor":  {
+                                                                                                               "description":  "Optional. Override neutral color for the dynamic color system (hex format, e.g., \"#ffffff\").",
+                                                                                                               "type":  "string"
+                                                                                                           },
+                                                                                  "overridePrimaryColor":  {
+                                                                                                               "description":  "Optional. Override primary color for the dynamic color system (hex format, e.g., \"#ff0000\").",
+                                                                                                               "type":  "string"
+                                                                                                           },
+                                                                                  "overrideSecondaryColor":  {
+                                                                                                                 "description":  "Optional. Override secondary color for the dynamic color system (hex format, e.g., \"#00ff00\").",
+                                                                                                                 "type":  "string"
+                                                                                                             },
+                                                                                  "overrideTertiaryColor":  {
+                                                                                                                "description":  "Optional. Override tertiary color for the dynamic color system (hex format, e.g., \"#0000ff\").",
+                                                                                                                "type":  "string"
+                                                                                                            },
+                                                                                  "preset":  {
+                                                                                                 "deprecated":  true,
+                                                                                                 "description":  "Optional. DEPRECATED: The preset color of the design.",
+                                                                                                 "type":  "string"
+                                                                                             },
+                                                                                  "roundness":  {
+                                                                                                    "description":  "Required. The roundness of the design.",
+                                                                                                    "enum":  [
+                                                                                                                 "ROUNDNESS_UNSPECIFIED",
+                                                                                                                 "ROUND_TWO",
+                                                                                                                 "ROUND_FOUR",
+                                                                                                                 "ROUND_EIGHT",
+                                                                                                                 "ROUND_TWELVE",
+                                                                                                                 "ROUND_FULL"
+                                                                                                             ],
+                                                                                                    "type":  "string",
+                                                                                                    "x-google-enum-deprecated":  [
+                                                                                                                                     false,
+                                                                                                                                     true,
+                                                                                                                                     false,
+                                                                                                                                     false,
+                                                                                                                                     false,
+                                                                                                                                     false
+                                                                                                                                 ],
+                                                                                                    "x-google-enum-descriptions":  [
+                                                                                                                                       "Unspecified roundness.",
+                                                                                                                                       "Round 2. Unused.",
+                                                                                                                                       "Round 4.",
+                                                                                                                                       "Round 8.",
+                                                                                                                                       "Round 12 or full",
+                                                                                                                                       "Round full."
+                                                                                                                                   ]
+                                                                                                },
+                                                                                  "saturation":  {
+                                                                                                     "deprecated":  true,
+                                                                                                     "description":  "Optional. DEPRECATED: The saturation of the design between 1 and 4.",
+                                                                                                     "format":  "int32",
+                                                                                                     "type":  "integer"
+                                                                                                 },
+                                                                                  "spacingScale":  {
+                                                                                                       "description":  "Optional. The spacing scale level (0=minimal, 1=compact, 2=normal, 3=spacious).",
+                                                                                                       "format":  "int32",
+                                                                                                       "type":  "integer"
+                                                                                                   }
+                                                                              },
+                                                               "type":  "object"
+                                                           },
+                                           "File":  {
+                                                        "description":  "A File resource.",
+                                                        "properties":  {
+                                                                           "downloadUrl":  {
+                                                                                               "description":  "Optional. The URL of the file for download. For image files, this would be FIFE base URLs.",
+                                                                                               "type":  "string"
+                                                                                           },
+                                                                           "fileContentBase64":  {
+                                                                                                     "description":  "Optional. Input only. The base64-encoded string of the file content.",
+                                                                                                     "type":  "string",
+                                                                                                     "writeOnly":  true
+                                                                                                 },
+                                                                           "mimeType":  {
+                                                                                            "description":  "Optional. The mime type of the file. E.g. \"image/png\", \"text/html\".",
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                           "name":  {
+                                                                                        "description":  "Identifier. The resource name of the file. Format: projects/{project}/files/{file}",
+                                                                                        "type":  "string",
+                                                                                        "x-google-identifier":  true
+                                                                                    },
+                                                                           "uploadBlobId":  {
+                                                                                                "description":  "Optional. The BlobId from Scotty/contrib service file upload. This points to a temporary blobstore location of the file.",
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                           "userFeedback":  {
+                                                                                                "$ref":  "#/$defs/UserFeedback",
+                                                                                                "description":  "Output only. The latest feedback submitted for the file.",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                       },
+                                                        "type":  "object"
+                                                    },
+                                           "ProjectMetadata":  {
+                                                                   "description":  "Metadata relating to the project.",
+                                                                   "properties":  {
+                                                                                      "isRemixed":  {
+                                                                                                        "description":  "Whether this project was remixed or not. This allows the frontend to avoid polling for sessions since none will exist for a remixed project.",
+                                                                                                        "type":  "boolean"
+                                                                                                    },
+                                                                                      "userRole":  {
+                                                                                                       "description":  "The Role of the user accessing the project.",
+                                                                                                       "enum":  [
+                                                                                                                    "ROLE_UNSPECIFIED",
+                                                                                                                    "OWNER",
+                                                                                                                    "READER"
+                                                                                                                ],
+                                                                                                       "type":  "string",
+                                                                                                       "x-google-enum-descriptions":  [
+                                                                                                                                          "go/protodosdonts#unspecified-enum",
+                                                                                                                                          "Represents the project owner (whose user_id is part of the primary key for Spanner)",
+                                                                                                                                          "Represents users with permission to view the project and its assets"
+                                                                                                                                      ]
+                                                                                                   }
+                                                                                  },
+                                                                   "type":  "object"
+                                                               },
+                                           "ScreenInstance":  {
+                                                                  "description":  "An instance of a screen on the project. Next ID: 15",
+                                                                  "properties":  {
+                                                                                     "groupId":  {
+                                                                                                     "description":  "Optional. Group identifier for Genie Agent output grouping. Screens with the same groupId are rendered and interact as a group.",
+                                                                                                     "type":  "string"
+                                                                                                 },
+                                                                                     "groupName":  {
+                                                                                                       "description":  "Optional. Human-readable name for the group (e.g., \"Warm Minimalism\", \"Ethereal Glow\").",
+                                                                                                       "type":  "string"
+                                                                                                   },
+                                                                                     "height":  {
+                                                                                                    "description":  "Optional. The screen height.",
+                                                                                                    "format":  "int32",
+                                                                                                    "type":  "integer"
+                                                                                                },
+                                                                                     "hidden":  {
+                                                                                                    "description":  "Optional. User driven action hiding screen from the canvas.",
+                                                                                                    "type":  "boolean"
+                                                                                                },
+                                                                                     "id":  {
+                                                                                                "description":  "Optional. The screen instance id.",
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                                     "isFavourite":  {
+                                                                                                         "description":  "Optional. Whether this screen is marked as a favourite by the user.",
+                                                                                                         "type":  "boolean"
+                                                                                                     },
+                                                                                     "label":  {
+                                                                                                   "description":  "Optional. The screen label.",
+                                                                                                   "type":  "string"
+                                                                                               },
+                                                                                     "sourceAsset":  {
+                                                                                                         "description":  "Optional. The resource name of the source asset. Format: assets/{asset}",
+                                                                                                         "type":  "string"
+                                                                                                     },
+                                                                                     "sourceScreen":  {
+                                                                                                          "description":  "Optional. The resource name of the source screen. Format: projects/{project}/screens/{screen}",
+                                                                                                          "type":  "string"
+                                                                                                      },
+                                                                                     "type":  {
+                                                                                                  "description":  "Optional. The type of screen instance.",
+                                                                                                  "enum":  [
+                                                                                                               "SCREEN_INSTANCE_TYPE_UNSPECIFIED",
+                                                                                                               "SCREEN_INSTANCE",
+                                                                                                               "DESIGN_SYSTEM_INSTANCE",
+                                                                                                               "GROUP_INSTANCE"
+                                                                                                           ],
+                                                                                                  "type":  "string",
+                                                                                                  "x-google-enum-descriptions":  [
+                                                                                                                                     "The unspecified value.",
+                                                                                                                                     "A screen instance.",
+                                                                                                                                     "A design system instance.",
+                                                                                                                                     "A group instance."
+                                                                                                                                 ]
+                                                                                              },
+                                                                                     "variantScreenInstance":  {
+                                                                                                                   "$ref":  "#/$defs/ScreenInstance",
+                                                                                                                   "description":  "Optional. The variant Screen Instance."
+                                                                                                               },
+                                                                                     "width":  {
+                                                                                                   "description":  "Optional. The screen width.",
+                                                                                                   "format":  "int32",
+                                                                                                   "type":  "integer"
+                                                                                               },
+                                                                                     "x":  {
+                                                                                               "description":  "Optional. The x position of the screen.",
+                                                                                               "format":  "int32",
+                                                                                               "type":  "integer"
+                                                                                           },
+                                                                                     "y":  {
+                                                                                               "description":  "Optional. The y position of the screen.",
+                                                                                               "format":  "int32",
+                                                                                               "type":  "integer"
+                                                                                           }
+                                                                                 },
+                                                                  "type":  "object"
+                                                              },
+                                           "UserFeedback":  {
+                                                                "description":  "User feedback for a given interaction.",
+                                                                "properties":  {
+                                                                                   "comment":  {
+                                                                                                   "description":  "Optional. Additional comment for the rating.",
+                                                                                                   "type":  "string"
+                                                                                               },
+                                                                                   "designFeedbackReason":  {
+                                                                                                                "description":  "Optional. The reason for the feedback for a design, if the rating is negative.",
+                                                                                                                "enum":  [
+                                                                                                                             "DESIGN_FEEDBACK_REASON_UNSPECIFIED",
+                                                                                                                             "DESIGN_DOESNT_MATCH_PROMPT",
+                                                                                                                             "EDIT_DOESNT_MATCH_PROMPT",
+                                                                                                                             "DESCRIPTION_DOESNT_MATCH",
+                                                                                                                             "COMPONENT_ISSUE",
+                                                                                                                             "INCORRECT_THEME",
+                                                                                                                             "FIGMA_EXPORT_FAILED",
+                                                                                                                             "OTHER"
+                                                                                                                         ],
+                                                                                                                "type":  "string",
+                                                                                                                "x-google-enum-descriptions":  [
+                                                                                                                                                   "Unspecified reason.",
+                                                                                                                                                   "The design does not match the prompt.",
+                                                                                                                                                   "The edit does not match the prompt.",
+                                                                                                                                                   "The description does not match the design.",
+                                                                                                                                                   "There is an issue with a component in the design.",
+                                                                                                                                                   "The theme is incorrect.",
+                                                                                                                                                   "The Figma export failed.",
+                                                                                                                                                   "Other reason."
+                                                                                                                                               ]
+                                                                                                            },
+                                                                                   "rating":  {
+                                                                                                  "description":  "Optional. The user rating of the interaction.",
+                                                                                                  "enum":  [
+                                                                                                               "RATING_UNSPECIFIED",
+                                                                                                               "POSITIVE",
+                                                                                                               "NEGATIVE"
+                                                                                                           ],
+                                                                                                  "type":  "string",
+                                                                                                  "x-google-enum-descriptions":  [
+                                                                                                                                     "Unspecified rating.",
+                                                                                                                                     "Positive rating.",
+                                                                                                                                     "Negative rating."
+                                                                                                                                 ]
+                                                                                              }
+                                                                               },
+                                                                "type":  "object"
+                                                            }
+                                       },
+                             "description":  "A project is a single app.",
+                             "properties":  {
+                                                "backgroundTheme":  {
+                                                                        "description":  "Optional. The background theme of the project.",
+                                                                        "type":  "string"
+                                                                    },
+                                                "createTime":  {
+                                                                   "description":  "Output only. The time when the project was created.",
+                                                                   "format":  "date-time",
+                                                                   "readOnly":  true,
+                                                                   "type":  "string"
+                                                               },
+                                                "designTheme":  {
+                                                                    "$ref":  "#/$defs/DesignTheme",
+                                                                    "description":  "Output only. The theme used to generate the first design in the project.",
+                                                                    "readOnly":  true
+                                                                },
+                                                "deviceType":  {
+                                                                   "description":  "Output only. The device type of the project.",
+                                                                   "enum":  [
+                                                                                "DEVICE_TYPE_UNSPECIFIED",
+                                                                                "MOBILE",
+                                                                                "DESKTOP",
+                                                                                "TABLET",
+                                                                                "AGNOSTIC"
+                                                                            ],
+                                                                   "readOnly":  true,
+                                                                   "type":  "string",
+                                                                   "x-google-enum-descriptions":  [
+                                                                                                      "Unspecified device type.",
+                                                                                                      "A design for a mobile device.",
+                                                                                                      "A design for a desktop device.",
+                                                                                                      "A design for a tablet device.",
+                                                                                                      "A design that is not tied to a specific device."
+                                                                                                  ]
+                                                               },
+                                                "metadata":  {
+                                                                 "$ref":  "#/$defs/ProjectMetadata",
+                                                                 "description":  "Metadata of the project."
+                                                             },
+                                                "name":  {
+                                                             "description":  "Identifier. The resource name of the project. Format: projects/{project}",
+                                                             "type":  "string",
+                                                             "x-google-identifier":  true
+                                                         },
+                                                "origin":  {
+                                                               "description":  "Output only. The origin of the project.",
+                                                               "enum":  [
+                                                                            "ORIGIN_UNSPECIFIED",
+                                                                            "STITCH",
+                                                                            "IMPORTED_FROM_GALILEO"
+                                                                        ],
+                                                               "readOnly":  true,
+                                                               "type":  "string",
+                                                               "x-google-enum-descriptions":  [
+                                                                                                  "Unspecified origin. By default, the project is created from Stitch.",
+                                                                                                  "The project is created from Stitch.",
+                                                                                                  "The project is imported from Galileo."
+                                                                                              ]
+                                                           },
+                                                "projectType":  {
+                                                                    "description":  "Optional. The type of the project. If not specified, the project is a text to UI project.",
+                                                                    "enum":  [
+                                                                                 "PROJECT_TYPE_UNSPECIFIED",
+                                                                                 "TEXT_TO_UI",
+                                                                                 "TEXT_TO_UI_PRO",
+                                                                                 "TEXT_TO_UI_PRO_IMAGE_SPACE",
+                                                                                 "IMAGE_TO_UI",
+                                                                                 "IMAGE_TO_UI_PRO",
+                                                                                 "PROJECT_DESIGN"
+                                                                             ],
+                                                                    "type":  "string",
+                                                                    "x-google-enum-descriptions":  [
+                                                                                                       "Unspecified project type. By default, the project is a text to UI project.",
+                                                                                                       "A text to UI project.",
+                                                                                                       "Pro version of text to UI project.",
+                                                                                                       "Deprecated. Pro version of text to UI project using image space for edits.",
+                                                                                                       "An image to UI project.",
+                                                                                                       "Deprecated.",
+                                                                                                       "A new design project."
+                                                                                                   ]
+                                                                },
+                                                "readTime":  {
+                                                                 "description":  "Output only. The time the project was last read. Populated only when listing recently viewed projects.",
+                                                                 "format":  "date-time",
+                                                                 "readOnly":  true,
+                                                                 "type":  "string"
+                                                             },
+                                                "screenInstances":  {
+                                                                        "description":  "Output only. The screen instances on this project.",
+                                                                        "items":  {
+                                                                                      "$ref":  "#/$defs/ScreenInstance"
+                                                                                  },
+                                                                        "readOnly":  true,
+                                                                        "type":  "array"
+                                                                    },
+                                                "thumbnailScreenshot":  {
+                                                                            "$ref":  "#/$defs/File",
+                                                                            "description":  "Optional. The screenshot to be used as the thumbnail for the project. Same as normal design screenshots, this contains the FIFE serving_base_url which requires additional FIFE URL options to be set for sizing."
+                                                                        },
+                                                "title":  {
+                                                              "description":  "Optional. The title of the project.",
+                                                              "type":  "string"
+                                                          },
+                                                "updateTime":  {
+                                                                   "description":  "Output only. The time when the project was last updated.",
+                                                                   "format":  "date-time",
+                                                                   "readOnly":  true,
+                                                                   "type":  "string"
+                                                               },
+                                                "visibility":  {
+                                                                   "description":  "Optional. The visibility setting of the project.",
+                                                                   "enum":  [
+                                                                                "VISIBILITY_UNSPECIFIED",
+                                                                                "PUBLIC",
+                                                                                "PRIVATE"
+                                                                            ],
+                                                                   "type":  "string",
+                                                                   "x-google-enum-descriptions":  [
+                                                                                                      "Unspecified visibility. By default, the project is private.",
+                                                                                                      "The project is visible to all users, and may be featured in the feed.",
+                                                                                                      "The project is visible to only the creator."
+                                                                                                  ]
+                                                               }
+                                            },
+                             "type":  "object"
+                         }
+    },
+    {
+        "annotations":  {
+                            "openWorldHint":  false,
+                            "readOnlyHint":  true
+                        },
+        "description":  "Lists all screens within a given Stitch project.\n",
+        "inputSchema":  {
+                            "description":  "Request message for ListScreens.",
+                            "properties":  {
+                                               "projectId":  {
+                                                                 "description":  "Required. Identifier. The project ID to list screens for, example: \u00274044680601076201931\u0027, without the `projects/` prefix.",
+                                                                 "type":  "string",
+                                                                 "x-google-identifier":  true
+                                                             }
+                                           },
+                            "required":  [
+                                             "projectId"
+                                         ],
+                            "type":  "object"
+                        },
+        "name":  "list_screens",
+        "outputSchema":  {
+                             "$defs":  {
+                                           "File":  {
+                                                        "description":  "A File resource.",
+                                                        "properties":  {
+                                                                           "downloadUrl":  {
+                                                                                               "description":  "Optional. The URL of the file for download. For image files, this would be FIFE base URLs.",
+                                                                                               "type":  "string"
+                                                                                           },
+                                                                           "fileContentBase64":  {
+                                                                                                     "description":  "Optional. Input only. The base64-encoded string of the file content.",
+                                                                                                     "type":  "string",
+                                                                                                     "writeOnly":  true
+                                                                                                 },
+                                                                           "mimeType":  {
+                                                                                            "description":  "Optional. The mime type of the file. E.g. \"image/png\", \"text/html\".",
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                           "name":  {
+                                                                                        "description":  "Identifier. The resource name of the file. Format: projects/{project}/files/{file}",
+                                                                                        "type":  "string",
+                                                                                        "x-google-identifier":  true
+                                                                                    },
+                                                                           "uploadBlobId":  {
+                                                                                                "description":  "Optional. The BlobId from Scotty/contrib service file upload. This points to a temporary blobstore location of the file.",
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                           "userFeedback":  {
+                                                                                                "$ref":  "#/$defs/UserFeedback",
+                                                                                                "description":  "Output only. The latest feedback submitted for the file.",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                       },
+                                                        "type":  "object"
+                                                    },
+                                           "Screen":  {
+                                                          "description":  "A screen generated by the agent.",
+                                                          "properties":  {
+                                                                             "deviceType":  {
+                                                                                                "description":  "The device type of the screen.",
+                                                                                                "enum":  [
+                                                                                                             "DEVICE_TYPE_UNSPECIFIED",
+                                                                                                             "MOBILE",
+                                                                                                             "DESKTOP",
+                                                                                                             "TABLET",
+                                                                                                             "AGNOSTIC"
+                                                                                                         ],
+                                                                                                "type":  "string",
+                                                                                                "x-google-enum-descriptions":  [
+                                                                                                                                   "Unspecified device type.",
+                                                                                                                                   "A design for a mobile device.",
+                                                                                                                                   "A design for a desktop device.",
+                                                                                                                                   "A design for a tablet device.",
+                                                                                                                                   "A design that is not tied to a specific device."
+                                                                                                                               ]
+                                                                                            },
+                                                                             "height":  {
+                                                                                            "description":  "The height of the screen.",
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                             "htmlCode":  {
+                                                                                              "$ref":  "#/$defs/File",
+                                                                                              "description":  "The HTML code of the screen."
+                                                                                          },
+                                                                             "name":  {
+                                                                                          "description":  "Identifier. The name of the screen. Format: projects/{project}/screens/{screen}",
+                                                                                          "type":  "string",
+                                                                                          "x-google-identifier":  true
+                                                                                      },
+                                                                             "screenshot":  {
+                                                                                                "$ref":  "#/$defs/File",
+                                                                                                "description":  "The screenshot of the screen."
+                                                                                            },
+                                                                             "title":  {
+                                                                                           "description":  "The title of the screen.",
+                                                                                           "type":  "string"
+                                                                                       },
+                                                                             "width":  {
+                                                                                           "description":  "The width of the screen.",
+                                                                                           "type":  "string"
+                                                                                       }
+                                                                         },
+                                                          "type":  "object"
+                                                      },
+                                           "UserFeedback":  {
+                                                                "description":  "User feedback for a given interaction.",
+                                                                "properties":  {
+                                                                                   "comment":  {
+                                                                                                   "description":  "Optional. Additional comment for the rating.",
+                                                                                                   "type":  "string"
+                                                                                               },
+                                                                                   "designFeedbackReason":  {
+                                                                                                                "description":  "Optional. The reason for the feedback for a design, if the rating is negative.",
+                                                                                                                "enum":  [
+                                                                                                                             "DESIGN_FEEDBACK_REASON_UNSPECIFIED",
+                                                                                                                             "DESIGN_DOESNT_MATCH_PROMPT",
+                                                                                                                             "EDIT_DOESNT_MATCH_PROMPT",
+                                                                                                                             "DESCRIPTION_DOESNT_MATCH",
+                                                                                                                             "COMPONENT_ISSUE",
+                                                                                                                             "INCORRECT_THEME",
+                                                                                                                             "FIGMA_EXPORT_FAILED",
+                                                                                                                             "OTHER"
+                                                                                                                         ],
+                                                                                                                "type":  "string",
+                                                                                                                "x-google-enum-descriptions":  [
+                                                                                                                                                   "Unspecified reason.",
+                                                                                                                                                   "The design does not match the prompt.",
+                                                                                                                                                   "The edit does not match the prompt.",
+                                                                                                                                                   "The description does not match the design.",
+                                                                                                                                                   "There is an issue with a component in the design.",
+                                                                                                                                                   "The theme is incorrect.",
+                                                                                                                                                   "The Figma export failed.",
+                                                                                                                                                   "Other reason."
+                                                                                                                                               ]
+                                                                                                            },
+                                                                                   "rating":  {
+                                                                                                  "description":  "Optional. The user rating of the interaction.",
+                                                                                                  "enum":  [
+                                                                                                               "RATING_UNSPECIFIED",
+                                                                                                               "POSITIVE",
+                                                                                                               "NEGATIVE"
+                                                                                                           ],
+                                                                                                  "type":  "string",
+                                                                                                  "x-google-enum-descriptions":  [
+                                                                                                                                     "Unspecified rating.",
+                                                                                                                                     "Positive rating.",
+                                                                                                                                     "Negative rating."
+                                                                                                                                 ]
+                                                                                              }
+                                                                               },
+                                                                "type":  "object"
+                                                            }
+                                       },
+                             "description":  "Response message for ListScreens.",
+                             "properties":  {
+                                                "screens":  {
+                                                                "description":  "The screens for the given project.",
+                                                                "items":  {
+                                                                              "$ref":  "#/$defs/Screen"
+                                                                          },
+                                                                "type":  "array"
+                                                            }
+                                            },
+                             "type":  "object"
+                         }
+    },
+    {
+        "annotations":  {
+                            "openWorldHint":  false,
+                            "readOnlyHint":  true
+                        },
+        "description":  "Retrieves the details of a specific screen within a project.\n",
+        "inputSchema":  {
+                            "description":  "Request message for GetScreen.",
+                            "properties":  {
+                                               "name":  {
+                                                            "description":  "Required. Identifier. The resource name of the screen to retrieve. Format: `projects/{project}/screens/{screen}` Example: `projects/4044680601076201931/screens/98b50e2ddc9943efb387052637738f61`",
+                                                            "type":  "string",
+                                                            "x-google-identifier":  true
+                                                        },
+                                               "projectId":  {
+                                                                 "deprecated":  true,
+                                                                 "description":  "Required. The project ID of screen to retrieve. Example: `4044680601076201931`, without the `projects/` prefix.",
+                                                                 "type":  "string"
+                                                             },
+                                               "screenId":  {
+                                                                "deprecated":  true,
+                                                                "description":  "Required. The screen ID of screen to retrieve. Example: `98b50e2ddc9943efb387052637738f61`, without the `screens/` prefix.",
+                                                                "type":  "string"
+                                                            }
+                                           },
+                            "required":  [
+                                             "name",
+                                             "projectId",
+                                             "screenId"
+                                         ],
+                            "type":  "object"
+                        },
+        "name":  "get_screen",
+        "outputSchema":  {
+                             "$defs":  {
+                                           "File":  {
+                                                        "description":  "A File resource.",
+                                                        "properties":  {
+                                                                           "downloadUrl":  {
+                                                                                               "description":  "Optional. The URL of the file for download. For image files, this would be FIFE base URLs.",
+                                                                                               "type":  "string"
+                                                                                           },
+                                                                           "fileContentBase64":  {
+                                                                                                     "description":  "Optional. Input only. The base64-encoded string of the file content.",
+                                                                                                     "type":  "string",
+                                                                                                     "writeOnly":  true
+                                                                                                 },
+                                                                           "mimeType":  {
+                                                                                            "description":  "Optional. The mime type of the file. E.g. \"image/png\", \"text/html\".",
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                           "name":  {
+                                                                                        "description":  "Identifier. The resource name of the file. Format: projects/{project}/files/{file}",
+                                                                                        "type":  "string",
+                                                                                        "x-google-identifier":  true
+                                                                                    },
+                                                                           "uploadBlobId":  {
+                                                                                                "description":  "Optional. The BlobId from Scotty/contrib service file upload. This points to a temporary blobstore location of the file.",
+                                                                                                "type":  "string"
+                                                                                            },
+                                                                           "userFeedback":  {
+                                                                                                "$ref":  "#/$defs/UserFeedback",
+                                                                                                "description":  "Output only. The latest feedback submitted for the file.",
+                                                                                                "readOnly":  true
+                                                                                            }
+                                                                       },
+                                                        "type":  "object"
+                                                    },
+                                           "UserFeedback":  {
+                                                                "description":  "User feedback for a given interaction.",
+                                                                "properties":  {
+                                                                                   "comment":  {
+                                                                                                   "description":  "Optional. Additional comment for the rating.",
+                                                                                                   "type":  "string"
+                                                                                               },
+                                                                                   "designFeedbackReason":  {
+                                                                                                                "description":  "Optional. The reason for the feedback for a design, if the rating is negative.",
+                                                                                                                "enum":  [
+                                                                                                                             "DESIGN_FEEDBACK_REASON_UNSPECIFIED",
+                                                                                                                             "DESIGN_DOESNT_MATCH_PROMPT",
+                                                                                                                             "EDIT_DOESNT_MATCH_PROMPT",
+                                                                                                                             "DESCRIPTION_DOESNT_MATCH",
+                                                                                                                             "COMPONENT_ISSUE",
+                                                                                                                             "INCORRECT_THEME",
+                                                                                                                             "FIGMA_EXPORT_FAILED",
+                                                                                                                             "OTHER"
+                                                                                                                         ],
+                                                                                                                "type":  "string",
+                                                                                                                "x-google-enum-descriptions":  [
+                                                                                                                                                   "Unspecified reason.",
+                                                                                                                                                   "The design does not match the prompt.",
+                                                                                                                                                   "The edit does not match the prompt.",
+                                                                                                                                                   "The description does not match the design.",
+                                                                                                                                                   "There is an issue with a component in the design.",
+                                                                                                                                                   "The theme is incorrect.",
+                                                                                                                                                   "The Figma export failed.",
+                                                                                                                                                   "Other reason."
+                                                                                                                                               ]
+                                                                                                            },
+                                                                                   "rating":  {
+                                                                                                  "description":  "Optional. The user rating of the interaction.",
+                                                                                                  "enum":  [
+                                                                                                               "RATING_UNSPECIFIED",
+                                                                                                               "POSITIVE",
+                                                                                                               "NEGATIVE"
+                                                                                                           ],
+                                                                                                  "type":  "string",
+                                                                                                  "x-google-enum-descriptions":  [
+                                                                                                                                     "Unspecified rating.",
+                                                                                                                                     "Positive rating.",
+                                                                                                                                     "Negative rating."
+                                                                                                                                 ]
+                                                                                              }
+                                                                               },
+                                                                "type":  "object"
+                                                            }
+                                       },
+                             "description":  "A screen generated by the agent.",
+                             "properties":  {
+                                                "deviceType":  {
+                                                                   "description":  "The device type of the screen.",
+                                                                   "enum":  [
+                                                                                "DEVICE_TYPE_UNSPECIFIED",
+                                                                                "MOBILE",
+                                                                                "DESKTOP",
+                                                                                "TABLET",
+                                                                                "AGNOSTIC"
+                                                                            ],
+                                                                   "type":  "string",
+                                                                   "x-google-enum-descriptions":  [
+                                                                                                      "Unspecified device type.",
+                                                                                                      "A design for a mobile device.",
+                                                                                                      "A design for a desktop device.",
+                                                                                                      "A design for a tablet device.",
+                                                                                                      "A design that is not tied to a specific device."
+                                                                                                  ]
+                                                               },
+                                                "height":  {
+                                                               "description":  "The height of the screen.",
+                                                               "type":  "string"
+                                                           },
+                                                "htmlCode":  {
+                                                                 "$ref":  "#/$defs/File",
+                                                                 "description":  "The HTML code of the screen."
+                                                             },
+                                                "name":  {
+                                                             "description":  "Identifier. The name of the screen. Format: projects/{project}/screens/{screen}",
+                                                             "type":  "string",
+                                                             "x-google-identifier":  true
+                                                         },
+                                                "screenshot":  {
+                                                                   "$ref":  "#/$defs/File",
+                                                                   "description":  "The screenshot of the screen."
+                                                               },
+                                                "title":  {
+                                                              "description":  "The title of the screen.",
+                                                              "type":  "string"
+                                                          },
+                                                "width":  {
+                                                              "description":  "The width of the screen.",
+                                                              "type":  "string"
+                                                          }
+                                            },
+                             "type":  "object"
+                         }
+    }
+]
