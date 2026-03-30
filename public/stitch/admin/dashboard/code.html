@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Smile Factory | Employee Dashboard</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "primary": "#bb0100", // Poppy Red
+                "on-primary": "#ffffff",
+                "surface": "#f9fafb",
+                "on-surface": "#111827",
+                "surface-container": "#f3f4f6",
+                "outline": "#9ca3af",
+                "primary-dim": "#990100",
+              },
+              fontFamily: {
+                "sans": ["Epilogue", "sans-serif"],
+              },
+              borderRadius: {
+                "DEFAULT": "0.75rem",
+                "lg": "1.25rem",
+                "xl": "2rem",
+                "full": "9999px"
+              },
+            },
+          },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body { font-family: 'Epilogue', sans-serif; }
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .industrial-grid {
+            background-image: radial-gradient(#bb0100 0.5px, transparent 0.5px);
+            background-size: 24px 24px;
+            background-color: #f9fafb;
+            opacity: 0.05;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+        .active-tab {
+            background-color: #fef2f2;
+            color: #bb0100;
+            border-right: 4px solid #bb0100;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface antialiased">
+<div class="industrial-grid"></div>
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-72 z-50 flex flex-col bg-white border-r border-gray-200 shadow-sm overflow-y-auto">
+<div class="p-8">
+<img alt="Smile Factory Logo" class="w-full max-w-[180px] h-auto mb-4" src="/branding/smile-factory-logo.png"/>
+<p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Joy Assembler Admin</p>
+</div>
+<nav class="flex-1 px-4 pb-10 space-y-6">
+<!-- Main -->
+<div>
+<a class="flex items-center gap-3 px-4 py-3 active-tab font-bold transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="grid_view">grid_view</span>
+<span class="text-sm">Dashboard</span>
+</a>
+</div>
+<!-- Operations Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Operations</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-sm font-medium">POS/ Token Sales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="receipt_long">receipt_long</span>
+<span class="text-sm font-medium">Token Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="inventory">inventory</span>
+<span class="text-sm font-medium">Prize Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="event_note">event_note</span>
+<span class="text-sm font-medium">Bookings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="build_circle">build_circle</span>
+<span class="text-sm font-medium">Work Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="text-sm font-medium">Machines</span>
+</a>
+</div>
+<!-- People Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">People</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="groups">groups</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="badge">badge</span>
+<span class="text-sm font-medium">Employee</span>
+</a>
+</div>
+<!-- Finance & Rewards Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Finance &amp; Rewards</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="stars">stars</span>
+<span class="text-sm font-medium">Loyalty</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-sm font-medium">Coupons</span>
+</a>
+</div>
+<!-- Administration Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Administration</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="assessment">assessment</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="description">description</span>
+<span class="text-sm font-medium">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- TopNavBar -->
+<header class="fixed top-0 right-0 left-72 glass-nav h-20 flex justify-between items-center px-10 z-40 border-b border-gray-100">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" data-icon="search">search</span>
+<input class="w-full bg-gray-100 border-none rounded-full pl-12 pr-6 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-gray-400" placeholder="Search operations, prizes, or machines..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-gray-200"></div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="text-sm font-bold text-gray-900">MD Admin</p>
+<p class="text-[10px] text-gray-500 font-medium">Floor Manager</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden ring-2 ring-white shadow-sm">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaw6nHJftPOpkfci27JdSrQXfCB8DJpPOks50HjVeXbagIOKSO2Dtw1abVIXCWZTR7McbeaMyiAh3hgnQomehLVjjy_np5yHo8tqXG-l0xsWMWJ7M_6wKt9ZALMcXi16yhk1Foy6gbCW0RctL4i5r7hZgEuhYOmfUivtoLUFsClclcDUZT40ysrNCBgW3lmLzW0o6lXiHG4sgHiJ7ApunJ-EhwICDvk1UKjbBOARNu-gfaNAuDqQ1jwffXFFBtrWclW4E-WQqhg1FA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Main Content Area -->
+<main class="ml-72 pt-28 px-10 pb-16">
+<!-- Welcome Message -->
+<section class="mb-12">
+<h1 class="text-5xl font-black text-gray-900 tracking-tight mb-3">Welcome Back, <span class="text-primary">MD</span></h1>
+<p class="text-gray-500 max-w-2xl text-lg font-medium">The assembly line is hummin'. Here's a quick snapshot of the factory floor's performance for today.</p>
+</section>
+<!-- KPI Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-5 gap-6 mb-12">
+<!-- Today's Revenue -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<p class="text-[10px] uppercase font-bold tracking-[0.15em] text-gray-400 mb-1">Today's Revenue</p>
+<h2 class="text-2xl font-black text-gray-900">$12,482</h2>
+</div>
+<div class="flex items-center justify-between mt-4">
+<p class="text-[10px] text-green-600 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                        +14.2%
+                    </p>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors text-xl" data-icon="payments">payments</span>
+</div>
+</div>
+<!-- This Week -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<p class="text-[10px] uppercase font-bold tracking-[0.15em] text-gray-400 mb-1">This Week</p>
+<h2 class="text-2xl font-black text-gray-900">$84,320</h2>
+</div>
+<div class="flex items-center justify-between mt-4">
+<p class="text-[10px] text-green-600 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                        +8.5%
+                    </p>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors text-xl" data-icon="calendar_view_week">calendar_view_week</span>
+</div>
+</div>
+<!-- This Month -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<p class="text-[10px] uppercase font-bold tracking-[0.15em] text-gray-400 mb-1">This Month</p>
+<h2 class="text-2xl font-black text-gray-900">$342,150</h2>
+</div>
+<div class="flex items-center justify-between mt-4">
+<p class="text-[10px] text-green-600 font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span>
+                        +12.1%
+                    </p>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors text-xl" data-icon="calendar_month">calendar_month</span>
+</div>
+</div>
+<!-- Today's Bookings -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<p class="text-[10px] uppercase font-bold tracking-[0.15em] text-gray-400 mb-1">Today's Bookings</p>
+<h2 class="text-2xl font-black text-gray-900">28 <span class="text-sm font-medium text-gray-300">/ 40</span></h2>
+</div>
+<div class="flex flex-col mt-4 gap-2">
+<div class="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 70%"></div>
+</div>
+<div class="flex justify-between items-center">
+<p class="text-[10px] text-gray-400 font-bold">70% Cap.</p>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors text-xl" data-icon="event_note">event_note</span>
+</div>
+</div>
+</div>
+<!-- Machine Uptime -->
+<div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between group hover:shadow-md transition-all">
+<div>
+<p class="text-[10px] uppercase font-bold tracking-[0.15em] text-gray-400 mb-1">Machine Uptime</p>
+<h2 class="text-2xl font-black text-gray-900">98.4%</h2>
+</div>
+<div class="flex items-center justify-between mt-4">
+<p class="text-[10px] text-primary font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs" data-icon="warning">warning</span>
+                        2 Alarms
+                    </p>
+<span class="material-symbols-outlined text-primary/40 group-hover:text-primary transition-colors text-xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Left: Quick Actions & Alerts -->
+<div class="lg:col-span-1 space-y-8">
+<!-- Quick Actions -->
+<div class="bg-gray-100 p-8 rounded-xl border border-gray-200/50">
+<h3 class="text-lg font-black mb-8 flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="bolt">bolt</span>
+                        Quick Actions
+                    </h3>
+<div class="grid grid-cols-2 gap-4">
+<button class="bg-white hover:bg-primary hover:text-white rounded-xl shadow-sm transition-all p-6 flex flex-col items-center justify-center gap-4 group">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-white transition-colors" data-icon="shopping_cart">shopping_cart</span>
+<span class="text-[10px] font-black uppercase tracking-widest">New Sale</span>
+</button>
+<button class="bg-white hover:bg-primary hover:text-white rounded-xl shadow-sm transition-all p-6 flex flex-col items-center justify-center gap-4 group">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-white transition-colors" data-icon="add_task">add_task</span>
+<span class="text-[10px] font-black uppercase tracking-widest">New Booking</span>
+</button>
+<button class="bg-white hover:bg-primary hover:text-white rounded-xl shadow-sm transition-all p-6 flex flex-col items-center justify-center gap-4 group">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-white transition-colors" data-icon="card_giftcard">card_giftcard</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Add Prize</span>
+</button>
+<button class="bg-white hover:bg-primary hover:text-white rounded-xl shadow-sm transition-all p-6 flex flex-col items-center justify-center gap-4 group">
+<span class="material-symbols-outlined text-3xl text-primary group-hover:text-white transition-colors" data-icon="engineering">engineering</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Work Order</span>
+</button>
+</div>
+</div>
+<!-- Alerts -->
+<div class="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+<div class="flex justify-between items-center mb-8">
+<h3 class="text-lg font-black flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="notification_important">notification_important</span>
+                            System Alerts
+                        </h3>
+<span class="bg-primary text-white text-[10px] font-black px-2.5 py-1 rounded-full">3 NEW</span>
+</div>
+<div class="space-y-6">
+<div class="flex gap-4 p-4 bg-red-50 rounded-xl border border-red-100">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="error">error</span>
+<div>
+<p class="text-sm font-black text-gray-900">Claw Machine #4 Error</p>
+<p class="text-xs text-gray-600 mt-1 font-medium">Mechanical jam reported in Sector B.</p>
+<p class="text-[10px] text-primary/60 mt-2 uppercase font-black tracking-widest">12 mins ago</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 hover:bg-gray-50 rounded-xl transition-colors">
+<span class="material-symbols-outlined text-gray-400 text-2xl" data-icon="inventory_2">inventory_2</span>
+<div>
+<p class="text-sm font-black text-gray-900">Prize Restock Alert</p>
+<p class="text-xs text-gray-600 mt-1 font-medium">'Mega Dino' plushies below 15%.</p>
+<p class="text-[10px] text-gray-400 mt-2 uppercase font-black tracking-widest">45 mins ago</p>
+</div>
+</div>
+<div class="flex gap-4 p-4 hover:bg-gray-50 rounded-xl transition-colors">
+<span class="material-symbols-outlined text-gray-400 text-2xl" data-icon="verified">verified</span>
+<div>
+<p class="text-sm font-black text-gray-900">VIP Confirmation</p>
+<p class="text-xs text-gray-600 mt-1 font-medium">Anderson Party (25 ppl) confirmed.</p>
+<p class="text-[10px] text-gray-400 mt-2 uppercase font-black tracking-widest">1 hour ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Weekly Performance Graph -->
+<div class="lg:col-span-2 space-y-8">
+<div class="bg-white p-10 rounded-xl shadow-sm border border-gray-100 min-h-[600px] flex flex-col relative overflow-hidden">
+<div class="flex justify-between items-start mb-12">
+<div>
+<h3 class="text-2xl font-black text-gray-900 mb-2">Weekly Performance</h3>
+<p class="text-gray-500 text-sm font-medium">Ticket redemption vs. Token sales across all sectors.</p>
+</div>
+<div class="flex gap-3">
+<div class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-full border border-gray-100">
+<span class="w-2.5 h-2.5 rounded-full bg-primary"></span>
+<span class="text-[10px] font-black uppercase tracking-widest text-gray-600">Sales</span>
+</div>
+<div class="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-full border border-gray-100">
+<span class="w-2.5 h-2.5 rounded-full bg-gray-400"></span>
+<span class="text-[10px] font-black uppercase tracking-widest text-gray-600">Tickets</span>
+</div>
+<button class="p-2 text-gray-400 hover:text-primary hover:bg-gray-50 rounded-full transition-all flex items-center justify-center border border-gray-100">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+</button></div>
+</div>
+<div class="flex-1 flex gap-6 border-b border-gray-100 pb-4 relative">
+<!-- Y-Axis Labels -->
+<div class="absolute left-0 h-full flex flex-col justify-between text-[10px] font-bold text-gray-400 -ml-8 py-2">
+<span>$15k</span>
+<span>$10k</span>
+<span>$5k</span>
+<span>$0</span>
+</div>
+<div class="flex-1 ml-4 flex items-end gap-6 h-full">
+<!-- OCT 20 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex items-end justify-center gap-1.5">
+<div class="w-6 bg-primary rounded-t-lg group-hover:brightness-110 transition-all shadow-[0_-4px_10px_rgba(187,1,0,0.1)]" style="height: 120px"></div>
+<div class="w-6 bg-gray-200 rounded-t-lg" style="height: 90px"></div>
+</div>
+<span class="text-[10px] font-black text-gray-400 mt-2 uppercase tracking-widest">Oct 20</span>
+</div>
+<!-- OCT 21 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex items-end justify-center gap-1.5">
+<div class="w-6 bg-primary rounded-t-lg group-hover:brightness-110 transition-all shadow-[0_-4px_10px_rgba(187,1,0,0.1)]" style="height: 160px"></div>
+<div class="w-6 bg-gray-200 rounded-t-lg" style="height: 130px"></div>
+</div>
+<span class="text-[10px] font-black text-gray-400 mt-2 uppercase tracking-widest">Oct 21</span>
+</div>
+<!-- OCT 22 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex items-end justify-center gap-1.5">
+<div class="w-6 bg-primary rounded-t-lg group-hover:brightness-110 transition-all shadow-[0_-4px_10px_rgba(187,1,0,0.1)]" style="height: 220px"></div>
+<div class="w-6 bg-gray-200 rounded-t-lg" style="height: 190px"></div>
+</div>
+<span class="text-[10px] font-black text-primary mt-2 uppercase tracking-widest">Oct 22</span>
+</div>
+<!-- OCT 23 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex items-end justify-center gap-1.5">
+<div class="w-6 bg-primary rounded-t-lg group-hover:brightness-110 transition-all shadow-[0_-4px_10px_rgba(187,1,0,0.1)]" style="height: 180px"></div>
+<div class="w-6 bg-gray-200 rounded-t-lg" style="height: 150px"></div>
+</div>
+<span class="text-[10px] font-black text-gray-400 mt-2 uppercase tracking-widest">Oct 23</span>
+</div>
+<!-- OCT 24 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex items-end justify-center gap-1.5">
+<div class="w-6 bg-primary rounded-t-lg group-hover:brightness-110 transition-all shadow-[0_-4px_10px_rgba(187,1,0,0.1)]" style="height: 260px"></div>
+<div class="w-6 bg-gray-200 rounded-t-lg" style="height: 230px"></div>
+</div>
+<span class="text-[10px] font-black text-gray-400 mt-2 uppercase tracking-widest">Oct 24</span>
+</div>
+<!-- OCT 25 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex items-end justify-center gap-1.5">
+<div class="w-6 bg-primary rounded-t-lg group-hover:brightness-110 transition-all shadow-[0_-4px_10px_rgba(187,1,0,0.1)]" style="height: 300px"></div>
+<div class="w-6 bg-gray-200 rounded-t-lg" style="height: 280px"></div>
+</div>
+<span class="text-[10px] font-black text-gray-400 mt-2 uppercase tracking-widest">Oct 25</span>
+</div>
+<!-- OCT 26 -->
+<div class="flex-1 flex flex-col items-center gap-2 group">
+<div class="w-full flex items-end justify-center gap-1.5">
+<div class="w-6 bg-primary rounded-t-lg group-hover:brightness-110 transition-all shadow-[0_-4px_10px_rgba(187,1,0,0.1)]" style="height: 240px"></div>
+<div class="w-6 bg-gray-200 rounded-t-lg" style="height: 200px"></div>
+</div>
+<span class="text-[10px] font-black text-gray-400 mt-2 uppercase tracking-widest">Oct 26</span>
+</div>
+</div>
+</div>
+<div class="mt-10 flex flex-wrap gap-4 items-center">
+<span class="text-[10px] font-black text-gray-400 uppercase tracking-widest">Top Sectors Today:</span>
+<div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full hover:border-primary/30 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="settings">settings</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Crane Alley ($4.2k)</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full hover:border-primary/30 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="settings">settings</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Simulator Pods ($3.8k)</span>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-gray-50 border border-gray-100 rounded-full hover:border-primary/30 transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-sm text-primary" data-icon="settings">settings</span>
+<span class="text-[10px] font-black uppercase tracking-widest">Prize Hub ($2.9k)</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

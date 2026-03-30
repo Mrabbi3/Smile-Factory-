@@ -1,0 +1,42 @@
+[
+    {
+        "title":  "About Page - Refined (No Workforce)",
+        "name":  "projects/14509537999559108262/screens/bc86bb1fc5814262a2e705b56af5822b",
+        "file":  "stitch/exports/screens/about-page-refined-no-workforce.json"
+    },
+    {
+        "title":  "Parties Page - Classic Package Updated",
+        "name":  "projects/14509537999559108262/screens/4e60d31ed39e451b8935e349a6e15cb0",
+        "file":  "stitch/exports/screens/parties-page-classic-package-updated.json"
+    },
+    {
+        "title":  "Pricing Page - Enhanced Logo Branding",
+        "name":  "projects/14509537999559108262/screens/8792bcd467374578aadb8e7c5b862c88",
+        "file":  "stitch/exports/screens/pricing-page-enhanced-logo-branding.json"
+    },
+    {
+        "title":  "Gallery Page - Refined Red Theme (Updated)",
+        "name":  "projects/14509537999559108262/screens/49827a4f1bd544c9b562c5b2715afc5f",
+        "file":  "stitch/exports/screens/gallery-page-refined-red-theme-updated.json"
+    },
+    {
+        "title":  "Smile_Factory.png",
+        "name":  "projects/14509537999559108262/screens/3582817220250596724",
+        "file":  "stitch/exports/screens/smile-factory-png.json"
+    },
+    {
+        "title":  "Home Page - Enhanced Logo Branding",
+        "name":  "projects/14509537999559108262/screens/337ffe1c1c544bb8ba0834f675067d3c",
+        "file":  "stitch/exports/screens/home-page-enhanced-logo-branding.json"
+    },
+    {
+        "title":  "The Smile Factory Arcade Prototype",
+        "name":  "projects/14509537999559108262/screens/4c1ccaedff364ff3ba6d6cb35b3383ee",
+        "file":  "stitch/exports/screens/the-smile-factory-arcade-prototype.json"
+    },
+    {
+        "title":  "Contact Page - Refined Red Theme (Updated)",
+        "name":  "projects/14509537999559108262/screens/7ab25f7de7704b2c84141b72914122da",
+        "file":  "stitch/exports/screens/contact-page-refined-red-theme-updated.json"
+    }
+]

@@ -15,12 +15,35 @@ import {
 function AdminShell({ children }: { children: React.ReactNode }) {
   const { profile, loading, role, signOut, isOwner, isManager } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(false)
+  const pathname = usePathname()
+
+  // List of Stitch page routes that use their own sidebar
+  const stitchPages = [
+    '/admin/dashboard',
+    '/admin/bookings',
+    '/admin/coupons',
+    '/admin/documents',
+    '/admin/reports',
+    '/admin/expenses',
+    '/admin/loyalty',
+    '/admin/machines',
+    '/admin/customers',
+    '/admin/work-orders',
+    '/admin/employees',
+    '/admin/pos',
+    '/admin/inventory',
+    '/admin/tokens',
+  ]
+
+  const isStitchPage = stitchPages.includes(pathname)
 
   return (
     <div className="flex h-svh overflow-hidden">
-      <aside className="hidden w-64 shrink-0 border-r lg:block">
-        <AdminSidebar isOwner={isOwner()} isManager={isManager()} />
-      </aside>
+      {!isStitchPage && (
+        <aside className="hidden w-64 shrink-0 border-r lg:block">
+          <AdminSidebar isOwner={isOwner()} isManager={isManager()} />
+        </aside>
+      )}
 
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="w-64 p-0" showCloseButton={false}>
@@ -34,18 +57,22 @@ function AdminShell({ children }: { children: React.ReactNode }) {
       </Sheet>
 
       <div className="flex flex-1 flex-col overflow-hidden">
-        <TopBar
-          profile={loading ? null : profile}
-          role={loading ? null : role}
-          onSignOut={async () => {
-            await signOut()
-            document.cookie = 'staff_access_verified=; path=/; max-age=0'
-            window.location.href = '/login'
-          }}
-          onMenuToggle={() => setSidebarOpen(true)}
-        />
+        {!isStitchPage && (
+          <TopBar
+            profile={loading ? null : profile}
+            role={loading ? null : role}
+            onSignOut={async () => {
+              await signOut()
+              document.cookie = 'staff_access_verified=; path=/; max-age=0'
+              window.location.href = '/login'
+            }}
+            onMenuToggle={() => setSidebarOpen(true)}
+          />
+        )}
 
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className={`flex-1 overflow-y-auto ${isStitchPage ? 'p-0' : 'p-6'}`}>
+          {children}
+        </main>
       </div>
     </div>
   )

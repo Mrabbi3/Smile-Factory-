@@ -1,0 +1,167 @@
+{
+    "annotations":  {
+                        "openWorldHint":  false,
+                        "readOnlyHint":  true
+                    },
+    "description":  "Lists all screens within a given Stitch project.\n",
+    "inputSchema":  {
+                        "description":  "Request message for ListScreens.",
+                        "properties":  {
+                                           "projectId":  {
+                                                             "description":  "Required. Identifier. The project ID to list screens for, example: \u00274044680601076201931\u0027, without the `projects/` prefix.",
+                                                             "type":  "string",
+                                                             "x-google-identifier":  true
+                                                         }
+                                       },
+                        "required":  [
+                                         "projectId"
+                                     ],
+                        "type":  "object"
+                    },
+    "name":  "list_screens",
+    "outputSchema":  {
+                         "$defs":  {
+                                       "File":  {
+                                                    "description":  "A File resource.",
+                                                    "properties":  {
+                                                                       "downloadUrl":  {
+                                                                                           "description":  "Optional. The URL of the file for download. For image files, this would be FIFE base URLs.",
+                                                                                           "type":  "string"
+                                                                                       },
+                                                                       "fileContentBase64":  {
+                                                                                                 "description":  "Optional. Input only. The base64-encoded string of the file content.",
+                                                                                                 "type":  "string",
+                                                                                                 "writeOnly":  true
+                                                                                             },
+                                                                       "mimeType":  {
+                                                                                        "description":  "Optional. The mime type of the file. E.g. \"image/png\", \"text/html\".",
+                                                                                        "type":  "string"
+                                                                                    },
+                                                                       "name":  {
+                                                                                    "description":  "Identifier. The resource name of the file. Format: projects/{project}/files/{file}",
+                                                                                    "type":  "string",
+                                                                                    "x-google-identifier":  true
+                                                                                },
+                                                                       "uploadBlobId":  {
+                                                                                            "description":  "Optional. The BlobId from Scotty/contrib service file upload. This points to a temporary blobstore location of the file.",
+                                                                                            "type":  "string"
+                                                                                        },
+                                                                       "userFeedback":  {
+                                                                                            "$ref":  "#/$defs/UserFeedback",
+                                                                                            "description":  "Output only. The latest feedback submitted for the file.",
+                                                                                            "readOnly":  true
+                                                                                        }
+                                                                   },
+                                                    "type":  "object"
+                                                },
+                                       "Screen":  {
+                                                      "description":  "A screen generated by the agent.",
+                                                      "properties":  {
+                                                                         "deviceType":  {
+                                                                                            "description":  "The device type of the screen.",
+                                                                                            "enum":  [
+                                                                                                         "DEVICE_TYPE_UNSPECIFIED",
+                                                                                                         "MOBILE",
+                                                                                                         "DESKTOP",
+                                                                                                         "TABLET",
+                                                                                                         "AGNOSTIC"
+                                                                                                     ],
+                                                                                            "type":  "string",
+                                                                                            "x-google-enum-descriptions":  [
+                                                                                                                               "Unspecified device type.",
+                                                                                                                               "A design for a mobile device.",
+                                                                                                                               "A design for a desktop device.",
+                                                                                                                               "A design for a tablet device.",
+                                                                                                                               "A design that is not tied to a specific device."
+                                                                                                                           ]
+                                                                                        },
+                                                                         "height":  {
+                                                                                        "description":  "The height of the screen.",
+                                                                                        "type":  "string"
+                                                                                    },
+                                                                         "htmlCode":  {
+                                                                                          "$ref":  "#/$defs/File",
+                                                                                          "description":  "The HTML code of the screen."
+                                                                                      },
+                                                                         "name":  {
+                                                                                      "description":  "Identifier. The name of the screen. Format: projects/{project}/screens/{screen}",
+                                                                                      "type":  "string",
+                                                                                      "x-google-identifier":  true
+                                                                                  },
+                                                                         "screenshot":  {
+                                                                                            "$ref":  "#/$defs/File",
+                                                                                            "description":  "The screenshot of the screen."
+                                                                                        },
+                                                                         "title":  {
+                                                                                       "description":  "The title of the screen.",
+                                                                                       "type":  "string"
+                                                                                   },
+                                                                         "width":  {
+                                                                                       "description":  "The width of the screen.",
+                                                                                       "type":  "string"
+                                                                                   }
+                                                                     },
+                                                      "type":  "object"
+                                                  },
+                                       "UserFeedback":  {
+                                                            "description":  "User feedback for a given interaction.",
+                                                            "properties":  {
+                                                                               "comment":  {
+                                                                                               "description":  "Optional. Additional comment for the rating.",
+                                                                                               "type":  "string"
+                                                                                           },
+                                                                               "designFeedbackReason":  {
+                                                                                                            "description":  "Optional. The reason for the feedback for a design, if the rating is negative.",
+                                                                                                            "enum":  [
+                                                                                                                         "DESIGN_FEEDBACK_REASON_UNSPECIFIED",
+                                                                                                                         "DESIGN_DOESNT_MATCH_PROMPT",
+                                                                                                                         "EDIT_DOESNT_MATCH_PROMPT",
+                                                                                                                         "DESCRIPTION_DOESNT_MATCH",
+                                                                                                                         "COMPONENT_ISSUE",
+                                                                                                                         "INCORRECT_THEME",
+                                                                                                                         "FIGMA_EXPORT_FAILED",
+                                                                                                                         "OTHER"
+                                                                                                                     ],
+                                                                                                            "type":  "string",
+                                                                                                            "x-google-enum-descriptions":  [
+                                                                                                                                               "Unspecified reason.",
+                                                                                                                                               "The design does not match the prompt.",
+                                                                                                                                               "The edit does not match the prompt.",
+                                                                                                                                               "The description does not match the design.",
+                                                                                                                                               "There is an issue with a component in the design.",
+                                                                                                                                               "The theme is incorrect.",
+                                                                                                                                               "The Figma export failed.",
+                                                                                                                                               "Other reason."
+                                                                                                                                           ]
+                                                                                                        },
+                                                                               "rating":  {
+                                                                                              "description":  "Optional. The user rating of the interaction.",
+                                                                                              "enum":  [
+                                                                                                           "RATING_UNSPECIFIED",
+                                                                                                           "POSITIVE",
+                                                                                                           "NEGATIVE"
+                                                                                                       ],
+                                                                                              "type":  "string",
+                                                                                              "x-google-enum-descriptions":  [
+                                                                                                                                 "Unspecified rating.",
+                                                                                                                                 "Positive rating.",
+                                                                                                                                 "Negative rating."
+                                                                                                                             ]
+                                                                                          }
+                                                                           },
+                                                            "type":  "object"
+                                                        }
+                                   },
+                         "description":  "Response message for ListScreens.",
+                         "properties":  {
+                                            "screens":  {
+                                                            "description":  "The screens for the given project.",
+                                                            "items":  {
+                                                                          "$ref":  "#/$defs/Screen"
+                                                                      },
+                                                            "type":  "array"
+                                                        }
+                                        },
+                         "type":  "object"
+                     }
+}

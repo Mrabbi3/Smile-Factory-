@@ -76,6 +76,7 @@ Review system details:
 - Stores user-submitted reviews in browser `localStorage` under `smile-factory-home-reviews`.
 - Preserves hardcoded initial reviews and appends locally submitted reviews.
 - No backend persistence was added for reviews during this pass.
+- Supabase-backed functionality for these public-site interactions is not implemented yet; this pass delivers the design and front-end interaction layer only.
 
 ## Pricing Page
 
@@ -215,8 +216,11 @@ Examples:
 - `stitch-home-screen.json`
 - `stitch-list-screens.json`
 - `stitch-tools.json`
+- `stitch/exports/...`
 
 These files were used as design reference material for structure, layout direction, and visual matching during the public-site rewrite.
+
+The top-level `stitch-*.json` files are now lightweight indexes that point to containerized exports under `stitch/exports/`, where project metadata, per-screen references, and per-tool schemas are split into smaller files for easier navigation.
 
 ## Validation Performed
 

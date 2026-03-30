@@ -1,0 +1,248 @@
+﻿<main class="ml-72 pt-28 px-10 pb-16 min-h-screen bg-surface">
+<!-- TopAppBar Component -->
+<header class="fixed top-0 right-0 left-72 glass-nav h-20 flex justify-between items-center px-10 z-40 border-b border-gray-100">
+<div>
+<h2 class="font-['Work_Sans'] font-medium text-red-700">Operations Dashboard / <span class="text-on-surface">Loyalty Program</span></h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-highest border-none rounded-full w-64 text-sm focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search customer points..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:opacity-80" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-on-surface cursor-pointer hover:opacity-80" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Main Content Canvas -->
+<div class="p-8 space-y-8">
+<!-- Hero Header Section -->
+<!-- KPI Cards - Bento Grid Style -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-surface-container-lowest p-8 rounded-lg flex flex-col justify-between h-48 relative overflow-hidden group">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-3xl mb-4" data-icon="group_add">group_add</span>
+<p class="text-sm font-semibold uppercase tracking-widest text-on-surface-variant">Total Members</p>
+<h3 class="text-4xl font-black font-['Epilogue'] mt-2 text-on-surface">12,842</h3>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="diversity_3">diversity_3</span>
+</div>
+<div class="mt-auto flex items-center text-xs text-green-600 font-bold">
+<span class="material-symbols-outlined text-sm mr-1" data-icon="trending_up">trending_up</span>
+                    +12% this month
+                </div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-lg flex flex-col justify-between h-48 relative overflow-hidden group border-t-4 border-primary">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-primary text-3xl mb-4" data-icon="token">token</span>
+<p class="text-sm font-semibold uppercase tracking-widest text-on-surface-variant">Points Issued</p>
+<h3 class="text-4xl font-black font-['Epilogue'] mt-2 text-on-surface">4.2M</h3>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="toll">toll</span>
+</div>
+<div class="mt-auto flex items-center text-xs text-on-surface-variant font-bold">
+                    Avg 328 points per visit
+                </div>
+</div>
+<div class="bg-surface-container-lowest p-8 rounded-lg flex flex-col justify-between h-48 relative overflow-hidden group">
+<div class="relative z-10">
+<span class="material-symbols-outlined text-tertiary text-3xl mb-4" data-icon="redeem">redeem</span>
+<p class="text-sm font-semibold uppercase tracking-widest text-on-surface-variant">Redemption Rate</p>
+<h3 class="text-4xl font-black font-['Epilogue'] mt-2 text-on-surface">68.4%</h3>
+</div>
+<div class="absolute -right-4 -bottom-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="local_activity">local_activity</span>
+</div>
+<div class="mt-auto w-full bg-surface-container text-[10px] rounded-full h-1 overflow-hidden">
+<div class="bg-tertiary h-full w-[68%]"></div>
+</div>
+</div>
+</div>
+<!-- Content Body: Customer Table & Tiers -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-8 pb-12">
+<!-- Customer List Table -->
+<div class="lg:col-span-8 bg-surface-container-lowest rounded-lg overflow-hidden flex flex-col shadow-sm">
+<div class="p-6 border-b border-surface-container flex justify-between items-center">
+<h4 class="font-['Epilogue'] font-bold text-xl text-on-surface">Active Loyalty Members</h4>
+<div class="flex gap-2">
+<button class="p-2 hover:bg-surface-container rounded-full text-on-surface-variant"><span class="material-symbols-outlined" data-icon="filter_list">filter_list</span></button>
+<button class="p-2 hover:bg-surface-container rounded-full text-on-surface-variant"><span class="material-symbols-outlined" data-icon="download">download</span></button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead class="bg-surface-container-low text-on-surface-variant text-xs font-bold uppercase tracking-wider">
+<tr>
+<th class="px-6 py-4">Customer</th>
+<th class="px-6 py-4">Current Points</th>
+<th class="px-6 py-4">Tier Level</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4 text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container text-sm">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-6 py-4 flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Alex Thompson" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA0a0TxRXhHx3IXCm6U1plsx-b7O64IGDrU_j4NJpMuO5SIvAIUZILCvZMS1p_ck6OjJhYFz_FuNfy4DTb96OSN-6aBgsEvxmsiXHnIf6FRVF1-UzHUz-1p5HAVCPmRViHHOc9JTTknyncQ5J3WTBBBMsBRyLLefr0HMRUOmKxOJ1UNCrSJAD33me-_S-aMZ5QZ3bc8EmnrMIroJygHHRVtDDsyYP_VEX_Us_8qEUQ5XiXjdkGAUklE9XjAhkyX7SyUXWc8pDG69Or3"/>
+<div>
+<p class="font-bold text-on-surface">Alex Thompson</p>
+<p class="text-xs text-on-surface-variant">alex.t@joymaker.com</p>
+</div>
+</td>
+<td class="px-6 py-4 font-mono font-bold text-primary">12,450</td>
+<td class="px-6 py-4">
+<span class="bg-primary-container/20 text-primary-dim px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Platinum</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        Active
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined cursor-pointer text-outline hover:text-primary" data-icon="more_horiz">more_horiz</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group text-on-surface">
+<td class="px-6 py-4 flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Sarah Jenkins" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdbYBSWib4BuUbnmLqCeg9dhfs71obvE7R3wTT8ULPkPQW5oTjp7Ufi2yLQm_GYvk-EGdu8CU-OS4Y1n0VjlTzEPxJvVbqzrkihNhXzplduUGzLus8CD-rGtP_RsDRhb7ABs2upu5lHfSVFItcPRg3Yv5-o-NZlkhSpyuR8UM0PFYX_nJF0cwx3NEtBP7iR_6szFqvKH9SPL8TA_vO0H6ZIdJHo3y44whMYpCxfgGHGLkORLEN2CJwdzsWFjDU7LncXLkYvKofwNXl"/>
+<div>
+<p class="font-bold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">s.jenkins@arcade.net</p>
+</div>
+</td>
+<td class="px-6 py-4 font-mono font-bold text-primary">8,200</td>
+<td class="px-6 py-4">
+<span class="bg-yellow-400/20 text-yellow-800 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Gold</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        Active
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined cursor-pointer text-outline hover:text-primary" data-icon="more_horiz">more_horiz</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group text-on-surface">
+<td class="px-6 py-4 flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Marcus Chen" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBExTHrrRY-w6-bYEHuAh4wdweyy-zgaN64e1jgPXpjHJvo27OT5pQL1sL8g0cIRz8kPpaa0sX-RHSn_rrJ05bdBbeVF6PGIlIBEdjN4SRBANe61dXnvIpJldTYBAeXKIGhkLxRO5wo1XeV6qTBhrzQYKHLWCiI1ienlQ5lFxXAYKixofh3wSCgQ1hLtt-pQN9im5gnoesOoeiJTOAvSwR9yMivpl_8cmvD8kL5Ad9LpeHYZn_ssRqjoSIoLVxlYLfoUTvBRKdGfFS0"/>
+<div>
+<p class="font-bold text-on-surface">Marcus Chen</p>
+<p class="text-xs text-on-surface-variant">m.chen88@gmail.com</p>
+</div>
+</td>
+<td class="px-6 py-4 font-mono font-bold text-primary">3,540</td>
+<td class="px-6 py-4">
+<span class="bg-slate-300/40 text-slate-600 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Silver</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-slate-400"></span>
+                                        Idle
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined cursor-pointer text-outline hover:text-primary" data-icon="more_horiz">more_horiz</span>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group text-on-surface">
+<td class="px-6 py-4 flex items-center gap-3">
+<img class="w-10 h-10 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all" data-alt="Chloe Davis" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDm4WYkEj9ouxE2MMa1XnFOlr3oxc688EMzobekk7JgczjEBMZswzXm3PpUWjLrDM0GNLlDNWUejgLJXuGKrmcDxjfNt4uhmKCO8_J89PN0jF-gTHIYZf-RGlIqGSYgyz108Te59867ZZ-rnBhODjISD32b91pL_OKbM2CirRM_uH0ryYI3mZLNEHGGzt044LfwFL0A77_7cqVzXCihlbRzawF4BQDrynuDHUuvGgre8bcb43ZP7omEc4gyiUuKd8iGfyzVwOWosDCQ"/>
+<div>
+<p class="font-bold text-on-surface">Chloe Davis</p>
+<p class="text-xs text-on-surface-variant">chloe.d@outlook.com</p>
+</div>
+</td>
+<td class="px-6 py-4 font-mono font-bold text-primary">1,120</td>
+<td class="px-6 py-4">
+<span class="bg-orange-800/20 text-orange-900 px-3 py-1 rounded-full text-xs font-bold uppercase tracking-tighter">Bronze</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-green-500"></span>
+                                        Active
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<span class="material-symbols-outlined cursor-pointer text-outline hover:text-primary" data-icon="more_horiz">more_horiz</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="mt-auto p-4 flex justify-center">
+<button class="text-xs font-bold text-primary uppercase tracking-widest hover:underline">View All 12,842 Members</button>
+</div>
+</div>
+<!-- Recent Redemptions & Tier Strategy -->
+<div class="lg:col-span-4 space-y-8">
+<!-- Tier Strategy Breakdown -->
+<div class="bg-inverse-surface p-8 rounded-lg text-inverse-on-surface relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-6xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+</div>
+<h4 class="font-['Epilogue'] font-black text-xl mb-6 uppercase tracking-tight">Tier Thresholds</h4>
+<div class="space-y-4">
+<div class="flex items-center justify-between">
+<span class="text-xs font-bold uppercase tracking-widest opacity-70">Platinum</span>
+<span class="font-mono text-primary-fixed">10,000+ pts</span>
+</div>
+<div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-primary-fixed w-full h-full"></div></div>
+<div class="flex items-center justify-between mt-4">
+<span class="text-xs font-bold uppercase tracking-widest opacity-70">Gold</span>
+<span class="font-mono text-yellow-400">5,000+ pts</span>
+</div>
+<div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-yellow-400 w-3/4 h-full"></div></div>
+<div class="flex items-center justify-between mt-4">
+<span class="text-xs font-bold uppercase tracking-widest opacity-70">Silver</span>
+<span class="font-mono text-slate-300">2,000+ pts</span>
+</div>
+<div class="w-full bg-white/10 h-1 rounded-full"><div class="bg-slate-300 w-1/2 h-full"></div></div>
+</div>
+<button class="mt-8 w-full border border-white/20 py-3 rounded-lg text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-colors">Edit Reward Logic</button>
+</div>
+<!-- Recent Redemption Log -->
+<div class="bg-surface-container-high/50 p-6 rounded-lg">
+<h4 class="font-['Epilogue'] font-bold text-lg text-on-surface mb-4">Recent Redemptions</h4>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="videogame_asset">videogame_asset</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Premium VR Pass</p>
+<p class="text-xs text-on-surface-variant">Redeemed by <strong>Alex Thompson</strong></p>
+<p class="text-[10px] uppercase font-bold text-outline mt-1">2 minutes ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-lg bg-tertiary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-tertiary" data-icon="restaurant">restaurant</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Joy Feast Voucher</p>
+<p class="text-xs text-on-surface-variant">Redeemed by <strong>Sarah Jenkins</strong></p>
+<p class="text-[10px] uppercase font-bold text-outline mt-1">15 minutes ago</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary" data-icon="local_mall">local_mall</span>
+</div>
+<div>
+<p class="text-sm font-bold text-on-surface">Factory Hoodie (L)</p>
+<p class="text-xs text-on-surface-variant">Redeemed by <strong>Marcus Chen</strong></p>
+<p class="text-[10px] uppercase font-bold text-outline mt-1">1 hour ago</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
