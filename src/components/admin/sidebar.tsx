@@ -4,7 +4,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { ScrollArea } from '@/components/ui/scroll-area'
-import { Separator } from '@/components/ui/separator'
 import {
   LayoutDashboard,
   Coins,
@@ -116,50 +115,52 @@ export function AdminSidebar({
   }
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex h-14 items-center gap-2 border-b px-4">
-        <Smile className="size-6 text-primary" />
-        <span className="text-lg font-bold tracking-tight">Smile Factory</span>
+    <div className="flex h-full flex-col bg-card">
+      {/* Logo — Joy Assembler gradient icon */}
+      <div className="flex h-16 items-center gap-3 px-5">
+        <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
+          <Smile className="size-5" />
+        </div>
+        <span className="text-lg font-bold tracking-tight font-display">Smile Factory</span>
       </div>
 
-      <ScrollArea className="flex-1 py-2">
-        <nav className="flex flex-col gap-1 px-2">
+      <ScrollArea className="flex-1 py-3">
+        <nav className="flex flex-col gap-1 px-3">
           {navSections.map((section, sIdx) => {
             const visibleItems = section.items.filter(canSee)
             if (visibleItems.length === 0) return null
 
             return (
-              <div key={sIdx}>
+              <div key={sIdx} className={sIdx > 0 ? 'mt-4' : ''}>
                 {section.title && (
-                  <>
-                    {sIdx > 0 && <Separator className="my-2" />}
-                    <p className="mb-1 px-3 pt-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                      {section.title}
-                    </p>
-                  </>
+                  <p className="mb-2 px-4 text-xs font-bold uppercase tracking-wider text-muted-foreground font-display">
+                    {section.title}
+                  </p>
                 )}
-                {visibleItems.map((item) => {
-                  const isActive =
-                    pathname === item.href ||
-                    pathname.startsWith(item.href + '/')
+                <div className="flex flex-col gap-0.5">
+                  {visibleItems.map((item) => {
+                    const isActive =
+                      pathname === item.href ||
+                      pathname.startsWith(item.href + '/')
 
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      onClick={onNavigate}
-                      className={cn(
-                        'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
-                        isActive
-                          ? 'bg-primary/10 text-primary'
-                          : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-                      )}
-                    >
-                      <item.icon className="size-4 shrink-0" />
-                      {item.label}
-                    </Link>
-                  )
-                })}
+                    return (
+                      <Link
+                        key={item.href}
+                        href={item.href}
+                        onClick={onNavigate}
+                        className={cn(
+                          'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200',
+                          isActive
+                            ? 'gradient-primary text-primary-foreground shadow-ambient'
+                            : 'text-muted-foreground hover:bg-[var(--surface-container-low)] hover:text-foreground'
+                        )}
+                      >
+                        <item.icon className="size-4 shrink-0" />
+                        {item.label}
+                      </Link>
+                    )
+                  })}
+                </div>
               </div>
             )
           })}

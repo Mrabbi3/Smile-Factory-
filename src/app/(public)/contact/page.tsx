@@ -1,6 +1,17 @@
 import type { Metadata } from 'next'
 import { Clock3, Mail, MapPin, Phone, Rocket, Settings } from 'lucide-react'
 import PhotoFramePlaceholder from '../../../components/public/photo-frame-placeholder'
+'use client'
+
+import { useActionState, useEffect, useState } from 'react'
+import { toast } from 'sonner'
+import { MapPin, Phone, Clock, Mail, Send, ArrowRight, Loader2 } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Label } from '@/components/ui/label'
+import { Badge } from '@/components/ui/badge'
 import { BUSINESS_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {

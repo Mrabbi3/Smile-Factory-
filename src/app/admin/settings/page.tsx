@@ -65,37 +65,47 @@ export default function SettingsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">System Settings</h1>
-        <p className="text-muted-foreground">Configure business parameters</p>
+        <h1 className="font-display text-3xl font-bold tracking-tight">System Settings</h1>
+        <p className="text-sm text-muted-foreground">Configure business parameters</p>
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardHeader>
-          <CardTitle>Business Settings</CardTitle>
-          <CardDescription>Core operational parameters for The Smile Factory</CardDescription>
+          <div className="flex items-start gap-3">
+            <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+              <Settings className="h-5 w-5" />
+            </div>
+            <div>
+              <CardTitle className="font-display tracking-tight">Business Settings</CardTitle>
+              <CardDescription>Core operational parameters for The Smile Factory</CardDescription>
+            </div>
+          </div>
         </CardHeader>
         <CardContent className="space-y-6">
           {settingFields.map(f => (
             <div key={f.key} className="grid gap-2">
-              <Label>{f.label}</Label>
+              <Label className="font-medium">{f.label}</Label>
               <Input
                 type="number"
                 value={settings[f.key] || ''}
                 onChange={(e) => updateSetting(f.key, e.target.value)}
                 disabled={!isOwner()}
+                className="rounded-xl"
               />
               <p className="text-xs text-muted-foreground">{f.description}</p>
             </div>
           ))}
           <Separator />
           {isOwner() && (
-            <Button onClick={saveSettings} disabled={saving}>
+            <Button onClick={saveSettings} disabled={saving} size="lg">
               <Save className="mr-2 h-4 w-4" />
               {saving ? 'Saving...' : 'Save Settings'}
             </Button>
           )}
           {!isOwner() && (
-            <p className="text-sm text-muted-foreground">Only owners can modify system settings.</p>
+            <div className="rounded-xl bg-[var(--surface-container-low)] px-4 py-3 text-sm text-muted-foreground">
+              Only owners can modify system settings.
+            </div>
           )}
         </CardContent>
       </Card>

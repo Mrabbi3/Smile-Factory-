@@ -29,22 +29,24 @@ export default function AdminLoginPage() {
   }, [state])
 
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center bg-muted px-4 py-12">
+    <div className="pattern-industrial flex min-h-svh flex-col items-center justify-center px-4 py-12">
       <div className="mb-8 flex flex-col items-center gap-2">
-        <div className="flex items-center gap-2 text-primary">
-          <KeyRound className="size-10" />
-          <span className="text-2xl font-bold tracking-tight">
+        <div className="flex items-center gap-3">
+          <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-primary text-white">
+            <KeyRound className="size-6" />
+          </div>
+          <h1 className="font-display text-2xl font-bold tracking-tight">
             Staff Access
-          </span>
+          </h1>
         </div>
         <p className="text-sm text-muted-foreground">
           Enter the owner access key to continue
         </p>
       </div>
       <div className="w-full max-w-md">
-        <Card>
+        <Card className="rounded-2xl shadow-elevated">
           <CardHeader className="text-center">
-            <CardTitle className="text-xl">Staff Access Key</CardTitle>
+            <CardTitle className="font-display tracking-tight">Staff Access Key</CardTitle>
             <CardDescription>
               Enter the access key provided by the business owner
             </CardDescription>
@@ -62,6 +64,7 @@ export default function AdminLoginPage() {
                   onChange={(e) => setKey(e.target.value)}
                   required
                   autoComplete="off"
+                  className="rounded-xl"
                 />
               </div>
             </CardContent>
@@ -72,7 +75,7 @@ export default function AdminLoginPage() {
               </Button>
               <Link
                 href="/login"
-                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary"
+                className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="size-3" />
                 Back to customer sign in

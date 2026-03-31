@@ -5,14 +5,18 @@ import { TooltipProvider } from '@/components/ui/tooltip'
 import { ServiceWorkerRegister } from '@/components/shared/sw-register'
 import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const epilogue = Epilogue({
+  variable: '--font-epilogue',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const workSans = Work_Sans({
+  variable: '--font-work-sans',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
 })
 
 const epilogue = Epilogue({

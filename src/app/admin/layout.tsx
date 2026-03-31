@@ -45,6 +45,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
         </aside>
       )}
 
+      {/* Mobile sidebar sheet */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="w-64 p-0" showCloseButton={false}>
           <SheetTitle className="sr-only">Navigation</SheetTitle>

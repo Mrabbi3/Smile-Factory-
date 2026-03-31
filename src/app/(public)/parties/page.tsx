@@ -2,6 +2,22 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowDown, Check, Eye } from 'lucide-react'
 import PhotoFramePlaceholder from '../../../components/public/photo-frame-placeholder'
+import {
+  PartyPopper,
+  Users,
+  Clock,
+  ArrowRight,
+  Phone,
+  Pizza,
+  Coins,
+  Gift,
+  Star,
+  Info,
+} from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
+import { Badge } from '@/components/ui/badge'
+import { BUSINESS_INFO, PARTY_CONFIG } from '@/lib/constants'
 
 export const metadata: Metadata = {
   title: 'Birthday Parties | The Smile Factory',

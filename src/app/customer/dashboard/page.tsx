@@ -66,89 +66,130 @@ export default function CustomerDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Welcome back, {profile?.first_name}!</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">
+          Welcome back, <span className="bg-gradient-to-r from-primary to-[var(--primary-container)] bg-clip-text text-transparent">{profile?.first_name}</span>!
+        </h1>
         <p className="text-muted-foreground">Here&apos;s your Smile Factory account overview.</p>
       </div>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Bookings</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{stats.bookings}</div></CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Spent</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{currency(stats.totalSpent)}</div></CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Loyalty Tier</CardTitle></CardHeader>
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Total Bookings</CardTitle>
+          </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold capitalize" style={{ color: LOYALTY_TIERS[currentTierIdx]?.color }}>{stats.tier}</div>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Calendar className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold">{stats.bookings}</div>
+            </div>
           </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Reward Balance</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-green-600">{currency(stats.rewardBalance)}</div></CardContent>
+
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Total Spent</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <DollarSign className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold">{currency(stats.totalSpent)}</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Loyalty Tier</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl text-primary" style={{ backgroundColor: `${LOYALTY_TIERS[currentTierIdx]?.color}20`, color: LOYALTY_TIERS[currentTierIdx]?.color }}>
+                <Trophy className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold capitalize" style={{ color: LOYALTY_TIERS[currentTierIdx]?.color }}>{stats.tier}</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Reward Balance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100/50 text-emerald-600">
+                <Gift className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold text-emerald-600">{currency(stats.rewardBalance)}</div>
+            </div>
+          </CardContent>
         </Card>
       </div>
 
       {nextTier && (
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardContent className="pt-6">
-            <div className="flex justify-between text-sm mb-2">
-              <span>Progress to {nextTier.label}</span>
-              <span>{currency(stats.totalSpent)} / {currency(nextTier.minSpend)}</span>
+            <div className="flex justify-between text-sm mb-3">
+              <span className="text-muted-foreground">Progress to {nextTier.label}</span>
+              <span className="font-medium">{currency(stats.totalSpent)} / {currency(nextTier.minSpend)}</span>
             </div>
-            <Progress value={progress} className="h-3" />
-            <p className="text-xs text-muted-foreground mt-2">Spend {currency(nextTier.minSpend - stats.totalSpent)} more to reach {nextTier.label} tier!</p>
+            <Progress value={progress} className="h-3 bg-gradient-primary" />
+            <p className="text-xs text-muted-foreground mt-3">Spend {currency(nextTier.minSpend - stats.totalSpent)} more to reach {nextTier.label} tier!</p>
           </CardContent>
         </Card>
       )}
 
       <div className="grid gap-4 lg:grid-cols-2">
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader>
-            <CardTitle className="flex items-center justify-between">
+            <CardTitle className="font-display tracking-tight flex items-center justify-between">
               <span>Upcoming Bookings</span>
               <Link href="/customer/bookings">
-                <Button variant="ghost" size="sm">View All <ArrowRight className="ml-1 h-4 w-4" /></Button>
+                <Button variant="ghost" size="sm" className="text-primary hover:text-primary/80">View All <ArrowRight className="ml-1 h-4 w-4" /></Button>
               </Link>
             </CardTitle>
           </CardHeader>
           <CardContent>
             {upcomingBookings.length === 0 ? (
               <div className="text-center py-8">
-                <Calendar className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                <p className="text-muted-foreground">No upcoming bookings</p>
+                <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto mb-4">
+                  <Calendar className="h-6 w-6" />
+                </div>
+                <p className="text-muted-foreground font-medium">No upcoming bookings</p>
                 <Link href="/customer/bookings"><Button className="mt-4">Book a Party</Button></Link>
               </div>
             ) : upcomingBookings.map(b => (
-              <div key={b.id} className="flex items-center justify-between py-3 border-b last:border-0">
+              <div key={b.id} className="flex items-center justify-between py-3 border-b border-[var(--surface-container-low)] last:border-0">
                 <div>
                   <p className="font-medium">{safeFormatDate(b.booking_date, 'MMM dd, yyyy')}</p>
                   <p className="text-sm text-muted-foreground">{b.start_time} · {b.num_kids} kids</p>
                 </div>
-                <Badge className={b.status === 'confirmed' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}>{b.status}</Badge>
+                <Badge className={b.status === 'confirmed' ? 'bg-emerald-100 text-emerald-800 rounded-xl' : 'bg-amber-100 text-amber-800 rounded-xl'}>{b.status}</Badge>
               </div>
             ))}
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader>
-            <CardTitle>Quick Actions</CardTitle>
+            <CardTitle className="font-display tracking-tight">Quick Actions</CardTitle>
           </CardHeader>
           <CardContent className="grid gap-3">
             <Link href="/customer/bookings">
-              <Button variant="outline" className="w-full justify-start"><Calendar className="mr-2 h-4 w-4" />Book a Birthday Party</Button>
+              <Button variant="outline" className="w-full justify-start rounded-xl hover:bg-[var(--surface-container-low)]"><Calendar className="mr-2 h-4 w-4" />Book a Birthday Party</Button>
             </Link>
             <Link href="/customer/tokens">
-              <Button variant="outline" className="w-full justify-start"><Coins className="mr-2 h-4 w-4" />View Token History</Button>
+              <Button variant="outline" className="w-full justify-start rounded-xl hover:bg-[var(--surface-container-low)]"><Coins className="mr-2 h-4 w-4" />View Token History</Button>
             </Link>
             <Link href="/customer/loyalty">
-              <Button variant="outline" className="w-full justify-start"><Gift className="mr-2 h-4 w-4" />Loyalty Rewards</Button>
+              <Button variant="outline" className="w-full justify-start rounded-xl hover:bg-[var(--surface-container-low)]"><Gift className="mr-2 h-4 w-4" />Loyalty Rewards</Button>
             </Link>
             <Link href="/customer/profile">
-              <Button variant="outline" className="w-full justify-start"><User className="mr-2 h-4 w-4" />Edit Profile</Button>
+              <Button variant="outline" className="w-full justify-start rounded-xl hover:bg-[var(--surface-container-low)]"><User className="mr-2 h-4 w-4" />Edit Profile</Button>
             </Link>
           </CardContent>
         </Card>
@@ -156,3 +197,6 @@ export default function CustomerDashboard() {
     </div>
   )
 }
+
+// Add missing imports at the top
+import { DollarSign, Trophy } from 'lucide-react'

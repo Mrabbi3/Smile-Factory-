@@ -10,7 +10,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Separator } from '@/components/ui/separator'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { User, Save } from 'lucide-react'
+import { User, Save, Lock } from 'lucide-react'
 
 export default function ProfilePage() {
   const { user, profile } = useAuth()
@@ -72,44 +72,67 @@ export default function ProfilePage() {
   return (
     <div className="space-y-6 max-w-2xl">
       <div>
-        <h1 className="text-2xl font-bold">My Profile</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">My Profile</h1>
         <p className="text-muted-foreground">Manage your account information</p>
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardHeader>
           <div className="flex items-center gap-4">
-            <Avatar className="h-16 w-16">
-              <AvatarFallback className="text-lg">{profile?.first_name?.[0]}{profile?.last_name?.[0]}</AvatarFallback>
+            <Avatar className="h-16 w-16 border-2 border-primary/10">
+              <AvatarFallback className="text-lg font-bold bg-primary/5 text-primary">{profile?.first_name?.[0]}{profile?.last_name?.[0]}</AvatarFallback>
             </Avatar>
             <div>
-              <CardTitle>{profile?.first_name} {profile?.last_name}</CardTitle>
+              <CardTitle className="font-display tracking-tight">{profile?.first_name} {profile?.last_name}</CardTitle>
               <CardDescription>{profile?.email}</CardDescription>
             </div>
           </div>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <Separator className="my-0" />
+        <CardContent className="space-y-4 pt-6">
           <div className="grid grid-cols-2 gap-4">
-            <div className="grid gap-2"><Label>First Name</Label><Input value={form.first_name} onChange={(e) => setForm({ ...form, first_name: e.target.value })} /></div>
-            <div className="grid gap-2"><Label>Last Name</Label><Input value={form.last_name} onChange={(e) => setForm({ ...form, last_name: e.target.value })} /></div>
+            <div className="space-y-2">
+              <Label className="font-display">First Name</Label>
+              <Input value={form.first_name} onChange={(e) => setForm({ ...form, first_name: e.target.value })} className="rounded-xl" />
+            </div>
+            <div className="space-y-2">
+              <Label className="font-display">Last Name</Label>
+              <Input value={form.last_name} onChange={(e) => setForm({ ...form, last_name: e.target.value })} className="rounded-xl" />
+            </div>
           </div>
-          <div className="grid gap-2"><Label>Phone</Label><Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} /></div>
-          <div className="grid gap-2"><Label>Email</Label><Input value={profile?.email || ''} disabled /></div>
-          <Button onClick={updateProfile} disabled={saving}>
+          <div className="space-y-2">
+            <Label className="font-display">Phone</Label>
+            <Input value={form.phone} onChange={(e) => setForm({ ...form, phone: e.target.value })} className="rounded-xl" />
+          </div>
+          <div className="space-y-2">
+            <Label className="font-display">Email</Label>
+            <Input value={profile?.email || ''} disabled className="rounded-xl bg-[var(--surface-container-low)]" />
+          </div>
+          <Button onClick={updateProfile} disabled={saving} className="rounded-xl w-full">
             <Save className="mr-2 h-4 w-4" />{saving ? 'Saving...' : 'Save Changes'}
           </Button>
         </CardContent>
       </Card>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardHeader>
-          <CardTitle>Change Password</CardTitle>
+          <CardTitle className="font-display tracking-tight flex items-center gap-2">
+            <Lock className="h-5 w-5 text-primary" />
+            Change Password
+          </CardTitle>
           <CardDescription>Update your account password</CardDescription>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-2"><Label>New Password</Label><Input type="password" value={passwordForm.password} onChange={(e) => setPasswordForm({ ...passwordForm, password: e.target.value })} /></div>
-          <div className="grid gap-2"><Label>Confirm Password</Label><Input type="password" value={passwordForm.confirm} onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })} /></div>
-          <Button variant="outline" onClick={updatePassword} disabled={changingPassword}>
+        <Separator className="my-0" />
+        <CardContent className="space-y-4 pt-6">
+          <div className="space-y-2">
+            <Label className="font-display">New Password</Label>
+            <Input type="password" value={passwordForm.password} onChange={(e) => setPasswordForm({ ...passwordForm, password: e.target.value })} className="rounded-xl" />
+          </div>
+          <div className="space-y-2">
+            <Label className="font-display">Confirm Password</Label>
+            <Input type="password" value={passwordForm.confirm} onChange={(e) => setPasswordForm({ ...passwordForm, confirm: e.target.value })} className="rounded-xl" />
+          </div>
+          <Button variant="outline" onClick={updatePassword} disabled={changingPassword} className="rounded-xl w-full">
             {changingPassword ? 'Updating...' : 'Update Password'}
           </Button>
         </CardContent>

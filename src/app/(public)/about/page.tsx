@@ -2,6 +2,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { ArrowRight, Settings, Sparkles, Trophy } from 'lucide-react'
 import PhotoFramePlaceholder from '../../../components/public/photo-frame-placeholder'
+import { Gamepad2, Users, Trophy, Heart, Star, ArrowRight } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Card, CardContent } from '@/components/ui/card'
 import { BUSINESS_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -18,17 +21,16 @@ const factoryPattern =
 
 export default function AboutPage() {
   return (
-    <main className="overflow-x-hidden bg-surface text-on-surface">
-      <section className="relative flex min-h-[820px] items-center justify-center px-6 pt-20" style={{ backgroundImage: blueprintPattern }}>
-        <div className="relative z-10 grid w-full max-w-screen-xl grid-cols-1 items-center gap-12 lg:grid-cols-12">
-          <div className="space-y-8 lg:col-span-7">
-            <span className="inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 font-work-sans text-label-sm uppercase tracking-widest text-primary">
-              Est. {BUSINESS_INFO.established}
-            </span>
-            <h1 className="font-epilogue text-display-lg font-black uppercase italic leading-[0.9] tracking-tight">
-              Welcome To
-              <br />
-              <span className="text-primary">Our Factory</span>
+    <>
+      {/* Hero */}
+      <section className="py-24 sm:py-28 pattern-industrial">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl text-center">
+            <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
+              About{' '}
+              <span className="bg-gradient-to-r from-primary to-[var(--primary-container)] bg-clip-text text-transparent">
+                The Smile Factory
+              </span>
             </h1>
             <p className="max-w-xl font-work-sans text-body-lg leading-relaxed text-on-surface/70">
               Where mechanical precision meets raw, unadulterated joy. We've spent nearly two decades engineering the perfect environment for play.
@@ -50,28 +52,26 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="relative bg-surface-container-low px-6 py-24" style={{ backgroundImage: factoryPattern }}>
-        <div className="relative z-10 mx-auto max-w-7xl">
-          <div className="mb-16 flex flex-col items-end justify-between gap-8 md:flex-row">
-            <div className="max-w-2xl">
-              <h2 className="font-epilogue text-headline-lg font-black uppercase italic tracking-tight">
-                Our Mission:
-                <br />
-                <span className="text-primary">Joy Engineered</span>
-              </h2>
-              <p className="mt-4 font-work-sans text-body-md text-on-surface/70">
-                We don't just provide games; we assemble experiences. Every ticket, every light, and every gear is calibrated for maximum impact.
-              </p>
+      {/* Story */}
+      <section className="bg-[var(--surface-container-low)] py-24 sm:py-28">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-3xl">
+            <div className="flex items-center gap-3">
+              <div className="flex size-10 items-center justify-center rounded-full bg-primary/10 text-primary">
+                <Star className="size-5 fill-primary" />
+              </div>
+              <span className="text-sm font-bold uppercase tracking-wider text-primary font-display">Our Story</span>
             </div>
-            <div className="hidden h-1.5 w-32 rounded-full bg-primary md:block" />
-          </div>
-
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-            <article className="rounded-lg bg-surface-container-lowest p-10 shadow-ambient">
-              <Sparkles className="mb-6 h-10 w-10 text-primary" />
-              <h3 className="font-epilogue text-title-lg font-black uppercase tracking-tight">High-Octane Fun</h3>
-              <p className="mt-4 font-work-sans text-body-sm leading-relaxed text-on-surface/70">
-                Velocity is our baseline. We curate games that challenge reflexes and ignite the competitive spirit.
+            <h2 className="font-display mt-5 text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              Making Families Smile Since {BUSINESS_INFO.established}
+            </h2>
+            <div className="mt-8 space-y-5 text-base leading-relaxed text-muted-foreground">
+              <p>
+                The Smile Factory Arcade &amp; Family Fun Center opened its doors in{' '}
+                {BUSINESS_INFO.established} with a simple mission: to create a place where
+                families could come together, unplug from the everyday, and simply have fun. What
+                started as a small collection of arcade games has grown into Brigantine&apos;s
+                go-to destination for family entertainment.
               </p>
             </article>
             <article className="rounded-lg bg-surface-container-lowest p-10 shadow-ambient">

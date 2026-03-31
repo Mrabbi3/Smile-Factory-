@@ -15,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ArrowLeft, Loader2 } from 'lucide-react'
+import { ArrowLeft, Loader2, ShieldCheck, Lock } from 'lucide-react'
 
 export default function ResetPasswordPage() {
   const [password, setPassword] = useState('')
@@ -52,16 +52,19 @@ export default function ResetPasswordPage() {
 
   if (done) {
     return (
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">Password Updated</CardTitle>
+      <Card className="shadow-elevated">
+        <CardHeader className="text-center pb-2">
+          <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
+            <ShieldCheck className="size-7" />
+          </div>
+          <CardTitle className="text-2xl">Password Updated</CardTitle>
           <CardDescription>
             Your password has been reset. You can now sign in with your new password.
           </CardDescription>
         </CardHeader>
         <CardFooter>
-          <Button asChild className="w-full">
-            <Link href="/login">Sign in</Link>
+          <Button asChild className="w-full" size="lg">
+            <Link href="/login">Sign In</Link>
           </Button>
         </CardFooter>
       </Card>
@@ -69,15 +72,18 @@ export default function ResetPasswordPage() {
   }
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <CardTitle className="text-xl">Set New Password</CardTitle>
+    <Card className="shadow-elevated">
+      <CardHeader className="text-center pb-2">
+        <div className="mx-auto mb-4 flex size-14 items-center justify-center rounded-full bg-primary/10 text-primary">
+          <Lock className="size-6" />
+        </div>
+        <CardTitle className="text-2xl">Set New Password</CardTitle>
         <CardDescription>
           Enter your new password below
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleSubmit}>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 pt-4">
           <div className="space-y-2">
             <Label htmlFor="password">New password</Label>
             <Input
@@ -106,13 +112,13 @@ export default function ResetPasswordPage() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
-            Update password
+          <Button type="submit" className="w-full" size="lg" disabled={loading}>
+            {loading ? <Loader2 className="size-4 animate-spin" /> : <ShieldCheck className="size-4" />}
+            {loading ? 'Updating...' : 'Update Password'}
           </Button>
           <Link
             href="/login"
-            className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+            className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline"
           >
             <ArrowLeft className="size-3" />
             Back to sign in

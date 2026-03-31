@@ -7,22 +7,27 @@ export default function AuthLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="flex min-h-svh flex-col items-center justify-center bg-muted px-4 py-12">
-      <div className="mb-8 flex flex-col items-center gap-2">
-        <Link href="/" className="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity">
-          <Smile className="size-10" />
-          <span className="text-2xl font-bold tracking-tight">
-            The Smile Factory
-          </span>
+    <div className="flex min-h-svh flex-col items-center justify-center bg-[var(--surface-container-low)] pattern-industrial px-4 py-12">
+      <div className="mb-10 flex flex-col items-center gap-4">
+        <Link
+          href="/"
+          className="inline-flex items-center justify-center rounded-full gradient-primary p-3.5 text-white hover:opacity-90 transition-all duration-200 shadow-elevated hover:scale-105"
+        >
+          <Smile className="size-7" />
         </Link>
-        <p className="text-sm text-muted-foreground">
-          Arcade &amp; Family Fun Center
-        </p>
+        <div className="text-center">
+          <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
+            The Smile Factory
+          </h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Arcade &amp; Family Fun Center
+          </p>
+        </div>
       </div>
       <div className="w-full max-w-md">{children}</div>
       <Link
         href="/"
-        className="mt-6 inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
+        className="mt-8 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-primary transition-colors"
       >
         <ArrowLeft className="size-3" />
         Back to homepage

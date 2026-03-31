@@ -16,12 +16,18 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Loader2 } from 'lucide-react'
+import { Loader2, LogIn } from 'lucide-react'
 import { signIn } from './actions'
 
 export default function LoginPage() {
   return (
-    <Suspense fallback={<Card><CardContent className="p-8 text-center">Loading...</CardContent></Card>}>
+    <Suspense
+      fallback={
+        <Card className="shadow-elevated">
+          <CardContent className="p-8 text-center text-muted-foreground">Loading...</CardContent>
+        </Card>
+      }
+    >
       <LoginForm />
     </Suspense>
   )
@@ -30,9 +36,9 @@ export default function LoginPage() {
 function SubmitButton() {
   const { pending } = useFormStatus()
   return (
-    <Button type="submit" className="w-full" disabled={pending}>
-      {pending && <Loader2 className="mr-2 size-4 animate-spin" />}
-      Sign In
+    <Button type="submit" className="w-full" size="lg" disabled={pending}>
+      {pending ? <Loader2 className="size-4 animate-spin" /> : <LogIn className="size-4" />}
+      {pending ? 'Signing in...' : 'Sign In'}
     </Button>
   )
 }
@@ -43,18 +49,20 @@ function LoginForm() {
   const [state, formAction] = useActionState(signIn, null)
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <CardTitle className="text-xl">Sign In</CardTitle>
+    <Card className="shadow-elevated">
+      <CardHeader className="text-center pb-2">
+        <CardTitle className="text-2xl">Welcome Back</CardTitle>
         <CardDescription>
           Enter your credentials to access your account
         </CardDescription>
       </CardHeader>
       <form action={formAction}>
         {redirectTo && <input type="hidden" name="redirect" value={redirectTo} />}
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 pt-4">
           {state?.error && (
-            <p className="text-sm text-destructive text-center">{state.error}</p>
+            <div className="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive text-center">
+              {state.error}
+            </div>
           )}
           <div className="space-y-2">
             <Label htmlFor="email">Email</Label>
@@ -91,7 +99,7 @@ function LoginForm() {
           <SubmitButton />
           <p className="text-center text-sm text-muted-foreground">
             Don&apos;t have an account?{' '}
-            <Link href="/register" className="text-primary hover:underline">
+            <Link href="/register" className="font-medium text-primary hover:underline">
               Create account
             </Link>
           </p>

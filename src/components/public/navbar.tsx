@@ -68,6 +68,7 @@ export function Navbar() {
         </div>
       </nav>
 
+      {/* Mobile menu */}
       {mobileOpen && (
         <div className="absolute left-0 top-full w-full border-b border-zinc-200 bg-white px-8 py-6 shadow-xl lg:hidden">
           <ul className="space-y-4">

@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge'
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table'
-import { Coins, DollarSign } from 'lucide-react'
+import { Coins, DollarSign, Zap } from 'lucide-react'
 
 const currency = (n: number) =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n)
@@ -46,31 +46,63 @@ export default function TokenHistoryPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Token History</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Token History</h1>
         <p className="text-muted-foreground">Your token purchase history</p>
       </div>
 
       <div className="grid gap-4 grid-cols-2">
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Spent</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{currency(totalSpent)}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Tokens</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{totalTokens}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Total Spent</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <DollarSign className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold">{currency(totalSpent)}</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Total Tokens</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-amber-100/50 text-amber-600">
+                <Zap className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold text-amber-600">{totalTokens}</div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      <Card>
-        <CardHeader><CardTitle>Token Pricing</CardTitle></CardHeader>
+      <Card className="rounded-2xl shadow-ambient">
+        <CardHeader>
+          <CardTitle className="font-display tracking-tight">Token Pricing</CardTitle>
+        </CardHeader>
         <CardContent>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
             {TOKEN_PRICING.map(t => (
-              <div key={t.price} className="border rounded-lg p-4 text-center">
-                <div className="text-xl font-bold">${t.price}</div>
-                <div className="text-sm text-muted-foreground">{t.tokens} tokens</div>
+              <div key={t.price} className="rounded-xl bg-[var(--surface-container-low)] hover:bg-[var(--surface-container-high)] transition-colors p-4 text-center border-0">
+                <div className="font-display text-2xl font-bold text-primary">${t.price}</div>
+                <div className="text-sm text-muted-foreground mt-1 flex items-center justify-center gap-1">
+                  <Zap className="h-4 w-4" />
+                  {t.tokens} tokens
+                </div>
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader><CardTitle>Purchase History</CardTitle></CardHeader>
+      <Card className="rounded-2xl shadow-ambient">
+        <CardHeader>
+          <CardTitle className="font-display tracking-tight">Purchase History</CardTitle>
+        </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
@@ -83,17 +115,21 @@ export default function TokenHistoryPage() {
             </TableHeader>
             <TableBody>
               {transactions.length === 0 ? (
-                <TableRow><TableCell colSpan={4} className="text-center py-12">
-                  <Coins className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                  <p className="text-muted-foreground">No token purchases yet</p>
-                  <p className="text-sm text-muted-foreground mt-1">Visit the arcade to start earning!</p>
-                </TableCell></TableRow>
+                <TableRow>
+                  <TableCell colSpan={4} className="text-center py-12">
+                    <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto mb-4">
+                      <Coins className="h-6 w-6" />
+                    </div>
+                    <p className="text-muted-foreground font-medium">No token purchases yet</p>
+                    <p className="text-sm text-muted-foreground mt-1">Visit the arcade to start earning!</p>
+                  </TableCell>
+                </TableRow>
               ) : transactions.map(t => (
                 <TableRow key={t.id}>
-                  <TableCell>{safeFormatDate(t.created_at, 'MMM dd, yyyy h:mm a')}</TableCell>
+                  <TableCell className="text-muted-foreground">{safeFormatDate(t.created_at, 'MMM dd, yyyy h:mm a')}</TableCell>
                   <TableCell className="text-right font-medium">{currency(t.amount_paid)}</TableCell>
-                  <TableCell className="text-right">{t.tokens_given}</TableCell>
-                  <TableCell><Badge variant="outline">{t.payment_type}</Badge></TableCell>
+                  <TableCell className="text-right font-medium text-amber-600">{t.tokens_given}</TableCell>
+                  <TableCell><Badge variant="outline" className="rounded-xl">{t.payment_type}</Badge></TableCell>
                 </TableRow>
               ))}
             </TableBody>
