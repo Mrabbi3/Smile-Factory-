@@ -27,10 +27,10 @@ const currency = (n: number) =>
   new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n)
 
 const STATUS_COLORS: Record<string, string> = {
-  pending: 'bg-yellow-100 text-yellow-800',
-  confirmed: 'bg-green-100 text-green-800',
-  completed: 'bg-blue-100 text-blue-800',
-  cancelled: 'bg-red-100 text-red-800',
+  pending: 'bg-amber-100 text-amber-800 rounded-xl',
+  confirmed: 'bg-emerald-100 text-emerald-800 rounded-xl',
+  completed: 'bg-blue-100 text-blue-800 rounded-xl',
+  cancelled: 'bg-red-100 text-red-800 rounded-xl',
 }
 
 const TIME_SLOTS = Array.from({ length: 24 }, (_, i) => {
@@ -118,13 +118,13 @@ export default function CustomerBookingsPage() {
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold">My Bookings</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">My Bookings</h1>
           <p className="text-muted-foreground">View and manage your party reservations</p>
         </div>
-        <Button onClick={() => setDialogOpen(true)}><Plus className="mr-2 h-4 w-4" />Book a Party</Button>
+        <Button onClick={() => setDialogOpen(true)} className="rounded-xl"><Plus className="mr-2 h-4 w-4" />Book a Party</Button>
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
@@ -141,9 +141,11 @@ export default function CustomerBookingsPage() {
               {bookings.length === 0 ? (
                 <TableRow>
                   <TableCell colSpan={6} className="text-center py-12">
-                    <Calendar className="mx-auto h-12 w-12 text-muted-foreground mb-4" />
-                    <p className="text-muted-foreground">No bookings yet</p>
-                    <Button className="mt-4" onClick={() => setDialogOpen(true)}>Book Your First Party</Button>
+                    <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto mb-4">
+                      <Calendar className="h-6 w-6" />
+                    </div>
+                    <p className="text-muted-foreground font-medium">No bookings yet</p>
+                    <Button className="mt-4 rounded-xl" onClick={() => setDialogOpen(true)}>Book Your First Party</Button>
                   </TableCell>
                 </TableRow>
               ) : bookings.map(b => (
@@ -153,7 +155,7 @@ export default function CustomerBookingsPage() {
                   <TableCell>{b.num_kids}</TableCell>
                   <TableCell>{currency(b.total_amount)}</TableCell>
                   <TableCell><Badge className={STATUS_COLORS[b.status]}>{b.status}</Badge></TableCell>
-                  <TableCell>{b.deposit_paid ? <Badge className="bg-green-100 text-green-800">Paid</Badge> : <Badge variant="outline">Pending</Badge>}</TableCell>
+                  <TableCell>{b.deposit_paid ? <Badge className="bg-emerald-100 text-emerald-800 rounded-xl">Paid</Badge> : <Badge variant="outline" className="rounded-xl">Pending</Badge>}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -162,54 +164,66 @@ export default function CustomerBookingsPage() {
       </Card>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>Book a Party</DialogTitle>
+            <DialogTitle className="font-display tracking-tight">Book a Party</DialogTitle>
             <DialogDescription>Submit a party reservation request. Our team will confirm availability.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid gap-2">
-              <Label>Package *</Label>
+            <div className="space-y-2">
+              <Label className="font-display">Package *</Label>
               <Select value={form.package_id} onValueChange={(v) => setForm({ ...form, package_id: v })}>
-                <SelectTrigger><SelectValue placeholder="Select a package" /></SelectTrigger>
+                <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select a package" /></SelectTrigger>
                 <SelectContent>
                   {packages.map(p => <SelectItem key={p.id} value={p.id}>{p.name} — {currency(p.base_price)} (up to {p.max_kids} kids)</SelectItem>)}
                 </SelectContent>
               </Select>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2"><Label>Date *</Label><Input type="date" value={form.booking_date} onChange={(e) => setForm({ ...form, booking_date: e.target.value })} min={format(new Date(), 'yyyy-MM-dd')} /></div>
-              <div className="grid gap-2">
-                <Label>Start Time *</Label>
+              <div className="space-y-2">
+                <Label className="font-display">Date *</Label>
+                <Input type="date" value={form.booking_date} onChange={(e) => setForm({ ...form, booking_date: e.target.value })} min={format(new Date(), 'yyyy-MM-dd')} className="rounded-xl" />
+              </div>
+              <div className="space-y-2">
+                <Label className="font-display">Start Time *</Label>
                 <Select value={form.start_time} onValueChange={(v) => setForm({ ...form, start_time: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>{TIME_SLOTS.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2"><Label>Number of Kids *</Label><Input type="number" min={1} value={form.num_kids} onChange={(e) => setForm({ ...form, num_kids: parseInt(e.target.value) || 1 })} /></div>
-              <div className="grid gap-2"><Label>Number of Adults</Label><Input type="number" min={0} value={form.num_adults} onChange={(e) => setForm({ ...form, num_adults: parseInt(e.target.value) || 0 })} /></div>
+              <div className="space-y-2">
+                <Label className="font-display">Number of Kids *</Label>
+                <Input type="number" min={1} value={form.num_kids} onChange={(e) => setForm({ ...form, num_kids: parseInt(e.target.value) || 1 })} className="rounded-xl" />
+              </div>
+              <div className="space-y-2">
+                <Label className="font-display">Number of Adults</Label>
+                <Input type="number" min={0} value={form.num_adults} onChange={(e) => setForm({ ...form, num_adults: parseInt(e.target.value) || 0 })} className="rounded-xl" />
+              </div>
             </div>
             {form.num_kids > PARTY_CONFIG.maxKidsBeforeCall && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2">
+              <div className="rounded-xl bg-amber-50/80 p-3 text-sm text-amber-800 flex items-center gap-2 shadow-ambient">
                 <Phone className="h-4 w-4 shrink-0" />
                 For parties over {PARTY_CONFIG.maxKidsBeforeCall} kids, please also call us at (609) 266-3866 to discuss arrangements.
               </div>
             )}
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-3">
               <Switch checked={form.is_adult_party} onCheckedChange={(v) => setForm({ ...form, is_adult_party: v })} />
-              <Label>This is an adult party</Label>
+              <Label className="font-display cursor-pointer">This is an adult party</Label>
             </div>
-            <div className="grid gap-2"><Label>Special Requests</Label><Textarea value={form.special_requests} onChange={(e) => setForm({ ...form, special_requests: e.target.value })} placeholder="Any special requirements..." /></div>
-            <div className="bg-muted rounded-lg p-3 text-sm space-y-1">
-              <p>A <strong>${PARTY_CONFIG.depositAmount} deposit</strong> is required to confirm your reservation.</p>
-              <p>The party is {PARTY_CONFIG.durationMinutes / 60} hours in a private decorated party room.</p>
+            <div className="space-y-2">
+              <Label className="font-display">Special Requests</Label>
+              <Textarea value={form.special_requests} onChange={(e) => setForm({ ...form, special_requests: e.target.value })} placeholder="Any special requirements..." className="rounded-xl" />
+            </div>
+            <div className="rounded-xl bg-[var(--surface-container-low)] p-4 text-sm space-y-1">
+              <p>A <strong className="text-primary">${PARTY_CONFIG.depositAmount} deposit</strong> is required to confirm your reservation.</p>
+              <p className="text-muted-foreground">The party is {PARTY_CONFIG.durationMinutes / 60} hours in a private decorated party room.</p>
             </div>
           </div>
           <DialogFooter>
-            <Button variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
-            <Button onClick={submitBooking} disabled={saving}>{saving ? 'Submitting...' : 'Submit Booking Request'}</Button>
+            <Button variant="outline" onClick={() => setDialogOpen(false)} className="rounded-xl">Cancel</Button>
+            <Button onClick={submitBooking} disabled={saving} className="rounded-xl">{saving ? 'Submitting...' : 'Submit Booking Request'}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>

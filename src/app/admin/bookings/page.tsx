@@ -340,7 +340,7 @@ export default function BookingsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Party Bookings</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">Party Bookings</h1>
           <p className="text-muted-foreground">Manage birthday parties and events</p>
         </div>
         <div className="flex gap-2">
@@ -356,32 +356,32 @@ export default function BookingsPage() {
       </div>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Upcoming</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{upcoming.length}</div></CardContent>
+          <CardContent><div className="font-display text-3xl font-bold">{upcoming.length}</div></CardContent>
         </Card>
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">This Month</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{bookings.filter(b => b.booking_date?.startsWith(format(new Date(), 'yyyy-MM'))).length}</div></CardContent>
+          <CardContent><div className="font-display text-3xl font-bold">{bookings.filter(b => b.booking_date?.startsWith(format(new Date(), 'yyyy-MM'))).length}</div></CardContent>
         </Card>
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Pending Deposits</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-amber-600">{upcoming.filter(b => !b.deposit_paid).length}</div></CardContent>
+          <CardContent><div className="font-display text-3xl font-bold text-warning">{upcoming.filter(b => !b.deposit_paid).length}</div></CardContent>
         </Card>
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Revenue</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{currency(completed.reduce((s, b) => s + Number(b.total_amount || 0), 0))}</div></CardContent>
+          <CardContent><div className="font-display text-3xl font-bold">{currency(completed.reduce((s, b) => s + Number(b.total_amount || 0), 0))}</div></CardContent>
         </Card>
       </div>
 
       {viewMode === 'calendar' ? (
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader>
             <div className="flex items-center justify-between">
               <Button variant="ghost" onClick={() => setCalMonth(subMonths(calMonth, 1))}>
                 <ChevronLeft className="h-4 w-4" />
               </Button>
-              <CardTitle>{format(calMonth, 'MMMM yyyy')}</CardTitle>
+              <CardTitle className="font-display tracking-tight">{format(calMonth, 'MMMM yyyy')}</CardTitle>
               <Button variant="ghost" onClick={() => setCalMonth(addMonths(calMonth, 1))}>
                 <ChevronRight className="h-4 w-4" />
               </Button>
@@ -390,7 +390,7 @@ export default function BookingsPage() {
           <CardContent>
             <div className="grid grid-cols-7 gap-1 text-center text-sm">
               {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
-                <div key={d} className="font-medium text-muted-foreground py-2">{d}</div>
+                <div key={d} className="font-display tracking-tight font-medium text-muted-foreground py-2">{d}</div>
               ))}
               {Array.from({ length: startPad }).map((_, i) => <div key={`pad-${i}`} />)}
               {monthDays.map((day) => {
@@ -399,14 +399,14 @@ export default function BookingsPage() {
                 return (
                   <div
                     key={day.toISOString()}
-                    className={`min-h-16 border rounded-md p-1 cursor-pointer hover:bg-accent transition-colors ${isToday ? 'border-primary bg-primary/5' : ''}`}
+                    className={`min-h-16 rounded-xl p-1 cursor-pointer hover:shadow-elevated transition-all ${isToday ? 'shadow-elevated bg-primary/5 ring-2 ring-primary/30' : 'shadow-ambient'}`}
                     onClick={() => { setForm({ ...emptyBooking, booking_date: format(day, 'yyyy-MM-dd') }); setEditing(null); setDialogOpen(true) }}
                   >
-                    <div className={`text-xs ${isToday ? 'font-bold text-primary' : 'text-muted-foreground'}`}>
+                    <div className={`text-xs font-display tracking-tight ${isToday ? 'font-bold text-primary' : 'text-muted-foreground'}`}>
                       {format(day, 'd')}
                     </div>
                     {dayBookings.map(b => (
-                      <div key={b.id} className={`text-xs rounded px-1 mt-0.5 truncate ${STATUS_COLORS[b.status]}`}>
+                      <div key={b.id} className={`text-xs rounded-lg px-1 mt-0.5 truncate font-medium ${STATUS_COLORS[b.status]}`}>
                         {b.start_time} {b.contact_name}
                       </div>
                     ))}
@@ -417,7 +417,7 @@ export default function BookingsPage() {
           </CardContent>
         </Card>
       ) : (
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardContent className="pt-6">
             <Tabs value={tab} onValueChange={setTab}>
               <TabsList>
@@ -437,30 +437,30 @@ export default function BookingsPage() {
 
       {/* Create/Edit Booking Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>{editing ? 'Edit Booking' : 'New Booking'}</DialogTitle>
+            <DialogTitle className="font-display tracking-tight">{editing ? 'Edit Booking' : 'New Booking'}</DialogTitle>
             <DialogDescription>Fill in the party booking details.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Contact Name *</Label>
-                <Input value={form.contact_name} onChange={(e) => setForm({ ...form, contact_name: e.target.value })} />
+                <Input value={form.contact_name} onChange={(e) => setForm({ ...form, contact_name: e.target.value })} className="rounded-xl" />
               </div>
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Phone *</Label>
-                <Input value={form.contact_phone} onChange={(e) => setForm({ ...form, contact_phone: e.target.value })} />
+                <Input value={form.contact_phone} onChange={(e) => setForm({ ...form, contact_phone: e.target.value })} className="rounded-xl" />
               </div>
             </div>
-            <div className="grid gap-2">
+            <div className="space-y-2">
               <Label>Email</Label>
-              <Input type="email" value={form.contact_email} onChange={(e) => setForm({ ...form, contact_email: e.target.value })} />
+              <Input type="email" value={form.contact_email} onChange={(e) => setForm({ ...form, contact_email: e.target.value })} className="rounded-xl" />
             </div>
-            <div className="grid gap-2">
+            <div className="space-y-2">
               <Label>Package</Label>
               <Select value={form.package_id} onValueChange={(v) => setForm({ ...form, package_id: v })}>
-                <SelectTrigger><SelectValue placeholder="Select a package" /></SelectTrigger>
+                <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select a package" /></SelectTrigger>
                 <SelectContent>
                   {packages.map(p => (
                     <SelectItem key={p.id} value={p.id}>{p.name} - {currency(p.base_price)}</SelectItem>
@@ -469,14 +469,14 @@ export default function BookingsPage() {
               </Select>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Date *</Label>
-                <Input type="date" value={form.booking_date} onChange={(e) => setForm({ ...form, booking_date: e.target.value })} min={format(new Date(), 'yyyy-MM-dd')} />
+                <Input type="date" value={form.booking_date} onChange={(e) => setForm({ ...form, booking_date: e.target.value })} min={format(new Date(), 'yyyy-MM-dd')} className="rounded-xl" />
               </div>
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Start Time *</Label>
                 <Select value={form.start_time} onValueChange={(v) => setForm({ ...form, start_time: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {TIME_SLOTS.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}
                   </SelectContent>
@@ -484,23 +484,23 @@ export default function BookingsPage() {
               </div>
             </div>
             {form.booking_date && form.start_time && checkConflict(form.booking_date, form.start_time) && (
-              <div className="bg-red-50 border border-red-200 rounded-lg p-3 text-sm text-red-700 flex items-center gap-2">
+              <div className="rounded-xl bg-destructive/10 px-4 py-3 text-sm text-destructive flex items-center gap-2">
                 <AlertTriangle className="h-4 w-4" />
                 Time conflict detected! Choose a different time.
               </div>
             )}
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Number of Kids</Label>
-                <Input type="number" min={1} value={form.num_kids} onChange={(e) => setForm({ ...form, num_kids: parseInt(e.target.value) || 1 })} />
+                <Input type="number" min={1} value={form.num_kids} onChange={(e) => setForm({ ...form, num_kids: parseInt(e.target.value) || 1 })} className="rounded-xl" />
               </div>
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Number of Adults</Label>
-                <Input type="number" min={0} value={form.num_adults} onChange={(e) => setForm({ ...form, num_adults: parseInt(e.target.value) || 0 })} />
+                <Input type="number" min={0} value={form.num_adults} onChange={(e) => setForm({ ...form, num_adults: parseInt(e.target.value) || 0 })} className="rounded-xl" />
               </div>
             </div>
             {form.num_kids > PARTY_CONFIG.maxKidsBeforeCall && (
-              <div className="bg-amber-50 border border-amber-200 rounded-lg p-3 text-sm text-amber-700 flex items-center gap-2">
+              <div className="rounded-xl bg-warning/10 px-4 py-3 text-sm text-warning flex items-center gap-2">
                 <Phone className="h-4 w-4" />
                 For parties with more than {PARTY_CONFIG.maxKidsBeforeCall} kids, a phone call is recommended to discuss arrangements.
               </div>
@@ -509,21 +509,21 @@ export default function BookingsPage() {
               <Switch checked={form.is_adult_party} onCheckedChange={(v) => setForm({ ...form, is_adult_party: v })} />
               <Label>Adult Party</Label>
             </div>
-            <div className="grid gap-2">
+            <div className="space-y-2">
               <Label>Special Requests</Label>
-              <Textarea value={form.special_requests} onChange={(e) => setForm({ ...form, special_requests: e.target.value })} />
+              <Textarea value={form.special_requests} onChange={(e) => setForm({ ...form, special_requests: e.target.value })} className="rounded-xl" />
             </div>
-            <Separator />
+            <Separator className="bg-border" />
             <div className="grid grid-cols-2 gap-4">
               <div className="flex items-center gap-2">
                 <Switch checked={form.deposit_paid} onCheckedChange={(v) => setForm({ ...form, deposit_paid: v })} />
                 <Label>Deposit Paid (${PARTY_CONFIG.depositAmount})</Label>
               </div>
               {form.deposit_paid && (
-                <div className="grid gap-2">
+                <div className="space-y-2">
                   <Label>Payment Method</Label>
                   <Select value={form.deposit_method} onValueChange={(v) => setForm({ ...form, deposit_method: v })}>
-                    <SelectTrigger><SelectValue placeholder="Method" /></SelectTrigger>
+                    <SelectTrigger className="rounded-xl"><SelectValue placeholder="Method" /></SelectTrigger>
                     <SelectContent>
                       <SelectItem value="venmo">Venmo</SelectItem>
                       <SelectItem value="cash">Cash</SelectItem>
@@ -534,10 +534,10 @@ export default function BookingsPage() {
               )}
             </div>
             {editing && (
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Status</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="pending">Pending</SelectItem>
                     <SelectItem value="confirmed">Confirmed</SelectItem>

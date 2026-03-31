@@ -136,20 +136,20 @@ export default function DocumentsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Document Center</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Document Center</h1>
         <p className="text-muted-foreground">Generate and download PDF and Excel reports</p>
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <div className="flex flex-wrap gap-4 items-end">
-            <div className="grid gap-1">
+            <div className="space-y-1">
               <Label className="text-xs">Date Range From</Label>
-              <Input type="date" value={dateRange.from} onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })} className="w-44" />
+              <Input type="date" value={dateRange.from} onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })} className="w-44 rounded-xl" />
             </div>
-            <div className="grid gap-1">
+            <div className="space-y-1">
               <Label className="text-xs">Date Range To</Label>
-              <Input type="date" value={dateRange.to} onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })} className="w-44" />
+              <Input type="date" value={dateRange.to} onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })} className="w-44 rounded-xl" />
             </div>
             <p className="text-sm text-muted-foreground">Date range applies to revenue, booking, and expense reports.</p>
           </div>
@@ -158,12 +158,14 @@ export default function DocumentsPage() {
 
       <div className="grid gap-4 md:grid-cols-2">
         {documents.map(doc => (
-          <Card key={doc.title}>
+          <Card key={doc.title} className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
             <CardHeader>
               <div className="flex items-center gap-3">
-                <doc.icon className={`h-8 w-8 ${doc.color}`} />
+                <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <doc.icon className="h-5 w-5" />
+                </div>
                 <div>
-                  <CardTitle className="text-base">{doc.title}</CardTitle>
+                  <CardTitle className="text-base font-display tracking-tight">{doc.title}</CardTitle>
                   <CardDescription>{doc.description}</CardDescription>
                 </div>
               </div>

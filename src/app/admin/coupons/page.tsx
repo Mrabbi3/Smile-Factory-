@@ -112,30 +112,30 @@ export default function CouponsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Coupon Management</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">Coupon Management</h1>
           <p className="text-muted-foreground">Create and manage promotional codes</p>
         </div>
         <Button onClick={openAdd}><Plus className="mr-2 h-4 w-4" />Create Coupon</Button>
       </div>
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Coupons</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{coupons.length}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Active</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-green-600">{activeCoupons.length}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Redemptions</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{totalRedemptions}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Coupons</CardTitle></CardHeader><CardContent><div className="font-display text-3xl font-bold">{coupons.length}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Active</CardTitle></CardHeader><CardContent><div className="font-display text-3xl font-bold text-success">{activeCoupons.length}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Redemptions</CardTitle></CardHeader><CardContent><div className="font-display text-3xl font-bold">{totalRedemptions}</div></CardContent></Card>
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Code</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Discount</TableHead>
-                <TableHead>Usage</TableHead>
-                <TableHead>Valid Until</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead className="text-right">Actions</TableHead>
+                <TableHead className="font-display tracking-tight">Code</TableHead>
+                <TableHead className="font-display tracking-tight">Description</TableHead>
+                <TableHead className="font-display tracking-tight">Discount</TableHead>
+                <TableHead className="font-display tracking-tight">Usage</TableHead>
+                <TableHead className="font-display tracking-tight">Valid Until</TableHead>
+                <TableHead className="font-display tracking-tight">Status</TableHead>
+                <TableHead className="text-right font-display tracking-tight">Actions</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -143,7 +143,7 @@ export default function CouponsPage() {
                 <TableRow><TableCell colSpan={7} className="text-center py-8 text-muted-foreground">No coupons yet</TableCell></TableRow>
               ) : coupons.map(c => (
                 <TableRow key={c.id}>
-                  <TableCell><code className="bg-muted px-2 py-1 rounded font-mono font-bold">{c.code}</code></TableCell>
+                  <TableCell><code className="bg-[var(--surface-container-low)] px-2 py-1 rounded-lg font-mono font-bold">{c.code}</code></TableCell>
                   <TableCell className="text-sm">{c.description}</TableCell>
                   <TableCell>
                     <Badge variant="outline">
@@ -153,7 +153,7 @@ export default function CouponsPage() {
                   <TableCell className="text-sm">{c.times_used}{c.usage_limit > 0 ? `/${c.usage_limit}` : ''}</TableCell>
                   <TableCell className="text-sm">{c.valid_until ? safeFormatDate(c.valid_until, 'MMM dd, yyyy') : 'No expiry'}</TableCell>
                   <TableCell>
-                    {c.is_active ? <Badge className="bg-green-100 text-green-800">Active</Badge> : <Badge variant="secondary">Inactive</Badge>}
+                    {c.is_active ? <Badge className="bg-success text-success-foreground">Active</Badge> : <Badge variant="secondary">Inactive</Badge>}
                   </TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
@@ -183,18 +183,18 @@ export default function CouponsPage() {
       </Card>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>{editing ? 'Edit Coupon' : 'Create Coupon'}</DialogTitle>
+            <DialogTitle className="font-display tracking-tight">{editing ? 'Edit Coupon' : 'Create Coupon'}</DialogTitle>
             <DialogDescription>Set up a promotional coupon code.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2"><Label>Code *</Label><Input value={form.code} onChange={(e) => setForm({ ...form, code: e.target.value.toUpperCase() })} placeholder="e.g. SUMMER20" className="font-mono" /></div>
-              <div className="grid gap-2">
+              <div className="space-y-2"><Label>Code *</Label><Input value={form.code} onChange={(e) => setForm({ ...form, code: e.target.value.toUpperCase() })} placeholder="e.g. SUMMER20" className="font-mono rounded-xl" /></div>
+              <div className="space-y-2">
                 <Label>Discount Type</Label>
                 <Select value={form.discount_type} onValueChange={(v) => setForm({ ...form, discount_type: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="percentage">Percentage (%)</SelectItem>
                     <SelectItem value="fixed">Fixed Amount ($)</SelectItem>
@@ -202,17 +202,17 @@ export default function CouponsPage() {
                 </Select>
               </div>
             </div>
-            <div className="grid gap-2"><Label>Description</Label><Input value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} /></div>
+            <div className="space-y-2"><Label>Description</Label><Input value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="rounded-xl" /></div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2"><Label>Discount Value *</Label><Input type="number" min={0} value={form.discount_value} onChange={(e) => setForm({ ...form, discount_value: e.target.value })} /></div>
-              <div className="grid gap-2"><Label>Min Purchase ($)</Label><Input type="number" min={0} value={form.min_purchase} onChange={(e) => setForm({ ...form, min_purchase: e.target.value })} /></div>
+              <div className="space-y-2"><Label>Discount Value *</Label><Input type="number" min={0} value={form.discount_value} onChange={(e) => setForm({ ...form, discount_value: e.target.value })} className="rounded-xl" /></div>
+              <div className="space-y-2"><Label>Min Purchase ($)</Label><Input type="number" min={0} value={form.min_purchase} onChange={(e) => setForm({ ...form, min_purchase: e.target.value })} className="rounded-xl" /></div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2"><Label>Valid From</Label><Input type="date" value={form.valid_from} onChange={(e) => setForm({ ...form, valid_from: e.target.value })} /></div>
-              <div className="grid gap-2"><Label>Valid Until</Label><Input type="date" value={form.valid_until} onChange={(e) => setForm({ ...form, valid_until: e.target.value })} /></div>
+              <div className="space-y-2"><Label>Valid From</Label><Input type="date" value={form.valid_from} onChange={(e) => setForm({ ...form, valid_from: e.target.value })} className="rounded-xl" /></div>
+              <div className="space-y-2"><Label>Valid Until</Label><Input type="date" value={form.valid_until} onChange={(e) => setForm({ ...form, valid_until: e.target.value })} className="rounded-xl" /></div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2"><Label>Usage Limit (0 = unlimited)</Label><Input type="number" min={0} value={form.usage_limit} onChange={(e) => setForm({ ...form, usage_limit: e.target.value })} /></div>
+              <div className="space-y-2"><Label>Usage Limit (0 = unlimited)</Label><Input type="number" min={0} value={form.usage_limit} onChange={(e) => setForm({ ...form, usage_limit: e.target.value })} className="rounded-xl" /></div>
               <div className="flex items-center gap-2 pt-6"><Switch checked={form.is_active} onCheckedChange={(v) => setForm({ ...form, is_active: v })} /><Label>Active</Label></div>
             </div>
           </div>

@@ -53,29 +53,30 @@ export default function LoyaltyRewardsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Loyalty Rewards</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Loyalty Rewards</h1>
         <p className="text-muted-foreground">Track your rewards and earn bonuses</p>
       </div>
 
-      <Card className="border-2" style={{ borderColor: currentTier.color }}>
-        <CardContent className="pt-6">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="h-16 w-16 rounded-full flex items-center justify-center text-2xl font-bold" style={{ backgroundColor: currentTier.color + '20', color: currentTier.color }}>
+      <Card className="rounded-2xl shadow-ambient overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none" />
+        <CardContent className="pt-6 relative">
+          <div className="flex items-center gap-4 mb-6">
+            <div className="flex size-16 items-center justify-center rounded-xl" style={{ backgroundColor: `${currentTier.color}20`, color: currentTier.color }}>
               <Trophy className="h-8 w-8" />
             </div>
             <div>
-              <h2 className="text-xl font-bold capitalize">{currentTier.label} Member</h2>
+              <h2 className="font-display text-2xl font-bold tracking-tight capitalize">{currentTier.label} Member</h2>
               <p className="text-muted-foreground">Total Spent: {currency(spent)}</p>
             </div>
           </div>
           {nextTier && (
-            <div>
-              <div className="flex justify-between text-sm mb-2">
-                <span>Progress to {nextTier.label}</span>
-                <span>{currency(spent)} / {currency(nextTier.minSpend)}</span>
+            <div className="space-y-3">
+              <div className="flex justify-between text-sm">
+                <span className="text-muted-foreground">Progress to {nextTier.label}</span>
+                <span className="font-medium">{currency(spent)} / {currency(nextTier.minSpend)}</span>
               </div>
-              <Progress value={progress} className="h-3" />
-              <p className="text-xs text-muted-foreground mt-2">
+              <Progress value={progress} className="h-3 bg-gradient-primary" />
+              <p className="text-xs text-muted-foreground">
                 Spend {currency(nextTier.minSpend - spent)} more to reach {nextTier.label}!
               </p>
             </div>
@@ -85,36 +86,63 @@ export default function LoyaltyRewardsPage() {
       </Card>
 
       <div className="grid gap-4 grid-cols-2">
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Reward Balance</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-green-600">{currency(account?.reward_balance || 0)}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Tier</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold capitalize" style={{ color: currentTier.color }}>{currentTier.label}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Reward Balance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-100/50 text-emerald-600">
+                <Gift className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold text-emerald-600">{currency(account?.reward_balance || 0)}</div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-sm text-muted-foreground font-display">Tier</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="flex items-end gap-3">
+              <div className="flex size-10 items-center justify-center rounded-xl" style={{ backgroundColor: `${currentTier.color}20`, color: currentTier.color }}>
+                <Trophy className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold capitalize" style={{ color: currentTier.color }}>{currentTier.label}</div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardHeader>
-          <CardTitle>Loyalty Tiers</CardTitle>
+          <CardTitle className="font-display tracking-tight">Loyalty Tiers</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="grid gap-3">
             {LOYALTY_TIERS.map((tier, i) => (
-              <div key={tier.tier} className={`flex items-center justify-between p-3 rounded-lg border ${tier.tier === (account?.tier || 'bronze') ? 'border-2 bg-muted' : ''}`} style={tier.tier === (account?.tier || 'bronze') ? { borderColor: tier.color } : {}}>
+              <div key={tier.tier} className={`flex items-center justify-between p-4 rounded-xl transition-all ${tier.tier === (account?.tier || 'bronze') ? 'bg-[var(--surface-container-high)] shadow-ambient' : 'bg-[var(--surface-container-low)] hover:bg-[var(--surface-container-high)]'}`}>
                 <div className="flex items-center gap-3">
-                  <div className="h-8 w-8 rounded-full flex items-center justify-center text-xs font-bold" style={{ backgroundColor: tier.color + '20', color: tier.color }}>
+                  <div className="flex size-10 items-center justify-center rounded-xl font-bold text-sm" style={{ backgroundColor: `${tier.color}20`, color: tier.color }}>
                     {i + 1}
                   </div>
                   <div>
-                    <p className="font-medium capitalize">{tier.label}</p>
+                    <p className="font-display font-bold tracking-tight capitalize">{tier.label}</p>
                     <p className="text-xs text-muted-foreground">Spend {currency(tier.minSpend)}+</p>
                   </div>
                 </div>
-                {tier.tier === (account?.tier || 'bronze') && <Badge style={{ backgroundColor: tier.color, color: 'white' }}>Current</Badge>}
+                {tier.tier === (account?.tier || 'bronze') && <Badge className="rounded-xl" style={{ backgroundColor: tier.color, color: 'white' }}>Current</Badge>}
               </div>
             ))}
           </div>
         </CardContent>
       </Card>
 
-      <Card>
-        <CardHeader><CardTitle>Recent Activity</CardTitle></CardHeader>
+      <Card className="rounded-2xl shadow-ambient">
+        <CardHeader>
+          <CardTitle className="font-display tracking-tight">Recent Activity</CardTitle>
+        </CardHeader>
         <CardContent>
           <Table>
             <TableHeader>
@@ -127,13 +155,21 @@ export default function LoyaltyRewardsPage() {
             </TableHeader>
             <TableBody>
               {transactions.length === 0 ? (
-                <TableRow><TableCell colSpan={4} className="text-center py-8 text-muted-foreground">No loyalty activity yet. Start spending to earn rewards!</TableCell></TableRow>
+                <TableRow>
+                  <TableCell colSpan={4} className="text-center py-12">
+                    <div className="flex size-12 items-center justify-center rounded-xl bg-primary/10 text-primary mx-auto mb-4">
+                      <TrendingUp className="h-6 w-6" />
+                    </div>
+                    <p className="text-muted-foreground font-medium">No loyalty activity yet</p>
+                    <p className="text-sm text-muted-foreground mt-1">Start spending to earn rewards!</p>
+                  </TableCell>
+                </TableRow>
               ) : transactions.map(t => (
                 <TableRow key={t.id}>
-                  <TableCell>{safeFormatDate(t.created_at, 'MMM dd, yyyy')}</TableCell>
-                  <TableCell><Badge variant={t.type === 'earn' ? 'secondary' : 'outline'}>{t.type}</Badge></TableCell>
+                  <TableCell className="text-muted-foreground">{safeFormatDate(t.created_at, 'MMM dd, yyyy')}</TableCell>
+                  <TableCell><Badge variant={t.type === 'earn' ? 'secondary' : 'outline'} className="rounded-xl">{t.type}</Badge></TableCell>
                   <TableCell>{t.description}</TableCell>
-                  <TableCell className={`text-right font-medium ${t.type === 'earn' ? 'text-green-600' : 'text-red-600'}`}>{t.type === 'earn' ? '+' : '-'}{currency(t.amount)}</TableCell>
+                  <TableCell className={`text-right font-medium ${t.type === 'earn' ? 'text-emerald-600' : 'text-red-600'}`}>{t.type === 'earn' ? '+' : '-'}{currency(t.amount)}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

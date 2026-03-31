@@ -119,28 +119,30 @@ export default function AdminDashboard() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Welcome back, {profile?.first_name || 'Admin'}</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Welcome back, {profile?.first_name || 'Admin'}</h1>
         <p className="text-muted-foreground">Here&apos;s what&apos;s happening at The Smile Factory today.</p>
       </div>
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((s) => (
-          <Card key={s.title}>
-            <CardHeader className="flex flex-row items-center justify-between pb-2">
-              <CardTitle className="text-sm font-medium text-muted-foreground">{s.title}</CardTitle>
-              <s.icon className={`h-5 w-5 ${s.color}`} />
+          <Card key={s.title} className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm text-muted-foreground">{s.title}</CardTitle>
             </CardHeader>
-            <CardContent>
-              <div className="text-2xl font-bold">{s.value}</div>
+            <CardContent className="space-y-2">
+              <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary w-fit">
+                <s.icon className="h-5 w-5" />
+              </div>
+              <div className="font-display text-3xl font-bold">{s.value}</div>
             </CardContent>
           </Card>
         ))}
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <Card className="lg:col-span-2">
+        <Card className="lg:col-span-2 rounded-2xl shadow-ambient">
           <CardHeader>
-            <CardTitle>Revenue (Last 7 Days)</CardTitle>
+            <CardTitle className="font-display tracking-tight">Revenue (Last 7 Days)</CardTitle>
           </CardHeader>
           <CardContent>
             <ResponsiveContainer width="100%" height={300}>
@@ -149,16 +151,16 @@ export default function AdminDashboard() {
                 <XAxis dataKey="date" className="text-xs" />
                 <YAxis className="text-xs" tickFormatter={(v) => `$${v}`} />
                 <Tooltip formatter={(v) => currency(Number(v))} />
-                <Bar dataKey="revenue" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="revenue" fill="hsl(var(--primary))" radius={[8, 8, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>
         </Card>
 
         <div className="space-y-4">
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardHeader>
-              <CardTitle className="text-base">Quick Actions</CardTitle>
+              <CardTitle className="text-base font-display tracking-tight">Quick Actions</CardTitle>
             </CardHeader>
             <CardContent className="grid grid-cols-2 gap-2">
               {quickActions.map((a) => (
@@ -172,25 +174,25 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardHeader>
-              <CardTitle className="text-base">Alerts</CardTitle>
+              <CardTitle className="text-base font-display tracking-tight">Alerts</CardTitle>
             </CardHeader>
             <CardContent className="space-y-3">
               {alerts.lowStock > 0 && (
-                <Link href="/admin/inventory" className="flex items-center gap-2 text-sm text-orange-600 hover:underline">
+                <Link href="/admin/inventory" className="flex items-center gap-2 text-sm text-warning hover:underline">
                   <AlertTriangle className="h-4 w-4" />
                   {alerts.lowStock} prize(s) low on stock
                 </Link>
               )}
               {alerts.upcomingBookings > 0 && (
-                <Link href="/admin/bookings" className="flex items-center gap-2 text-sm text-blue-600 hover:underline">
+                <Link href="/admin/bookings" className="flex items-center gap-2 text-sm text-info hover:underline">
                   <Calendar className="h-4 w-4" />
                   {alerts.upcomingBookings} upcoming booking(s)
                 </Link>
               )}
               {alerts.openOrders > 0 && (
-                <Link href="/admin/work-orders" className="flex items-center gap-2 text-sm text-red-600 hover:underline">
+                <Link href="/admin/work-orders" className="flex items-center gap-2 text-sm text-destructive hover:underline">
                   <ClipboardList className="h-4 w-4" />
                   {alerts.openOrders} open work order(s)
                 </Link>
@@ -205,9 +207,9 @@ export default function AdminDashboard() {
 
       <AIAnalytics />
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardHeader>
-          <CardTitle>Recent Transactions</CardTitle>
+          <CardTitle className="font-display tracking-tight">Recent Transactions</CardTitle>
           <CardDescription>Last 10 token sales</CardDescription>
         </CardHeader>
         <CardContent>
@@ -217,22 +219,22 @@ export default function AdminDashboard() {
             <div className="overflow-x-auto">
               <table className="w-full text-sm">
                 <thead>
-                  <tr className="border-b text-muted-foreground">
-                    <th className="text-left py-2">Time</th>
-                    <th className="text-right py-2">Amount</th>
-                    <th className="text-right py-2">Tokens</th>
-                    <th className="text-left py-2">Payment</th>
-                    <th className="text-left py-2">Type</th>
+                  <tr className="border-b border-border text-muted-foreground">
+                    <th className="text-left py-2 font-display tracking-tight">Time</th>
+                    <th className="text-right py-2 font-display tracking-tight">Amount</th>
+                    <th className="text-right py-2 font-display tracking-tight">Tokens</th>
+                    <th className="text-left py-2 font-display tracking-tight">Payment</th>
+                    <th className="text-left py-2 font-display tracking-tight">Type</th>
                   </tr>
                 </thead>
                 <tbody>
                   {recentTx.map((tx) => (
-                    <tr key={tx.id} className="border-b last:border-0">
+                    <tr key={tx.id} className="border-b border-border last:border-0">
                       <td className="py-2">{safeFormatDate(tx.created_at, 'MMM dd, h:mm a')}</td>
                       <td className="text-right font-medium">{currency(tx.amount_paid)}</td>
                       <td className="text-right">{tx.tokens_given}</td>
                       <td><Badge variant={tx.payment_type === 'cash' ? 'secondary' : 'outline'}>{tx.payment_type}</Badge></td>
-                      <td>{tx.is_loyalty_bonus && <Badge variant="default" className="bg-yellow-500">Loyalty</Badge>}</td>
+                      <td>{tx.is_loyalty_bonus && <Badge variant="default" className="bg-warning text-warning-foreground">Loyalty</Badge>}</td>
                     </tr>
                   ))}
                 </tbody>

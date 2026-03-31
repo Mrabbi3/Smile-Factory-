@@ -167,17 +167,17 @@ export default function InventoryPage() {
   }
 
   const stockBadge = (p: Prize) => {
-    if (p.stock_quantity === 0) return <Badge variant="destructive">Out of Stock</Badge>
-    if (p.stock_quantity <= p.reorder_threshold) return <Badge className="bg-amber-500">Low Stock</Badge>
-    return <Badge variant="secondary" className="bg-green-100 text-green-800">In Stock</Badge>
+    if (p.stock_quantity === 0) return <Badge className="bg-destructive/10 text-destructive">Out of Stock</Badge>
+    if (p.stock_quantity <= p.reorder_threshold) return <Badge className="bg-amber-500/10 text-amber-700">Low Stock</Badge>
+    return <Badge className="bg-emerald-500/10 text-emerald-700">In Stock</Badge>
   }
 
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Prize Inventory</h1>
-          <p className="text-muted-foreground">Manage prizes and track redemptions</p>
+          <h1 className="font-display text-3xl font-bold tracking-tight">Prize Inventory</h1>
+          <p className="text-sm text-muted-foreground">Manage prizes and track redemptions</p>
         </div>
         <div className="flex gap-2">
           <Button variant="outline" onClick={() => setRedeemOpen(true)}>
@@ -192,21 +192,57 @@ export default function InventoryPage() {
       </div>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Prizes</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{totalPrizes}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Total Prizes</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="font-display text-3xl font-bold">{totalPrizes}</div>
+              </div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Package className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><AlertTriangle className="h-4 w-4 text-amber-500" /> Low Stock</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-amber-600">{lowStockCount}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Low Stock</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="font-display text-3xl font-bold text-amber-600">{lowStockCount}</div>
+              </div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
+                <AlertTriangle className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Categories</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{new Set(prizes.map(p => p.category)).size}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Categories</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="font-display text-3xl font-bold">{new Set(prizes.map(p => p.category)).size}</div>
+              </div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600">
+                <Trophy className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Stock</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{prizes.reduce((s, p) => s + p.stock_quantity, 0)}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Total Stock</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="font-display text-3xl font-bold">{prizes.reduce((s, p) => s + p.stock_quantity, 0)}</div>
+              </div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600">
+                <Package className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
       </div>
 
@@ -214,17 +250,17 @@ export default function InventoryPage() {
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-          <Input placeholder="Search prizes..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
+          <Input placeholder="Search prizes..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 rounded-xl" />
         </div>
         <Select value={categoryFilter} onValueChange={setCategoryFilter}>
-          <SelectTrigger className="w-40"><SelectValue placeholder="Category" /></SelectTrigger>
+          <SelectTrigger className="w-40 rounded-xl"><SelectValue placeholder="Category" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Categories</SelectItem>
             {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
           </SelectContent>
         </Select>
         <Select value={stockFilter} onValueChange={setStockFilter}>
-          <SelectTrigger className="w-36"><SelectValue placeholder="Stock" /></SelectTrigger>
+          <SelectTrigger className="w-36 rounded-xl"><SelectValue placeholder="Stock" /></SelectTrigger>
           <SelectContent>
             <SelectItem value="all">All Stock</SelectItem>
             <SelectItem value="low">Low Stock</SelectItem>
@@ -234,7 +270,7 @@ export default function InventoryPage() {
       </div>
 
       {/* Prize Table */}
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
@@ -261,7 +297,7 @@ export default function InventoryPage() {
                       <div className="font-medium">{p.name}</div>
                       {p.description && <div className="text-xs text-muted-foreground">{p.description}</div>}
                     </TableCell>
-                    <TableCell><Badge variant="outline">{p.category}</Badge></TableCell>
+                    <TableCell><Badge variant="outline" className="rounded-xl">{p.category}</Badge></TableCell>
                     <TableCell className="text-right font-mono">{p.ticket_cost.toLocaleString()}</TableCell>
                     <TableCell>
                       <div className="flex items-center justify-center gap-1">
@@ -286,7 +322,7 @@ export default function InventoryPage() {
                               <Trash2 className="h-4 w-4" />
                             </Button>
                           </AlertDialogTrigger>
-                          <AlertDialogContent>
+                          <AlertDialogContent className="rounded-2xl">
                             <AlertDialogHeader>
                               <AlertDialogTitle>Delete {p.name}?</AlertDialogTitle>
                               <AlertDialogDescription>This action cannot be undone.</AlertDialogDescription>
@@ -309,29 +345,29 @@ export default function InventoryPage() {
 
       {/* Add/Edit Prize Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>{editing ? 'Edit Prize' : 'Add New Prize'}</DialogTitle>
+            <DialogTitle className="font-display text-xl font-bold tracking-tight">{editing ? 'Edit Prize' : 'Add New Prize'}</DialogTitle>
             <DialogDescription>Fill in the prize details below.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
               <Label>Name *</Label>
-              <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+              <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="rounded-xl" />
             </div>
             <div className="grid gap-2">
               <Label>Description</Label>
-              <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+              <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="rounded-xl" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label>Ticket Cost *</Label>
-                <Input type="number" min={1} value={form.ticket_cost} onChange={(e) => setForm({ ...form, ticket_cost: parseInt(e.target.value) || 0 })} />
+                <Input type="number" min={1} value={form.ticket_cost} onChange={(e) => setForm({ ...form, ticket_cost: parseInt(e.target.value) || 0 })} className="rounded-xl" />
               </div>
               <div className="grid gap-2">
                 <Label>Category</Label>
                 <Select value={form.category} onValueChange={(v) => setForm({ ...form, category: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {CATEGORIES.map(c => <SelectItem key={c} value={c}>{c}</SelectItem>)}
                   </SelectContent>
@@ -341,11 +377,11 @@ export default function InventoryPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label>Stock Quantity</Label>
-                <Input type="number" min={0} value={form.stock_quantity} onChange={(e) => setForm({ ...form, stock_quantity: parseInt(e.target.value) || 0 })} />
+                <Input type="number" min={0} value={form.stock_quantity} onChange={(e) => setForm({ ...form, stock_quantity: parseInt(e.target.value) || 0 })} className="rounded-xl" />
               </div>
               <div className="grid gap-2">
                 <Label>Reorder Threshold</Label>
-                <Input type="number" min={0} value={form.reorder_threshold} onChange={(e) => setForm({ ...form, reorder_threshold: parseInt(e.target.value) || 0 })} />
+                <Input type="number" min={0} value={form.reorder_threshold} onChange={(e) => setForm({ ...form, reorder_threshold: parseInt(e.target.value) || 0 })} className="rounded-xl" />
               </div>
             </div>
             <div className="flex items-center gap-2">
@@ -362,16 +398,16 @@ export default function InventoryPage() {
 
       {/* Redemption Dialog */}
       <Dialog open={redeemOpen} onOpenChange={setRedeemOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>Log Prize Redemption</DialogTitle>
+            <DialogTitle className="font-display text-xl font-bold tracking-tight">Log Prize Redemption</DialogTitle>
             <DialogDescription>Record a customer&apos;s prize redemption.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
               <Label>Prize</Label>
               <Select value={redeemPrize} onValueChange={(v) => { setRedeemPrize(v); setRedeemQty(1) }}>
-                <SelectTrigger><SelectValue placeholder="Select a prize" /></SelectTrigger>
+                <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select a prize" /></SelectTrigger>
                 <SelectContent>
                   {prizes.filter(p => p.is_active && p.stock_quantity > 0).map(p => (
                     <SelectItem key={p.id} value={p.id}>{p.name} ({p.ticket_cost} tickets, {p.stock_quantity} in stock)</SelectItem>
@@ -381,10 +417,10 @@ export default function InventoryPage() {
             </div>
             <div className="grid gap-2">
               <Label>Quantity</Label>
-              <Input type="number" min={1} value={redeemQty} onChange={(e) => setRedeemQty(parseInt(e.target.value) || 1)} />
+              <Input type="number" min={1} value={redeemQty} onChange={(e) => setRedeemQty(parseInt(e.target.value) || 1)} className="rounded-xl" />
             </div>
             {redeemPrize && (
-              <div className="bg-muted rounded-lg p-3 text-sm">
+              <div className="rounded-xl bg-[var(--surface-container-low)] px-4 py-3 text-sm">
                 <p>Tickets Required: <span className="font-bold">{(prizes.find(p => p.id === redeemPrize)?.ticket_cost || 0) * redeemQty}</span></p>
               </div>
             )}

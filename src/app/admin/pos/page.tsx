@@ -197,14 +197,14 @@ export default function POSPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Point of Sale</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Point of Sale</h1>
         <p className="text-muted-foreground">Quick token sales terminal</p>
       </div>
 
       <div className="grid gap-6 lg:grid-cols-3">
         <div className="lg:col-span-2 space-y-4">
           {/* Payment Type Toggle */}
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardContent className="pt-6">
               <div className="flex gap-2">
                 <Button
@@ -225,7 +225,7 @@ export default function POSPage() {
                 </Button>
               </div>
               {paymentType === 'card' && (
-                <p className="mt-2 text-sm text-amber-600 flex items-center gap-1">
+                <p className="mt-2 text-sm text-warning flex items-center gap-1">
                   <AlertTriangle className="h-4 w-4" />
                   ${CARD_MINIMUM} minimum for card payments
                 </p>
@@ -234,10 +234,12 @@ export default function POSPage() {
           </Card>
 
           {/* Token Tier Buttons */}
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Coins className="h-5 w-5" />
+              <CardTitle className="flex items-center gap-2 font-display tracking-tight">
+                <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <Coins className="h-5 w-5" />
+                </div>
                 Token Packages
               </CardTitle>
             </CardHeader>
@@ -249,7 +251,7 @@ export default function POSPage() {
                     <Button
                       key={tier.price}
                       variant="outline"
-                      className="h-24 flex-col gap-1 text-lg border-2 hover:border-primary hover:bg-primary/5 transition-all"
+                      className="h-24 flex-col gap-1 text-lg shadow-ambient hover:shadow-elevated hover:bg-primary/5 transition-all"
                       disabled={disabled}
                       onClick={() => addToCart(tier.price, tier.tokens)}
                     >
@@ -265,7 +267,7 @@ export default function POSPage() {
                   <Separator className="my-4" />
                   <Button
                     variant="outline"
-                    className="w-full h-16 border-2 border-yellow-400 bg-yellow-50 hover:bg-yellow-100 text-yellow-800"
+                    className="w-full h-16 shadow-ambient bg-yellow-50 hover:bg-yellow-100 hover:shadow-elevated text-yellow-800"
                     onClick={() => addToCart(LOYALTY_DEAL.price, 66 + LOYALTY_DEAL.bonusTokens, true)}
                   >
                     <Star className="mr-2 h-5 w-5" />
@@ -282,11 +284,13 @@ export default function POSPage() {
 
         {/* Cart / Summary */}
         <div className="space-y-4">
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardHeader>
-              <CardTitle className="flex items-center justify-between">
+              <CardTitle className="flex items-center justify-between font-display tracking-tight">
                 <span className="flex items-center gap-2">
-                  <ShoppingCart className="h-5 w-5" />
+                  <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <ShoppingCart className="h-5 w-5" />
+                  </div>
                   Current Sale
                 </span>
                 {cart.length > 0 && (
@@ -359,9 +363,9 @@ export default function POSPage() {
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardHeader>
-              <CardTitle className="text-base">Recent Sales</CardTitle>
+              <CardTitle className="text-base font-display tracking-tight">Recent Sales</CardTitle>
             </CardHeader>
             <CardContent>
               {recentTx.length === 0 ? (
@@ -369,7 +373,7 @@ export default function POSPage() {
               ) : (
                 <div className="space-y-2 max-h-64 overflow-y-auto">
                   {recentTx.slice(0, 10).map((tx) => (
-                    <div key={tx.id} className="flex items-center justify-between text-sm py-1 border-b last:border-0">
+                    <div key={tx.id} className="flex items-center justify-between text-sm py-1 border-b border-border last:border-0">
                       <div>
                         <span className="font-medium">{currency(tx.amount_paid)}</span>
                         <span className="text-muted-foreground ml-1">· {tx.tokens_given}t</span>
@@ -390,15 +394,15 @@ export default function POSPage() {
       </div>
 
       <Dialog open={emailDialogOpen} onOpenChange={setEmailDialogOpen}>
-        <DialogContent className="max-w-sm">
+        <DialogContent className="max-w-sm rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>Email Receipt</DialogTitle>
+            <DialogTitle className="font-display tracking-tight">Email Receipt</DialogTitle>
             <DialogDescription>
               Send the token purchase receipt to the customer&apos;s email.
             </DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-2">
-            <div className="grid gap-2">
+            <div className="space-y-2">
               <Label htmlFor="receiptEmail">Customer Email</Label>
               <Input
                 id="receiptEmail"
@@ -407,6 +411,7 @@ export default function POSPage() {
                 value={receiptEmail}
                 onChange={(e) => setReceiptEmail(e.target.value)}
                 autoComplete="email"
+                className="rounded-xl"
               />
             </div>
           </div>

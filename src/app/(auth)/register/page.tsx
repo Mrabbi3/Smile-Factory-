@@ -15,7 +15,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { Loader2 } from 'lucide-react'
+import { Loader2, UserPlus, Mail } from 'lucide-react'
 
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState('')
@@ -74,22 +74,25 @@ export default function RegisterPage() {
 
   if (emailSent) {
     return (
-      <Card>
-        <CardHeader className="text-center">
-          <CardTitle className="text-xl">Verify your email</CardTitle>
+      <Card className="shadow-elevated">
+        <CardHeader className="text-center pb-2">
+          <div className="mx-auto mb-4 flex size-16 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
+            <Mail className="size-7" />
+          </div>
+          <CardTitle className="text-2xl">Verify Your Email</CardTitle>
           <CardDescription>
             We&apos;ve sent a verification link to{' '}
             <span className="font-medium text-foreground">{email}</span>
           </CardDescription>
         </CardHeader>
-        <CardContent className="text-center text-sm text-muted-foreground">
+        <CardContent className="text-center text-sm text-muted-foreground pt-2">
           <p>
             Click the link in the email to activate your account. If you don&apos;t
             see it, check your spam folder.
           </p>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button asChild variant="outline" className="w-full">
+          <Button asChild variant="outline" className="w-full" size="lg">
             <Link href="/login">Back to sign in</Link>
           </Button>
         </CardFooter>
@@ -98,15 +101,15 @@ export default function RegisterPage() {
   }
 
   return (
-    <Card>
-      <CardHeader className="text-center">
-        <CardTitle className="text-xl">Create Account</CardTitle>
+    <Card className="shadow-elevated">
+      <CardHeader className="text-center pb-2">
+        <CardTitle className="text-2xl">Create Account</CardTitle>
         <CardDescription>
           Sign up to start booking parties and earning rewards
         </CardDescription>
       </CardHeader>
       <form onSubmit={handleRegister}>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-4 pt-4">
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <Label htmlFor="firstName">First Name</Label>
@@ -180,13 +183,13 @@ export default function RegisterPage() {
           </div>
         </CardContent>
         <CardFooter className="flex flex-col gap-4">
-          <Button type="submit" className="w-full" disabled={loading}>
-            {loading && <Loader2 className="mr-2 size-4 animate-spin" />}
-            Create Account
+          <Button type="submit" className="w-full" size="lg" disabled={loading}>
+            {loading ? <Loader2 className="size-4 animate-spin" /> : <UserPlus className="size-4" />}
+            {loading ? 'Creating account...' : 'Create Account'}
           </Button>
           <p className="text-center text-sm text-muted-foreground">
             Already have an account?{' '}
-            <Link href="/login" className="text-primary hover:underline">
+            <Link href="/login" className="font-medium text-primary hover:underline">
               Sign in
             </Link>
           </p>

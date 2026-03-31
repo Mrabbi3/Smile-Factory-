@@ -24,9 +24,9 @@ import type { Machine } from '@/types/database'
 
 const MACHINE_TYPES = ['Skill Game', 'Racing', 'Sports', 'Classic', 'Redemption', 'Other']
 const STATUS_COLORS: Record<string, string> = {
-  active: 'bg-green-100 text-green-800',
-  maintenance: 'bg-yellow-100 text-yellow-800',
-  inactive: 'bg-gray-100 text-gray-800',
+  active: 'bg-emerald-500/10 text-emerald-700',
+  maintenance: 'bg-amber-500/10 text-amber-700',
+  inactive: 'bg-gray-500/10 text-gray-700',
 }
 
 const emptyMachine = {
@@ -139,25 +139,25 @@ export default function MachinesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Machine Management</h1>
-          <p className="text-muted-foreground">Arcade machine directory and maintenance</p>
+          <h1 className="font-display text-3xl font-bold tracking-tight">Machine Management</h1>
+          <p className="text-sm text-muted-foreground">Arcade machine directory and maintenance</p>
         </div>
         <Button onClick={openAdd}><Plus className="mr-2 h-4 w-4" />Add Machine</Button>
       </div>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{machines.length}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Active</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-green-600">{activeCount}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Maintenance</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-yellow-600">{maintCount}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Inactive</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-gray-600">{inactiveCount}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Total</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className="font-display text-3xl font-bold">{machines.length}</div><div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Cpu className="h-5 w-5" /></div></div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Active</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className="font-display text-3xl font-bold text-emerald-600">{activeCount}</div><div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600"><Cpu className="h-5 w-5" /></div></div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Maintenance</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className="font-display text-3xl font-bold text-amber-600">{maintCount}</div><div className="flex size-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600"><Wrench className="h-5 w-5" /></div></div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Inactive</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className="font-display text-3xl font-bold text-gray-600">{inactiveCount}</div><div className="flex size-10 items-center justify-center rounded-xl bg-gray-500/10 text-gray-600"><Cpu className="h-5 w-5" /></div></div></CardContent></Card>
       </div>
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder="Search machines..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
+        <Input placeholder="Search machines..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 rounded-xl" />
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
@@ -176,9 +176,9 @@ export default function MachinesPage() {
               ) : filtered.map(m => (
                 <TableRow key={m.id}>
                   <TableCell className="font-medium">{m.name}</TableCell>
-                  <TableCell><Badge variant="outline">{m.machine_type}</Badge></TableCell>
+                  <TableCell><Badge variant="outline" className="rounded-lg">{m.machine_type}</Badge></TableCell>
                   <TableCell className="text-center">{m.tokens_per_play}</TableCell>
-                  <TableCell><Badge className={STATUS_COLORS[m.status]}>{m.status}</Badge></TableCell>
+                  <TableCell><Badge className={`${STATUS_COLORS[m.status]} rounded-lg`}>{m.status}</Badge></TableCell>
                   <TableCell className="text-sm text-muted-foreground">{m.location_note || '—'}</TableCell>
                   <TableCell className="text-right">
                     <div className="flex justify-end gap-1">
@@ -199,31 +199,31 @@ export default function MachinesPage() {
 
       {/* Add/Edit Machine Dialog */}
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>{editing ? 'Edit Machine' : 'Add Machine'}</DialogTitle>
+            <DialogTitle className="font-display text-xl font-bold tracking-tight">{editing ? 'Edit Machine' : 'Add Machine'}</DialogTitle>
             <DialogDescription>Enter machine details.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid gap-2"><Label>Name *</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} /></div>
+            <div className="grid gap-2"><Label>Name *</Label><Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} className="rounded-xl" /></div>
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label>Type</Label>
                 <Select value={form.machine_type} onValueChange={(v) => setForm({ ...form, machine_type: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>{MACHINE_TYPES.map(t => <SelectItem key={t} value={t}>{t}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
               <div className="grid gap-2">
                 <Label>Tokens per Play</Label>
-                <Input type="number" min={1} value={form.tokens_per_play} onChange={(e) => setForm({ ...form, tokens_per_play: parseInt(e.target.value) || 1 })} />
+                <Input type="number" min={1} value={form.tokens_per_play} onChange={(e) => setForm({ ...form, tokens_per_play: parseInt(e.target.value) || 1 })} className="rounded-xl" />
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label>Status</Label>
                 <Select value={form.status} onValueChange={(v) => setForm({ ...form, status: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="active">Active</SelectItem>
                     <SelectItem value="maintenance">Maintenance</SelectItem>
@@ -231,10 +231,10 @@ export default function MachinesPage() {
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid gap-2"><Label>Serial Number</Label><Input value={form.serial_number} onChange={(e) => setForm({ ...form, serial_number: e.target.value })} /></div>
+              <div className="grid gap-2"><Label>Serial Number</Label><Input value={form.serial_number} onChange={(e) => setForm({ ...form, serial_number: e.target.value })} className="rounded-xl" /></div>
             </div>
-            <div className="grid gap-2"><Label>Location Note</Label><Input value={form.location_note} onChange={(e) => setForm({ ...form, location_note: e.target.value })} /></div>
-            <div className="grid gap-2"><Label>Purchase Date</Label><Input type="date" value={form.purchase_date} onChange={(e) => setForm({ ...form, purchase_date: e.target.value })} /></div>
+            <div className="grid gap-2"><Label>Location Note</Label><Input value={form.location_note} onChange={(e) => setForm({ ...form, location_note: e.target.value })} className="rounded-xl" /></div>
+            <div className="grid gap-2"><Label>Purchase Date</Label><Input type="date" value={form.purchase_date} onChange={(e) => setForm({ ...form, purchase_date: e.target.value })} className="rounded-xl" /></div>
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setDialogOpen(false)}>Cancel</Button>
@@ -245,17 +245,17 @@ export default function MachinesPage() {
 
       {/* Machine Detail / Maintenance Dialog */}
       <Dialog open={!!detailMachine} onOpenChange={(o) => !o && setDetailMachine(null)}>
-        <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-lg max-h-[80vh] overflow-y-auto rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>{detailMachine?.name} — Maintenance Log</DialogTitle>
+            <DialogTitle className="font-display text-xl font-bold tracking-tight">{detailMachine?.name} — Maintenance Log</DialogTitle>
             <DialogDescription>View and add maintenance entries.</DialogDescription>
           </DialogHeader>
           <div className="space-y-4">
             <div className="grid gap-2">
               <Label>New Entry</Label>
-              <Textarea placeholder="Describe the maintenance..." value={maintForm.description} onChange={(e) => setMaintForm({ ...maintForm, description: e.target.value })} />
+              <Textarea placeholder="Describe the maintenance..." value={maintForm.description} onChange={(e) => setMaintForm({ ...maintForm, description: e.target.value })} className="rounded-xl" />
               <div className="flex gap-2">
-                <Input placeholder="Cost (optional)" type="number" value={maintForm.cost} onChange={(e) => setMaintForm({ ...maintForm, cost: e.target.value })} className="w-32" />
+                <Input placeholder="Cost (optional)" type="number" value={maintForm.cost} onChange={(e) => setMaintForm({ ...maintForm, cost: e.target.value })} className="w-32 rounded-xl" />
                 <Button onClick={addMaintenance} disabled={!maintForm.description}>Add Entry</Button>
               </div>
             </div>
@@ -264,7 +264,7 @@ export default function MachinesPage() {
               {machMaint.length === 0 ? (
                 <p className="text-sm text-muted-foreground text-center py-4">No maintenance history</p>
               ) : machMaint.map(m => (
-                <div key={m.id} className="border rounded-lg p-3">
+                <div key={m.id} className="rounded-xl bg-[var(--surface-container-low)] p-3 shadow-ambient">
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-sm">{m.description}</p>
@@ -274,7 +274,7 @@ export default function MachinesPage() {
                       </p>
                     </div>
                     {m.resolved ? (
-                      <Badge className="bg-green-100 text-green-800">Resolved</Badge>
+                      <Badge className="bg-emerald-500/10 text-emerald-700 rounded-lg">Resolved</Badge>
                     ) : (
                       <Button size="sm" variant="outline" onClick={() => resolveMaint(m.id)}>Resolve</Button>
                     )}

@@ -81,33 +81,33 @@ export default function EmployeesPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Employee Management</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Employee Management</h1>
         <p className="text-muted-foreground">Staff directory and role management</p>
       </div>
 
       <div className="grid gap-4 grid-cols-3">
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Owners</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-purple-600">{owners}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Managers</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-blue-600">{managers}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Employees</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-green-600">{employees}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Owners</CardTitle></CardHeader><CardContent><div className="font-display text-3xl font-bold text-primary">{owners}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Managers</CardTitle></CardHeader><CardContent><div className="font-display text-3xl font-bold text-info">{managers}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Employees</CardTitle></CardHeader><CardContent><div className="font-display text-3xl font-bold text-success">{employees}</div></CardContent></Card>
       </div>
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder="Search staff..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
+        <Input placeholder="Search staff..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 rounded-xl" />
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Phone</TableHead>
-                <TableHead>Role</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Joined</TableHead>
-                {isOwner() && <TableHead className="text-right">Actions</TableHead>}
+                <TableHead className="font-display tracking-tight">Name</TableHead>
+                <TableHead className="font-display tracking-tight">Email</TableHead>
+                <TableHead className="font-display tracking-tight">Phone</TableHead>
+                <TableHead className="font-display tracking-tight">Role</TableHead>
+                <TableHead className="font-display tracking-tight">Status</TableHead>
+                <TableHead className="font-display tracking-tight">Joined</TableHead>
+                {isOwner() && <TableHead className="text-right font-display tracking-tight">Actions</TableHead>}
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -127,7 +127,7 @@ export default function EmployeesPage() {
                   <TableCell className="text-sm">{s.phone || '—'}</TableCell>
                   <TableCell><Badge className={ROLE_COLORS[s.role]}>{ROLE_LABELS[s.role]}</Badge></TableCell>
                   <TableCell>
-                    {s.is_active ? <Badge className="bg-green-100 text-green-800">Active</Badge> : <Badge variant="secondary">Inactive</Badge>}
+                    {s.is_active ? <Badge className="bg-success text-success-foreground">Active</Badge> : <Badge variant="secondary">Inactive</Badge>}
                   </TableCell>
                   <TableCell className="text-sm text-muted-foreground">{safeFormatDate(s.created_at, 'MMM yyyy')}</TableCell>
                   {isOwner() && (
@@ -143,16 +143,16 @@ export default function EmployeesPage() {
       </Card>
 
       <Dialog open={editDialog} onOpenChange={setEditDialog}>
-        <DialogContent>
+        <DialogContent className="rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>Edit {editing?.first_name} {editing?.last_name}</DialogTitle>
+            <DialogTitle className="font-display tracking-tight">Edit {editing?.first_name} {editing?.last_name}</DialogTitle>
             <DialogDescription>Update role and status.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid gap-2">
+            <div className="space-y-2">
               <Label>Role</Label>
               <Select value={editRole} onValueChange={setEditRole}>
-                <SelectTrigger><SelectValue /></SelectTrigger>
+                <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                 <SelectContent>
                   <SelectItem value="owner">Owner</SelectItem>
                   <SelectItem value="manager">Manager</SelectItem>

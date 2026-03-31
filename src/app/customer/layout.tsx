@@ -33,13 +33,16 @@ function CustomerSidebar({ onNavigate }: { onNavigate?: () => void }) {
   const pathname = usePathname()
 
   return (
-    <div className="flex h-full flex-col">
-      <div className="flex h-14 items-center gap-2 border-b px-4">
-        <Smile className="size-6 text-primary" />
-        <span className="text-lg font-bold tracking-tight">Smile Factory</span>
+    <div className="flex h-full flex-col bg-card">
+      {/* Logo — Joy Assembler gradient icon */}
+      <div className="flex h-16 items-center gap-3 px-5">
+        <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
+          <Smile className="size-5" />
+        </div>
+        <span className="text-lg font-bold tracking-tight font-display">Smile Factory</span>
       </div>
-      <ScrollArea className="flex-1 py-2">
-        <nav className="flex flex-col gap-1 px-2">
+      <ScrollArea className="flex-1 py-3">
+        <nav className="flex flex-col gap-0.5 px-3">
           {navItems.map((item) => {
             const isActive =
               pathname === item.href || pathname.startsWith(item.href + '/')
@@ -50,10 +53,10 @@ function CustomerSidebar({ onNavigate }: { onNavigate?: () => void }) {
                 href={item.href}
                 onClick={onNavigate}
                 className={cn(
-                  'flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium transition-colors',
+                  'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200',
                   isActive
-                    ? 'bg-primary/10 text-primary'
-                    : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground'
+                    ? 'gradient-primary text-primary-foreground shadow-ambient'
+                    : 'text-muted-foreground hover:bg-[var(--surface-container-low)] hover:text-foreground'
                 )}
               >
                 <item.icon className="size-4 shrink-0" />
@@ -76,11 +79,13 @@ export default function CustomerLayout({
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-svh overflow-hidden">
-      <aside className="hidden w-64 shrink-0 border-r lg:block">
+    <div className="flex h-svh overflow-hidden bg-background">
+      {/* Desktop sidebar — no border, uses shadow */}
+      <aside className="hidden w-64 shrink-0 shadow-ambient lg:block">
         <CustomerSidebar />
       </aside>
 
+      {/* Mobile sidebar sheet */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="w-64 p-0" showCloseButton={false}>
           <SheetTitle className="sr-only">Navigation</SheetTitle>
@@ -99,7 +104,7 @@ export default function CustomerLayout({
           onMenuToggle={() => setSidebarOpen(true)}
         />
 
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8">{children}</main>
       </div>
     </div>
   )

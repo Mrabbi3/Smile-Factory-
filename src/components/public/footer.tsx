@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { Gamepad2, MapPin, Phone, Clock, Mail } from 'lucide-react'
-import { Separator } from '@/components/ui/separator'
 import { SITE_NAME, BUSINESS_INFO } from '@/lib/constants'
 
 const quickLinks = [
@@ -16,32 +15,34 @@ const quickLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t bg-muted/40">
-      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+    <footer className="bg-[var(--surface-container-low)] pattern-industrial">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
+          {/* Brand */}
           <div className="sm:col-span-2 lg:col-span-1">
             <Link href="/" className="mb-4 flex items-center gap-2.5">
-              <div className="flex size-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+              <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
                 <Gamepad2 className="size-5" />
               </div>
-              <span className="text-lg font-bold tracking-tight">{SITE_NAME}</span>
+              <span className="text-lg font-bold tracking-tight font-display">{SITE_NAME}</span>
             </Link>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               Brigantine&apos;s favorite family arcade since {BUSINESS_INFO.established}. Over{' '}
               {BUSINESS_INFO.machineCount} games, birthday parties, and fun for all ages!
             </p>
           </div>
 
+          {/* Quick Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider font-display text-foreground">
               Quick Links
             </h3>
-            <ul className="space-y-2.5">
+            <ul className="space-y-3">
               {quickLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-sm text-muted-foreground transition-colors hover:text-primary"
+                    className="text-sm text-muted-foreground transition-colors duration-200 hover:text-primary"
                   >
                     {link.label}
                   </Link>
@@ -50,51 +51,63 @@ export function Footer() {
             </ul>
           </div>
 
+          {/* Hours */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider font-display text-foreground">
               Hours
             </h3>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
+            <ul className="space-y-4 text-sm text-muted-foreground">
+              <li className="flex items-start gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Clock className="size-4" />
+                </div>
                 <div>
-                  <p className="font-medium text-foreground">Mon &ndash; Fri</p>
+                  <p className="font-semibold text-foreground">Mon &ndash; Fri</p>
                   <p>{BUSINESS_INFO.hours.weekday}</p>
                 </div>
               </li>
-              <li className="flex items-start gap-2">
-                <Clock className="mt-0.5 size-4 shrink-0 text-primary" />
+              <li className="flex items-start gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Clock className="size-4" />
+                </div>
                 <div>
-                  <p className="font-medium text-foreground">Sat &ndash; Sun</p>
+                  <p className="font-semibold text-foreground">Sat &ndash; Sun</p>
                   <p>{BUSINESS_INFO.hours.weekend}</p>
                 </div>
               </li>
             </ul>
           </div>
 
+          {/* Contact */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold uppercase tracking-wider text-foreground">
+            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider font-display text-foreground">
               Contact
             </h3>
-            <ul className="space-y-2.5 text-sm text-muted-foreground">
-              <li className="flex items-start gap-2">
-                <MapPin className="mt-0.5 size-4 shrink-0 text-primary" />
+            <ul className="space-y-4 text-sm text-muted-foreground">
+              <li className="flex items-start gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <MapPin className="size-4" />
+                </div>
                 <span>{BUSINESS_INFO.address}</span>
               </li>
-              <li className="flex items-center gap-2">
-                <Phone className="size-4 shrink-0 text-primary" />
+              <li className="flex items-center gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Phone className="size-4" />
+                </div>
                 <a
                   href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}
-                  className="transition-colors hover:text-primary"
+                  className="transition-colors duration-200 hover:text-primary"
                 >
                   {BUSINESS_INFO.phone}
                 </a>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="size-4 shrink-0 text-primary" />
+              <li className="flex items-center gap-3">
+                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                  <Mail className="size-4" />
+                </div>
                 <a
                   href="mailto:info@thesmilefactoryarcade.com"
-                  className="transition-colors hover:text-primary"
+                  className="transition-colors duration-200 hover:text-primary"
                 >
                   info@thesmilefactoryarcade.com
                 </a>
@@ -103,17 +116,16 @@ export function Footer() {
           </div>
         </div>
 
-        <Separator className="my-8" />
-
-        <div className="flex flex-col items-center justify-between gap-4 text-center sm:flex-row sm:text-left">
+        {/* Bottom bar — no border, just tonal shift */}
+        <div className="mt-12 rounded-2xl bg-card px-6 py-5 shadow-ambient flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-muted-foreground">
             &copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
           </p>
-          <div className="flex gap-4 text-sm text-muted-foreground">
-            <Link href="/contact" className="transition-colors hover:text-primary">
+          <div className="flex gap-6 text-sm text-muted-foreground">
+            <Link href="/contact" className="transition-colors duration-200 hover:text-primary">
               Privacy Policy
             </Link>
-            <Link href="/contact" className="transition-colors hover:text-primary">
+            <Link href="/contact" className="transition-colors duration-200 hover:text-primary">
               Terms
             </Link>
           </div>

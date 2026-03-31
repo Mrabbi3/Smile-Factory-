@@ -1,18 +1,22 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Epilogue, Work_Sans } from 'next/font/google'
 import { Toaster } from '@/components/ui/sonner'
 import { TooltipProvider } from '@/components/ui/tooltip'
 import { ServiceWorkerRegister } from '@/components/shared/sw-register'
 import './globals.css'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const epilogue = Epilogue({
+  variable: '--font-epilogue',
   subsets: ['latin'],
+  weight: ['400', '500', '600', '700', '800', '900'],
+  display: 'swap',
 })
 
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
+const workSans = Work_Sans({
+  variable: '--font-work-sans',
   subsets: ['latin'],
+  weight: ['300', '400', '500', '600', '700'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -42,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}
+        className={`${epilogue.variable} ${workSans.variable} font-sans antialiased`}
       >
         <TooltipProvider>
           {children}

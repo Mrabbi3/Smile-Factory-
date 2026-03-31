@@ -27,10 +27,10 @@ import {
 import type { WorkOrder } from '@/types/database'
 
 const STATUS_MAP: Record<string, { label: string; color: string }> = {
-  open: { label: 'Open', color: 'bg-blue-100 text-blue-800' },
-  in_progress: { label: 'In Progress', color: 'bg-yellow-100 text-yellow-800' },
-  completed: { label: 'Completed', color: 'bg-green-100 text-green-800' },
-  cancelled: { label: 'Cancelled', color: 'bg-gray-100 text-gray-800' },
+  open: { label: 'Open', color: 'bg-blue-500/10 text-blue-700' },
+  in_progress: { label: 'In Progress', color: 'bg-amber-500/10 text-amber-700' },
+  completed: { label: 'Completed', color: 'bg-emerald-500/10 text-emerald-700' },
+  cancelled: { label: 'Cancelled', color: 'bg-gray-500/10 text-gray-700' },
 }
 
 const emptyOrder = {
@@ -85,7 +85,7 @@ export default function WorkOrdersPage() {
 
   const getPriorityBadge = (priority: string) => {
     const p = WORK_ORDER_PRIORITIES.find(wp => wp.value === priority)
-    return <Badge className={p?.color || ''}>{p?.label || priority}</Badge>
+    return <Badge className={`${p?.color || ''} rounded-lg`}>{p?.label || priority}</Badge>
   }
 
   const openCreate = () => { setEditing(null); setForm(emptyOrder); setDialogOpen(true) }
@@ -156,7 +156,7 @@ export default function WorkOrdersPage() {
               <div className="text-xs text-muted-foreground line-clamp-1">{o.description}</div>
             </TableCell>
             <TableCell>{getPriorityBadge(o.priority)}</TableCell>
-            <TableCell><Badge className={STATUS_MAP[o.status]?.color}>{STATUS_MAP[o.status]?.label}</Badge></TableCell>
+            <TableCell><Badge className={`${STATUS_MAP[o.status]?.color} rounded-lg`}>{STATUS_MAP[o.status]?.label}</Badge></TableCell>
             <TableCell className="text-sm">{getEmployeeName(o.assigned_to)}</TableCell>
             <TableCell className="text-sm">{getMachineName(o.machine_id)}</TableCell>
             <TableCell className="text-sm">{safeFormatDate(o.due_date, 'MMM dd')}</TableCell>
@@ -177,38 +177,66 @@ export default function WorkOrdersPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Work Orders</h1>
-          <p className="text-muted-foreground">Track maintenance and tasks</p>
+          <h1 className="font-display text-3xl font-bold tracking-tight">Work Orders</h1>
+          <p className="text-sm text-muted-foreground">Track maintenance and tasks</p>
         </div>
         <Button onClick={openCreate}><Plus className="mr-2 h-4 w-4" />New Work Order</Button>
       </div>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Open</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{open.length}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Open</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div className="font-display text-3xl font-bold">{open.length}</div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600">
+                <ClipboardList className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">In Progress</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-yellow-600">{inProgress.length}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">In Progress</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div className="font-display text-3xl font-bold text-amber-600">{inProgress.length}</div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
+                <Clock className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Completed</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-green-600">{completed.length}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Completed</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div className="font-display text-3xl font-bold text-emerald-600">{completed.length}</div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600">
+                <CheckCircle className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><AlertTriangle className="h-4 w-4 text-red-500" />Urgent</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-red-600">{urgent.length}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Urgent</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div className="font-display text-3xl font-bold text-destructive">{urgent.length}</div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-destructive/10 text-destructive">
+                <AlertTriangle className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
         </Card>
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Tabs value={tab} onValueChange={setTab}>
-            <TabsList>
-              <TabsTrigger value="active">Active ({active.length})</TabsTrigger>
-              <TabsTrigger value="all">All ({orders.length})</TabsTrigger>
-              <TabsTrigger value="completed">Completed ({completed.length})</TabsTrigger>
+            <TabsList className="rounded-xl">
+              <TabsTrigger value="active" className="rounded-lg">Active ({active.length})</TabsTrigger>
+              <TabsTrigger value="all" className="rounded-lg">All ({orders.length})</TabsTrigger>
+              <TabsTrigger value="completed" className="rounded-lg">Completed ({completed.length})</TabsTrigger>
             </TabsList>
             <TabsContent value="active" className="mt-4">{renderTable(active)}</TabsContent>
             <TabsContent value="all" className="mt-4">{renderTable(orders)}</TabsContent>
@@ -218,25 +246,25 @@ export default function WorkOrdersPage() {
       </Card>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>{editing ? 'Edit Work Order' : 'New Work Order'}</DialogTitle>
+            <DialogTitle className="font-display text-xl font-bold tracking-tight">{editing ? 'Edit Work Order' : 'New Work Order'}</DialogTitle>
             <DialogDescription>Fill in the work order details.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
             <div className="grid gap-2">
               <Label>Title *</Label>
-              <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
+              <Input value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} className="rounded-xl" />
             </div>
             <div className="grid gap-2">
               <Label>Description</Label>
-              <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+              <Textarea value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="rounded-xl" />
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label>Priority</Label>
                 <Select value={form.priority} onValueChange={(v) => setForm({ ...form, priority: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     {WORK_ORDER_PRIORITIES.map(p => <SelectItem key={p.value} value={p.value}>{p.label}</SelectItem>)}
                   </SelectContent>
@@ -244,13 +272,13 @@ export default function WorkOrdersPage() {
               </div>
               <div className="grid gap-2">
                 <Label>Due Date</Label>
-                <Input type="date" value={form.due_date} onChange={(e) => setForm({ ...form, due_date: e.target.value })} />
+                <Input type="date" value={form.due_date} onChange={(e) => setForm({ ...form, due_date: e.target.value })} className="rounded-xl" />
               </div>
             </div>
             <div className="grid gap-2">
               <Label>Assign To</Label>
               <Select value={form.assigned_to} onValueChange={(v) => setForm({ ...form, assigned_to: v })}>
-                <SelectTrigger><SelectValue placeholder="Select employee" /></SelectTrigger>
+                <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select employee" /></SelectTrigger>
                 <SelectContent>
                   {employees.map(e => (
                     <SelectItem key={e.id} value={e.id}>{e.first_name} {e.last_name} ({e.role})</SelectItem>
@@ -261,7 +289,7 @@ export default function WorkOrdersPage() {
             <div className="grid gap-2">
               <Label>Link to Machine (optional)</Label>
               <Select value={form.machine_id} onValueChange={(v) => setForm({ ...form, machine_id: v })}>
-                <SelectTrigger><SelectValue placeholder="Select machine" /></SelectTrigger>
+                <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select machine" /></SelectTrigger>
                 <SelectContent>
                   {machines.map(m => <SelectItem key={m.id} value={m.id}>{m.name}</SelectItem>)}
                 </SelectContent>

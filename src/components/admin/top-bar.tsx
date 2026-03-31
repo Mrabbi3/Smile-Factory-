@@ -4,7 +4,6 @@ import { usePathname } from 'next/navigation'
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
-import { Separator } from '@/components/ui/separator'
 import { LogOut, Menu } from 'lucide-react'
 import { ROLE_LABELS } from '@/lib/constants'
 import type { Profile, UserRole } from '@/types/database'
@@ -60,7 +59,7 @@ export function TopBar({ profile, role, onSignOut, onMenuToggle }: TopBarProps) 
     : 'User'
 
   return (
-    <header className="flex h-14 items-center gap-4 border-b bg-background px-4">
+    <header className="flex h-16 items-center gap-4 glass px-5">
       <Button
         variant="ghost"
         size="icon"
@@ -71,15 +70,17 @@ export function TopBar({ profile, role, onSignOut, onMenuToggle }: TopBarProps) 
         <span className="sr-only">Toggle menu</span>
       </Button>
 
-      <h1 className="text-lg font-semibold">{title}</h1>
+      <h1 className="text-lg font-bold font-display tracking-tight">{title}</h1>
 
       <div className="ml-auto flex items-center gap-3">
-        <div className="hidden items-center gap-2 sm:flex">
-          <Avatar className="size-8">
-            <AvatarFallback className="text-xs">{initials}</AvatarFallback>
+        <div className="hidden items-center gap-3 sm:flex">
+          <Avatar className="size-9 shadow-ambient">
+            <AvatarFallback className="text-xs font-semibold bg-[var(--surface-container-high)]">
+              {initials}
+            </AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span className="text-sm font-medium leading-tight">
+            <span className="text-sm font-semibold leading-tight">
               {displayName}
             </span>
             {role && (
@@ -90,9 +91,7 @@ export function TopBar({ profile, role, onSignOut, onMenuToggle }: TopBarProps) 
           </div>
         </div>
 
-        <Separator orientation="vertical" className="hidden h-6 sm:block" />
-
-        <Button variant="ghost" size="icon" onClick={onSignOut}>
+        <Button variant="ghost" size="icon" onClick={onSignOut} className="rounded-xl">
           <LogOut className="size-4" />
           <span className="sr-only">Sign out</span>
         </Button>

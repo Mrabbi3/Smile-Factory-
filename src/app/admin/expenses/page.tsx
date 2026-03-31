@@ -89,11 +89,11 @@ export default function ExpensesPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Expense Tracking</h1>
+          <h1 className="font-display text-3xl font-bold tracking-tight">Expense Tracking</h1>
           <p className="text-muted-foreground">Log and monitor business expenses</p>
         </div>
         <div className="flex gap-2">
-          <Input type="month" value={monthFilter} onChange={(e) => setMonthFilter(e.target.value)} className="w-44" />
+          <Input type="month" value={monthFilter} onChange={(e) => setMonthFilter(e.target.value)} className="w-44 rounded-xl" />
           <Button onClick={() => { setForm(emptyExpense); setDialogOpen(true) }}>
             <Plus className="mr-2 h-4 w-4" />Add Expense
           </Button>
@@ -101,41 +101,41 @@ export default function ExpensesPage() {
       </div>
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
-        <Card>
+        <Card className="rounded-2xl shadow-ambient">
           <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Total Expenses</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold">{currency(totalExpenses)}</div></CardContent>
+          <CardContent><div className="font-display text-3xl font-bold">{currency(totalExpenses)}</div></CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><Banknote className="h-4 w-4" />Cash</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-green-600">{currency(cashExpenses)}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-2"><div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Banknote className="h-4 w-4" /></div>Cash</CardTitle></CardHeader>
+          <CardContent><div className="font-display text-3xl font-bold text-success">{currency(cashExpenses)}</div></CardContent>
         </Card>
-        <Card>
-          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><CreditCard className="h-4 w-4" />Card</CardTitle></CardHeader>
-          <CardContent><div className="text-2xl font-bold text-blue-600">{currency(cardExpenses)}</div></CardContent>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-2"><div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><CreditCard className="h-4 w-4" /></div>Card</CardTitle></CardHeader>
+          <CardContent><div className="font-display text-3xl font-bold text-info">{currency(cardExpenses)}</div></CardContent>
         </Card>
       </div>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-5">
         {byCategory.map(c => (
-          <Card key={c.value}>
+          <Card key={c.value} className="rounded-2xl shadow-ambient">
             <CardContent className="pt-4">
               <p className="text-xs text-muted-foreground">{c.label}</p>
-              <p className="text-lg font-bold">{currency(c.total)}</p>
+              <p className="font-display font-bold text-lg">{currency(c.total)}</p>
             </CardContent>
           </Card>
         ))}
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Date</TableHead>
-                <TableHead>Description</TableHead>
-                <TableHead>Category</TableHead>
-                <TableHead>Payment</TableHead>
-                <TableHead className="text-right">Amount</TableHead>
+                <TableHead className="font-display tracking-tight">Date</TableHead>
+                <TableHead className="font-display tracking-tight">Description</TableHead>
+                <TableHead className="font-display tracking-tight">Category</TableHead>
+                <TableHead className="font-display tracking-tight">Payment</TableHead>
+                <TableHead className="text-right font-display tracking-tight">Amount</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -156,35 +156,35 @@ export default function ExpensesPage() {
       </Card>
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-        <DialogContent>
+        <DialogContent className="rounded-2xl shadow-elevated">
           <DialogHeader>
-            <DialogTitle>Record Expense</DialogTitle>
+            <DialogTitle className="font-display tracking-tight">Record Expense</DialogTitle>
             <DialogDescription>Log a new business expense.</DialogDescription>
           </DialogHeader>
           <div className="grid gap-4 py-4">
-            <div className="grid gap-2"><Label>Description *</Label><Input value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} /></div>
+            <div className="space-y-2"><Label>Description *</Label><Input value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} className="rounded-xl" /></div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2"><Label>Amount *</Label><Input type="number" min={0} step="0.01" value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} /></div>
-              <div className="grid gap-2">
+              <div className="space-y-2"><Label>Amount *</Label><Input type="number" min={0} step="0.01" value={form.amount} onChange={(e) => setForm({ ...form, amount: e.target.value })} className="rounded-xl" /></div>
+              <div className="space-y-2">
                 <Label>Category</Label>
                 <Select value={form.category} onValueChange={(v) => setForm({ ...form, category: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>{EXPENSE_CATEGORIES.map(c => <SelectItem key={c.value} value={c.value}>{c.label}</SelectItem>)}</SelectContent>
                 </Select>
               </div>
             </div>
             <div className="grid grid-cols-2 gap-4">
-              <div className="grid gap-2">
+              <div className="space-y-2">
                 <Label>Payment Method</Label>
                 <Select value={form.payment_method} onValueChange={(v) => setForm({ ...form, payment_method: v })}>
-                  <SelectTrigger><SelectValue /></SelectTrigger>
+                  <SelectTrigger className="rounded-xl"><SelectValue /></SelectTrigger>
                   <SelectContent>
                     <SelectItem value="cash">Cash</SelectItem>
                     <SelectItem value="card">Card</SelectItem>
                   </SelectContent>
                 </Select>
               </div>
-              <div className="grid gap-2"><Label>Date</Label><Input type="date" value={form.expense_date} onChange={(e) => setForm({ ...form, expense_date: e.target.value })} /></div>
+              <div className="space-y-2"><Label>Date</Label><Input type="date" value={form.expense_date} onChange={(e) => setForm({ ...form, expense_date: e.target.value })} className="rounded-xl" /></div>
             </div>
           </div>
           <DialogFooter>

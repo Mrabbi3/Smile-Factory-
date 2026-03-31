@@ -160,9 +160,9 @@ export default function ReportsPage() {
           </div>
         </div>
         <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-          {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-32 rounded-xl" />)}
+          {[...Array(4)].map((_, i) => <Skeleton key={i} className="h-32 rounded-2xl" />)}
         </div>
-        <Skeleton className="h-80 rounded-xl" />
+        <Skeleton className="h-80 rounded-2xl" />
       </div>
     )
   }
@@ -171,34 +171,34 @@ export default function ReportsPage() {
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold">Reports & Analytics</h1>
-          <p className="text-muted-foreground">Comprehensive business reports with PDF and Excel export</p>
+          <h1 className="font-display text-3xl font-bold tracking-tight">Reports & Analytics</h1>
+          <p className="text-sm text-muted-foreground">Comprehensive business reports with PDF and Excel export</p>
         </div>
         <div className="flex gap-2 items-end">
           <div className="grid gap-1">
-            <Label className="text-xs">From</Label>
-            <Input type="date" value={dateRange.from} onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })} className="w-40" />
+            <Label className="text-xs font-medium">From</Label>
+            <Input type="date" value={dateRange.from} onChange={(e) => setDateRange({ ...dateRange, from: e.target.value })} className="w-40 rounded-xl" />
           </div>
           <div className="grid gap-1">
-            <Label className="text-xs">To</Label>
-            <Input type="date" value={dateRange.to} onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })} className="w-40" />
+            <Label className="text-xs font-medium">To</Label>
+            <Input type="date" value={dateRange.to} onChange={(e) => setDateRange({ ...dateRange, to: e.target.value })} className="w-40 rounded-xl" />
           </div>
         </div>
       </div>
 
       <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Revenue</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-green-600">{currency(revenueData.total)}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Expenses</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold text-red-600">{currency(totalExpenses)}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Net Profit</CardTitle></CardHeader><CardContent><div className={`text-2xl font-bold ${netProfit >= 0 ? 'text-green-600' : 'text-red-600'}`}>{currency(netProfit)}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground">Bookings</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{bookingData.length}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Revenue</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className="font-display text-3xl font-bold text-emerald-600">{currency(revenueData.total)}</div><div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600"><DollarSign className="h-5 w-5" /></div></div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Expenses</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className="font-display text-3xl font-bold text-destructive">{currency(totalExpenses)}</div><div className="flex size-10 items-center justify-center rounded-xl bg-destructive/10 text-destructive"><Receipt className="h-5 w-5" /></div></div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Net Profit</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className={`font-display text-3xl font-bold ${netProfit >= 0 ? 'text-emerald-600' : 'text-destructive'}`}>{currency(netProfit)}</div><div className={`flex size-10 items-center justify-center rounded-xl ${netProfit >= 0 ? 'bg-emerald-500/10 text-emerald-600' : 'bg-destructive/10 text-destructive'}`}><TrendingUp className="h-5 w-5" /></div></div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient"><CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Bookings</CardTitle></CardHeader><CardContent><div className="flex items-end justify-between"><div className="font-display text-3xl font-bold">{bookingData.length}</div><div className="flex size-10 items-center justify-center rounded-xl bg-blue-500/10 text-blue-600"><Calendar className="h-5 w-5" /></div></div></CardContent></Card>
       </div>
 
       <Tabs defaultValue="revenue">
-        <TabsList className="flex-wrap">
-          <TabsTrigger value="revenue"><DollarSign className="mr-1 h-4 w-4" />Revenue</TabsTrigger>
-          <TabsTrigger value="inventory"><Package className="mr-1 h-4 w-4" />Inventory</TabsTrigger>
-          <TabsTrigger value="bookings"><Calendar className="mr-1 h-4 w-4" />Bookings</TabsTrigger>
-          <TabsTrigger value="expenses"><Receipt className="mr-1 h-4 w-4" />Expenses</TabsTrigger>
+        <TabsList className="flex-wrap rounded-xl">
+          <TabsTrigger value="revenue" className="rounded-lg"><DollarSign className="mr-1 h-4 w-4" />Revenue</TabsTrigger>
+          <TabsTrigger value="inventory" className="rounded-lg"><Package className="mr-1 h-4 w-4" />Inventory</TabsTrigger>
+          <TabsTrigger value="bookings" className="rounded-lg"><Calendar className="mr-1 h-4 w-4" />Bookings</TabsTrigger>
+          <TabsTrigger value="expenses" className="rounded-lg"><Receipt className="mr-1 h-4 w-4" />Expenses</TabsTrigger>
         </TabsList>
 
         <TabsContent value="revenue" className="mt-4 space-y-4">
@@ -207,8 +207,8 @@ export default function ReportsPage() {
             <Button variant="outline" onClick={downloadRevenueExcel}><Download className="mr-2 h-4 w-4" />Download Excel</Button>
           </div>
           <div className="grid gap-4 lg:grid-cols-2">
-            <Card>
-              <CardHeader><CardTitle className="text-base">Daily Revenue</CardTitle></CardHeader>
+            <Card className="rounded-2xl shadow-ambient">
+              <CardHeader><CardTitle className="font-display font-bold tracking-tight">Daily Revenue</CardTitle></CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={300}>
                   <BarChart data={revenueData.daily}>
@@ -222,8 +222,8 @@ export default function ReportsPage() {
                 </ResponsiveContainer>
               </CardContent>
             </Card>
-            <Card>
-              <CardHeader><CardTitle className="text-base">Payment Breakdown</CardTitle></CardHeader>
+            <Card className="rounded-2xl shadow-ambient">
+              <CardHeader><CardTitle className="font-display font-bold tracking-tight">Payment Breakdown</CardTitle></CardHeader>
               <CardContent>
                 {paymentPieData.length > 0 ? (
                   <ResponsiveContainer width="100%" height={300}>
@@ -246,12 +246,12 @@ export default function ReportsPage() {
             <Button variant="outline" onClick={downloadInventoryPdf}><FileText className="mr-2 h-4 w-4" />Download PDF</Button>
             <Button variant="outline" onClick={downloadInventoryExcel}><Download className="mr-2 h-4 w-4" />Download Excel</Button>
           </div>
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardContent className="pt-6">
               <div className="grid grid-cols-3 gap-4 mb-4">
-                <div className="text-center p-4 bg-green-50 rounded-lg"><div className="text-2xl font-bold text-green-600">{prizeData.filter(p => p.stock_quantity > p.reorder_threshold).length}</div><p className="text-sm text-muted-foreground">In Stock</p></div>
-                <div className="text-center p-4 bg-yellow-50 rounded-lg"><div className="text-2xl font-bold text-yellow-600">{prizeData.filter(p => p.stock_quantity > 0 && p.stock_quantity <= p.reorder_threshold).length}</div><p className="text-sm text-muted-foreground">Low Stock</p></div>
-                <div className="text-center p-4 bg-red-50 rounded-lg"><div className="text-2xl font-bold text-red-600">{prizeData.filter(p => p.stock_quantity === 0).length}</div><p className="text-sm text-muted-foreground">Out of Stock</p></div>
+                <div className="text-center p-4 rounded-2xl bg-[var(--surface-container-low)]"><div className="font-display text-2xl font-bold text-emerald-600">{prizeData.filter(p => p.stock_quantity > p.reorder_threshold).length}</div><p className="text-sm text-muted-foreground">In Stock</p></div>
+                <div className="text-center p-4 rounded-2xl bg-[var(--surface-container-low)]"><div className="font-display text-2xl font-bold text-amber-600">{prizeData.filter(p => p.stock_quantity > 0 && p.stock_quantity <= p.reorder_threshold).length}</div><p className="text-sm text-muted-foreground">Low Stock</p></div>
+                <div className="text-center p-4 rounded-2xl bg-[var(--surface-container-low)]"><div className="font-display text-2xl font-bold text-destructive">{prizeData.filter(p => p.stock_quantity === 0).length}</div><p className="text-sm text-muted-foreground">Out of Stock</p></div>
               </div>
             </CardContent>
           </Card>
@@ -264,9 +264,9 @@ export default function ReportsPage() {
           </div>
           <div className="grid grid-cols-4 gap-4">
             {['pending', 'confirmed', 'completed', 'cancelled'].map(s => (
-              <Card key={s}>
+              <Card key={s} className="rounded-2xl shadow-ambient">
                 <CardContent className="pt-4 text-center">
-                  <div className="text-2xl font-bold">{bookingData.filter(b => b.status === s).length}</div>
+                  <div className="font-display text-2xl font-bold">{bookingData.filter(b => b.status === s).length}</div>
                   <p className="text-sm text-muted-foreground capitalize">{s}</p>
                 </CardContent>
               </Card>
@@ -279,8 +279,8 @@ export default function ReportsPage() {
             <Button variant="outline" onClick={downloadExpensePdf}><FileText className="mr-2 h-4 w-4" />Download PDF</Button>
             <Button variant="outline" onClick={downloadExpenseExcel}><Download className="mr-2 h-4 w-4" />Download Excel</Button>
           </div>
-          <Card>
-            <CardHeader><CardTitle className="text-base">Expenses by Category</CardTitle></CardHeader>
+          <Card className="rounded-2xl shadow-ambient">
+            <CardHeader><CardTitle className="font-display font-bold tracking-tight">Expenses by Category</CardTitle></CardHeader>
             <CardContent>
               {expensePieData.length > 0 ? (
                 <ResponsiveContainer width="100%" height={300}>

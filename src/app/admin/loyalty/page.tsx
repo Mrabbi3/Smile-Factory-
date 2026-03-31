@@ -65,22 +65,58 @@ export default function LoyaltyPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Loyalty Program</h1>
-        <p className="text-muted-foreground">Customer rewards and loyalty tracking</p>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Loyalty Program</h1>
+        <p className="text-sm text-muted-foreground">Customer rewards and loyalty tracking</p>
       </div>
 
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-3">
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><Users className="h-4 w-4" />Members</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{totalMembers}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><TrendingUp className="h-4 w-4" />Total Spent</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{currency(totalSpent)}</div></CardContent></Card>
-        <Card><CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><Gift className="h-4 w-4" />Outstanding Rewards</CardTitle></CardHeader><CardContent><div className="text-2xl font-bold">{currency(totalRewards)}</div></CardContent></Card>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Members</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="font-display text-3xl font-bold">{totalMembers}</div>
+              </div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                <Users className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Total Spent</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="font-display text-3xl font-bold">{currency(totalSpent)}</div>
+              </div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-emerald-500/10 text-emerald-600">
+                <TrendingUp className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+        <Card className="rounded-2xl shadow-ambient">
+          <CardHeader className="pb-2"><CardTitle className="text-xs font-medium text-muted-foreground">Outstanding Rewards</CardTitle></CardHeader>
+          <CardContent>
+            <div className="flex items-end justify-between">
+              <div>
+                <div className="font-display text-3xl font-bold">{currency(totalRewards)}</div>
+              </div>
+              <div className="flex size-10 items-center justify-center rounded-xl bg-amber-500/10 text-amber-600">
+                <Gift className="h-5 w-5" />
+              </div>
+            </div>
+          </CardContent>
+        </Card>
       </div>
 
       <div className="grid grid-cols-4 gap-3">
         {LOYALTY_TIERS.map(t => (
-          <Card key={t.tier}>
+          <Card key={t.tier} className="rounded-2xl shadow-ambient">
             <CardContent className="pt-4 text-center">
-              <div className="text-2xl font-bold" style={{ color: t.color }}>{accounts.filter(a => a.tier === t.tier).length}</div>
-              <p className="text-sm text-muted-foreground">{t.label}</p>
+              <div className="font-display text-2xl font-bold" style={{ color: t.color }}>{accounts.filter(a => a.tier === t.tier).length}</div>
+              <p className="text-sm font-medium text-foreground">{t.label}</p>
               <p className="text-xs text-muted-foreground">{currency(t.minSpend)}+ spent</p>
             </CardContent>
           </Card>
@@ -88,17 +124,17 @@ export default function LoyaltyPage() {
       </div>
 
       <Tabs defaultValue="accounts">
-        <TabsList>
-          <TabsTrigger value="accounts">Member Accounts</TabsTrigger>
-          <TabsTrigger value="transactions">Recent Activity</TabsTrigger>
+        <TabsList className="rounded-xl">
+          <TabsTrigger value="accounts" className="rounded-lg">Member Accounts</TabsTrigger>
+          <TabsTrigger value="transactions" className="rounded-lg">Recent Activity</TabsTrigger>
         </TabsList>
 
         <TabsContent value="accounts" className="mt-4 space-y-4">
           <div className="relative">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input placeholder="Search members..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
+            <Input placeholder="Search members..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 rounded-xl" />
           </div>
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardContent className="pt-6">
               <Table>
                 <TableHeader>
@@ -119,7 +155,7 @@ export default function LoyaltyPage() {
                         <div className="font-medium">{a.profiles?.first_name} {a.profiles?.last_name}</div>
                         <div className="text-xs text-muted-foreground">{a.profiles?.email}</div>
                       </TableCell>
-                      <TableCell><Badge className={tierColor(a.tier)}>{a.tier}</Badge></TableCell>
+                      <TableCell><Badge className={`${tierColor(a.tier)} rounded-lg`}>{a.tier}</Badge></TableCell>
                       <TableCell className="text-right font-medium">{currency(a.total_spent)}</TableCell>
                       <TableCell className="text-right">{currency(a.reward_balance)}</TableCell>
                       <TableCell className="text-sm text-muted-foreground">{safeFormatDate(a.created_at, 'MMM yyyy')}</TableCell>
@@ -132,7 +168,7 @@ export default function LoyaltyPage() {
         </TabsContent>
 
         <TabsContent value="transactions" className="mt-4">
-          <Card>
+          <Card className="rounded-2xl shadow-ambient">
             <CardContent className="pt-6">
               <Table>
                 <TableHeader>
@@ -149,7 +185,11 @@ export default function LoyaltyPage() {
                   ) : transactions.map(t => (
                     <TableRow key={t.id}>
                       <TableCell>{safeFormatDate(t.created_at, 'MMM dd, yyyy')}</TableCell>
-                      <TableCell><Badge variant={t.type === 'earn' ? 'secondary' : 'outline'}>{t.type}</Badge></TableCell>
+                      <TableCell>
+                        <Badge variant={t.type === 'earn' ? 'secondary' : 'outline'} className="rounded-lg">
+                          {t.type}
+                        </Badge>
+                      </TableCell>
                       <TableCell>{t.description}</TableCell>
                       <TableCell className="text-right font-medium">{t.type === 'earn' ? '+' : '-'}{currency(t.amount)}</TableCell>
                     </TableRow>

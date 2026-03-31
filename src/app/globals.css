@@ -4,11 +4,30 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* ═══════════════════════════════════════════════════
+   THE JOY ASSEMBLER — Design System Tokens
+   "Industrial celebration of play"
+   ═══════════════════════════════════════════════════ */
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-work-sans);
+  --font-display: var(--font-epilogue);
   --font-mono: var(--font-geist-mono);
+
+  /* Surface hierarchy tokens */
+  --color-surface: var(--surface);
+  --color-surface-low: var(--surface-container-low);
+  --color-surface-high: var(--surface-container-high);
+  --color-surface-highest: var(--surface-container-highest);
+
+  /* Brand gradient endpoints */
+  --color-primary-container: var(--primary-container);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+
+  /* shadcn mappings */
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,79 +67,216 @@
 }
 
 :root {
-  --radius: 0.625rem;
-  --background: oklch(0.985 0.002 0);
-  --foreground: oklch(0.145 0.005 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0.005 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0.005 0);
-  --primary: oklch(0.55 0.22 25);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.96 0.01 25);
-  --secondary-foreground: oklch(0.35 0.12 25);
-  --muted: oklch(0.96 0.005 0);
-  --muted-foreground: oklch(0.5 0.01 0);
-  --accent: oklch(0.96 0.015 25);
-  --accent-foreground: oklch(0.35 0.12 25);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.005 0);
-  --input: oklch(0.9 0.005 0);
-  --ring: oklch(0.55 0.22 25);
-  --chart-1: oklch(0.55 0.22 25);
-  --chart-2: oklch(0.65 0.15 160);
-  --chart-3: oklch(0.55 0.18 250);
-  --chart-4: oklch(0.7 0.15 80);
-  --chart-5: oklch(0.6 0.2 310);
-  --sidebar: oklch(0.985 0.002 0);
-  --sidebar-foreground: oklch(0.145 0.005 0);
-  --sidebar-primary: oklch(0.55 0.22 25);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.96 0.015 25);
-  --sidebar-accent-foreground: oklch(0.35 0.12 25);
-  --sidebar-border: oklch(0.9 0.005 0);
-  --sidebar-ring: oklch(0.55 0.22 25);
+  /* Joy Assembler radius — generous, rounded */
+  --radius: 1rem;
+
+  /* ── Surface Hierarchy (Tonal Layering) ── */
+  --surface: #f6f6f6;
+  --surface-container-low: #f0f1f1;
+  --surface-container-high: #e6e7e7;
+  --surface-container-highest: #dbdddd;
+
+  /* ── Core Palette ── */
+  --background: #f6f6f6;
+  --foreground: #2d2f2f;
+
+  --card: #ffffff;
+  --card-foreground: #2d2f2f;
+
+  --popover: #ffffff;
+  --popover-foreground: #2d2f2f;
+
+  /* Poppy Red — primary brand */
+  --primary: #bb0100;
+  --primary-foreground: #ffefed;
+  --primary-container: #ff7763;
+
+  /* Soft rose — secondary */
+  --secondary: #ffc2c6;
+  --secondary-foreground: #852233;
+
+  /* Neutral tones — muted & accent */
+  --muted: #f0f1f1;
+  --muted-foreground: #6b6e6e;
+
+  --accent: #f0f1f1;
+  --accent-foreground: #2d2f2f;
+
+  /* Tertiary — purple accent for chips/special elements */
+  --tertiary: #7b40a2;
+  --tertiary-foreground: #f3e8ff;
+
+  --destructive: #dc2626;
+
+  /* ── No-Line Rule: borders are near-invisible ── */
+  --border: #e6e7e700;
+  --input: #dbdddd;
+  --ring: #bb0100;
+
+  /* ── Chart palette ── */
+  --chart-1: #bb0100;
+  --chart-2: #ff7763;
+  --chart-3: #7b40a2;
+  --chart-4: #ffc2c6;
+  --chart-5: #2d2f2f;
+
+  /* ── Sidebar (admin) ── */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #2d2f2f;
+  --sidebar-primary: #bb0100;
+  --sidebar-primary-foreground: #ffefed;
+  --sidebar-accent: #f0f1f1;
+  --sidebar-accent-foreground: #2d2f2f;
+  --sidebar-border: #e6e7e700;
+  --sidebar-ring: #bb0100;
+
+  /* ── Ambient shadow (Joy Assembler style) ── */
+  --shadow-ambient: 0 4px 32px rgba(45, 47, 47, 0.04);
+  --shadow-elevated: 0 8px 40px rgba(45, 47, 47, 0.06);
 }
 
 .dark {
-  --background: oklch(0.13 0.005 0);
-  --foreground: oklch(0.985 0.002 0);
-  --card: oklch(0.17 0.005 0);
-  --card-foreground: oklch(0.985 0.002 0);
-  --popover: oklch(0.17 0.005 0);
-  --popover-foreground: oklch(0.985 0.002 0);
-  --primary: oklch(0.6 0.22 25);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.22 0.01 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.22 0.005 0);
-  --muted-foreground: oklch(0.65 0.01 0);
-  --accent: oklch(0.22 0.015 25);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.6 0.22 25);
-  --chart-1: oklch(0.6 0.22 25);
-  --chart-2: oklch(0.65 0.15 160);
-  --chart-3: oklch(0.55 0.18 250);
-  --chart-4: oklch(0.7 0.15 80);
-  --chart-5: oklch(0.6 0.2 310);
-  --sidebar: oklch(0.17 0.005 0);
-  --sidebar-foreground: oklch(0.985 0.002 0);
-  --sidebar-primary: oklch(0.6 0.22 25);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.22 0.015 25);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.6 0.22 25);
+  --surface: #1a1b1b;
+  --surface-container-low: #212222;
+  --surface-container-high: #2a2b2b;
+  --surface-container-highest: #333434;
+
+  --background: #1a1b1b;
+  --foreground: #e8e9e9;
+
+  --card: #212222;
+  --card-foreground: #e8e9e9;
+
+  --popover: #212222;
+  --popover-foreground: #e8e9e9;
+
+  --primary: #ff6b5e;
+  --primary-foreground: #1a1b1b;
+  --primary-container: #bb0100;
+
+  --secondary: #5c2233;
+  --secondary-foreground: #ffc2c6;
+
+  --muted: #2a2b2b;
+  --muted-foreground: #9a9c9c;
+
+  --accent: #2a2b2b;
+  --accent-foreground: #e8e9e9;
+
+  --tertiary: #b47fe0;
+  --tertiary-foreground: #2a1540;
+
+  --destructive: #ef4444;
+
+  --border: rgba(255, 255, 255, 0.06);
+  --input: #333434;
+  --ring: #ff6b5e;
+
+  --chart-1: #ff6b5e;
+  --chart-2: #ff9e90;
+  --chart-3: #b47fe0;
+  --chart-4: #5c2233;
+  --chart-5: #e8e9e9;
+
+  --sidebar: #212222;
+  --sidebar-foreground: #e8e9e9;
+  --sidebar-primary: #ff6b5e;
+  --sidebar-primary-foreground: #1a1b1b;
+  --sidebar-accent: #2a2b2b;
+  --sidebar-accent-foreground: #e8e9e9;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: #ff6b5e;
+
+  --shadow-ambient: 0 4px 32px rgba(0, 0, 0, 0.2);
+  --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.3);
 }
+
+/* ═══════════════════════════════════════════════════
+   BASE LAYER — Joy Assembler Foundation
+   ═══════════════════════════════════════════════════ */
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
+    border-color: transparent;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-work-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography — Epilogue for headings, Work Sans for body */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-epilogue), system-ui, sans-serif;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+  }
+
+  /* No black text — always use on-surface */
+  p, span, li, td, th, label, a {
+    color: var(--foreground);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   UTILITY CLASSES — Joy Assembler Specials
+   ═══════════════════════════════════════════════════ */
+
+@layer utilities {
+  /* Signature gradient for CTAs */
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  }
+
+  .gradient-primary-hover {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 90%, black) 0%, color-mix(in srgb, var(--primary-container) 90%, black) 100%);
+  }
+
+  /* Glassmorphism for floating elements */
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .dark .glass {
+    background: rgba(33, 34, 34, 0.72);
+  }
+
+  /* Ambient shadow (factory-style soft lift) */
+  .shadow-ambient {
+    box-shadow: var(--shadow-ambient);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Ghost border (15% opacity, felt not seen) */
+  .ghost-border {
+    box-shadow: inset 0 0 0 1px rgba(172, 173, 173, 0.15);
+  }
+
+  /* Surface hierarchy helpers */
+  .surface-base { background-color: var(--surface); }
+  .surface-low { background-color: var(--surface-container-low); }
+  .surface-high { background-color: var(--surface-container-high); }
+  .surface-highest { background-color: var(--surface-container-highest); }
+
+  /* Font family helpers */
+  .font-display {
+    font-family: var(--font-epilogue), system-ui, sans-serif;
+  }
+
+  .font-body {
+    font-family: var(--font-work-sans), system-ui, sans-serif;
+  }
+
+  /* Industrial pattern overlay (subtle 2% opacity gear pattern) */
+  .pattern-industrial {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232d2f2f' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   }
 }

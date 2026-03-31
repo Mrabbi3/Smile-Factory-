@@ -17,11 +17,13 @@ function AdminShell({ children }: { children: React.ReactNode }) {
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
-    <div className="flex h-svh overflow-hidden">
-      <aside className="hidden w-64 shrink-0 border-r lg:block">
+    <div className="flex h-svh overflow-hidden bg-background">
+      {/* Desktop sidebar — no border, uses shadow */}
+      <aside className="hidden w-64 shrink-0 shadow-ambient lg:block">
         <AdminSidebar isOwner={isOwner()} isManager={isManager()} />
       </aside>
 
+      {/* Mobile sidebar sheet */}
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
         <SheetContent side="left" className="w-64 p-0" showCloseButton={false}>
           <SheetTitle className="sr-only">Navigation</SheetTitle>
@@ -45,7 +47,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
           onMenuToggle={() => setSidebarOpen(true)}
         />
 
-        <main className="flex-1 overflow-y-auto p-6">{children}</main>
+        <main className="flex-1 overflow-y-auto p-6 lg:p-8">{children}</main>
       </div>
     </div>
   )

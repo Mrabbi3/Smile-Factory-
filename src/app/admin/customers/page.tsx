@@ -42,30 +42,30 @@ export default function CustomersPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-bold">Customers</h1>
+        <h1 className="font-display text-3xl font-bold tracking-tight">Customers</h1>
         <p className="text-muted-foreground">Customer directory and accounts</p>
       </div>
 
-      <Card>
-        <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-1"><Users className="h-4 w-4" />Total Customers</CardTitle></CardHeader>
-        <CardContent><div className="text-2xl font-bold">{customers.length}</div></CardContent>
+      <Card className="rounded-2xl shadow-ambient">
+        <CardHeader className="pb-2"><CardTitle className="text-sm text-muted-foreground flex items-center gap-2"><div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary"><Users className="h-4 w-4" /></div>Total Customers</CardTitle></CardHeader>
+        <CardContent><div className="font-display text-3xl font-bold">{customers.length}</div></CardContent>
       </Card>
 
       <div className="relative">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-        <Input placeholder="Search customers..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10" />
+        <Input placeholder="Search customers..." value={search} onChange={(e) => setSearch(e.target.value)} className="pl-10 rounded-xl" />
       </div>
 
-      <Card>
+      <Card className="rounded-2xl shadow-ambient">
         <CardContent className="pt-6">
           <Table>
             <TableHeader>
               <TableRow>
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead>Phone</TableHead>
-                <TableHead>Status</TableHead>
-                <TableHead>Joined</TableHead>
+                <TableHead className="font-display tracking-tight">Name</TableHead>
+                <TableHead className="font-display tracking-tight">Email</TableHead>
+                <TableHead className="font-display tracking-tight">Phone</TableHead>
+                <TableHead className="font-display tracking-tight">Status</TableHead>
+                <TableHead className="font-display tracking-tight">Joined</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -81,7 +81,7 @@ export default function CustomersPage() {
                   </TableCell>
                   <TableCell>{c.email}</TableCell>
                   <TableCell>{c.phone || '—'}</TableCell>
-                  <TableCell>{c.is_active ? <Badge className="bg-green-100 text-green-800">Active</Badge> : <Badge variant="secondary">Inactive</Badge>}</TableCell>
+                  <TableCell>{c.is_active ? <Badge className="bg-success text-success-foreground">Active</Badge> : <Badge variant="secondary">Inactive</Badge>}</TableCell>
                   <TableCell className="text-sm text-muted-foreground">{safeFormatDate(c.created_at, 'MMM dd, yyyy')}</TableCell>
                 </TableRow>
               ))}
