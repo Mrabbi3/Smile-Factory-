@@ -1,5 +1,9 @@
 # Architecture Documentation
 
+## Related Docs
+
+- `docs/PUBLIC_SITE_IMPLEMENTATION.md` contains the detailed implementation record for the public-facing website redesign, interaction updates, image placeholder strategy, and route transitions.
+
 ## System Architecture
 
 The Smile Factory Management System (SFMS) follows a modern full-stack web architecture using Next.js App Router with Supabase as the backend.

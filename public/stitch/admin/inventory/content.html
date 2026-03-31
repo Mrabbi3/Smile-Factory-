@@ -1,0 +1,330 @@
+﻿<main class="ml-64 flex flex-col min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md flex justify-between items-center h-16 px-8 border-b border-slate-100">
+<h2 class="text-primary font-headline font-bold text-xl">Operations Dashboard</h2>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="absolute left-3 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-400 text-sm">search</span>
+<input class="bg-surface-container-highest border-none rounded-full pl-10 pr-4 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary focus:bg-surface-container-lowest transition-all" placeholder="Search inventory..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary" data-icon="notifications">notifications</span>
+<span class="material-symbols-outlined text-slate-500 cursor-pointer hover:text-primary" data-icon="account_circle">account_circle</span>
+</div>
+</div>
+</header>
+<!-- Dashboard Body -->
+<div class="p-8 space-y-8">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="font-headline text-4xl font-extrabold text-on-surface tracking-tight">Prize Inventory</h1>
+<p class="text-on-surface-variant mt-2 max-w-xl">Monitor your prize floor assembly. Manage ticket costs, stock levels, and supply chain logistics for the Joy Assembler factory floor.</p>
+</div>
+<button class="bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full px-6 py-3 font-headline font-bold flex items-center gap-2 shadow-lg shadow-primary/20 transform hover:scale-[1.02] active:scale-95 transition-all">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+                    Register New Prize
+                </button>
+</div>
+<!-- KPI Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col justify-between h-32 border-l-4 border-primary shadow-sm">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Total Prize Value</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline font-black text-on-surface">428,500</span>
+<span class="text-xs font-bold text-primary flex items-center">
+<span class="material-symbols-outlined text-xs">confirmation_number</span>
+</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col justify-between h-32 border-l-4 border-error shadow-sm">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest font-body">Low Stock Alerts</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline font-black text-error">12</span>
+<span class="text-xs font-semibold text-error-dim">Items below threshold</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col justify-between h-32 border-l-4 border-tertiary shadow-sm">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Prize Categories</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline font-black text-tertiary">18</span>
+<span class="text-xs font-semibold text-tertiary-dim">Active collections</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg flex flex-col justify-between h-32 border-l-4 border-secondary shadow-sm">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Total Units</span>
+<div class="flex items-baseline gap-2">
+<span class="text-3xl font-headline font-black text-on-surface">4,291</span>
+<span class="text-xs font-semibold text-secondary-dim">Ready for redemption</span>
+</div>
+</div>
+</div>
+<!-- Inventory Section -->
+<section class="bg-surface-container-low rounded-lg p-8">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-headline text-xl font-bold flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="analytics">analytics</span>
+                        Inventory Manifest
+                    </h3>
+<div class="flex gap-2">
+<button class="bg-surface-container-highest px-4 py-2 rounded-full text-xs font-bold hover:bg-surface-container-high transition-colors">Filters</button>
+<button class="bg-surface-container-highest px-4 py-2 rounded-full text-xs font-bold hover:bg-surface-container-high transition-colors">Export CSV</button>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden shadow-sm">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-slate-50 border-b border-slate-100">
+<th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Prize Details</th>
+<th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Category</th>
+<th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Ticket Cost</th>
+<th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Stock Level</th>
+<th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Status</th>
+<th class="px-6 py-4 text-[10px] font-black uppercase tracking-widest text-slate-400 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-slate-50">
+<!-- Row 1 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0">
+<img alt="Neon plush dinosaur toy" class="w-full h-full object-cover" data-alt="close-up of a high-quality neon blue plush dinosaur toy with colorful scales on a clean white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC5i0mPh5MEkmOVouFJOZ9r_nP9pU4xTYySkxwopRR8GvP1GSFAJMtq-a06wF0tTQSeXqTkX3tHbUnOgZVZBWOzStFvdxstZzesuBHcykPWjXMoFyzyoFAPn_XZ5-_psbn5OxWIfEDR3q2M11Kj01ogBP-8XZPHMnNchwN9rAwmyUFeMbyFXbDmaIG_iJPc8IGmrVe6Gy9Wc4Tj-crH4pFNcjXz-t8zC7drADYfloNcFtLIYD-JATPoRYqaSc2HWjW5ugqPpYDcZuE8"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Neon Dino-Buddy</p>
+<p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">SKU: SF-4091-BL</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs bg-tertiary/10 text-tertiary-dim px-2 py-1 rounded-md font-bold">Plushies</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1">
+<span class="text-sm font-black text-on-surface">1,250</span>
+<span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="w-24">
+<div class="flex justify-between text-[10px] font-bold mb-1">
+<span>42 units</span>
+<span class="text-slate-400">/ 100</span>
+</div>
+<div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 42%;"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+<div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                                        In Stock
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0">
+<img alt="Sleek red toy sports car" class="w-full h-full object-cover" data-alt="vibrant red miniature toy sports car with realistic details and chrome accents captured in studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBJZM4Sv_9LNsl2yHq8LUiEOrl-ui36c4soazaIF3KW1At2retYOIn0y29gUJ0GS9s6dmnnwB-Cl-OPwssy848F-7GE74XRYjvKOtzTsyVF3OUx6Gc6faxSOgykIAxp4i63QG2ijDeESh8HVNEw2hO6STLbrXZ1EYxGjdL9H3EX5vwHGvAuAIkV60PfuBtDAlHfQqK32tQs3n1rgzr39LzkT_gBy_w2jGjIKf_18ldet_4Fa_yZnXRbuIDc9WmXDPtQHwlzfmnp5PO1"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Turbo-X Racer</p>
+<p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">SKU: SF-1102-RD</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs bg-secondary-container text-on-secondary-container px-2 py-1 rounded-md font-bold">Vehicles</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1">
+<span class="text-sm font-black text-on-surface">3,500</span>
+<span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="w-24">
+<div class="flex justify-between text-[10px] font-bold mb-1">
+<span class="text-error">8 units</span>
+<span class="text-slate-400">/ 50</span>
+</div>
+<div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-error" style="width: 16%;"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="inline-flex items-center gap-2 bg-error-container/10 text-error-dim px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+<div class="w-1.5 h-1.5 bg-error rounded-full"></div>
+                                        Low Stock
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="px-6 py-4">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0">
+<img alt="Retro arcade handheld console" class="w-full h-full object-cover" data-alt="tiny handheld gaming console with a vintage aesthetic and colorful buttons resting on a wooden surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX8ME4RRa8JiJVUZSobmL5TXhzajdLkLj_qc9OzJc6erQ5oZUCAGdJrlfyTngIiQZvKiuImCBcONhtPzMTobjSnrXXly_8oeccoFYH8ATkRW80GkTfrzADrJ3NHoE6hw22YTiuoiA500wKnuEBVbRJl_LsvRfldDFt9Q2njkhHHHQ1Kt0mc8pQ86_S3Qn7x36kO0xFstxKMItANN3VrRYGQ6yPC9c7fhTVSOPsDiExNqdwONoJ5tjaxN--vTEo1T8EipVWPv-77lPY"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Mini-Retro Console</p>
+<p class="text-[10px] font-medium text-slate-400 uppercase tracking-tighter">SKU: SF-9921-GO</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<span class="text-xs bg-tertiary/10 text-tertiary-dim px-2 py-1 rounded-md font-bold">Electronics</span>
+</td>
+<td class="px-6 py-4">
+<div class="flex items-center gap-1">
+<span class="text-sm font-black text-on-surface">15,000</span>
+<span class="material-symbols-outlined text-xs text-primary" style="font-variation-settings: 'FILL' 1;">confirmation_number</span>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="w-24">
+<div class="flex justify-between text-[10px] font-bold mb-1">
+<span>21 units</span>
+<span class="text-slate-400">/ 25</span>
+</div>
+<div class="h-1.5 bg-slate-100 rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 84%;"></div>
+</div>
+</div>
+</td>
+<td class="px-6 py-4">
+<div class="inline-flex items-center gap-2 bg-emerald-50 text-emerald-700 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">
+<div class="w-1.5 h-1.5 bg-emerald-500 rounded-full"></div>
+                                        In Stock
+                                    </div>
+</td>
+<td class="px-6 py-4 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-lg">edit</span>
+</button>
+<button class="p-2 text-slate-400 hover:text-error transition-colors">
+<span class="material-symbols-outlined text-lg">delete</span>
+</button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<!-- Pagination Footer -->
+<div class="px-6 py-4 flex items-center justify-between border-t border-slate-50">
+<span class="text-xs font-medium text-slate-500">Showing 1 to 3 of 124 results</span>
+<div class="flex gap-1">
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-100 text-slate-400 hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-sm">chevron_left</span>
+</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold text-xs">1</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-100 text-slate-600 font-bold text-xs hover:border-primary hover:text-primary transition-all">2</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-100 text-slate-600 font-bold text-xs hover:border-primary hover:text-primary transition-all">3</button>
+<button class="w-8 h-8 flex items-center justify-center rounded-lg border border-slate-100 text-slate-400 hover:border-primary hover:text-primary transition-all">
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Secondary Bento Items -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Stock Reorder Suggestions -->
+<div class="md:col-span-2 bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<div class="flex justify-between items-center mb-6">
+<h4 class="font-headline font-bold text-lg">Predictive Restock manifest</h4>
+<span class="text-[10px] font-black uppercase text-slate-400 tracking-widest">AI Optimized</span>
+</div>
+<div class="space-y-4">
+<div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div>
+<p class="font-bold text-sm">Glow-in-the-dark Slime</p>
+<p class="text-[10px] text-slate-500">Stock depletion expected in 4 days</p>
+</div>
+</div>
+<button class="text-primary font-bold text-xs underline underline-offset-4 decoration-primary/30">Order Now</button>
+</div>
+<div class="flex items-center justify-between p-4 bg-surface rounded-lg">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<div>
+<p class="font-bold text-sm">Super Bouncy Ball (XL)</p>
+<p class="text-[10px] text-slate-500">Popularity spike: +240% this week</p>
+</div>
+</div>
+<button class="text-primary font-bold text-xs underline underline-offset-4 decoration-primary/30">Order Now</button>
+</div>
+</div>
+</div>
+<!-- Prize Category Distribution -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm">
+<h4 class="font-headline font-bold text-lg mb-6">Inventory Value</h4>
+<div class="relative h-48 w-full flex items-center justify-center">
+<div class="relative w-32 h-32 rounded-full border-[12px] border-slate-100">
+<div class="absolute inset-0 rounded-full border-[12px] border-primary border-t-transparent border-l-transparent transform -rotate-45"></div>
+<div class="absolute inset-0 rounded-full border-[12px] border-tertiary border-b-transparent border-r-transparent transform rotate-12"></div>
+<div class="absolute inset-0 flex items-center justify-center flex-col">
+<span class="text-xs font-black text-slate-400 uppercase">Total</span>
+<span class="text-lg font-headline font-bold">$12.4K</span>
+</div>
+</div>
+</div>
+<div class="mt-4 space-y-2">
+<div class="flex justify-between items-center text-[10px] font-bold">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-primary"></div>
+<span class="text-slate-500 uppercase">Premium</span>
+</div>
+<span>64%</span>
+</div>
+<div class="flex justify-between items-center text-[10px] font-bold">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-tertiary"></div>
+<span class="text-slate-500 uppercase">Standard</span>
+</div>
+<span>28%</span>
+</div>
+<div class="flex justify-between items-center text-[10px] font-bold">
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+<span class="text-slate-500 uppercase">Budget</span>
+</div>
+<span>8%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>

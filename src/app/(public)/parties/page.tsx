@@ -1,5 +1,7 @@
-import type { Metadata } from 'next'
 import Link from 'next/link'
+import type { Metadata } from 'next'
+import { ArrowDown, Check, Eye } from 'lucide-react'
+import PhotoFramePlaceholder from '../../../components/public/photo-frame-placeholder'
 import {
   PartyPopper,
   Users,
@@ -18,225 +20,130 @@ import { Badge } from '@/components/ui/badge'
 import { BUSINESS_INFO, PARTY_CONFIG } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Birthday Parties',
+  title: 'Birthday Parties | The Smile Factory',
   description:
-    'Celebrate your child\'s birthday at The Smile Factory! Our all-inclusive party packages include a private room, pizza, drinks, tokens, and 2 hours of arcade fun.',
+    'Engineer the ultimate birthday party at The Smile Factory. Classic package, add-ons, and custom options.',
 }
 
-const included = [
-  { icon: Clock, label: '2 Hours in Private Party Room' },
-  { icon: Pizza, label: 'Pizza for All Kids' },
-  { icon: Users, label: 'Drinks for All Kids' },
-  { icon: Coins, label: 'Tokens for Every Child' },
-  { icon: Gift, label: 'Special Gift for Birthday Child' },
-  { icon: PartyPopper, label: 'Party Setup & Cleanup' },
+const blueprintPattern =
+  "url(\"data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20z' fill='%23e5e7eb' fill-opacity='0.35'/%3E%3C/svg%3E\")"
+
+const factoryPattern =
+  "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E\")"
+
+const features = [
+  '2 Hour Party in Private Decorated Party Room',
+  'Private Party Hosts',
+  '2 slices of Pizza per child',
+  'Soda, Juice, & Chips',
+  'All Paper Products',
+  '$7 per Child Worth of Tokens (21 Tokens)',
+  '$60 worth of tokens for parent to distribute',
+  'Extra tickets for the Birthday Child',
+]
+
+const addOns = [
+  { title: 'Additional Child', price: '+$14.95/child' },
+  { title: 'Extra Pizza', price: '+$12.00 each' },
+  { title: 'Custom Gear Cake', price: '+$45.00' },
+  { title: 'Factory Swag Bags', price: '+$8.00/child' },
 ]
 
 export default function PartiesPage() {
   return (
-    <>
-      {/* Hero */}
-      <section className="py-24 sm:py-28 pattern-industrial">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="mx-auto max-w-3xl text-center">
-            <Badge variant="secondary" className="mb-8 gap-2 px-4 py-1.5 text-sm">
-              <PartyPopper className="size-3.5 text-primary" />
-              Unforgettable Celebrations
-            </Badge>
-            <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-              <span className="bg-gradient-to-r from-primary to-[var(--primary-container)] bg-clip-text text-transparent">
-                Birthday Parties
-              </span>
+    <main className="bg-surface text-on-surface">
+      <header className="relative overflow-hidden bg-surface-container-lowest px-8 pb-24 pt-48" style={{ backgroundImage: blueprintPattern }}>
+        <div className="mx-auto grid max-w-7xl grid-cols-1 items-center gap-16 lg:grid-cols-2">
+          <div className="space-y-8">
+            <span className="inline-block rounded-full border border-primary/20 bg-primary/10 px-4 py-1.5 font-work-sans text-label-sm uppercase tracking-widest text-primary">
+              The Joy Assembly Line
+            </span>
+            <h1 className="font-epilogue text-display-lg font-black uppercase italic leading-[0.9] tracking-tight">
+              Engineer
+              <br />
+              The <span className="text-primary">Ultimate</span> Birthday
             </h1>
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground max-w-2xl mx-auto">
-              Give your child a birthday they&apos;ll never forget! Our all-inclusive party
-              packages make planning easy and celebration even easier.
+            <p className="max-w-lg font-work-sans text-body-lg leading-relaxed text-on-surface/70">
+              High-octane fun, precision-planned celebrations. We handle logistics so you focus on high scores.
             </p>
+            <div className="flex flex-wrap gap-6 pt-2">
+              <Link href="#party-blueprints" className="inline-flex items-center gap-3 rounded-full bg-gradient-primary px-10 py-5 font-work-sans text-label-lg uppercase text-on-primary shadow-ambient ring-4 ring-primary/20">
+                View Packages <ArrowDown className="h-4 w-4" />
+              </Link>
+              <Link href="/gallery" className="inline-flex items-center gap-3 rounded-full bg-red-600 px-10 py-5 font-work-sans text-label-lg uppercase text-white shadow-ambient ring-4 ring-primary/20 transition hover:bg-red-700">
+                Take a Tour <Eye className="h-4 w-4" />
+              </Link>
+            </div>
+          </div>
+          <div className="relative">
+            <div className="aspect-square rotate-3 scale-105 rounded-lg bg-surface-container-high p-4 shadow-ambient">
+              <PhotoFramePlaceholder title="Party Hero Photo" note="Replace with real birthday party photo" className="rounded" />
+            </div>
+            <div className="absolute -bottom-8 -left-8 max-w-xs rounded-lg bg-tertiary px-8 py-6 text-on-primary shadow-ambient">
+              <h3 className="font-epilogue text-title-md font-bold uppercase italic">Factory Special</h3>
+              <p className="mt-2 font-work-sans text-body-sm opacity-90">Book weekday parties and receive bonus tickets for the birthday engineer.</p>
+            </div>
           </div>
         </div>
-      </section>
+      </header>
 
-      {/* Classic Package */}
-      <section className="bg-[var(--surface-container-low)] py-24 sm:py-28">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 lg:grid-cols-5">
-            <Card className="overflow-hidden shadow-elevated lg:col-span-3">
-              <div className="gradient-primary px-6 py-5">
-                <div className="flex items-center justify-between">
-                  <h2 className="font-display text-xl font-bold text-primary-foreground">Classic Package</h2>
-                  <Badge className="bg-white/20 text-primary-foreground border-0 text-sm font-bold">
-                    Most Popular
-                  </Badge>
+      <section id="party-blueprints" className="relative bg-surface-container-low px-8 py-24" style={{ backgroundImage: factoryPattern }}>
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-20 text-center">
+            <h2 className="font-epilogue text-headline-lg font-black uppercase italic">Party Blueprints</h2>
+            <div className="mx-auto mt-4 h-2 w-24 rounded-full bg-primary" />
+          </div>
+          <div className="mx-auto max-w-5xl rounded-lg bg-surface-container-lowest p-10 shadow-ambient">
+            <div className="grid gap-10 md:grid-cols-2">
+              <div>
+                <div className="mb-6 flex items-start justify-between border-b border-outline-variant/40 pb-6">
+                  <div>
+                    <h3 className="font-epilogue text-headline-md font-black uppercase italic text-primary">Classic Package</h3>
+                    <p className="mt-1 font-work-sans text-body-sm text-on-surface/60">The essential factory experience.</p>
+                  </div>
+                  <div className="text-right">
+                    <span className="block font-epilogue text-4xl font-black">$400</span>
+                    <span className="font-work-sans text-label-sm uppercase tracking-widest text-on-surface/50">For 12 Children</span>
+                  </div>
                 </div>
-              </div>
-              <CardContent className="pt-8">
-                <div className="mb-6 flex items-baseline gap-2">
-                  <span className="font-display text-5xl font-extrabold text-primary">$400</span>
-                  <span className="text-muted-foreground">for up to 12 children</span>
-                </div>
-
-                <h3 className="mb-4 font-display font-bold">What&apos;s Included:</h3>
-                <ul className="grid gap-3 sm:grid-cols-2">
-                  {included.map((item) => (
-                    <li key={item.label} className="flex items-center gap-3 text-sm">
-                      <div className="flex size-9 shrink-0 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                        <item.icon className="size-4" />
-                      </div>
-                      {item.label}
+                <ul className="space-y-3">
+                  {features.map((feature) => (
+                    <li key={feature} className="flex items-start gap-3 font-work-sans text-body-sm text-on-surface/80">
+                      <Check className="mt-0.5 h-4 w-4 text-primary" />
+                      <span>{feature}</span>
                     </li>
                   ))}
                 </ul>
-
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                  <Button asChild size="lg" className="flex-1">
-                    <Link href="/customer/bookings">
-                      <PartyPopper className="size-5" />
-                      Book Now
-                      <ArrowRight className="size-4" />
-                    </Link>
-                  </Button>
-                  <Button asChild variant="outline" size="lg">
-                    <Link href="/contact">
-                      <Phone className="size-4" />
-                      Contact Us
-                    </Link>
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-
-            <div className="space-y-6 lg:col-span-2">
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Add-Ons</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div className="flex items-center justify-between rounded-xl bg-[var(--surface-container-low)] px-4 py-3">
-                    <div>
-                      <p className="font-medium">Additional Child</p>
-                      <p className="text-sm text-muted-foreground">
-                        Includes food, drink &amp; tokens
-                      </p>
-                    </div>
-                    <Badge variant="secondary" className="text-base font-bold">
-                      $14.95
-                    </Badge>
-                  </div>
-                  <div className="flex items-center justify-between rounded-xl bg-[var(--surface-container-low)] px-4 py-3">
-                    <div>
-                      <p className="font-medium">Additional Pizza</p>
-                      <p className="text-sm text-muted-foreground">Large cheese or pepperoni</p>
-                    </div>
-                    <Badge variant="secondary" className="text-base font-bold">
-                      $12.00
-                    </Badge>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card>
-                <CardHeader>
-                  <CardTitle className="text-base">Party Details</CardTitle>
-                </CardHeader>
-                <CardContent className="space-y-3 text-sm">
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Clock className="size-4" />
-                    </div>
-                    <span>
-                      {PARTY_CONFIG.durationMinutes / 60} hours in private party room
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Users className="size-4" />
-                    </div>
-                    <span>Up to 12 children included</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Coins className="size-4" />
-                    </div>
-                    <span>${PARTY_CONFIG.depositAmount} deposit required to book</span>
-                  </div>
-                  <div className="flex items-center gap-3">
-                    <div className="flex size-8 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <Star className="size-4" />
-                    </div>
-                    <span>
-                      Available {BUSINESS_INFO.hours.weekend.split(' - ')[0]} &ndash;{' '}
-                      {BUSINESS_INFO.hours.weekend.split(' - ')[1]}
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
+                <Link href="/contact" className="mt-8 inline-flex w-full items-center justify-center rounded-full bg-gradient-primary py-4 font-work-sans text-label-lg uppercase text-on-primary shadow-ambient ring-4 ring-primary/20 transition hover:opacity-90">
+                  Select Blueprint
+                </Link>
+              </div>
+              <div className="min-h-[400px] overflow-hidden rounded-lg bg-surface-container-high">
+                <PhotoFramePlaceholder title="Package Setup Photo" note="Replace with real party room photo" />
+              </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Large Party Notice */}
-      <section className="py-12">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <Card className="bg-amber-50/80 dark:bg-amber-900/20">
-            <CardContent className="flex items-start gap-4 pt-6">
-              <div className="flex size-12 shrink-0 items-center justify-center rounded-2xl bg-amber-100 text-amber-700 dark:bg-amber-900/40">
-                <Info className="size-6" />
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-amber-900 dark:text-amber-400">
-                  Parties Over {PARTY_CONFIG.maxKidsBeforeCall} Children
-                </h3>
-                <p className="mt-1 text-sm text-amber-800 dark:text-amber-300/80">
-                  For parties with more than {PARTY_CONFIG.maxKidsBeforeCall} children, please
-                  call us directly at{' '}
-                  <a
-                    href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}
-                    className="font-semibold underline"
-                  >
-                    {BUSINESS_INFO.phone}
-                  </a>{' '}
-                  to arrange your event. We&apos;re happy to accommodate larger groups with
-                  custom arrangements!
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="gradient-primary py-20 sm:py-24">
-        <div className="mx-auto max-w-3xl px-4 text-center sm:px-6 lg:px-8">
-          <h2 className="font-display text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl lg:text-5xl">
-            Ready to Party?
-          </h2>
-          <p className="mt-5 text-lg text-primary-foreground/85">
-            Reserve your date today and let us handle the rest. Your child deserves an amazing
-            celebration!
-          </p>
-          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button asChild size="lg" className="w-full sm:w-auto bg-white text-primary hover:bg-white/90 rounded-full shadow-elevated">
-              <Link href="/customer/bookings">
-                <PartyPopper className="size-5" />
-                Book Online
-                <ArrowRight className="size-4" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              size="lg"
-              variant="ghost"
-              className="w-full text-primary-foreground hover:bg-white/15 hover:text-primary-foreground sm:w-auto rounded-full"
-            >
-              <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}>
-                <Phone className="size-4" />
-                Call {BUSINESS_INFO.phone}
-              </a>
-            </Button>
+      <section className="bg-surface-container-lowest px-8 py-24">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16 flex flex-col items-end justify-between gap-6 md:flex-row">
+            <div className="max-w-xl">
+              <h2 className="font-epilogue text-headline-md font-black uppercase italic">Part Upgrades</h2>
+              <p className="mt-3 font-work-sans text-body-md text-on-surface/65">Fine-tune your celebration with precision components.</p>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-6 md:grid-cols-4">
+            {addOns.map((item) => (
+              <article key={item.title} className="rounded-lg bg-gradient-primary p-8 text-on-primary shadow-ambient ring-2 ring-primary/15 transition-all hover:scale-[1.02]">
+                <h4 className="font-epilogue text-title-sm font-bold uppercase text-on-primary">{item.title}</h4>
+                <p className="mt-2 font-work-sans text-body-sm text-on-primary/80">{item.price}</p>
+              </article>
+            ))}
           </div>
         </div>
       </section>
-    </>
+    </main>
   )
 }

@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#FF0000",
+              "surface": "#fcfcfc",
+              "on-surface": "#2d2f2f",
+              "on-primary": "#ffffff",
+              "secondary": "#a03646",
+              "tertiary": "#7b40a2",
+              "surface-container-highest": "#dbdddd",
+              "surface-container-low": "#f0f1f1",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#5a5c5c",
+              "primary-container": "#FF0000"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .diamond-plate {
+            background-color: #fcfcfc;
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l2 13 13 2-13 2-2 13-2-13-13-2 13-2z' fill='%23f1f1f1' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+        .blueprint-gears {
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20zm0-25c2.2 0 4-1.8 4-4V45c0-2.2-1.8-4-4-4s-4 1.8-4 4v6c0 2.2 1.8 4 4 4zm43.3 18c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zm11.7 43.3c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4s-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4zm-18 43.3c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zM100 155c-2.2 0-4 1.8-4 4v6c0 2.2 1.8 4 4 4s4-1.8 4-4v-6c0-2.2-1.8-4-4-4zm-43.3-18c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7zM45 100c0-2.2-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4s1.8 4 4 4h6c2.2 0 4-1.8 4-4zm11.7-43.3c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7z' fill='%23e5e7eb' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+        .glass-nav {
+            backdrop-filter: blur(16px);
+            background: rgba(255, 255, 255, 0.85);
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface diamond-plate selection:bg-primary/20 selection:text-primary">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav border-b border-gray-100">
+<div class="flex justify-between items-center px-8 py-4 max-w-full mx-auto relative">
+<div class="shrink-0 flex-1">
+<img alt="The Smile Factory Logo" class="h-12 md:h-16 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<!-- Centered Navigation Links -->
+<div class="hidden lg:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Home</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">About</a>
+<a class="text-primary border-b-2 border-primary pb-0.5 font-headline font-bold text-sm uppercase tracking-tight" href="#">Pricing</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Parties</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Gallery</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4 shrink-0 flex-1 justify-end">
+<div class="hidden md:flex items-center gap-4 mr-2">
+<a class="text-zinc-600 font-headline font-bold hover:text-primary transition-colors text-sm" href="#">Sign In</a>
+</div>
+<button class="bg-primary text-on-primary px-6 py-2 rounded-full font-headline font-bold hover:opacity-90 transition-all scale-95 active:scale-90 shadow-md">
+                Book a Party
+            </button>
+</div>
+</div>
+</nav>
+<main class="pt-24">
+<!-- Hero Section -->
+<header class="relative overflow-hidden py-24 px-8 blueprint-gears">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row items-center gap-12">
+<div class="flex-1 space-y-6">
+<span class="inline-block px-4 py-1.5 rounded-full bg-red-100/80 text-red-700 text-sm font-black tracking-widest uppercase mb-2 border border-red-200">
+                INDUSTRIAL JOY
+            </span>
+<h1 class="font-headline font-black text-6xl md:text-8xl text-primary leading-none tracking-tighter uppercase italic">
+                Smile<br/>Factory
+            </h1>
+<p class="text-xl md:text-2xl font-body max-w-xl text-on-surface-variant leading-relaxed">
+                Fuel your fun with our premium token bundles. No hidden fees, just pure mechanical joy manufactured daily.
+            </p>
+</div>
+<div class="flex-1 w-full aspect-video rounded-xl bg-surface-container-high relative overflow-hidden group shadow-2xl">
+<img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" data-alt="Close up of vintage red arcade machine buttons and joystick" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAhUuruM_I1zLvev0v0QJpOeHseYoMH0UsN8orlv9_xTYjNDGvuIVsvwkV56_8-FDcQ9Lfxm62kkoiNmoreZCW8viwz_V06PBlDRGO_2P2nXF-YJusKiF7B716HIa3o6XlLtB8zBP9yG_RQPPlDvxz9qi9ZFbJejrDL_w-0JoPn9-CZMhx15e_kuZiTFG7xQhSusblPaSQqzzTmy6jP_jTpxWY3ONdpHxI8k6XsgsglWWyW-4QOtFCxI1_HA_15GXlXNPtmQPkdYmB9"/>
+<div class="absolute inset-0 bg-gradient-to-t from-primary/10 to-transparent"></div>
+</div>
+</div>
+</header>
+<!-- Pricing Grid -->
+<section class="py-24 px-8 bg-zinc-50/50 relative">
+<div class="max-w-screen-2xl mx-auto">
+<div class="mb-16 flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<span class="text-primary font-headline font-bold uppercase tracking-widest text-sm">Industrial Pricing</span>
+<h2 class="font-headline font-black text-5xl md:text-6xl text-on-surface mt-2 tracking-tighter">TOKENS</h2>
+</div>
+<div class="bg-surface-container-highest/50 px-6 py-3 rounded-full flex items-center gap-3 border border-zinc-200">
+<span class="material-symbols-outlined text-primary">settings_suggest</span>
+<span class="text-on-surface font-semibold text-sm">Bulk discount applied automatically</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<!-- Tier 1 -->
+<div class="bg-white rounded-lg p-10 flex flex-col items-center text-center transition-all hover:-translate-y-2 border border-zinc-100 shadow-sm">
+<span class="text-on-surface-variant font-headline font-bold text-xs tracking-widest mb-4">SINGLE SHOT</span>
+<div class="text-6xl font-headline font-black text-on-surface mb-2">$1</div>
+<div class="text-2xl font-headline font-bold text-primary mb-8 italic">3 TOKENS</div>
+<button class="w-full py-4 rounded-xl bg-surface-container-low font-headline font-bold hover:bg-primary hover:text-on-primary transition-all uppercase tracking-widest text-xs">Select</button>
+</div>
+<!-- Tier 2 -->
+<div class="bg-white rounded-lg p-10 flex flex-col items-center text-center transition-all hover:-translate-y-2 border border-zinc-100 shadow-sm">
+<span class="text-on-surface-variant font-headline font-bold text-xs tracking-widest mb-4">STARTER PACK</span>
+<div class="text-6xl font-headline font-black text-on-surface mb-2">$5</div>
+<div class="text-2xl font-headline font-bold text-primary mb-8 italic">15 TOKENS</div>
+<button class="w-full py-4 rounded-xl bg-surface-container-low font-headline font-bold hover:bg-primary hover:text-on-primary transition-all uppercase tracking-widest text-xs">Select</button>
+</div>
+<!-- Tier 3: Most Popular -->
+<div class="bg-white rounded-lg p-10 flex flex-col items-center text-center ring-4 ring-primary shadow-2xl relative scale-105 z-10">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-primary text-on-primary px-4 py-1.5 rounded-full text-[10px] font-headline font-black tracking-widest shadow-lg">MOST POPULAR</div>
+<span class="text-on-surface-variant font-headline font-bold text-xs tracking-widest mb-4">HEAVY DUTY</span>
+<div class="text-6xl font-headline font-black text-on-surface mb-2">$10</div>
+<div class="text-2xl font-headline font-bold text-primary mb-8 italic">30 TOKENS</div>
+<button class="w-full py-4 rounded-xl bg-primary text-on-primary font-headline font-bold shadow-lg hover:opacity-90 transition-all uppercase tracking-widest text-xs">Select</button>
+</div>
+<!-- Tier 4 -->
+<div class="bg-white rounded-lg p-10 flex flex-col items-center text-center transition-all hover:-translate-y-2 border border-zinc-100 shadow-sm">
+<span class="text-on-surface-variant font-headline font-bold text-xs tracking-widest mb-4">FACTORY OVERLOAD</span>
+<div class="text-6xl font-headline font-black text-on-surface mb-2">$20</div>
+<div class="text-2xl font-headline font-bold text-primary mb-2 italic">66 TOKENS</div>
+<div class="text-primary font-bold text-[10px] mb-6 uppercase tracking-wider italic">+6 Bonus Tokens Included</div>
+<button class="w-full py-4 rounded-xl bg-surface-container-low font-headline font-bold hover:bg-primary hover:text-on-primary transition-all uppercase tracking-widest text-xs">Select</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Mechanical Workflow -->
+<section class="py-32 px-8 overflow-hidden bg-white">
+<div class="max-w-screen-2xl mx-auto">
+<div class="text-center mb-20">
+<h2 class="font-headline font-black text-5xl text-on-surface tracking-tighter italic uppercase">Mechanical Workflow</h2>
+<p class="text-on-surface-variant mt-4 text-lg">Your three-step guide to manufacturing fun</p>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-16 relative">
+<div class="hidden lg:block absolute top-12 left-0 w-full h-1 bg-zinc-100 -z-10"></div>
+<div class="flex flex-col items-center text-center group">
+<div class="w-24 h-24 rounded-full bg-white border-4 border-primary flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary">payments</span>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4 tracking-tight uppercase">Buy Tokens</h3>
+<p class="text-on-surface-variant max-w-xs">Select your tariff at any kiosk or purchase online to skip the line.</p>
+</div>
+<div class="flex flex-col items-center text-center group">
+<div class="w-24 h-24 rounded-full bg-white border-4 border-primary flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4 tracking-tight uppercase">Play Games</h3>
+<p class="text-on-surface-variant max-w-xs">Access over 41+ premium arcade machines, simulators, and pinball tables.</p>
+</div>
+<div class="flex flex-col items-center text-center group">
+<div class="w-24 h-24 rounded-full bg-white border-4 border-primary flex items-center justify-center mb-8 shadow-xl group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-4xl text-primary" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h3 class="font-headline font-bold text-2xl mb-4 tracking-tight uppercase">Win Prizes</h3>
+<p class="text-on-surface-variant max-w-xs">Redeem your hard-earned tickets at the prize vault for high-end gear.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Detail Section -->
+<section class="pb-32 px-8">
+<div class="max-w-screen-2xl mx-auto flex flex-col md:flex-row gap-0 bg-white rounded-3xl overflow-hidden shadow-2xl border border-zinc-100">
+<div class="md:w-2/5 h-80 md:h-auto overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="Interior of a modern high-tech arcade" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCNpwOspsSTh3rJAUcxas-MGSuSDEBNzXqz6sqYc-sXuy2M35mEFL3BpVaxf9mKfE8UMz-X6nQ9pNxvkY93ubphbVjlpPmShTvwunKD155T4IrR98h9I7nUBxU981XhrO05334kRM3PSuyEeRqv6j9US23ssVU8VxAsqXMSc7Dj98QGOnd08PV8xccAYugSboeB8YDO9QydP9Ym-rHXD7KzFNC-xPX0C_KjUZYjTBlueW0d0VLyvXoEEEGM4Ei4217xcVRgccsi6xne"/>
+</div>
+<div class="flex-1 p-16 flex flex-col justify-center">
+<div class="bg-red-50 text-primary px-4 py-1.5 rounded-full text-[10px] font-black w-fit mb-6 tracking-widest uppercase border border-red-100">MEMBER BENEFIT</div>
+<h3 class="font-headline font-black text-4xl mb-6 tracking-tighter uppercase italic">The Prize Gear Protocol</h3>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8">
+                Join our loyalty program to earn 5% bonus tokens on every purchase. Members get exclusive access to the 'Overdrive' lounge and priority entry on tournament nights.
+            </p>
+<div class="flex flex-wrap gap-4">
+<div class="flex items-center gap-3 px-6 py-3 bg-zinc-50 border border-zinc-100 rounded-xl">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">settings</span>
+<span class="text-sm font-black uppercase tracking-tight">Priority Tech Support</span>
+</div>
+<div class="flex items-center gap-3 px-6 py-3 bg-zinc-50 border border-zinc-100 rounded-xl">
+<span class="material-symbols-outlined text-primary text-xl" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-sm font-black uppercase tracking-tight">Exclusive Machines</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full bg-white text-on-surface border-t border-zinc-200">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-screen-2xl mx-auto">
+<div class="space-y-6">
+<img alt="The Smile Factory Logo" class="h-20 w-auto" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+<p class="text-zinc-500 text-sm leading-relaxed max-w-xs">Making families smile in Brigantine since 2006. Quality games, great prizes, and unforgettable memories.</p>
+</div>
+<div class="flex flex-col gap-6">
+<h4 class="font-headline font-black text-on-surface uppercase tracking-widest text-xs">Location</h4>
+<div class="space-y-4 text-zinc-500 text-sm">
+<p class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">location_on</span>
+                    1307 W Brigantine Ave # B,<br/>Brigantine, NJ 08203
+                </p>
+<p class="flex items-center gap-3">
+<span class="material-symbols-outlined text-primary text-lg">call</span>
+                    (609) 266-3866
+                </p>
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-lg">schedule</span>
+<div>
+<p>Sat-Sun: 10am - 10pm</p>
+<p>Mon-Fri: 12pm - 10pm</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-6">
+<h4 class="font-headline font-black text-on-surface uppercase tracking-widest text-xs">Quick Links</h4>
+<ul class="space-y-3 text-zinc-500 text-sm font-medium">
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Home</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> About</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Pricing</a></li>
+<li><a class="hover:text-primary transition-colors flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Parties</a></li>
+</ul>
+</div>
+<div class="flex flex-col gap-6">
+<h4 class="font-headline font-black text-on-surface uppercase tracking-widest text-xs">Stay Tuned</h4>
+<div class="flex flex-col gap-3">
+<input class="rounded-xl bg-zinc-50 border-zinc-200 text-sm focus:ring-primary focus:border-primary px-4 py-3" placeholder="Factory Email" type="email"/>
+<button class="bg-primary text-white px-4 py-3 rounded-xl font-headline font-black uppercase text-xs tracking-widest hover:opacity-90 transition-all shadow-md">Join Ranks</button>
+</div>
+<div class="flex gap-4 mt-2">
+<a class="text-zinc-400 hover:text-primary transition-colors" href="#">Instagram</a>
+<a class="text-zinc-400 hover:text-primary transition-colors" href="#">Facebook</a>
+</div>
+</div>
+</div>
+<div class="max-w-screen-2xl mx-auto px-12 py-8 border-t border-zinc-100 flex flex-col md:flex-row justify-between items-center gap-4 text-zinc-400 text-[10px] font-bold uppercase tracking-[0.2em]">
+<div>© 2024 THE SMILE FACTORY ARCADE. BUILT FOR JOY.</div>
+<div class="flex gap-6 opacity-50">
+<span class="material-symbols-outlined">payments</span>
+<span class="material-symbols-outlined">credit_card</span>
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+</div>
+</footer>
+</body></html>

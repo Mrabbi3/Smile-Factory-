@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import { Gamepad2, MapPin, Phone, Clock, Mail } from 'lucide-react'
-import { SITE_NAME, BUSINESS_INFO } from '@/lib/constants'
+import { MapPin, Phone, Clock, Ticket, Coins } from 'lucide-react'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -14,121 +14,87 @@ const quickLinks = [
 ]
 
 export function Footer() {
+  const factoryPattern =
+    "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E\")"
+
   return (
-    <footer className="bg-[var(--surface-container-low)] pattern-industrial">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-12 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Brand */}
-          <div className="sm:col-span-2 lg:col-span-1">
-            <Link href="/" className="mb-4 flex items-center gap-2.5">
-              <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
-                <Gamepad2 className="size-5" />
-              </div>
-              <span className="text-lg font-bold tracking-tight font-display">{SITE_NAME}</span>
-            </Link>
-            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
-              Brigantine&apos;s favorite family arcade since {BUSINESS_INFO.established}. Over{' '}
-              {BUSINESS_INFO.machineCount} games, birthday parties, and fun for all ages!
-            </p>
+    <footer className="relative border-t border-zinc-200 bg-zinc-50 text-zinc-800">
+      <div className="pointer-events-none absolute inset-0 opacity-10" style={{ backgroundImage: factoryPattern }} />
+      <div className="relative mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-4">
+        <div>
+          <div className="mb-8">
+            <img src="/branding/smile-factory-logo.png" alt="The Smile Factory Logo" className="h-24 w-auto" />
           </div>
-
-          {/* Quick Links */}
-          <div>
-            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider font-display text-foreground">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {quickLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-sm text-muted-foreground transition-colors duration-200 hover:text-primary"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Hours */}
-          <div>
-            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider font-display text-foreground">
-              Hours
-            </h3>
-            <ul className="space-y-4 text-sm text-muted-foreground">
-              <li className="flex items-start gap-3">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <Clock className="size-4" />
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Mon &ndash; Fri</p>
-                  <p>{BUSINESS_INFO.hours.weekday}</p>
-                </div>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <Clock className="size-4" />
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Sat &ndash; Sun</p>
-                  <p>{BUSINESS_INFO.hours.weekend}</p>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Contact */}
-          <div>
-            <h3 className="mb-5 text-sm font-bold uppercase tracking-wider font-display text-foreground">
-              Contact
-            </h3>
-            <ul className="space-y-4 text-sm text-muted-foreground">
-              <li className="flex items-start gap-3">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <MapPin className="size-4" />
-                </div>
-                <span>{BUSINESS_INFO.address}</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <Phone className="size-4" />
-                </div>
-                <a
-                  href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`}
-                  className="transition-colors duration-200 hover:text-primary"
-                >
-                  {BUSINESS_INFO.phone}
-                </a>
-              </li>
-              <li className="flex items-center gap-3">
-                <div className="flex size-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                  <Mail className="size-4" />
-                </div>
-                <a
-                  href="mailto:info@thesmilefactoryarcade.com"
-                  className="transition-colors duration-200 hover:text-primary"
-                >
-                  info@thesmilefactoryarcade.com
-                </a>
-              </li>
-            </ul>
-          </div>
+          <p className="text-md leading-relaxed text-zinc-500">
+            Making families smile in Brigantine since {BUSINESS_INFO.established}. Quality games, great prizes, and unforgettable memories.
+          </p>
         </div>
 
-        {/* Bottom bar — no border, just tonal shift */}
-        <div className="mt-12 rounded-2xl bg-card px-6 py-5 shadow-ambient flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-muted-foreground">
-            &copy; {new Date().getFullYear()} {BUSINESS_INFO.name}. All rights reserved.
-          </p>
-          <div className="flex gap-6 text-sm text-muted-foreground">
-            <Link href="/contact" className="transition-colors duration-200 hover:text-primary">
-              Privacy Policy
-            </Link>
-            <Link href="/contact" className="transition-colors duration-200 hover:text-primary">
-              Terms
-            </Link>
-          </div>
+        <div>
+          <h4 className="mb-8 text-lg font-black uppercase tracking-[0.2em] text-zinc-900">Quick Links</h4>
+          <ul className="space-y-4 text-zinc-500">
+            {quickLinks.slice(0, 6).map((link) => (
+              <li key={link.href}>
+                <Link href={link.href} className="inline-flex items-center gap-2 transition hover:text-red-600">
+                  <span className="size-1.5 rounded-full bg-red-600" />
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-8 text-lg font-black uppercase tracking-[0.2em] text-zinc-900">Legal &amp; Info</h4>
+          <ul className="space-y-4 text-zinc-500">
+            {[{ label: 'Privacy Policy', href: '/contact' }, { label: 'Terms of Service', href: '/contact' }, { label: 'Safety Rules', href: '/contact' }, { label: 'Feedback', href: '/contact' }].map((link) => (
+              <li key={link.label}>
+                <Link href={link.href} className="inline-flex items-center gap-2 transition hover:text-red-600">
+                  <span className="size-1.5 rounded-full bg-red-600" />
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="mb-8 text-lg font-black uppercase tracking-[0.2em] text-zinc-900">Connect</h4>
+          <ul className="space-y-6 text-zinc-500">
+            <li className="flex items-start gap-3">
+              <MapPin className="mt-0.5 size-5 text-red-600" />
+              <span>{BUSINESS_INFO.address}</span>
+            </li>
+            <li className="flex items-start gap-3">
+              <Phone className="mt-0.5 size-5 text-red-600" />
+              <a href={`tel:${BUSINESS_INFO.phone.replace(/\D/g, '')}`} className="transition hover:text-red-600">
+                {BUSINESS_INFO.phone}
+              </a>
+            </li>
+            <li className="flex items-start gap-3">
+              <Clock className="mt-0.5 size-5 text-red-600" />
+              <div className="flex flex-col">
+                <span>Sat-Sun: {BUSINESS_INFO.hours.weekend}</span>
+                <span>Mon-Fri: {BUSINESS_INFO.hours.weekday}</span>
+              </div>
+            </li>
+            <li>
+              <Link href="/admin/login" className="inline-block rounded-lg bg-red-600 px-6 py-2 text-xs font-black uppercase tracking-[0.2em] text-white shadow-md transition hover:opacity-90">
+                Staff Login
+              </Link>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="relative flex flex-col items-center justify-between gap-4 border-t border-zinc-200 bg-zinc-100/50 px-8 py-8 text-center md:flex-row">
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-zinc-400">
+          &copy; {new Date().getFullYear()} The Smile Factory Arcade. Built for Joy.
+        </p>
+        <div className="flex gap-6 text-zinc-400">
+          <Ticket className="size-4" />
+          <Coins className="size-4" />
+          <Phone className="size-4" />
         </div>
       </div>
     </footer>

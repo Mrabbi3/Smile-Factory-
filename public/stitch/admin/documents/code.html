@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Smile Factory - Documents</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Work+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#e7e8e8",
+              "surface-tint": "#bb0100",
+              "on-secondary-fixed": "#6a0c22",
+              "outline": "#767777",
+              "on-error": "#ffefef",
+              "secondary-fixed": "#ffc2c6",
+              "tertiary-fixed-dim": "#c889f1",
+              "on-secondary-fixed-variant": "#912b3c",
+              "error-dim": "#a70138",
+              "on-primary-fixed-variant": "#600000",
+              "on-primary": "#ffefed",
+              "surface-container-highest": "#dbdddd",
+              "primary-fixed": "#ff7763",
+              "on-primary-container": "#4f0000",
+              "secondary": "#a03646",
+              "surface-variant": "#dbdddd",
+              "tertiary-container": "#d697ff",
+              "error-container": "#f74b6d",
+              "on-tertiary": "#fdeeff",
+              "on-background": "#2d2f2f",
+              "on-error-container": "#510017",
+              "inverse-surface": "#0c0f0f",
+              "on-tertiary-fixed-variant": "#56197d",
+              "surface-container-low": "#f0f1f1",
+              "secondary-container": "#ffc2c6",
+              "background": "#f6f6f6",
+              "on-surface": "#2d2f2f",
+              "tertiary-dim": "#6e3395",
+              "surface-dim": "#d3d5d5",
+              "secondary-dim": "#902a3b",
+              "primary-container": "#ff7763",
+              "outline-variant": "#acadad",
+              "tertiary": "#7b40a2",
+              "surface-bright": "#f6f6f6",
+              "secondary-fixed-dim": "#ffaeb4",
+              "on-primary-fixed": "#000000",
+              "on-tertiary-container": "#4c0a73",
+              "primary-dim": "#a40100",
+              "tertiary-fixed": "#d697ff",
+              "primary": "#bb0100",
+              "on-surface-variant": "#5a5c5c",
+              "inverse-primary": "#ff5540",
+              "error": "#b41340",
+              "surface-container-high": "#e1e3e3",
+              "on-secondary-container": "#852233",
+              "surface": "#f6f6f6",
+              "on-secondary": "#ffefef",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#2a0044",
+              "primary-fixed-dim": "#ff5b47",
+              "inverse-on-surface": "#9c9d9d"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .industrial-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20h20v20H20V20zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 37a7 7 0 1 0 0-14 7 7 0 0 0 0 14z' fill='%23bb0100' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container">
+<!-- SideNavBar Shell -->
+<aside class="fixed left-0 top-0 h-screen w-64 z-50 bg-zinc-50 dark:bg-zinc-950 flex flex-col py-6 space-y-1 no-shadows border-r border-zinc-200 dark:border-zinc-800 font-['Work_Sans'] text-sm font-medium">
+<div class="px-6 mb-8">
+<img alt="The Smile Factory" class="h-28 w-auto object-contain -ml-2 -mt-4" src="/branding/smile-factory-logo.png"/>
+</div>
+<nav class="flex-1 overflow-y-auto custom-scrollbar">
+<!-- Navigation Items Mapping from JSON -->
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">dashboard</span> Dashboard
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">point_of_sale</span> POS
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">receipt_long</span> Transactions
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">inventory_2</span> Prize Inventory
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">event_available</span> Bookings
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">build</span> Work Orders
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">videogame_asset</span> Machines
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">group</span> Customers
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">badge</span> Employees
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">payments</span> Expenses
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">stars</span> Loyalty
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">confirmation_number</span> Coupons
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">analytics</span> Reports
+            </a>
+<!-- ACTIVE ITEM -->
+<a class="bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 rounded-full font-bold mx-2 px-4 py-2 flex items-center gap-3 transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">description</span> Documents
+            </a>
+<a class="text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 flex items-center gap-3 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all hover:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined">settings</span> Settings
+            </a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full py-3 font-bold shadow-lg shadow-primary/20 flex items-center justify-center gap-2 active:scale-95 transition-transform">
+<span class="material-symbols-outlined text-sm">map</span>
+                Launch Floor Map
+            </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen industrial-pattern pb-20">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 right-0 left-64 z-40 bg-white/80 backdrop-blur-xl px-8 py-4 flex justify-between items-center shadow-sm">
+<div class="flex items-center gap-8">
+<h2 class="font-headline font-black text-3xl tracking-tighter text-on-background">DOCUMENTS</h2>
+<!-- Date Range Picker Mock -->
+<div class="flex items-center gap-3 bg-surface-container-low px-4 py-2 rounded-lg">
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-outline">From</span>
+<input class="bg-transparent border-none p-0 text-sm font-semibold focus:ring-0" type="date" value="2023-10-01"/>
+</div>
+<div class="h-8 w-[1px] bg-outline-variant/30"></div>
+<div class="flex flex-col">
+<span class="text-[10px] uppercase font-bold text-outline">To</span>
+<input class="bg-transparent border-none p-0 text-sm font-semibold focus:ring-0" type="date" value="2023-10-31"/>
+</div>
+<button class="ml-2 text-primary">
+<span class="material-symbols-outlined">calendar_today</span>
+</button>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="p-2 rounded-full hover:bg-surface-container transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-10 w-10 rounded-full overflow-hidden border-2 border-primary-container">
+<img class="w-full h-full object-cover" data-alt="professional portrait of a middle-aged male arcade manager wearing a modern suit in a bright office" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCrNUCmf8zO6SELjjL6sbHJTpM-R33709d-RxWFFMg5fHnZblZ16tKYhqBJHTK0wPUf8D2j16UfwOnIrnxM_S-TcsG3LUZw4BUmfl915JH7xg-eVl0aSr8TSiKL73_p-x0XVFh20tOkmwZmIlnGPfwtk-LZRDXHuhBrZfWjm-L3Pwd-OzN9I90t6QzDGbEKGMIdeIiTTFYeYC72PaMSgeKFQoUo0qvkpVytecm9xry_f10iapQ2lMAFuM8G4OvwWV77XqVcq0RClI0r"/>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<section class="mt-28 px-12">
+<!-- Hero Stats Section (Industrial Style) -->
+<div class="grid grid-cols-12 gap-8 mb-12 items-end">
+<div class="col-span-12 md:col-span-7">
+<h3 class="font-headline text-5xl font-black text-primary uppercase tracking-tighter leading-none mb-4">
+                        Assembly <br/>Intelligence
+                    </h3>
+<p class="text-on-surface-variant max-w-md font-medium text-lg">
+                        Access and export technical operational data. Generated in real-time from the factory floor to your desk.
+                    </p>
+</div>
+<div class="col-span-12 md:col-span-5 flex gap-4">
+<div class="flex-1 bg-surface-container-lowest p-6 rounded-lg border-l-4 border-primary">
+<span class="text-[10px] font-black text-outline uppercase tracking-widest">Available Reports</span>
+<div class="text-4xl font-black font-headline text-on-surface">05</div>
+</div>
+<div class="flex-1 bg-surface-container-lowest p-6 rounded-lg border-l-4 border-tertiary">
+<span class="text-[10px] font-black text-outline uppercase tracking-widest">Exports This Month</span>
+<div class="text-4xl font-black font-headline text-on-surface">128</div>
+</div>
+</div>
+</div>
+<!-- Reports Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Revenue Report -->
+<div class="bg-surface-container-lowest p-8 rounded-lg group hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-12">
+<div class="p-4 bg-primary/10 rounded-xl text-primary">
+<span class="material-symbols-outlined text-4xl">payments</span>
+</div>
+<span class="text-[10px] font-black text-outline uppercase px-3 py-1 bg-surface-container rounded-full">Financial</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-2">Revenue Report</h4>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Detailed breakdown of machine earnings, POS sales, and digital currency conversions.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/15">
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold text-sm hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span> Create PDF
+                        </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-surface-container text-on-surface font-bold text-sm hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg">description</span> Excel
+                        </button>
+</div>
+</div>
+<!-- Inventory Report -->
+<div class="bg-surface-container-lowest p-8 rounded-lg group hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-12">
+<div class="p-4 bg-tertiary/10 rounded-xl text-tertiary">
+<span class="material-symbols-outlined text-4xl">inventory_2</span>
+</div>
+<span class="text-[10px] font-black text-outline uppercase px-3 py-1 bg-surface-container rounded-full">Stock</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-2">Inventory Report</h4>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Current prize wall stock levels, technician spare parts, and upcoming reorder requirements.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/15">
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold text-sm hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span> Create PDF
+                        </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-surface-container text-on-surface font-bold text-sm hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg">description</span> Excel
+                        </button>
+</div>
+</div>
+<!-- Booking Report -->
+<div class="bg-surface-container-lowest p-8 rounded-lg group hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-12">
+<div class="p-4 bg-secondary/10 rounded-xl text-secondary">
+<span class="material-symbols-outlined text-4xl">event_available</span>
+</div>
+<span class="text-[10px] font-black text-outline uppercase px-3 py-1 bg-surface-container rounded-full">Operations</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-2">Booking Report</h4>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Party room schedules, VIP lounge reservations, and group event traffic analysis.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/15">
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold text-sm hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span> Create PDF
+                        </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-surface-container text-on-surface font-bold text-sm hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg">description</span> Excel
+                        </button>
+</div>
+</div>
+<!-- Expense Report -->
+<div class="bg-surface-container-lowest p-8 rounded-lg group hover:translate-y-[-4px] transition-all duration-300">
+<div class="flex justify-between items-start mb-12">
+<div class="p-4 bg-error/10 rounded-xl text-error">
+<span class="material-symbols-outlined text-4xl">receipt_long</span>
+</div>
+<span class="text-[10px] font-black text-outline uppercase px-3 py-1 bg-surface-container rounded-full">Audit</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-2">Expense Report</h4>
+<p class="text-on-surface-variant text-sm mb-8 leading-relaxed">Utility costs, maintenance logs expenses, and miscellaneous petty cash distributions.</p>
+<div class="flex items-center gap-3 pt-6 border-t border-outline-variant/15">
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-secondary-container text-on-secondary-container font-bold text-sm hover:brightness-95 transition-all">
+<span class="material-symbols-outlined text-lg">picture_as_pdf</span> Create PDF
+                        </button>
+<button class="flex-1 flex items-center justify-center gap-2 py-2.5 rounded-lg bg-surface-container text-on-surface font-bold text-sm hover:bg-surface-container-high transition-all">
+<span class="material-symbols-outlined text-lg">description</span> Excel
+                        </button>
+</div>
+</div>
+<!-- Employee Directory (Special Case: Excel Only) -->
+<div class="bg-surface-container-low p-8 rounded-lg border-2 border-dashed border-outline-variant/30 flex flex-col items-center justify-center text-center">
+<div class="p-4 bg-on-surface/5 rounded-full text-on-surface mb-6">
+<span class="material-symbols-outlined text-4xl">group</span>
+</div>
+<h4 class="font-headline text-2xl font-bold mb-2">Employee Directory</h4>
+<p class="text-on-surface-variant text-sm mb-8">Contact information and shift assignments.</p>
+<button class="w-full flex items-center justify-center gap-3 py-4 rounded-full bg-on-background text-surface font-black uppercase tracking-tighter hover:bg-on-background/90 transition-all">
+<span class="material-symbols-outlined">table_view</span>
+                        Download Excel Only
+                    </button>
+</div>
+<!-- Technical Manuals Card (Asymmetric Layout Filler) -->
+<div class="relative overflow-hidden rounded-lg bg-primary-container p-8 min-h-[300px] flex flex-col justify-end">
+<div class="absolute -top-10 -right-10 opacity-20 transform rotate-12">
+<span class="material-symbols-outlined text-[200px] text-on-primary-container">settings_suggest</span>
+</div>
+<div class="relative z-10">
+<h4 class="font-headline text-3xl font-black text-on-primary-container leading-none mb-4 uppercase">Technical Archives</h4>
+<p class="text-on-primary-container font-medium mb-6">Access assembly manuals and machine schematics.</p>
+<a class="inline-flex items-center gap-2 font-bold text-on-primary-container underline decoration-2 underline-offset-4" href="#">
+                            Browse Schematic Library
+                            <span class="material-symbols-outlined">arrow_right_alt</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Bottom Action Bar (Floating State) -->
+<div class="mt-16 flex items-center justify-between bg-surface-container-highest/40 backdrop-blur-sm p-6 rounded-xl">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-primary">info</span>
+<span class="text-sm font-medium text-on-surface-variant">All reports generated using the selected date range: Oct 1, 2023 - Oct 31, 2023.</span>
+</div>
+<button class="text-primary font-bold text-sm flex items-center gap-2 hover:underline">
+                    Clear Active Selection
+                    <span class="material-symbols-outlined text-sm">close</span>
+</button>
+</div>
+</section>
+</main>
+<!-- Contextual FAB - Only for specific creation tasks -->
+<button class="fixed bottom-10 right-10 w-16 h-16 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-95 transition-transform z-50">
+<span class="material-symbols-outlined text-3xl">add</span>
+</button>
+</body></html>

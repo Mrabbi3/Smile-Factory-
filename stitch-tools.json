@@ -1,0 +1,8 @@
+{
+    "container":  "stitch/exports/tools",
+    "description":  "Containerized Stitch MCP tool schemas.",
+    "files":  {
+                  "index":  "stitch/exports/tools/index.json",
+                  "toolsDirectory":  "stitch/exports/tools"
+              }
+}

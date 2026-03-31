@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Smile Factory | Bookings Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Work+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#e7e8e8",
+              "surface-tint": "#bb0100",
+              "on-secondary-fixed": "#6a0c22",
+              "outline": "#767777",
+              "on-error": "#ffefef",
+              "secondary-fixed": "#ffc2c6",
+              "tertiary-fixed-dim": "#c889f1",
+              "on-secondary-fixed-variant": "#912b3c",
+              "error-dim": "#a70138",
+              "on-primary-fixed-variant": "#600000",
+              "on-primary": "#ffefed",
+              "surface-container-highest": "#dbdddd",
+              "primary-fixed": "#ff7763",
+              "on-primary-container": "#4f0000",
+              "secondary": "#a03646",
+              "surface-variant": "#dbdddd",
+              "tertiary-container": "#d697ff",
+              "error-container": "#f74b6d",
+              "on-tertiary": "#fdeeff",
+              "on-background": "#2d2f2f",
+              "on-error-container": "#510017",
+              "inverse-surface": "#0c0f0f",
+              "on-tertiary-fixed-variant": "#56197d",
+              "surface-container-low": "#f0f1f1",
+              "secondary-container": "#ffc2c6",
+              "background": "#f6f6f6",
+              "on-surface": "#2d2f2f",
+              "tertiary-dim": "#6e3395",
+              "surface-dim": "#d3d5d5",
+              "secondary-dim": "#902a3b",
+              "primary-container": "#ff7763",
+              "outline-variant": "#acadad",
+              "tertiary": "#7b40a2",
+              "surface-bright": "#f6f6f6",
+              "secondary-fixed-dim": "#ffaeb4",
+              "on-primary-fixed": "#000000",
+              "on-tertiary-container": "#4c0a73",
+              "primary-dim": "#a40100",
+              "tertiary-fixed": "#d697ff",
+              "primary": "#bb0100",
+              "on-surface-variant": "#5a5c5c",
+              "inverse-primary": "#ff5540",
+              "error": "#b41340",
+              "surface-container-high": "#e1e3e3",
+              "on-secondary-container": "#852233",
+              "surface": "#f6f6f6",
+              "on-secondary": "#ffefef",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed": "#2a0044",
+              "primary-fixed-dim": "#ff5b47",
+              "inverse-on-surface": "#9c9d9d"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .industrial-pattern {
+        background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20h20v20H20V20zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM10 37a7 7 0 1 0 0-14 7 7 0 0 0 0 14z' fill='%23bb0100' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+      }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface industrial-pattern min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-screen w-64 z-50 bg-zinc-50 dark:bg-zinc-950 flex flex-col py-6 space-y-1 no-shadows border-r border-zinc-200 dark:border-zinc-800 font-['Work_Sans'] text-sm font-medium">
+<div class="px-6 mb-8"><img alt="The Smile Factory Logo" class="h-20 w-auto mb-2" src="/branding/smile-factory-logo.png"/>
+<p class="text-xs text-zinc-500 uppercase tracking-widest mt-1 ml-1">Arcade Management</p></div>
+<nav class="flex-1 overflow-y-auto px-2 space-y-1">
+<!-- Navigation Items Mapping from JSON -->
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">point_of_sale</span>
+                POS
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">receipt_long</span>
+                Transactions
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">inventory_2</span>
+                Prize Inventory
+            </a>
+<a class="flex items-center bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-400 rounded-full font-bold mx-2 px-4 py-2 translate-x-1 transition-all" href="#">
+<span class="material-symbols-outlined mr-3" style="font-variation-settings: 'FILL' 1;">event_available</span>
+                Bookings
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">build</span>
+                Work Orders
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">videogame_asset</span>
+                Machines
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">group</span>
+                Customers
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">badge</span>
+                Employees
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">payments</span>
+                Expenses
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">stars</span>
+                Loyalty
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">confirmation_number</span>
+                Coupons
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">analytics</span>
+                Reports
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">description</span>
+                Documents
+            </a>
+<a class="flex items-center text-zinc-600 dark:text-zinc-400 hover:text-red-600 px-4 py-2 mx-2 hover:bg-zinc-200/50 dark:hover:bg-zinc-800/50 rounded-full transition-all group" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+                Settings
+            </a>
+</nav>
+<div class="px-4 mt-auto">
+<button class="w-full bg-red-700 hover:bg-red-800 text-white rounded-full py-3 font-bold shadow-lg shadow-red-200 transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">map</span>
+                Launch Floor Map
+            </button>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="ml-64 min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 left-64 right-0 z-40 bg-white/80 backdrop-blur-xl shadow-sm border-b border-zinc-200/50 flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-8">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-highest border-none rounded-full w-64 focus:ring-2 focus:ring-primary focus:bg-white transition-all text-sm" placeholder="Search bookings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-5 py-2 rounded-full border border-outline/20 font-bold text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">calendar_today</span>
+                    Calendar View
+                </button>
+<button class="flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold shadow-md shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                    Add New
+                </button>
+<div class="h-8 w-[1px] bg-zinc-200 mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border-2 border-white shadow-sm">
+<img alt="Manager Avatar" data-alt="Close up portrait of a professional manager smiling, corporate photography, soft studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcp49hbnbhKeazJFZ_hLev7DAfJcgUt7Na0w8JB8qUDTqfhc5eR93g1xE4_aIRi-0YBz6889D1i2UfWiWmvNk4VrQy5QHLM0wELktx2mRkNeeQibRehZ0R4lAxivXPxdrA2YzbX-ROYaR3-7IV4BvldSBvJaQ1OsgGs7Bcaoje6rx_oeAA36YBAWxD6u8bTWs49LFEx3QwD1xMAsAEC3KSyPuqiiT-nzxJUER35Ja36oSYzpp-m3MbKMwuV3oBXmuL5fdeZJRqr4ZT"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-24 px-8 pb-12">
+<!-- Header Title -->
+<div class="mb-10">
+<h2 class="font-headline text-4xl font-black text-on-surface tracking-tight uppercase leading-none">Bookings Management</h2>
+<p class="text-on-surface-variant mt-2 font-medium">Assembling Joy: One Event at a Time</p>
+</div>
+<!-- Stats Row: Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-primary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">event_upcoming</span>
+</div>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">+12%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Upcoming</p>
+<h3 class="text-3xl font-black font-headline mt-1">42</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-tertiary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary/10 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">This Month</p>
+<h3 class="text-3xl font-black font-headline mt-1">128</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-amber-500">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-500/10 rounded-lg text-amber-600">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-xs font-bold text-amber-600 bg-amber-500/10 px-2 py-1 rounded">Pending</span>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Pending Deposits</p>
+<h3 class="text-3xl font-black font-headline mt-1">14</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-green-600">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-green-600/10 rounded-lg text-green-600">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Revenue</p>
+<h3 class="text-3xl font-black font-headline mt-1">$24,850</h3>
+</div>
+</div>
+<!-- Main Table Section -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden border border-outline-variant/10">
+<!-- Table Tabs -->
+<div class="flex items-center px-6 border-b border-surface-container">
+<button class="px-6 py-5 text-sm font-bold border-b-2 border-primary text-primary transition-all">Upcoming</button>
+<button class="px-6 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">All</button>
+<button class="px-6 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">Completed</button>
+<button class="px-6 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">Cancelled</button>
+</div>
+<!-- Custom Industrial Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant text-xs uppercase tracking-widest font-bold">
+<th class="px-8 py-4">Date &amp; Time</th>
+<th class="px-8 py-4">Contact</th>
+<th class="px-8 py-4">Kids</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4 text-right">Deposit</th>
+<th class="px-8 py-4 text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                            MAY 24
+                                        </div>
+<div>
+<p class="font-bold text-on-surface">Friday, May 24</p>
+<p class="text-xs text-on-surface-variant">02:00 PM - 04:00 PM</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="font-bold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">Birthday: Leo (7 yrs)</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1">
+<span class="font-bold text-on-surface">15</span>
+<span class="material-symbols-outlined text-sm text-tertiary">child_care</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full tracking-tighter">Confirmed</span>
+</td>
+<td class="px-8 py-5 text-right font-bold text-on-surface">
+                                    $250.00
+                                </td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                            MAY 25
+                                        </div>
+<div>
+<p class="font-bold text-on-surface">Saturday, May 25</p>
+<p class="text-xs text-on-surface-variant">10:00 AM - 12:30 PM</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="font-bold text-on-surface">Marcus Thompson</p>
+<p class="text-xs text-on-surface-variant">Team Celebration: Hawks</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1">
+<span class="font-bold text-on-surface">22</span>
+<span class="material-symbols-outlined text-sm text-tertiary">child_care</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-black uppercase rounded-full tracking-tighter">Pending Dep.</span>
+</td>
+<td class="px-8 py-5 text-right font-bold text-amber-600">
+                                    $0.00
+                                </td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                            MAY 25
+                                        </div>
+<div>
+<p class="font-bold text-on-surface">Saturday, May 25</p>
+<p class="text-xs text-on-surface-variant">04:30 PM - 06:30 PM</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="font-bold text-on-surface">Emily Chen</p>
+<p class="text-xs text-on-surface-variant">Birthday: Ava (5 yrs)</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1">
+<span class="font-bold text-on-surface">12</span>
+<span class="material-symbols-outlined text-sm text-tertiary">child_care</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full tracking-tighter">Confirmed</span>
+</td>
+<td class="px-8 py-5 text-right font-bold text-on-surface">
+                                    $250.00
+                                </td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low border-t border-surface-container flex justify-between items-center">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Showing 1-10 of 42 upcoming bookings</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-bold text-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Promotion / Feature Card -->
+<div class="mt-10 bg-gradient-to-br from-tertiary to-on-tertiary-container rounded-xl p-8 text-white flex items-center justify-between relative overflow-hidden shadow-2xl">
+<div class="relative z-10 max-w-lg">
+<h4 class="font-headline text-3xl font-black uppercase leading-tight">Optimization Alert</h4>
+<p class="mt-2 text-on-tertiary font-medium">Machine #4 and Party Room B are available for a 20% bundle discount this Sunday. Assembler intelligence suggests 4 high-value leads are browsing.</p>
+<button class="mt-6 px-8 py-3 bg-white text-tertiary font-bold rounded-full hover:scale-105 active:scale-95 transition-all">View Analytics</button>
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+</div>
+</div>
+</main>
+<!-- Floating Action Button - Only if relevant -->
+<button class="fixed bottom-8 right-8 w-16 h-16 rounded-full bg-primary text-white shadow-2xl flex items-center justify-center hover:scale-110 active:scale-90 transition-all z-50 group">
+<span class="material-symbols-outlined text-3xl">add_circle</span>
+<span class="absolute right-full mr-4 px-4 py-2 bg-zinc-900 text-white text-xs font-bold rounded-lg opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap">Instant Booking</span>
+</button>
+</body></html>

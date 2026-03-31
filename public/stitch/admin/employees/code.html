@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#fdeeff",
+              "tertiary-fixed": "#d697ff",
+              "secondary-container": "#ffc2c6",
+              "surface": "#f6f6f6",
+              "inverse-primary": "#ff5540",
+              "on-background": "#2d2f2f",
+              "tertiary-dim": "#6e3395",
+              "surface-bright": "#f6f6f6",
+              "surface-dim": "#d3d5d5",
+              "on-secondary-fixed": "#6a0c22",
+              "tertiary-fixed-dim": "#c889f1",
+              "on-tertiary-fixed": "#2a0044",
+              "primary": "#bb0100",
+              "on-surface": "#2d2f2f",
+              "surface-container-highest": "#dbdddd",
+              "primary-fixed-dim": "#ff5b47",
+              "outline-variant": "#acadad",
+              "on-primary": "#ffefed",
+              "tertiary-container": "#d697ff",
+              "tertiary": "#7b40a2",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#56197d",
+              "background": "#f6f6f6",
+              "secondary-dim": "#902a3b",
+              "on-secondary-fixed-variant": "#912b3c",
+              "primary-dim": "#a40100",
+              "surface-container-high": "#e1e3e3",
+              "primary-fixed": "#ff7763",
+              "on-tertiary-container": "#4c0a73",
+              "secondary": "#a03646",
+              "on-secondary-container": "#852233",
+              "error-container": "#f74b6d",
+              "surface-variant": "#dbdddd",
+              "error": "#b41340",
+              "error-dim": "#a70138",
+              "outline": "#767777",
+              "on-error": "#ffefef",
+              "secondary-fixed-dim": "#ffaeb4",
+              "on-surface-variant": "#5a5c5c",
+              "on-primary-fixed-variant": "#600000",
+              "primary-container": "#ff7763",
+              "on-primary-container": "#4f0000",
+              "surface-tint": "#bb0100",
+              "inverse-surface": "#0c0f0f",
+              "surface-container": "#e7e8e8",
+              "surface-container-low": "#f0f1f1",
+              "on-primary-fixed": "#000000",
+              "on-error-container": "#510017",
+              "inverse-on-surface": "#9c9d9d",
+              "on-secondary": "#ffefef",
+              "secondary-fixed": "#ffc2c6"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+        }
+        .industrial-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18l2.5-1.25L25 18v2.5l-2.5 1.25L20 20.5zM10 10.5V8l2.5-1.25L15 8v2.5l-2.5 1.25L10 10.5zM30 30.5V28l2.5-1.25L35 28v2.5l-3.5 1.25L30 30.5z' fill='%23bb0100' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface industrial-pattern min-h-screen">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full bg-slate-50 flex flex-col py-6 border-r-0 z-50 overflow-y-auto w-72"><div class="p-8">
+<img alt="Smile Factory Logo" class="w-full max-w-[180px] h-auto mb-4" src="/branding/smile-factory-logo.png"/>
+<p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Joy Assembler Admin</p>
+</div>
+<nav class="flex-1 px-4 pb-10 space-y-6">
+<!-- Main -->
+<div>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="grid_view">grid_view</span>
+<span class="text-sm font-medium">Dashboard</span>
+</a>
+</div>
+<!-- Operations Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Operations</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-sm font-medium">POS/ Token Sales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="receipt_long">receipt_long</span>
+<span class="text-sm font-medium">Token Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="inventory">inventory</span>
+<span class="text-sm font-medium">Prize Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="event_note">event_note</span>
+<span class="text-sm font-medium">Bookings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="build_circle">build_circle</span>
+<span class="text-sm font-medium">Work Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="text-sm font-medium">Machines</span>
+</a>
+</div>
+<!-- People Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">People</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="groups">groups</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 active-tab font-bold transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="badge">badge</span>
+<span class="text-sm">Employee</span>
+</a>
+</div>
+<!-- Finance & Rewards Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Finance &amp; Rewards</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="stars">stars</span>
+<span class="text-sm font-medium">Loyalty</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-sm font-medium">Coupons</span>
+</a>
+</div>
+<!-- Administration Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Administration</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="assessment">assessment</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="description">description</span>
+<span class="text-sm font-medium">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav></aside>
+<!-- Main Content Canvas -->
+<main class="ml-72 pt-28 px-10 pb-16">
+<!-- TopAppBar -->
+<header class="sticky top-0 right-0 left-72 glass-nav h-20 flex justify-between items-center px-10 z-40 border-b border-gray-100">
+<div>
+<h2 class="font-headline font-extrabold text-xl tracking-tight text-primary">Operations Dashboard</h2>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative w-64 group">
+<input class="w-full bg-surface-container-highest border-none rounded-full py-2 pl-10 pr-4 text-sm focus:ring-2 focus:ring-primary transition-all" placeholder="Search staff..." type="text"/>
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" data-icon="search">search</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-slate-500 hover:text-primary transition-colors relative">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<div class="flex items-center gap-2 cursor-pointer group">
+<span class="material-symbols-outlined text-3xl text-slate-400 group-hover:text-primary transition-colors" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<div class="text-left leading-none">
+<p class="text-xs font-bold text-on-surface">Admin User</p>
+<p class="text-[10px] text-slate-500 uppercase font-bold tracking-tighter">Super Admin</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<section class="p-8 max-w-7xl mx-auto space-y-8">
+<!-- Header Section -->
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div class="space-y-1">
+<p class="text-primary font-bold uppercase tracking-[0.2em] text-xs">Human Resources</p>
+<h1 class="font-headline font-black text-5xl tracking-tighter">The Crew.</h1>
+</div>
+<div class="flex gap-3">
+<button class="px-6 py-3 bg-secondary-container text-on-secondary-container rounded-lg font-bold text-sm flex items-center gap-2 hover:opacity-90 transition-opacity">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+                        Export Directory
+                    </button>
+<button class="px-6 py-3 bg-gradient-to-br from-primary to-primary-container text-on-primary rounded-full font-bold text-sm flex items-center gap-2 shadow-xl hover:-translate-y-1 transition-transform">
+<span class="material-symbols-outlined" data-icon="person_add">person_add</span>
+                        Onboard Talent
+                    </button>
+</div>
+</div>
+<!-- KPI Cards Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Total Staff -->
+<div class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border-l-4 border-primary flex items-center justify-between group overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-slate-500 text-sm font-medium uppercase tracking-wider">Total Staff</p>
+<h3 class="text-5xl font-black font-headline mt-1 tracking-tight">42</h3>
+<p class="text-xs text-slate-400 mt-2 font-medium">+3 since last month</p>
+</div>
+<span class="material-symbols-outlined text-8xl text-primary opacity-5 absolute -right-4 -bottom-4 rotate-12 group-hover:rotate-0 transition-transform duration-500" data-icon="groups">groups</span>
+</div>
+<!-- Managers On Duty -->
+<div class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border-l-4 border-tertiary flex items-center justify-between group overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-slate-500 text-sm font-medium uppercase tracking-wider">MOD Count</p>
+<h3 class="text-5xl font-black font-headline mt-1 tracking-tight">04</h3>
+<div class="flex items-center gap-2 mt-2">
+<div class="flex -space-x-2">
+<div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a confident male manager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsFCvB-3ARd567U-lJJgjkqdgMOpVviYdAh44Wn6pRVHpDsZ7uSWbTttYRkQBKurII0NauVqgbXOsbqD6EgAtDLvp5NIaKuEOqRozn98SKNLqyyWDRmTlP_yiX_6iyEZ8bCwy3_3jTSA4M76ZeFZb3YYKlX9WX4D-YWygnFR7pfRG2XcIzptdGIrYdI0JJohWyBv1rLVeDQF8KD26YOhfOn2nn5LNfMNUjbEuIScBnXcuUEOyUk4Vyl02h_231QRmc_h0mRL77AP6j"/>
+</div>
+<div class="w-6 h-6 rounded-full bg-slate-200 border-2 border-white overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="professional woman smiling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-ROtpcvbFFZOxhKr2Ttzos0BvynF48txfu6AmGiTYkMt9Ko44uXdMWvzvALCsE-tlIgp68IaCaJ7t9Y2sxC6OzTyTsar1FYkBo-RQIybisgk-OBz7OoUQCLdsdkzRG6HQ8WaZfue1dNVDDETpQGqAOn2x-SRmXxvLiRC-lbrT6iaVgg-W6O8_62TszQlbcvb7w7fVd5hTVUboI2jREzVhvzuNYT082OkFabA8RgzZ_7d3UgTPRMzsLYqfuoMFLWZ3ItxPFKD7Lt5U"/>
+</div>
+</div>
+<span class="text-[10px] text-tertiary font-bold uppercase">On Premises</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-8xl text-tertiary opacity-5 absolute -right-4 -bottom-4 rotate-12 group-hover:rotate-0 transition-transform duration-500" data-icon="supervisor_account">supervisor_account</span>
+</div>
+<!-- Active Shifts -->
+<div class="bg-primary text-on-primary p-8 rounded-lg shadow-xl flex items-center justify-between group overflow-hidden relative">
+<div class="relative z-10">
+<p class="text-white/60 text-sm font-medium uppercase tracking-wider">Clocked In Now</p>
+<h3 class="text-5xl font-black font-headline mt-1 tracking-tight">18</h3>
+<div class="mt-2 flex items-center gap-1">
+<span class="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+<span class="text-xs font-bold text-white/80">Active Operations</span>
+</div>
+</div>
+<span class="material-symbols-outlined text-8xl text-white opacity-10 absolute -right-4 -bottom-4 rotate-12 group-hover:rotate-0 transition-transform duration-500" data-icon="schedule" style="font-variation-settings: 'FILL' 1;">schedule</span>
+</div>
+</div>
+<!-- Employee Directory Table -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden border-none">
+<div class="p-6 border-b border-surface-container">
+<div class="flex flex-col md:flex-row justify-between items-center gap-4">
+<h3 class="font-headline font-bold text-lg">Staff Directory</h3>
+<div class="flex gap-2">
+<button class="px-4 py-2 bg-surface-container-low text-xs font-bold rounded-full border-none hover:bg-surface-container-high transition-colors">All Roles</button>
+<button class="px-4 py-2 bg-primary text-on-primary text-xs font-bold rounded-full border-none">Managers</button>
+<button class="px-4 py-2 bg-surface-container-low text-xs font-bold rounded-full border-none hover:bg-surface-container-high transition-colors">Clocked In</button>
+</div>
+</div>
+</div>
+<table class="w-full text-left">
+<thead>
+<tr class="text-slate-400 text-[10px] uppercase tracking-[0.15em] border-none bg-surface-container-low/50">
+<th class="py-4 px-8 font-bold">Member</th>
+<th class="py-4 px-8 font-bold text-center">Role</th>
+<th class="py-4 px-8 font-bold">Contact Details</th>
+<th class="py-4 px-8 font-bold">Hire Date</th>
+<th class="py-4 px-8 font-bold">Status</th>
+<th class="py-4 px-8 font-bold text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container/50">
+<!-- Staff Item 1 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-5 px-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0 border-2 border-surface-container">
+<img class="w-full h-full object-cover" data-alt="Marcus Sterling" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDuYcyQe4j22pghn8-ZTov8v42SfoeLPpkbYkWJ4InxeMHuPYqE_Y_Y0eYZPPxMH9fDXemOa-ynHFCqh7KktQ4nOru997f-l3Bk8qjkRWBdvmrEcA9yytQYo8A2yw476AEsuXVt1pYGUMhW2Ub5xMbHsya8LN0rbBwrhWQ-lOgDhB5PwcX2m6PZH6CvLhrI0PYPeJKIRFlaRR9rQpVZokiep-FsAvmeRnmamsmfcBy82CHl5CGJwdWOyFp7SGmYlJx_AnkFev_zrx_2"/>
+</div>
+<div>
+<p class="font-bold text-sm text-on-surface">Marcus Sterling</p>
+<p class="text-xs text-slate-500">ID: SF-9021</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-8 text-center">
+<span class="px-3 py-1 bg-primary/10 text-primary text-[10px] font-black uppercase rounded-full">Owner</span>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-medium text-on-surface">m.sterling@smilefactory.com</p>
+<p class="text-xs text-slate-500">+1 (555) 123-4567</p>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-semibold text-slate-600">Jan 12, 2018</p>
+</td>
+<td class="py-5 px-8">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="text-xs font-bold text-on-surface">Active</span>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">Clocked In 08:30 AM</p>
+</td>
+<td class="py-5 px-8 text-right">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Staff Item 2 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-5 px-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0 border-2 border-surface-container">
+<img class="w-full h-full object-cover" data-alt="Elena Rodriguez" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpisMbdVwUxLAeY4kx7FsNHeXwZpYcLgB08RK3IRWwjpHbALBeNCmZDgX2of9s8fW_ldurNIuGQ87xg3kKgIcCPQX60x0L6bpbY_jz5ZHPcDdUZa7Pcp7z8dV4XcjuvNBKGnI1eArVd01l2WAwU_yIZyvwLKynvaHIQIGjs8GDmD_I2DsNKOWw9cdcbqyebZnLxnfC0GqR6Fd6VkC79ZJanHgwx3knUZIdzj8iwJjWSZR0zIFJuViEtsjoJk-wIGZhoQisQFeOzQwI"/>
+</div>
+<div>
+<p class="font-bold text-sm text-on-surface">Elena Rodriguez</p>
+<p class="text-xs text-slate-500">ID: SF-4412</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-8 text-center">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary text-[10px] font-black uppercase rounded-full">Manager</span>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-medium text-on-surface">e.rodriguez@smilefactory.com</p>
+<p class="text-xs text-slate-500">+1 (555) 987-6543</p>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-semibold text-slate-600">Nov 04, 2020</p>
+</td>
+<td class="py-5 px-8">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="text-xs font-bold text-on-surface">Active</span>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">Clocked In 09:15 AM</p>
+</td>
+<td class="py-5 px-8 text-right">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Staff Item 3 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-5 px-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0 border-2 border-surface-container">
+<img class="w-full h-full object-cover" data-alt="Julian Hayes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBtvyzCg5L2-kYDTm-1a7FoSgWmdLNmBcAjYQzpYsD63A7nof3ETXpxmsrhhFxyVvYqNaFfWieW5kkLU9i1pvDTIafPIraOhCjxIShfTSUqIp_J2Ff_dgscQdVzNCCrE9P7det-jOt8L4H3a3cbglBhcg384kIATHYiZhXz_mqR_uJ4jPl2FNZJD4t9fUhM_GpDYRwD5JTvipL6bsn3UHwzwtSesBjIUkB3Vjzze8vjkyVA3NbNX0RSrP4nW5Year-RBq7StIrBUXHN"/>
+</div>
+<div>
+<p class="font-bold text-sm text-on-surface">Julian Hayes</p>
+<p class="text-xs text-slate-500">ID: SF-7723</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-8 text-center">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-black uppercase rounded-full">Employee</span>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-medium text-on-surface">j.hayes@smilefactory.com</p>
+<p class="text-xs text-slate-500">+1 (555) 443-2211</p>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-semibold text-slate-600">Mar 22, 2022</p>
+</td>
+<td class="py-5 px-8">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-slate-300 rounded-full"></span>
+<span class="text-xs font-bold text-slate-400">Offline</span>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">Scheduled 04:00 PM</p>
+</td>
+<td class="py-5 px-8 text-right">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+<!-- Staff Item 4 -->
+<tr class="hover:bg-slate-50 transition-colors group">
+<td class="py-5 px-8">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-lg bg-slate-100 overflow-hidden shrink-0 border-2 border-surface-container">
+<img class="w-full h-full object-cover" data-alt="Sarah O'Connell" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZCiU6Mcjwh_TqrDp-se-5dc9j0slQE57Kjy2BtjKn-pPj7BXgI3T49htR6cPDzqagdJsYugkA6A8McuE9BVFj1Rh1y4FHXhlunI1Mxh8DTT-Y8wapCe_1eDiOkUJ-mUCpHJt-ab0IS9WrrP5S2QmXP2P4ap0iHzyuwmiRSrpETj_ilMMzvuPtHjclnBEQ-yRrngXEygLzFWggYEzqI40-m8b3bb5xF6ez1iq3bRFR-M2UbV2gyAt_JpCwFis1Q_nNg3rKJ-syOAQo"/>
+</div>
+<div>
+<p class="font-bold text-sm text-on-surface">Sarah O'Connell</p>
+<p class="text-xs text-slate-500">ID: SF-2101</p>
+</div>
+</div>
+</td>
+<td class="py-5 px-8 text-center">
+<span class="px-3 py-1 bg-secondary-container text-on-secondary-container text-[10px] font-black uppercase rounded-full">Employee</span>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-medium text-on-surface">s.oconnell@smilefactory.com</p>
+<p class="text-xs text-slate-500">+1 (555) 776-8899</p>
+</td>
+<td class="py-5 px-8">
+<p class="text-xs font-semibold text-slate-600">May 15, 2023</p>
+</td>
+<td class="py-5 px-8">
+<div class="flex items-center gap-2">
+<span class="w-2 h-2 bg-green-500 rounded-full"></span>
+<span class="text-xs font-bold text-on-surface">Active</span>
+</div>
+<p class="text-[10px] text-slate-400 mt-1 uppercase font-bold">Clocked In 10:00 AM</p>
+</td>
+<td class="py-5 px-8 text-right">
+<button class="p-2 text-slate-400 hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="more_vert">more_vert</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-surface-container-low/30 border-t border-surface-container flex justify-between items-center px-8">
+<p class="text-xs text-slate-500 font-medium">Showing 4 of 42 employees</p>
+<div class="flex gap-2">
+<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-slate-400 border border-slate-200 cursor-not-allowed">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-white flex items-center justify-center text-primary border border-slate-200 hover:bg-slate-50">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Floating Quick Action for Mobile -->
+<button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center active:scale-90 transition-transform z-50">
+<span class="material-symbols-outlined" data-icon="add">add</span>
+</button>
+</body></html>

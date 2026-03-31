@@ -10,6 +10,14 @@ The SFMS consists of three main interfaces:
 2. **Admin Dashboard** - Full operational management for owners, managers, and employees
 3. **Customer Portal** - Personal accounts with booking, loyalty tracking, and purchase history
 
+## Documentation
+
+- `docs/ARCHITECTURE.md` - System architecture overview
+- `docs/API.md` - API and integration notes
+- `docs/DATABASE.md` - Database design and schema notes
+- `docs/DEPLOYMENT.md` - Deployment guidance
+- `docs/PUBLIC_SITE_IMPLEMENTATION.md` - Detailed record of the public-site redesign and UX implementation
+
 ## Tech Stack
 
 | Technology | Purpose |
@@ -93,6 +101,14 @@ NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
 OPENAI_API_KEY=your-openai-api-key
 ```
+
+### Optional MCP Configuration
+
+The checked-in app does not require `mcp/mcp.json` to run.
+
+- `npm run dev`, `npm run build`, and `npm run start` use the committed app code plus local Stitch exports in `public/stitch/`.
+- The `mcp/` folder is only for optional Stitch MCP tooling and future design export work.
+- If you want to use that tooling, add your own Stitch API key to `mcp/mcp.json`.
 
 ### Database Setup
 

@@ -1,0 +1,15 @@
+{
+    "bodyFont":  "PLUS_JAKARTA_SANS",
+    "colorMode":  "LIGHT",
+    "colorVariant":  "FIDELITY",
+    "customColor":  "#FF0000",
+    "font":  "EPILOGUE",
+    "headlineFont":  "EPILOGUE",
+    "labelFont":  "SPACE_GROTESK",
+    "overrideNeutralColor":  "#2E2E2E",
+    "overridePrimaryColor":  "#FF0000",
+    "overrideSecondaryColor":  "#FFD700",
+    "overrideTertiaryColor":  "#00BFFF",
+    "roundness":  "ROUND_FULL",
+    "spacingScale":  2
+}
