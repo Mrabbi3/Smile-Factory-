@@ -115,13 +115,15 @@ export function AdminSidebar({
   }
 
   return (
-    <div className="flex h-full flex-col bg-card">
-      {/* Logo — Joy Assembler gradient icon */}
-      <div className="flex h-16 items-center gap-3 px-5">
-        <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
-          <Smile className="size-5" />
+    <div className="flex h-full flex-col bg-white border-r border-gray-200">
+      <div className="p-6 pb-4">
+        <div className="flex items-center gap-3 mb-2">
+          <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
+            <Smile className="size-5" />
+          </div>
+          <span className="text-lg font-bold tracking-tight font-display">Smile Factory</span>
         </div>
-        <span className="text-lg font-bold tracking-tight font-display">Smile Factory</span>
+        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] pl-12">Joy Assembler Admin</p>
       </div>
 
       <ScrollArea className="flex-1 py-3">
@@ -149,13 +151,13 @@ export function AdminSidebar({
                         href={item.href}
                         onClick={onNavigate}
                         className={cn(
-                          'flex items-center gap-3 rounded-xl px-4 py-2.5 text-sm font-medium transition-all duration-200',
+                          'flex items-center gap-3 px-4 py-2.5 text-sm font-medium transition-all duration-200',
                           isActive
-                            ? 'gradient-primary text-primary-foreground shadow-ambient'
-                            : 'text-muted-foreground hover:bg-[var(--surface-container-low)] hover:text-foreground'
+                            ? 'bg-primary/5 text-primary font-bold border-r-4 border-primary rounded-l-xl'
+                            : 'text-gray-500 hover:text-primary hover:bg-primary/5 rounded-xl'
                         )}
                       >
-                        <item.icon className="size-4 shrink-0" />
+                        <item.icon className="size-5 shrink-0" />
                         {item.label}
                       </Link>
                     )

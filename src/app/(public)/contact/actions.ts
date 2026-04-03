@@ -2,6 +2,7 @@
 
 import { sendEmail } from '@/lib/email/send-email'
 import { contactFormEmail, contactFormAutoReply } from '@/lib/email/templates/contact-form'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 interface ContactFormState {
   success?: boolean
@@ -24,7 +25,7 @@ export async function submitContactForm(
   try {
     await Promise.all([
       sendEmail({
-        to: process.env.RESEND_FROM_EMAIL || 'info@thesmilefactoryarcade.com',
+        to: process.env.RESEND_FROM_EMAIL || BUSINESS_INFO.email,
         subject: `Contact Form: ${subject || 'New Message'} — from ${name}`,
         html: contactFormEmail({ name, email, subject, message }),
         replyTo: email,

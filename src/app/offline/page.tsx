@@ -1,5 +1,6 @@
 import { WifiOff, Phone, MapPin } from 'lucide-react'
 import { Card, CardContent } from '@/components/ui/card'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 export const metadata = {
   title: 'Offline',
@@ -19,11 +20,11 @@ export default function OfflinePage() {
           <div className="pt-4 space-y-3 text-sm text-left">
             <div className="flex items-center gap-3">
               <Phone className="h-5 w-5 text-primary shrink-0" />
-              <span>(609) 266-3866</span>
+              <span>{BUSINESS_INFO.phone}</span>
             </div>
             <div className="flex items-center gap-3">
               <MapPin className="h-5 w-5 text-primary shrink-0" />
-              <span>1307 W Brigantine Ave # B, Brigantine, NJ 08203</span>
+              <span>{BUSINESS_INFO.address}</span>
             </div>
           </div>
           <p className="text-xs text-muted-foreground pt-4">

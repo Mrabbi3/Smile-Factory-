@@ -118,101 +118,124 @@ export default function AdminDashboard() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="font-display text-3xl font-bold tracking-tight">Welcome back, {profile?.first_name || 'Admin'}</h1>
-        <p className="text-muted-foreground">Here&apos;s what&apos;s happening at The Smile Factory today.</p>
-      </div>
+      <section className="mb-4">
+        <h1 className="text-4xl lg:text-5xl font-black tracking-tight mb-3 font-display">
+          Welcome Back, <span className="text-primary">{profile?.first_name || 'Admin'}</span>
+        </h1>
+        <p className="text-gray-500 max-w-2xl text-lg font-medium">
+          The assembly line is hummin&apos;. Here&apos;s a quick snapshot of the factory floor&apos;s performance for today.
+        </p>
+      </section>
 
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
         {statCards.map((s) => (
-          <Card key={s.title} className="rounded-2xl shadow-ambient hover:shadow-elevated hover:-translate-y-1 transition-all">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-sm text-muted-foreground">{s.title}</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <div className="flex size-10 items-center justify-center rounded-xl bg-primary/10 text-primary w-fit">
-                <s.icon className="h-5 w-5" />
-              </div>
-              <div className="font-display text-3xl font-bold">{s.value}</div>
-            </CardContent>
-          </Card>
+          <div key={s.title} className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex flex-col justify-between group hover:shadow-md transition-all">
+            <div>
+              <p className="text-[10px] uppercase font-bold tracking-[0.15em] text-gray-400 mb-1">{s.title}</p>
+              <h2 className="text-2xl font-black">{s.value}</h2>
+            </div>
+            <div className="flex items-center justify-between mt-4">
+              <div />
+              <s.icon className="size-5 text-primary/40 group-hover:text-primary transition-colors" />
+            </div>
+          </div>
         ))}
       </div>
 
       <div className="grid gap-4 lg:grid-cols-3">
-        <Card className="lg:col-span-2 rounded-2xl shadow-ambient">
-          <CardHeader>
-            <CardTitle className="font-display tracking-tight">Revenue (Last 7 Days)</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <ResponsiveContainer width="100%" height={300}>
-              <BarChart data={chartData}>
-                <CartesianGrid strokeDasharray="3 3" className="stroke-muted" />
-                <XAxis dataKey="date" className="text-xs" />
-                <YAxis className="text-xs" tickFormatter={(v) => `$${v}`} />
-                <Tooltip formatter={(v) => currency(Number(v))} />
-                <Bar dataKey="revenue" fill="hsl(var(--primary))" radius={[8, 8, 0, 0]} />
-              </BarChart>
-            </ResponsiveContainer>
-          </CardContent>
-        </Card>
+        <div className="lg:col-span-2 bg-white p-10 rounded-xl shadow-sm border border-gray-100">
+          <div className="flex justify-between items-start mb-8">
+            <div>
+              <h3 className="text-2xl font-black mb-2 font-display">Weekly Performance</h3>
+              <p className="text-gray-500 text-sm font-medium">Revenue across all token sales this week.</p>
+            </div>
+            <div className="flex items-center gap-2 px-3 py-1.5 bg-gray-50 rounded-full border border-gray-100">
+              <span className="w-2.5 h-2.5 rounded-full bg-primary" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-gray-600">Sales</span>
+            </div>
+          </div>
+          <ResponsiveContainer width="100%" height={300}>
+            <BarChart data={chartData}>
+              <CartesianGrid strokeDasharray="3 3" stroke="#f3f4f6" />
+              <XAxis dataKey="date" tick={{ fontSize: 10, fontWeight: 800 }} />
+              <YAxis tick={{ fontSize: 10 }} tickFormatter={(v) => `$${v}`} />
+              <Tooltip formatter={(v) => currency(Number(v))} />
+              <Bar dataKey="revenue" fill="#bb0100" radius={[8, 8, 0, 0]} />
+            </BarChart>
+          </ResponsiveContainer>
+        </div>
 
-        <div className="space-y-4">
-          <Card className="rounded-2xl shadow-ambient">
-            <CardHeader>
-              <CardTitle className="text-base font-display tracking-tight">Quick Actions</CardTitle>
-            </CardHeader>
-            <CardContent className="grid grid-cols-2 gap-2">
+        <div className="space-y-6">
+          <div className="bg-gray-100 p-8 rounded-xl border border-gray-200/50">
+            <h3 className="text-lg font-black mb-6 flex items-center gap-3 font-display">
+              <ShoppingCart className="size-5 text-primary" />
+              Quick Actions
+            </h3>
+            <div className="grid grid-cols-2 gap-4">
               {quickActions.map((a) => (
-                <Link key={a.label} href={a.href}>
-                  <Button className={`w-full ${a.color} text-white`} size="sm">
-                    <a.icon className="mr-1 h-4 w-4" />
-                    {a.label}
-                  </Button>
+                <Link
+                  key={a.label}
+                  href={a.href}
+                  className="bg-white hover:bg-primary hover:text-white rounded-xl shadow-sm transition-all p-6 flex flex-col items-center justify-center gap-3 group"
+                >
+                  <a.icon className="size-7 text-primary group-hover:text-white transition-colors" />
+                  <span className="text-[10px] font-black uppercase tracking-widest">{a.label}</span>
                 </Link>
               ))}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
 
-          <Card className="rounded-2xl shadow-ambient">
-            <CardHeader>
-              <CardTitle className="text-base font-display tracking-tight">Alerts</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-3">
+          <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-lg font-black flex items-center gap-3 font-display">
+                <AlertTriangle className="size-5 text-primary" />
+                System Alerts
+              </h3>
+            </div>
+            <div className="space-y-4">
               {alerts.lowStock > 0 && (
-                <Link href="/admin/inventory" className="flex items-center gap-2 text-sm text-warning hover:underline">
-                  <AlertTriangle className="h-4 w-4" />
-                  {alerts.lowStock} prize(s) low on stock
+                <Link href="/admin/inventory" className="flex gap-4 p-4 bg-red-50 rounded-xl border border-red-100">
+                  <Trophy className="size-5 text-primary shrink-0" />
+                  <div>
+                    <p className="text-sm font-black">Prize Restock Alert</p>
+                    <p className="text-xs text-gray-600 mt-1">{alerts.lowStock} prize(s) low on stock</p>
+                  </div>
                 </Link>
               )}
               {alerts.upcomingBookings > 0 && (
-                <Link href="/admin/bookings" className="flex items-center gap-2 text-sm text-info hover:underline">
-                  <Calendar className="h-4 w-4" />
-                  {alerts.upcomingBookings} upcoming booking(s)
+                <Link href="/admin/bookings" className="flex gap-4 p-4 hover:bg-gray-50 rounded-xl transition-colors">
+                  <Calendar className="size-5 text-gray-400 shrink-0" />
+                  <div>
+                    <p className="text-sm font-black">{alerts.upcomingBookings} Upcoming Booking(s)</p>
+                    <p className="text-xs text-gray-600 mt-1">Confirmed or pending today</p>
+                  </div>
                 </Link>
               )}
               {alerts.openOrders > 0 && (
-                <Link href="/admin/work-orders" className="flex items-center gap-2 text-sm text-destructive hover:underline">
-                  <ClipboardList className="h-4 w-4" />
-                  {alerts.openOrders} open work order(s)
+                <Link href="/admin/work-orders" className="flex gap-4 p-4 hover:bg-gray-50 rounded-xl transition-colors">
+                  <ClipboardList className="size-5 text-gray-400 shrink-0" />
+                  <div>
+                    <p className="text-sm font-black">{alerts.openOrders} Open Work Order(s)</p>
+                    <p className="text-xs text-gray-600 mt-1">Requires attention</p>
+                  </div>
                 </Link>
               )}
               {alerts.lowStock === 0 && alerts.upcomingBookings === 0 && alerts.openOrders === 0 && (
-                <p className="text-sm text-muted-foreground">All clear! No alerts at this time.</p>
+                <p className="text-sm text-gray-400 text-center py-4">All clear! No alerts at this time.</p>
               )}
-            </CardContent>
-          </Card>
+            </div>
+          </div>
         </div>
       </div>
 
       <AIAnalytics />
 
-      <Card className="rounded-2xl shadow-ambient">
-        <CardHeader>
-          <CardTitle className="font-display tracking-tight">Recent Transactions</CardTitle>
-          <CardDescription>Last 10 token sales</CardDescription>
-        </CardHeader>
-        <CardContent>
+      <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+        <div className="p-8 pb-4">
+          <h3 className="text-xl font-black font-display tracking-tight">Recent Transactions</h3>
+          <p className="text-sm text-gray-400 mt-1">Last 10 token sales</p>
+        </div>
+        <div className="px-8 pb-8">
           {recentTx.length === 0 ? (
             <p className="text-muted-foreground text-sm py-8 text-center">No transactions yet. Start making sales from the POS!</p>
           ) : (
@@ -241,8 +264,8 @@ export default function AdminDashboard() {
               </table>
             </div>
           )}
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   )
 }

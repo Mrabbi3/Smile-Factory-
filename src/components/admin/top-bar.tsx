@@ -59,7 +59,7 @@ export function TopBar({ profile, role, onSignOut, onMenuToggle }: TopBarProps) 
     : 'User'
 
   return (
-    <header className="flex h-16 items-center gap-4 glass px-5">
+    <header className="flex h-16 items-center gap-4 glass-nav border-b border-gray-100 px-5">
       <Button
         variant="ghost"
         size="icon"

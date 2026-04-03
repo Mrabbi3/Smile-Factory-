@@ -6,6 +6,7 @@ import { Input } from '@/components/ui/input'
 import { Card } from '@/components/ui/card'
 import { ScrollArea } from '@/components/ui/scroll-area'
 import { MessageCircle, X, Send, Loader2, Bot, User } from 'lucide-react'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 interface Message {
   role: 'user' | 'assistant'
@@ -47,7 +48,7 @@ export function Chatbot() {
       const data = await res.json()
       setMessages(prev => [...prev, { role: 'assistant', content: data.message }])
     } catch {
-      setMessages(prev => [...prev, { role: 'assistant', content: 'Sorry, I had trouble connecting. Please try again or call us at (609) 266-3866!' }])
+      setMessages(prev => [...prev, { role: 'assistant', content: `Sorry, I had trouble connecting. Please try again or call us at ${BUSINESS_INFO.phone}!` }])
     } finally {
       setLoading(false)
     }

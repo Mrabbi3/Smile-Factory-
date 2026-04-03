@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { SMILE_FACTORY_SYSTEM_PROMPT, ADMIN_ANALYTICS_PROMPT } from '@/lib/ai/chat-context'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 export async function POST(request: NextRequest) {
   try {
@@ -9,7 +10,7 @@ export async function POST(request: NextRequest) {
     if (!apiKey || apiKey === 'your-openai-api-key-here') {
       return NextResponse.json({
         message: mode === 'customer'
-          ? "I'm currently being set up! In the meantime, feel free to call us at (609) 266-3866 for any questions. We're open Sat-Sun 10AM-10PM and Mon-Fri 12PM-10PM!"
+          ? `I'm currently being set up! In the meantime, feel free to call us at ${BUSINESS_INFO.phone} for any questions. We're open Sat-Sun ${BUSINESS_INFO.hours.weekend} and Mon-Fri ${BUSINESS_INFO.hours.weekday}!`
           : "AI analytics is not yet configured. Please add your OpenAI API key to the environment variables."
       })
     }
@@ -45,7 +46,7 @@ export async function POST(request: NextRequest) {
   } catch (error: any) {
     console.error('AI Chat Error:', error)
     return NextResponse.json(
-      { message: 'Sorry, I encountered an error. Please try again or call us at (609) 266-3866.' },
+      { message: `Sorry, I encountered an error. Please try again or call us at ${BUSINESS_INFO.phone}.` },
       { status: 500 }
     )
   }

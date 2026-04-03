@@ -6,6 +6,7 @@ export const BUSINESS_INFO = {
   name: 'The Smile Factory Arcade & Family Fun Center',
   address: '1307 W Brigantine Ave # B, Brigantine, NJ 08203',
   phone: '(609) 266-3866',
+  email: 'info@thesmilefactoryarcade.com',
   hours: {
     weekday: '12:00 PM - 10:00 PM',
     weekend: '10:00 AM - 10:00 PM',

@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/use-auth'
-import { PARTY_CONFIG } from '@/lib/constants'
+import { PARTY_CONFIG, BUSINESS_INFO } from '@/lib/constants'
 import { toast } from 'sonner'
 import { format, addMinutes } from 'date-fns'
 import { safeFormatDate } from '@/lib/utils'
@@ -205,7 +205,7 @@ export default function CustomerBookingsPage() {
             {form.num_kids > PARTY_CONFIG.maxKidsBeforeCall && (
               <div className="rounded-xl bg-amber-50/80 p-3 text-sm text-amber-800 flex items-center gap-2 shadow-ambient">
                 <Phone className="h-4 w-4 shrink-0" />
-                For parties over {PARTY_CONFIG.maxKidsBeforeCall} kids, please also call us at (609) 266-3866 to discuss arrangements.
+                For parties over {PARTY_CONFIG.maxKidsBeforeCall} kids, please also call us at {BUSINESS_INFO.phone} to discuss arrangements.
               </div>
             )}
             <div className="flex items-center gap-3">

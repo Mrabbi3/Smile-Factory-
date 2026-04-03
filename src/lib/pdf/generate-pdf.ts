@@ -1,6 +1,7 @@
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { format } from 'date-fns'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 const BRAND_COLOR: [number, number, number] = [220, 38, 38]
 const HEADER_BG: [number, number, number] = [220, 38, 38]
@@ -294,7 +295,7 @@ export function generateBookingConfirmation(data: {
     doc.setFontSize(9)
     doc.setTextColor(133, 77, 14)
     doc.text(
-      `Deposit of $${data.depositAmount.toFixed(2)} is required to confirm your booking. Please call (609) 266-3866.`,
+      `Deposit of $${data.depositAmount.toFixed(2)} is required to confirm your booking. Please call ${BUSINESS_INFO.phone}.`,
       doc.internal.pageSize.width / 2,
       tableEnd + 19,
       { align: 'center', maxWidth: doc.internal.pageSize.width - 40 }

@@ -80,19 +80,23 @@ cd Smile-Factory-
 npm install
 
 # Set up environment variables
-cp .env.local.example .env.local
-# Edit .env.local with your Supabase credentials
+cp .env.example .env.local
+# Edit .env.local with your credentials (see .env.example for details)
 ```
 
 ### Environment Variables
 
-Create a `.env.local` file:
+Copy `.env.example` to `.env.local` and fill in the values. See the file for
+descriptions of each variable. Key ones:
 
-```
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-supabase-anon-key
-OPENAI_API_KEY=your-openai-api-key
-```
+| Variable | Required | Description |
+|---|---|---|
+| `NEXT_PUBLIC_SUPABASE_URL` | Yes | Supabase project URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Yes | Supabase public API key |
+| `ADMIN_ACCESS_KEY` | Yes | Staff portal PIN(s), comma-separated |
+| `RESEND_API_KEY` | Yes | Resend API key for emails |
+| `RESEND_FROM_EMAIL` | Yes | Verified sender email address |
+| `OPENAI_API_KEY` | No | OpenAI key for AI chatbot |
 
 ### Database Setup
 
@@ -172,7 +176,10 @@ docs/                    # Documentation
 3. Add environment variables
 4. Deploy
 
-Estimated monthly cost: **$5-35/month** (Vercel free tier + Supabase free tier + OpenAI API usage)
+Estimated monthly cost: **$26-41/month** (Supabase Pro $25 + Vercel free + Resend free + optional OpenAI $5-15)
+
+See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed setup instructions and
+[docs/STAFF-GUIDE.md](docs/STAFF-GUIDE.md) for the staff operations manual.
 
 ## Team
 
