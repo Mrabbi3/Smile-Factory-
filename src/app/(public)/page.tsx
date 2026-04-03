@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import type { Metadata } from 'next'
 import {
   Gamepad2,
@@ -21,7 +20,7 @@ import { BUSINESS_INFO, TOKEN_PRICING } from '@/lib/constants'
 export const metadata: Metadata = {
   title: 'Home | The Smile Factory',
   description:
-    'Welcome to The Smile Factory — Brigantine\'s favorite family arcade since 2006. Over 41 games, birthday parties, prizes, and fun for all ages!',
+    "Welcome to The Smile Factory - Brigantine's favorite family arcade since 2006. Over 41 games, birthday parties, prizes, and fun for all ages!",
 }
 
 const features = [

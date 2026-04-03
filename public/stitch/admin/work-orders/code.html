@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#fdeeff",
+              "tertiary-fixed": "#d697ff",
+              "secondary-container": "#ffc2c6",
+              "surface": "#f6f6f6",
+              "inverse-primary": "#ff5540",
+              "on-background": "#2d2f2f",
+              "tertiary-dim": "#6e3395",
+              "surface-bright": "#f6f6f6",
+              "surface-dim": "#d3d5d5",
+              "on-secondary-fixed": "#6a0c22",
+              "tertiary-fixed-dim": "#c889f1",
+              "on-tertiary-fixed": "#2a0044",
+              "primary": "#bb0100",
+              "on-surface": "#2d2f2f",
+              "surface-container-highest": "#dbdddd",
+              "primary-fixed-dim": "#ff5b47",
+              "outline-variant": "#acadad",
+              "on-primary": "#ffefed",
+              "tertiary-container": "#d697ff",
+              "tertiary": "#7b40a2",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#56197d",
+              "background": "#f6f6f6",
+              "secondary-dim": "#902a3b",
+              "on-secondary-fixed-variant": "#912b3c",
+              "primary-dim": "#a40100",
+              "surface-container-high": "#e1e3e3",
+              "primary-fixed": "#ff7763",
+              "on-tertiary-container": "#4c0a73",
+              "secondary": "#a03646",
+              "on-secondary-container": "#852233",
+              "error-container": "#f74b6d",
+              "surface-variant": "#dbdddd",
+              "error": "#b41340",
+              "error-dim": "#a70138",
+              "outline": "#767777",
+              "on-error": "#ffefef",
+              "secondary-fixed-dim": "#ffaeb4",
+              "on-surface-variant": "#5a5c5c",
+              "on-primary-fixed-variant": "#600000",
+              "primary-container": "#ff7763",
+              "on-primary-container": "#4f0000",
+              "surface-tint": "#bb0100",
+              "inverse-surface": "#0c0f0f",
+              "surface-container": "#e7e8e8",
+              "surface-container-low": "#f0f1f1",
+              "on-primary-fixed": "#000000",
+              "on-error-container": "#510017",
+              "inverse-on-surface": "#9c9d9d",
+              "on-secondary": "#ffefef",
+              "secondary-fixed": "#ffc2c6"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .industrial-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h20v20H0V0zm10 17a7 7 0 1 0 0-14 7 7 0 0 0 0 14zm20 0a7 7 0 1 0 0-14 7 7 0 0 0 0 14zM20 20h20v20H20V20z' fill='%23bb0100' fill-opacity='0.02' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface font-body text-on-surface industrial-pattern min-h-screen">
+<!-- Refined Sidebar Structure from SCREEN_134 -->
+<aside class="fixed left-0 top-0 h-full w-72 z-50 flex flex-col bg-white border-r border-gray-200 shadow-sm overflow-y-auto">
+<div class="p-8">
+<img alt="Smile Factory Logo" class="w-full max-w-[180px] h-auto mb-4" src="/branding/smile-factory-logo.png"/>
+<p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Joy Assembler Admin</p>
+</div>
+<nav class="flex-1 px-4 pb-10 space-y-6">
+<!-- Main -->
+<div>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+<span class="text-sm">Dashboard</span>
+</a>
+</div>
+<!-- Operations Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Operations</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">point_of_sale</span>
+<span class="text-sm">POS/ Token Sales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">receipt_long</span>
+<span class="text-sm">Token Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">inventory</span>
+<span class="text-sm">Prize Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">event_note</span>
+<span class="text-sm">Bookings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 bg-red-50 text-primary border-r-4 border-primary font-bold transition-all" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">build</span>
+<span class="text-sm">Work Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">precision_manufacturing</span>
+<span class="text-sm">Machines</span>
+</a>
+</div>
+<!-- People Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">People</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">groups</span>
+<span class="text-sm">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">badge</span>
+<span class="text-sm">Employee</span>
+</a>
+</div>
+<!-- Finance & Rewards Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Finance &amp; Rewards</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">payments</span>
+<span class="text-sm">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">stars</span>
+<span class="text-sm">Loyalty</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">confirmation_number</span>
+<span class="text-sm">Coupons</span>
+</a>
+</div>
+<!-- Administration Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Administration</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">assessment</span>
+<span class="text-sm">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">description</span>
+<span class="text-sm">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl">settings</span>
+<span class="text-sm">Settings</span>
+</a>
+</div>
+</nav>
+<div class="px-8 mt-auto pb-10 space-y-4">
+<a class="flex items-center gap-3 text-gray-400 hover:text-primary transition-colors text-xs font-bold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-lg">help</span> Support
+</a>
+<a class="flex items-center gap-3 text-gray-400 hover:text-primary transition-colors text-xs font-bold uppercase tracking-wider" href="#">
+<span class="material-symbols-outlined text-lg">logout</span> Log Out
+</a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-72 min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full bg-white/80 backdrop-blur-md flex justify-between items-center h-16 px-8 border-b border-slate-100">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-headline font-black text-red-600">Operations Dashboard</h2>
+<span class="bg-red-50 text-red-600 px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest">Work Orders</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative">
+<input class="bg-slate-50 border-none rounded-full px-5 py-1.5 text-sm w-64 focus:ring-2 focus:ring-primary transition-all" placeholder="Search orders..." type="text"/>
+<span class="material-symbols-outlined absolute right-4 top-1.5 text-slate-400 text-lg">search</span>
+</div>
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-slate-600 cursor-pointer hover:text-red-600">notifications</span>
+<div class="flex items-center gap-2 group cursor-pointer border-l border-slate-200 pl-4">
+<img alt="User Profile" class="w-8 h-8 rounded-full border-2 border-red-600" data-alt="professional portrait of a technical engineer in a clean workshop setting, soft ambient lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCs3v75R7Jh5BsrfvyKV2K_OM_peqz9xcaH1ETY5SX7M8579sBXrlY_KtO-qkj042TT7FYwN_caNdswof5OPGWN6bLr6E1xF5GNLuo0ifC73sArAJXccCZjQwuFSo33jdnmvDcvXrjh9haOSNjnWsh55Tk5wDA_iqdytvU2FtraOQ4CJ7b2VXGmVPZe5IGoCIfCo4A4tmWIzidV5lwClgYGFgEauQk2FTHUSMbUDnjSqufudLAKmi0GBF_Dstj40-ZcJ2e1p_rE61R9"/>
+<span class="material-symbols-outlined text-slate-400 group-hover:text-red-600">keyboard_arrow_down</span>
+</div>
+</div>
+</div>
+</header>
+<div class="p-8 space-y-8">
+<!-- Hero / Title Section -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-6xl font-black font-headline text-on-surface tracking-tighter mb-2">Service Queue</h1>
+<p class="text-on-surface-variant max-w-md">Precision maintenance for the Smile Factory floor. Ensuring every gear turns with joy.</p>
+</div>
+<button class="rounded-full bg-red-600 text-white px-8 py-4 font-headline font-black flex items-center gap-3 shadow-[0_10px_30px_rgba(187,1,0,0.3)] hover:scale-105 active:scale-95 transition-all uppercase tracking-wider text-sm">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+                New Work Order
+            </button>
+</div>
+<!-- KPI Bento Grid -->
+<section class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<!-- Total Open -->
+<div class="bg-white p-6 rounded-2xl relative overflow-hidden group border border-slate-100">
+<div class="absolute -right-4 -top-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-8xl">assignment_late</span>
+</div>
+<p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Total Open</p>
+<h3 class="text-5xl font-black font-headline text-primary">24</h3>
+<div class="mt-4 flex items-center gap-1 text-[10px] font-black text-red-600 uppercase">
+<span class="material-symbols-outlined text-sm">trending_up</span> +3 since morning
+                </div>
+</div>
+<!-- In Progress -->
+<div class="bg-white p-6 rounded-2xl border border-slate-100 group">
+<p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">In Progress</p>
+<h3 class="text-5xl font-black font-headline text-secondary">08</h3>
+<div class="mt-4 flex items-center gap-1 text-[10px] font-black text-secondary uppercase">
+<span class="material-symbols-outlined text-sm">engineering</span> Active Technicians
+                </div>
+</div>
+<!-- Completed Today -->
+<div class="bg-white p-6 rounded-2xl border border-slate-100 group">
+<p class="text-[10px] font-black uppercase tracking-widest text-slate-400 mb-1">Completed Today</p>
+<h3 class="text-5xl font-black font-headline text-tertiary">12</h3>
+<div class="mt-4 flex items-center gap-1 text-[10px] font-black text-tertiary uppercase">
+<span class="material-symbols-outlined text-sm">check_circle</span> 85% Efficiency
+                </div>
+</div>
+<!-- Urgent Repairs -->
+<div class="bg-red-600 text-white p-6 rounded-2xl relative overflow-hidden shadow-[0_15px_40px_rgba(187,1,0,0.4)]">
+<div class="absolute right-4 top-4">
+<span class="material-symbols-outlined animate-pulse text-red-200">error</span>
+</div>
+<p class="text-[10px] font-black uppercase tracking-widest opacity-80 mb-1">Urgent Repairs</p>
+<h3 class="text-5xl font-black font-headline">03</h3>
+<p class="mt-4 text-[10px] font-black tracking-widest">IMMEDIATE ACTION REQUIRED</p>
+</div>
+</section>
+<!-- Work Order List Section -->
+<div class="bg-white rounded-3xl border border-slate-100 overflow-hidden shadow-sm">
+<!-- Table Header -->
+<div class="grid grid-cols-12 gap-4 px-8 py-6 bg-slate-50/50 border-b border-slate-100">
+<div class="col-span-1 text-[10px] font-black uppercase tracking-widest text-slate-400">ID</div>
+<div class="col-span-4 text-[10px] font-black uppercase tracking-widest text-slate-400">Maintenance Task / Machine</div>
+<div class="col-span-2 text-[10px] font-black uppercase tracking-widest text-slate-400 text-center">Status</div>
+<div class="col-span-2 text-[10px] font-black uppercase tracking-widest text-slate-400 text-center">Priority</div>
+<div class="col-span-2 text-[10px] font-black uppercase tracking-widest text-slate-400">Technician</div>
+<div class="col-span-1"></div>
+</div>
+<!-- Task List Items -->
+<div class="divide-y divide-slate-100">
+<!-- Item 1: Urgent -->
+<div class="grid grid-cols-12 gap-4 px-8 py-6 items-center hover:bg-slate-50 transition-colors group">
+<div class="col-span-1 font-headline font-black text-red-600">#WO-882</div>
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-red-50 flex items-center justify-center">
+<span class="material-symbols-outlined text-red-600">videogame_asset</span>
+</div>
+<div>
+<h4 class="font-black text-sm uppercase tracking-tight">Coin Jam &amp; Hopper Lock</h4>
+<p class="text-xs text-slate-500 font-medium">Machine: Dragon's Breath II [ID: SF-004]</p>
+</div>
+</div>
+<div class="col-span-2 flex justify-center">
+<span class="px-4 py-1 bg-red-600 text-white rounded-full text-[9px] font-black uppercase tracking-widest">Open</span>
+</div>
+<div class="col-span-2">
+<div class="flex items-center justify-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-600 animate-ping"></span>
+<span class="text-[10px] font-black text-red-600 uppercase tracking-widest">Urgent</span>
+</div>
+</div>
+<div class="col-span-2 flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-slate-100" data-alt="close up of a professional technician in a branded uniform, studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUYwAP_enO-YAi2opHX2lpyTJ8q1h2S7ZaELN2sYXF9yowvUS9_-MnnTZ0EoCp6w9f4Ms0DnGsOa0FakG4NluQqFvVPcOsr5VK2obxvxLcxZCqgzoqxl1IFuvWtUL087uVQXi5pfCnXZ3ThLDt76Ml5mE1hAyx7HOV6jbmBGuFPDFRvAAnbnLevlPwLmARUUkZIsfWj5kf3UjwD3SGsvVsZKI1mH5NNgcNGRUSaqLVGQpf6dFRNYfhHP2eiexZk4sObf5zvGENBaxh"/>
+<span class="text-xs font-bold text-slate-700">Marcus T.</span>
+</div>
+<div class="col-span-1 text-right">
+<button class="p-2 hover:bg-slate-200 rounded-full transition-all">
+<span class="material-symbols-outlined text-slate-400">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Item 2: In Progress -->
+<div class="grid grid-cols-12 gap-4 px-8 py-6 items-center hover:bg-slate-50 transition-colors group">
+<div class="col-span-1 font-headline font-black text-slate-400">#WO-879</div>
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-secondary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-secondary">joystick</span>
+</div>
+<div>
+<h4 class="font-black text-sm uppercase tracking-tight">Joystick Drift Calibration</h4>
+<p class="text-xs text-slate-500 font-medium">Machine: Retro Racer X [ID: SF-129]</p>
+</div>
+</div>
+<div class="col-span-2 flex justify-center">
+<span class="px-4 py-1 bg-secondary-container text-on-secondary-container rounded-full text-[9px] font-black uppercase tracking-widest">In Progress</span>
+</div>
+<div class="col-span-2 flex justify-center">
+<span class="text-[10px] font-black text-secondary uppercase tracking-widest">Medium</span>
+</div>
+<div class="col-span-2 flex items-center gap-3">
+<img class="w-8 h-8 rounded-full border border-slate-100" data-alt="portrait of a focused female engineer wearing glasses in a technical lab environment" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASxF3A7Dtl847rXRqV7_LiicsmKsoXGpPDrk0W-k6OOCZ8R2nV8HzFtbCKvnoYN9fwl_1p-LpI2ZfNkYwSJgdIc6LyGWqIoImD_3Ifb0EdE7xa89vbqSQngcho2HaJkOJuvFIgb0zeS9uXMRwWEcCAHkEj6TZMeHrnmPiHHyuYl-Iy_9EkkPLfysDgCl2n1cAMQrZylmJntqOlpgz4igj5zNsCnym3BhfJjnFFDYf3E-rxaTcL8XGGc1pPlmbxPdNB3YcRX9s4ddHE"/>
+<span class="text-xs font-bold text-slate-700">Sarah L.</span>
+</div>
+<div class="col-span-1 text-right">
+<button class="p-2 hover:bg-slate-200 rounded-full transition-all">
+<span class="material-symbols-outlined text-slate-400">more_vert</span>
+</button>
+</div>
+</div>
+<!-- Item 3: Completed -->
+<div class="grid grid-cols-12 gap-4 px-8 py-6 items-center hover:bg-slate-50 transition-colors group opacity-60">
+<div class="col-span-1 font-headline font-black text-slate-300">#WO-875</div>
+<div class="col-span-4 flex items-center gap-4">
+<div class="w-12 h-12 rounded-2xl bg-tertiary-container/20 flex items-center justify-center">
+<span class="material-symbols-outlined text-tertiary">settings_input_component</span>
+</div>
+<div>
+<h4 class="font-black text-sm uppercase tracking-tight">Display Cable Replacement</h4>
+<p class="text-xs text-slate-400 font-medium">Machine: Star Voyager [ID: SF-082]</p>
+</div>
+</div>
+<div class="col-span-2 flex justify-center">
+<span class="px-4 py-1 bg-slate-100 text-slate-400 rounded-full text-[9px] font-black uppercase tracking-widest">Completed</span>
+</div>
+<div class="col-span-2 flex justify-center">
+<span class="text-[10px] font-black text-slate-400 uppercase tracking-widest">Low</span>
+</div>
+<div class="col-span-2 flex items-center gap-3">
+<img class="w-8 h-8 rounded-full grayscale border border-slate-100" data-alt="close up of a smiling maintenance worker in high visibility vest, outdoors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCAzXpVK40WoHYssNnwY_LHrlR5TcmJCyyt3WlEYKz-4O2vooRs13HvwReG0il2YRAXe5bzJ0ZY3YhRctoAfnVWSsAEroCtbWWYOKwXWN3TUlyWermv2MvK_ElX-8s_zWQQgKPWk18Co94kCRLyVrS1PLnPty9At5b7GbLOqLzBcoLO6CUNjv5BboJ0qf0zhr7EqYVe0Cb5M0wCVSrqSnu9GZkFBPemhOeoB48n-gJAjYyEH0B9mSlfzcyYDrpAlljZNv_WAxnLFPaf"/>
+<span class="text-xs font-bold text-slate-400">Rick K.</span>
+</div>
+<div class="col-span-1 text-right">
+<button class="p-2 hover:bg-slate-200 rounded-full transition-all">
+<span class="material-symbols-outlined text-slate-400">more_vert</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Stats / Detail Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Specialized Component: Prize Gear Chip in a mini container -->
+<div class="bg-white p-8 rounded-3xl border border-slate-100 flex flex-col justify-between shadow-sm">
+<div>
+<h4 class="font-headline font-black uppercase tracking-tighter text-xl mb-6">Floor Resources</h4>
+<div class="flex flex-wrap gap-3">
+<div class="flex items-center gap-2 bg-red-600 text-white px-5 py-2.5 rounded-full group cursor-pointer shadow-md">
+<span class="material-symbols-outlined text-sm animate-[spin_4s_linear_infinite]">settings</span>
+<span class="text-xs font-black uppercase tracking-widest">Spare Joy-Gears (14)</span>
+</div>
+<div class="flex items-center gap-2 bg-slate-100 text-slate-600 px-5 py-2.5 rounded-full">
+<span class="material-symbols-outlined text-sm">confirmation_number</span>
+<span class="text-xs font-black uppercase tracking-widest">Ticket Rolls (42)</span>
+</div>
+</div>
+</div>
+<p class="text-[10px] font-bold text-slate-400 uppercase tracking-widest mt-8">Inventory synced 4 minutes ago.</p>
+</div>
+<!-- Recent Activity/Log -->
+<div class="bg-slate-50/50 p-8 rounded-3xl col-span-2 border border-slate-100">
+<h4 class="font-headline font-black uppercase tracking-tighter text-xl mb-6">Recent Machine Log</h4>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-2.5 h-2.5 mt-1.5 rounded-full bg-red-600 shadow-[0_0_10px_rgba(187,1,0,0.5)]"></div>
+<div>
+<p class="text-sm font-black uppercase tracking-tight">Ticket jams reported on level 3 central aisle.</p>
+<p class="text-[10px] text-slate-400 uppercase font-black tracking-widest mt-1">10:42 AM • Floor Manager</p>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-2.5 h-2.5 mt-1.5 rounded-full bg-secondary shadow-[0_0_10px_rgba(160,54,70,0.5)]"></div>
+<div>
+<p class="text-sm font-black uppercase tracking-tight">Sarah L. started repair on #WO-879.</p>
+<p class="text-[10px] text-slate-400 uppercase font-black tracking-widest mt-1">09:15 AM • Automated Log</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

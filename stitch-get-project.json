@@ -1,0 +1,12 @@
+{
+    "container":  "stitch/exports/get-project",
+    "description":  "Containerized Stitch get_project export.",
+    "files":  {
+                  "project":  "stitch/exports/get-project/project.json",
+                  "designTheme":  "stitch/exports/get-project/design-theme.json",
+                  "namedColors":  "stitch/exports/get-project/named-colors.json",
+                  "designSystem":  "stitch/exports/get-project/design-system.md",
+                  "screenInstances":  "stitch/exports/get-project/screen-instances.json",
+                  "metadata":  "stitch/exports/get-project/metadata.json"
+              }
+}

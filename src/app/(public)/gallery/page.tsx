@@ -3,8 +3,9 @@ import { Gamepad2, Heart, Star, Trophy, Settings } from 'lucide-react'
 import { BUSINESS_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
-  title: 'Gallery',
-  description: `Take a look inside The Smile Factory arcade! Browse photos of our ${BUSINESS_INFO.machineCount}+ arcade games, party room, prize counter, and more.`,
+  title: 'Gallery | The Smile Factory',
+  description:
+    'Explore The Smile Factory arcade gallery — arcade action, birthday smiles, prize winners, and the factory floor.',
 }
 
 const arcadePhotos = [

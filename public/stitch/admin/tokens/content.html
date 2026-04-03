@@ -1,0 +1,288 @@
+﻿<main class="ml-64 min-h-screen flex flex-col h-screen overflow-y-auto">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full bg-surface/80 backdrop-blur-md flex justify-between items-center h-16 px-8 border-b border-surface-container">
+<div class="flex items-center gap-4">
+<h2 class="text-xl font-headline font-bold text-on-background">Token Transactions</h2>
+<span class="bg-secondary-container text-on-secondary-container text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider">Live Log</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="relative hidden lg:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg" data-icon="search">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-high border-none rounded-full w-72 focus:ring-2 focus:ring-primary transition-all text-sm font-body placeholder:text-outline" placeholder="Search Tx ID, Employee..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-slate-500 hover:text-primary transition-all" data-icon="notifications">notifications</button>
+<div class="flex items-center gap-3 pl-4 border-l border-surface-container-highest">
+<div class="text-right">
+<p class="text-xs font-bold font-headline">Marcus Vane</p>
+<p class="text-[10px] text-slate-500 font-medium">Floor Supervisor</p>
+</div>
+<img alt="User Avatar" class="w-9 h-9 rounded-full border-2 border-white shadow-sm" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNfkffwWt1AczKctMTDFJsSe94UWsdvr_8hcl0O4xoAqQszNgoamOjbzn8Tu9EKybxZH8PH9ZTxgqlZv7Dps5xLISREOv_QQKH0nh2sm7EVDl_RRB7PD6j9uyazxi250LRDfHWbBEuMECiiPefdQNjZps5NEWuP369EyqXFXOZmn8irDTq4w6ft8I5cXNrn6cpyDVO-0aSAjKB1qL5C-qm9i-7QZi9Xi9YLwcVIFnqs5vf26DJMoCqEI632X-BSGJlgqLVA1dvJ402"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Page Canvas -->
+<div class="p-8 space-y-8">
+<!-- KPI Section - Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<div class="bg-white p-6 rounded-2xl relative overflow-hidden group hover:scale-[1.02] transition-transform shadow-sm">
+<div class="absolute -right-4 -top-4 opacity-[0.03] rotate-12 transition-transform group-hover:rotate-45">
+<span class="material-symbols-outlined text-8xl" data-icon="payments">payments</span>
+</div>
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-1 font-headline">Today's Revenue</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black font-headline text-on-background">$4,822.50</h3>
+<span class="text-xs font-bold text-primary flex items-center"><span class="material-symbols-outlined text-xs" data-icon="trending_up">trending_up</span> 12%</span>
+</div>
+<div class="mt-4 flex items-center gap-2">
+<div class="h-1.5 w-full bg-surface-container-high rounded-full overflow-hidden">
+<div class="h-full bg-primary w-3/4"></div>
+</div>
+<span class="text-[10px] font-bold text-outline">75%</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl relative overflow-hidden group hover:scale-[1.02] transition-transform shadow-sm">
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-outline mb-1 font-headline">Cash Sales</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black font-headline text-on-background">$1,140.00</h3>
+</div>
+<div class="mt-4 flex items-center justify-between text-[10px] font-bold">
+<span class="text-outline">24 Transactions</span>
+<span class="text-on-secondary-container bg-secondary-container px-2 py-0.5 rounded">Manual</span>
+</div>
+</div>
+<div class="bg-white p-6 rounded-2xl relative overflow-hidden group hover:scale-[1.02] transition-transform shadow-sm border-l-4 border-primary">
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-1 font-headline">Card Sales</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black font-headline text-on-background">$3,682.50</h3>
+</div>
+<div class="mt-4 flex items-center justify-between text-[10px] font-bold">
+<span class="text-outline">86 Transactions</span>
+<span class="text-tertiary font-bold">Verified</span>
+</div>
+</div>
+<div class="bg-primary p-6 rounded-2xl relative overflow-hidden group hover:scale-[1.02] transition-transform shadow-xl shadow-primary/10">
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-on-primary/60 mb-1 font-headline">Average Sale</p>
+<div class="flex items-baseline gap-2">
+<h3 class="text-3xl font-black font-headline text-on-primary">$43.84</h3>
+</div>
+<div class="mt-4 flex items-center gap-1">
+<span class="material-symbols-outlined text-on-primary text-xs" data-icon="stars" data-weight="fill" style="font-variation-settings: 'FILL' 1;">stars</span>
+<span class="text-[10px] font-bold text-on-primary">High Tier Bundle Focus</span>
+</div>
+</div>
+</div>
+<!-- Transactions Table Section -->
+<div class="bg-white rounded-2xl p-8 shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+<div>
+<h4 class="text-2xl font-black font-headline text-on-background tracking-tight">Recent Token Sales</h4>
+<p class="text-sm text-outline font-body">Real-time audit of all industrial joy distribution</p>
+</div>
+<div class="flex items-center gap-3">
+<button class="flex items-center gap-2 px-4 py-2 bg-surface hover:bg-surface-container-high rounded-full transition-all text-sm font-bold border border-surface-container text-on-surface">
+<span class="material-symbols-outlined text-lg" data-icon="filter_list">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface hover:bg-surface-container-high rounded-full transition-all text-sm font-bold border border-surface-container text-on-surface">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container text-outline text-[10px] font-black uppercase tracking-widest">
+<th class="pb-4 font-headline">Time &amp; ID</th>
+<th class="pb-4 font-headline">Amount</th>
+<th class="pb-4 font-headline">Tokens</th>
+<th class="pb-4 font-headline">Method</th>
+<th class="pb-4 font-headline">Type</th>
+<th class="pb-4 font-headline text-right">Status</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-low">
+<!-- Row 1 -->
+<tr class="hover:bg-surface/50 transition-colors group">
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-on-background">14:32:01</p>
+<p class="text-[10px] text-outline tracking-tighter">TX-882941-SF</p>
+</td>
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-primary">$120.00</p>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="token" data-weight="fill" style="font-variation-settings: 'FILL' 1;">token</span>
+</span>
+<span class="text-sm font-bold">500 Tokens</span>
+</div>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="credit_card">credit_card</span>
+<span class="text-sm font-medium">Card (*4421)</span>
+</div>
+</td>
+<td class="py-5">
+<span class="text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider bg-primary-container/20 text-primary">Bundle Pack</span>
+</td>
+<td class="py-5 text-right">
+<span class="text-[10px] font-bold text-on-surface-variant flex items-center justify-end gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Success
+                                    </span>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface/50 transition-colors group">
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-on-background">14:28:44</p>
+<p class="text-[10px] text-outline tracking-tighter">TX-882940-SF</p>
+</td>
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-primary">$25.00</p>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="token">token</span>
+</span>
+<span class="text-sm font-bold">100 Tokens</span>
+</div>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Cash</span>
+</div>
+</td>
+<td class="py-5">
+<span class="text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider bg-surface-container-highest text-outline">Standard</span>
+</td>
+<td class="py-5 text-right">
+<span class="text-[10px] font-bold text-on-surface-variant flex items-center justify-end gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Success
+                                    </span>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface/50 transition-colors group">
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-on-background">14:15:22</p>
+<p class="text-[10px] text-outline tracking-tighter">TX-882939-SF</p>
+</td>
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-primary">$80.00</p>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="token" data-weight="fill" style="font-variation-settings: 'FILL' 1;">token</span>
+</span>
+<span class="text-sm font-bold">320 Tokens</span>
+</div>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="credit_card">credit_card</span>
+<span class="text-sm font-medium">Card (*0199)</span>
+</div>
+</td>
+<td class="py-5">
+<span class="text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider bg-primary-container/20 text-primary">Bundle Pack</span>
+</td>
+<td class="py-5 text-right">
+<span class="text-[10px] font-bold text-on-surface-variant flex items-center justify-end gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Success
+                                    </span>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface/50 transition-colors group">
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-on-background">13:58:10</p>
+<p class="text-[10px] text-outline tracking-tighter">TX-882938-SF</p>
+</td>
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-primary">$50.00</p>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="token">token</span>
+</span>
+<span class="text-sm font-bold">200 Tokens</span>
+</div>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="credit_card">credit_card</span>
+<span class="text-sm font-medium">Card (*8823)</span>
+</div>
+</td>
+<td class="py-5">
+<span class="text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider bg-surface-container-highest text-outline">Standard</span>
+</td>
+<td class="py-5 text-right">
+<span class="text-[10px] font-bold text-error flex items-center justify-end gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-error"></span> Voided
+                                    </span>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-surface/50 transition-colors group">
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-on-background">13:42:55</p>
+<p class="text-[10px] text-outline tracking-tighter">TX-882937-SF</p>
+</td>
+<td class="py-5">
+<p class="text-sm font-bold font-headline text-primary">$200.00</p>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="w-7 h-7 rounded-full bg-tertiary-container text-on-tertiary-container flex items-center justify-center">
+<span class="material-symbols-outlined text-[14px]" data-icon="token" data-weight="fill" style="font-variation-settings: 'FILL' 1;">token</span>
+</span>
+<span class="text-sm font-bold">1000 Tokens</span>
+</div>
+</td>
+<td class="py-5">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-outline" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Cash</span>
+</div>
+</td>
+<td class="py-5">
+<span class="text-[10px] px-2 py-0.5 rounded-full font-bold uppercase tracking-wider bg-primary-container/20 text-primary">Ultra Pack</span>
+</td>
+<td class="py-5 text-right">
+<span class="text-[10px] font-bold text-on-surface-variant flex items-center justify-end gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Success
+                                    </span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Pagination -->
+<div class="mt-8 flex items-center justify-between">
+<p class="text-xs text-outline font-medium">Showing 1 to 5 of 124 entries</p>
+<div class="flex items-center gap-1">
+<button class="w-8 h-8 rounded-full border border-surface-container flex items-center justify-center text-outline hover:bg-surface transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-8 h-8 rounded-full bg-primary text-on-primary text-xs font-bold font-headline shadow-md">1</button>
+<button class="w-8 h-8 rounded-full border border-surface-container text-outline text-xs font-bold font-headline hover:bg-surface transition-all">2</button>
+<button class="w-8 h-8 rounded-full border border-surface-container text-outline text-xs font-bold font-headline hover:bg-surface transition-all">3</button>
+<button class="w-8 h-8 rounded-full border border-surface-container flex items-center justify-center text-outline hover:bg-surface transition-all">
+<span class="material-symbols-outlined text-sm" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Promotion / Announcement Area - Flash Campaign Removed -->
+</div>
+</main>

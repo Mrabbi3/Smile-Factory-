@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>POS Terminal - Smile Factory</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;600;700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-container": "#852233",
+              "error-container": "#f74b6d",
+              "tertiary-container": "#d697ff",
+              "tertiary-dim": "#6e3395",
+              "on-secondary": "#ffefef",
+              "surface-dim": "#d3d5d5",
+              "on-background": "#2d2f2f",
+              "primary": "#bb0100",
+              "surface-container-low": "#f0f1f1",
+              "surface-container-high": "#e1e3e3",
+              "primary-fixed": "#ff7763",
+              "on-primary-fixed-variant": "#600000",
+              "secondary-container": "#ffc2c6",
+              "surface": "#f6f6f6",
+              "on-primary-container": "#4f0000",
+              "surface-bright": "#f6f6f6",
+              "inverse-surface": "#0c0f0f",
+              "on-secondary-fixed": "#6a0c22",
+              "on-tertiary-container": "#4c0a73",
+              "outline-variant": "#acadad",
+              "on-primary": "#ffefed",
+              "on-error-container": "#510017",
+              "secondary-fixed-dim": "#ffaeb4",
+              "on-secondary-fixed-variant": "#912b3c",
+              "error-dim": "#a70138",
+              "tertiary-fixed-dim": "#c889f1",
+              "primary-dim": "#a40100",
+              "primary-fixed-dim": "#ff5b47",
+              "on-surface": "#2d2f2f",
+              "surface-tint": "#bb0100",
+              "error": "#b41340",
+              "background": "#f6f6f6",
+              "on-primary-fixed": "#000000",
+              "inverse-on-surface": "#9c9d9d",
+              "outline": "#767777",
+              "on-surface-variant": "#5a5c5c",
+              "surface-container-highest": "#dbdddd",
+              "tertiary": "#7b40a2",
+              "inverse-primary": "#ff5540",
+              "secondary": "#a03646",
+              "primary-container": "#ff7763",
+              "on-tertiary-fixed": "#2a0044",
+              "on-error": "#ffefef",
+              "surface-variant": "#dbdddd",
+              "tertiary-fixed": "#d697ff",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary": "#fdeeff",
+              "surface-container": "#e7e8e8",
+              "secondary-dim": "#902a3b",
+              "secondary-fixed": "#ffc2c6",
+              "on-tertiary-fixed-variant": "#56197d"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        body {
+            font-family: 'Work Sans', sans-serif;
+            background-color: #f6f6f6;
+            color: #2d2f2f;
+            overflow: hidden;
+        }
+        h1, h2, h3, .brand-font {
+            font-family: 'Epilogue', sans-serif;
+        }
+        .active-tab {
+            background-color: #fef2f2;
+            color: #bb0100;
+            border-right: 4px solid #bb0100;
+        }
+        .industrial-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18l1.5-1.5M20 20.5V23l-1.5 1.5M20 20.5h2.5L24 19M20 20.5H17.5L16 22' stroke='%23bb0100' stroke-width='0.5' fill='none' fill-rule='evenodd' opacity='0.03'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="flex h-screen overflow-hidden">
+<!-- SIDE NAV BAR (Synced with SCREEN_131) -->
+<aside class="fixed left-0 top-0 h-full w-72 z-50 flex flex-col bg-white border-r border-gray-200 shadow-sm overflow-y-auto">
+<div class="p-8">
+<img alt="Smile Factory Logo" class="w-full max-w-[180px] h-auto mb-4" src="/branding/smile-factory-logo.png"/>
+<p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Joy Assembler Admin</p>
+</div>
+<nav class="flex-1 px-4 pb-10 space-y-6">
+<!-- Main -->
+<div>
+<a class="flex items-center gap-3 px-4 py-3 font-bold transition-all text-gray-500 hover:text-primary hover:bg-red-50 rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="grid_view">grid_view</span>
+<span class="text-sm">Dashboard</span>
+</a>
+</div>
+<!-- Operations Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Operations</p>
+<a class="flex items-center gap-3 px-4 py-2 active-tab font-bold transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-sm font-bold">POS/ Token Sales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="receipt_long">receipt_long</span>
+<span class="text-sm font-medium">Token Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="inventory">inventory</span>
+<span class="text-sm font-medium">Prize Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="event_note">event_note</span>
+<span class="text-sm font-medium">Bookings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="build_circle">build_circle</span>
+<span class="text-sm font-medium">Work Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="text-sm font-medium">Machines</span>
+</a>
+</div>
+<!-- People Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">People</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="groups">groups</span>
+<span class="text-sm font-medium">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="badge">badge</span>
+<span class="text-sm font-medium">Employee</span>
+</a>
+</div>
+<!-- Finance & Rewards Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Finance &amp; Rewards</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="stars">stars</span>
+<span class="text-sm font-medium">Loyalty</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-sm font-medium">Coupons</span>
+</a>
+</div>
+<!-- Administration Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Administration</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="assessment">assessment</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="description">description</span>
+<span class="text-sm font-medium">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- MAIN CANVAS -->
+<main class="flex-1 ml-72 flex flex-col h-screen industrial-pattern">
+<!-- TOP APP BAR -->
+<header class="flex justify-between items-center w-full px-8 py-4 bg-white/80 backdrop-blur-xl z-40">
+<div class="flex items-center gap-4">
+<h1 class="font-epilogue font-bold text-3xl text-neutral-800 tracking-tighter uppercase italic">Token Sales</h1>
+<div class="h-6 w-[2px] bg-neutral-200"></div>
+<div class="flex items-center gap-2 px-4 py-2 bg-surface-container-highest rounded-full">
+<span class="material-symbols-outlined text-neutral-500 text-sm" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-sm font-body" placeholder="Search customer or game..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex flex-col items-end mr-4">
+<p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">Available Supply</p>
+<p class="text-lg font-epilogue font-black text-primary italic">12,402 TOKENS</p>
+</div>
+<div class="flex gap-4">
+<span class="material-symbols-outlined text-neutral-500 cursor-pointer hover:text-primary transition-colors" data-icon="barcode_scanner">barcode_scanner</span>
+<span class="material-symbols-outlined text-neutral-500 cursor-pointer hover:text-primary transition-colors" data-icon="notifications">notifications</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border-2 border-primary/20">
+<img alt="User Profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBh7mHa8zjtvuI_GmpCFBk03nPmC8VtpZ55KgzfuwyCfdHbTHyQHH3-yScVxo6Ms03JMJPBrjW-obLfsWFj7HxMO4K1UttOiZVgt94K2vu2pkYnYAyujWJI0SRAF5gcpUg_4hFrCLSDo3jUJLRzOmM9UGifJcX5R1PBgkeESF-0_lZ1bCCrmsc8FiASbcsu_-M6kxYpgUO9JZT0C6Hubzr6icplyDLmexsK5l6Bedy7SQShS13_rCjb1CyuPkC7XRz0nx3W9Y4I9HyQ"/>
+</div>
+</div>
+</header>
+<!-- CONTENT AREA -->
+<div class="flex-1 flex overflow-hidden p-6 gap-6">
+<!-- LEFT: TOKEN PACKAGES (Grid Style from SCREEN_10) -->
+<div class="flex-[2] flex flex-col gap-6">
+<div class="flex items-end justify-between">
+<div>
+<span class="text-primary font-bold tracking-widest text-xs uppercase">Assembly Line POS / Station 04</span>
+<h2 class="text-4xl font-black font-epilogue mt-1 uppercase italic tracking-tighter text-on-surface">Choose Package</h2>
+</div>
+<div class="flex gap-2">
+<button class="px-4 py-2 rounded-lg bg-surface-container-high text-on-surface font-semibold text-sm">All Items</button>
+<button class="px-4 py-2 rounded-lg bg-primary text-on-primary font-semibold text-sm">Tokens Only</button>
+<button class="px-4 py-2 rounded-lg bg-surface-container-high text-on-surface font-semibold text-sm">Merchandise</button>
+</div>
+</div>
+<!-- GRID FOR PACKAGES (Style from SCREEN_10) -->
+<div class="grid grid-cols-2 gap-6 flex-1">
+<!-- $1 Package -->
+<button class="group relative flex flex-col items-start justify-between p-8 bg-white rounded-lg border-b-4 border-primary transition-all hover:-translate-y-1 hover:shadow-xl active:scale-95 text-left overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="token">token</span>
+</div>
+<div class="z-10 w-full">
+<span class="inline-block px-3 py-1 bg-primary text-on-primary text-[10px] font-black rounded-full mb-4 uppercase">Starter Pack</span>
+<h2 class="text-7xl font-black font-epilogue text-on-surface mb-2 tracking-tighter italic">$1</h2>
+<p class="text-3xl font-black font-epilogue text-primary-dim italic">3 Tokens</p>
+</div>
+<div class="flex items-center gap-2 text-stone-400 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="text-xs font-black font-epilogue uppercase tracking-widest">Add to Order</span>
+</div>
+</button>
+<!-- $5 Package -->
+<button class="group relative flex flex-col items-start justify-between p-8 bg-white rounded-lg border-b-4 border-primary transition-all hover:-translate-y-1 hover:shadow-xl active:scale-95 text-left overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="database">database</span>
+</div>
+<div class="z-10 w-full">
+<span class="inline-block px-3 py-1 bg-secondary text-on-secondary text-[10px] font-black rounded-full mb-4 uppercase">Player Choice</span>
+<h2 class="text-7xl font-black font-epilogue text-on-surface mb-2 tracking-tighter italic">$5</h2>
+<p class="text-3xl font-black font-epilogue text-primary-dim italic">15 Tokens</p>
+</div>
+<div class="flex items-center gap-2 text-stone-400 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="text-xs font-black font-epilogue uppercase tracking-widest">Add to Order</span>
+</div>
+</button>
+<!-- $10 Package -->
+<button class="group relative flex flex-col items-start justify-between p-8 bg-white rounded-lg border-b-4 border-primary transition-all hover:-translate-y-1 hover:shadow-xl active:scale-95 text-left overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="rocket_launch">rocket_launch</span>
+</div>
+<div class="z-10 w-full">
+<span class="inline-block px-3 py-1 bg-tertiary text-on-tertiary text-[10px] font-black rounded-full mb-4 uppercase">Power User</span>
+<h2 class="text-7xl font-black font-epilogue text-on-surface mb-2 tracking-tighter italic">$10</h2>
+<p class="text-3xl font-black font-epilogue text-primary-dim italic">30 Tokens</p>
+</div>
+<div class="flex items-center gap-2 text-stone-400 group-hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="text-xs font-black font-epilogue uppercase tracking-widest">Add to Order</span>
+</div>
+</button>
+<!-- $20 Package -->
+<button class="group relative overflow-hidden flex flex-col items-start justify-between p-8 bg-primary text-on-primary rounded-lg shadow-2xl transition-all hover:-translate-y-1 active:scale-95 text-left border-b-4 border-primary-dim">
+<div class="absolute top-0 right-0 p-4 opacity-20">
+<span class="material-symbols-outlined text-[140px]" data-icon="stars">stars</span>
+</div>
+<div class="z-10 w-full">
+<span class="inline-block px-3 py-1 bg-white text-primary text-[10px] font-black rounded-full mb-4 uppercase">Best Value (+6 Bonus)</span>
+<h2 class="text-8xl font-black font-epilogue text-white mb-2 tracking-tighter italic">$20</h2>
+<p class="text-4xl font-black font-epilogue text-white italic">66 Tokens</p>
+</div>
+<div class="flex items-center gap-2 text-white/70">
+<span class="material-symbols-outlined" data-icon="add_circle" style="font-variation-settings: 'FILL' 1;">add_circle</span>
+<span class="text-xs font-black font-epilogue uppercase tracking-widest">Add to Order</span>
+</div>
+</button>
+</div>
+</div>
+<!-- RIGHT: CURRENT SALE PANEL (Summary - Clean & Professional) -->
+<div class="flex-1 max-w-md flex flex-col bg-white rounded-lg shadow-2xl shadow-neutral-200/50 overflow-hidden border border-neutral-100">
+<!-- Customer Header -->
+<div class="p-8 border-b border-surface-container-high bg-stone-50/50">
+<div class="flex items-center justify-between mb-6">
+<h3 class="font-epilogue font-black text-xl uppercase italic text-primary">Current Sale</h3>
+<button class="p-2 hover:bg-neutral-100 rounded-full transition-colors">
+<span class="material-symbols-outlined text-stone-400 text-xl" data-icon="delete">delete</span>
+</button>
+</div>
+<div class="flex items-center gap-4 p-4 bg-white rounded-xl shadow-sm border border-neutral-100">
+<div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined" data-icon="person_search">person_search</span>
+</div>
+<div class="flex-1">
+<p class="text-[10px] font-black text-stone-400 uppercase tracking-widest">Customer</p>
+<p class="font-bold text-sm">Guest Player #4402</p>
+</div>
+<button class="text-primary text-xs font-bold underline underline-offset-4">Change</button>
+</div>
+</div>
+<!-- Items List -->
+<div class="flex-1 overflow-y-auto p-8 space-y-6">
+<!-- Item 1 -->
+<div class="flex items-center justify-between group">
+<div class="flex items-center gap-4">
+<div class="w-10 h-10 bg-neutral-100 rounded flex items-center justify-center font-black font-epilogue text-sm">1x</div>
+<div>
+<p class="font-bold text-sm text-on-surface">$20 Value Pack</p>
+<p class="text-[10px] font-medium text-stone-500 uppercase tracking-wider">66 Tokens Added</p>
+</div>
+</div>
+<div class="text-right">
+<p class="font-black font-epilogue text-sm">$20.00</p>
+</div>
+</div>
+<!-- Empty Space Industrial Graphic -->
+<div class="flex-1 flex flex-col items-center justify-center py-10 opacity-10">
+<span class="material-symbols-outlined text-6xl" data-icon="shopping_basket">shopping_basket</span>
+<p class="text-[10px] uppercase tracking-widest font-black mt-2">Assembly Line</p>
+<div class="h-px w-32 bg-primary mt-4"></div>
+</div>
+</div>
+<!-- Payment Summary -->
+<div class="p-8 bg-stone-50 border-t border-neutral-100 space-y-4">
+<div class="space-y-2">
+<div class="flex justify-between text-stone-500 text-xs font-bold uppercase tracking-wider">
+<span>Subtotal</span>
+<span>$20.00</span>
+</div>
+<div class="flex justify-between text-stone-500 text-xs font-bold uppercase tracking-wider">
+<span>Factory Tax (0%)</span>
+<span>$0.00</span>
+</div>
+</div>
+<div class="flex justify-between items-end pt-4 border-t border-neutral-200">
+<div class="flex flex-col">
+<span class="text-[10px] font-black text-stone-400 uppercase tracking-tighter">Total Amount</span>
+<span class="font-epilogue font-black text-5xl text-on-surface tracking-tighter italic">$20.00</span>
+</div>
+<div class="text-right">
+<p class="text-[10px] font-black text-primary uppercase tracking-widest">Total Tokens</p>
+<p class="text-2xl font-black font-epilogue text-primary italic">66</p>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3 mt-6">
+<button class="bg-neutral-200/50 py-4 rounded-lg font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-neutral-200 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="payments">payments</span>
+                        Cash
+                    </button>
+<button class="bg-neutral-200/50 py-4 rounded-lg font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-neutral-200 transition-colors">
+<span class="material-symbols-outlined text-sm" data-icon="credit_card">credit_card</span>
+                        Card
+                    </button>
+</div>
+<button class="w-full mt-4 py-6 bg-primary text-on-primary rounded-full font-epilogue font-black text-xl italic uppercase tracking-tighter flex items-center justify-center gap-3 shadow-xl shadow-primary/20 hover:scale-[1.01] active:scale-95 transition-all">
+                    Complete Sale
+                    <span class="material-symbols-outlined text-2xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</button>
+<p class="text-[8px] text-center text-stone-400 mt-4 uppercase font-bold tracking-[0.3em]">Transaction ID: SF-POS-88291-TX</p>
+</div>
+</div>
+</div>
+<!-- FOOTER STATUS -->
+<footer class="h-10 bg-white/80 border-t border-neutral-200 flex items-center px-8 justify-between text-[10px] font-bold text-neutral-400 uppercase tracking-widest">
+<div class="flex gap-6">
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> Terminal #04 Active</span>
+<span class="flex items-center gap-1"><span class="w-2 h-2 rounded-full bg-green-500"></span> Cloud Sync Enabled</span>
+</div>
+<div>
+            System Version 4.2.0-Poppy
+        </div>
+</footer>
+</main>
+</body></html>

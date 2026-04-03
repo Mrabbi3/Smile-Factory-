@@ -1,3 +1,6 @@
+import type { Metadata } from 'next'
+import { Clock3, Mail, MapPin, Phone, Rocket, Settings } from 'lucide-react'
+import PhotoFramePlaceholder from '../../../components/public/photo-frame-placeholder'
 'use client'
 
 import { useActionState, useEffect, useState } from 'react'
@@ -12,22 +15,16 @@ import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { BUSINESS_INFO } from '@/lib/constants'
-import { submitContactForm } from './actions'
+
+export const metadata: Metadata = {
+  title: 'Contact | The Smile Factory',
+  description: 'Contact The Smile Factory — arcade party bookings, events, and general support.',
+}
+
+const blueprintPattern =
+  "url(\"data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20z' fill='%23e5e7eb' fill-opacity='0.35'/%3E%3C/svg%3E\")"
 
 export default function ContactPage() {
-  const [state, formAction, isPending] = useActionState(submitContactForm, null)
-  const [submitted, setSubmitted] = useState(false)
-
-  useEffect(() => {
-    if (state?.success) {
-      setSubmitted(true)
-      toast.success('Message sent! Check your email for a confirmation.')
-    }
-    if (state?.error) {
-      toast.error(state.error)
-    }
-  }, [state])
-
   return (
     <>
       {/* Hero */}

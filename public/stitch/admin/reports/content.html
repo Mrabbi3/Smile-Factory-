@@ -1,0 +1,218 @@
+﻿<main class="ml-64 min-h-screen p-8 lg:p-12">
+<!-- Top Header Area -->
+<header class="flex justify-between items-end mb-12 border-l-4 border-primary pl-6">
+<div>
+<h2 class="font-headline font-black text-5xl text-on-background tracking-tighter uppercase">Reports &amp; Analytics</h2>
+<p class="text-on-surface-variant font-medium mt-2">Assembly line performance and revenue diagnostics.</p>
+</div>
+<div class="flex items-center gap-4">
+<button class="bg-surface-container-highest p-3 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="calendar_today">calendar_today</span>
+</button>
+<button class="bg-surface-container-highest p-3 rounded-full hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined" data-icon="download">download</span>
+</button>
+</div>
+</header>
+<!-- Stats Row -->
+<section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+<!-- Revenue -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-primary-container/20 p-3 rounded-2xl text-primary">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+</div>
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">+12.5%</span>
+</div>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Revenue</p>
+<h3 class="font-headline text-3xl font-black mt-1">$42,920.00</h3>
+<div class="mt-4 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="bg-primary h-full w-3/4"></div>
+</div>
+</div>
+<!-- Expenses -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-secondary-container/20 p-3 rounded-2xl text-secondary">
+<span class="material-symbols-outlined" data-icon="shopping_cart">shopping_cart</span>
+</div>
+<span class="text-xs font-bold text-red-600 bg-red-50 px-2 py-1 rounded-full">+4.2%</span>
+</div>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Expenses</p>
+<h3 class="font-headline text-3xl font-black mt-1">$18,450.50</h3>
+<div class="mt-4 h-1 w-full bg-surface-container-low rounded-full overflow-hidden">
+<div class="bg-secondary h-full w-1/3"></div>
+</div>
+</div>
+<!-- Net Profit -->
+<div class="bg-primary text-on-primary p-6 rounded-lg shadow-xl shadow-primary/20 transform -rotate-1">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-white/20 p-3 rounded-2xl text-on-primary">
+<span class="material-symbols-outlined" data-icon="trending_up" style="font-variation-settings: 'FILL' 1;">trending_up</span>
+</div>
+</div>
+<p class="text-on-primary/70 text-xs font-bold uppercase tracking-widest">Net Profit</p>
+<h3 class="font-headline text-3xl font-black mt-1">$24,469.50</h3>
+<p class="mt-4 text-xs font-medium text-on-primary/80 italic">Precision optimized growth</p>
+</div>
+<!-- Bookings -->
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm group hover:shadow-md transition-shadow">
+<div class="flex justify-between items-start mb-4">
+<div class="bg-tertiary-container/20 p-3 rounded-2xl text-tertiary">
+<span class="material-symbols-outlined" data-icon="confirmation_number">confirmation_number</span>
+</div>
+<span class="text-xs font-bold text-emerald-600 bg-emerald-50 px-2 py-1 rounded-full">+28</span>
+</div>
+<p class="text-on-surface-variant text-xs font-bold uppercase tracking-widest">Bookings</p>
+<h3 class="font-headline text-3xl font-black mt-1">1,248</h3>
+<div class="flex gap-1 mt-4">
+<div class="h-2 w-full bg-tertiary rounded-full opacity-20"></div>
+<div class="h-2 w-full bg-tertiary rounded-full opacity-40"></div>
+<div class="h-2 w-full bg-tertiary rounded-full opacity-100"></div>
+</div>
+</div>
+</section>
+<!-- Tabs Navigation -->
+<nav class="flex gap-8 mb-8 border-b border-outline-variant/30">
+<button class="pb-4 text-primary font-bold border-b-4 border-primary px-2 transition-all">Revenue</button>
+<button class="pb-4 text-on-surface-variant hover:text-on-surface font-medium px-2 transition-all">Inventory</button>
+<button class="pb-4 text-on-surface-variant hover:text-on-surface font-medium px-2 transition-all">Booking</button>
+<button class="pb-4 text-on-surface-variant hover:text-on-surface font-medium px-2 transition-all">Expenses</button>
+</nav>
+<!-- Main Analytics Bento -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<!-- Daily Revenue Bar Graph -->
+<div class="lg:col-span-2 bg-surface-container-lowest rounded-lg p-8">
+<div class="flex justify-between items-center mb-10">
+<div>
+<h4 class="font-headline font-bold text-xl uppercase tracking-tight">Daily Revenue Flow</h4>
+<p class="text-sm text-on-surface-variant">Last 7 operational days</p>
+</div>
+<div class="flex gap-2">
+<div class="flex items-center gap-1">
+<span class="w-3 h-3 rounded-full bg-primary"></span>
+<span class="text-xs font-bold">POS</span>
+</div>
+<div class="flex items-center gap-1 ml-2">
+<span class="w-3 h-3 rounded-full bg-secondary"></span>
+<span class="text-xs font-bold">Online</span>
+</div>
+</div>
+</div>
+<!-- Simulated Bar Chart -->
+<div class="flex items-end justify-between h-64 gap-4 px-4">
+<div class="flex flex-col items-center flex-1 group">
+<div class="w-full space-y-1 flex flex-col justify-end">
+<div class="bg-secondary w-full h-12 rounded-t-sm group-hover:opacity-80 transition-opacity"></div>
+<div class="bg-primary w-full h-24 rounded-b-sm group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="mt-4 text-xs font-bold text-on-surface-variant">MON</span>
+</div>
+<div class="flex flex-col items-center flex-1 group">
+<div class="w-full space-y-1 flex flex-col justify-end">
+<div class="bg-secondary w-full h-16 rounded-t-sm group-hover:opacity-80 transition-opacity"></div>
+<div class="bg-primary w-full h-32 rounded-b-sm group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="mt-4 text-xs font-bold text-on-surface-variant">TUE</span>
+</div>
+<div class="flex flex-col items-center flex-1 group">
+<div class="w-full space-y-1 flex flex-col justify-end">
+<div class="bg-secondary w-full h-8 rounded-t-sm group-hover:opacity-80 transition-opacity"></div>
+<div class="bg-primary w-full h-40 rounded-b-sm group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="mt-4 text-xs font-bold text-on-surface-variant">WED</span>
+</div>
+<div class="flex flex-col items-center flex-1 group">
+<div class="w-full space-y-1 flex flex-col justify-end">
+<div class="bg-secondary w-full h-24 rounded-t-sm group-hover:opacity-80 transition-opacity"></div>
+<div class="bg-primary w-full h-36 rounded-b-sm group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="mt-4 text-xs font-bold text-on-surface-variant">THU</span>
+</div>
+<div class="flex flex-col items-center flex-1 group">
+<div class="w-full space-y-1 flex flex-col justify-end">
+<div class="bg-secondary w-full h-14 rounded-t-sm group-hover:opacity-80 transition-opacity"></div>
+<div class="bg-primary w-full h-52 rounded-b-sm group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="mt-4 text-xs font-bold text-on-surface-variant">FRI</span>
+</div>
+<div class="flex flex-col items-center flex-1 group">
+<div class="w-full space-y-1 flex flex-col justify-end">
+<div class="bg-secondary w-full h-20 rounded-t-sm group-hover:opacity-80 transition-opacity"></div>
+<div class="bg-primary w-full h-44 rounded-b-sm group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="mt-4 text-xs font-bold text-on-surface-variant">SAT</span>
+</div>
+<div class="flex flex-col items-center flex-1 group">
+<div class="w-full space-y-1 flex flex-col justify-end">
+<div class="bg-secondary w-full h-10 rounded-t-sm group-hover:opacity-80 transition-opacity"></div>
+<div class="bg-primary w-full h-28 rounded-b-sm group-hover:opacity-80 transition-opacity"></div>
+</div>
+<span class="mt-4 text-xs font-bold text-on-surface-variant">SUN</span>
+</div>
+</div>
+</div>
+<!-- Payment Breakdown Pie Chart -->
+<div class="bg-surface-container-lowest rounded-lg p-8 flex flex-col">
+<h4 class="font-headline font-bold text-xl uppercase tracking-tight mb-8">Payment Mix</h4>
+<div class="relative w-48 h-48 mx-auto mb-8">
+<!-- Faux SVG Pie Chart -->
+<svg class="w-full h-full transform -rotate-90" viewbox="0 0 36 36">
+<path class="text-primary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="60, 100" stroke-width="6"></path>
+<path class="text-secondary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="25, 100" stroke-dashoffset="-60" stroke-width="6"></path>
+<path class="text-tertiary" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-dasharray="15, 100" stroke-dashoffset="-85" stroke-width="6"></path>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="text-center">
+<span class="block font-headline font-black text-2xl">100%</span>
+<span class="text-[10px] uppercase font-bold text-on-surface-variant">Verified</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-primary"></span>
+<span class="font-medium">Credit Card</span>
+</div>
+<span class="font-bold">60%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-secondary"></span>
+<span class="font-medium">Gift Tokens</span>
+</div>
+<span class="font-bold">25%</span>
+</div>
+<div class="flex justify-between items-center text-sm">
+<div class="flex items-center gap-2">
+<span class="w-3 h-3 rounded-sm bg-tertiary"></span>
+<span class="font-medium">Cash/Manual</span>
+</div>
+<span class="font-bold">15%</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer Analysis -->
+<footer class="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+<div class="bg-surface-container-low p-6 rounded-lg border-l-4 border-primary">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-primary" data-icon="lightbulb">lightbulb</span>
+<h5 class="font-headline font-bold uppercase text-xs tracking-widest">Revenue Diagnosis</h5>
+</div>
+<p class="text-sm leading-relaxed text-on-surface-variant">
+                    Daily revenue peaked on Friday, correlating with the <span class="text-primary font-bold">Midnight Madness</span> event. POS transactions remain our primary driver, contributing 78% of the total volume. Online bookings saw a slight dip on Wednesday, suggesting a need for mid-week promotional triggers.
+                </p>
+</div>
+<div class="bg-surface-container-low p-6 rounded-lg border-l-4 border-tertiary">
+<div class="flex items-center gap-2 mb-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="analytics">analytics</span>
+<h5 class="font-headline font-bold uppercase text-xs tracking-widest">Payment Insights</h5>
+</div>
+<p class="text-sm leading-relaxed text-on-surface-variant">
+                    The payment breakdown indicates a <span class="text-tertiary font-bold">significant shift</span> towards digital tokens. Credit card processing fees remain within expected margins. Recommended Action: Integrate Apple Pay in the mobile app to capture the remaining 15% manual cash transactions.
+                </p>
+</div>
+</footer>
+</main>

@@ -1,30 +1,30 @@
-'use client'
+﻿import { StitchPageRenderer } from '@/components/admin/stitch-page-renderer'
 
-import { useEffect, useState } from 'react'
-import { createClient } from '@/lib/supabase/client'
-import { useAuth } from '@/hooks/use-auth'
-import { toast } from 'sonner'
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { Skeleton } from '@/components/ui/skeleton'
-import { Separator } from '@/components/ui/separator'
-import Link from 'next/link'
-import { format, subDays, startOfDay } from 'date-fns'
-import { safeFormatDate } from '@/lib/utils'
-import {
-  DollarSign, Coins, TrendingUp, Calendar, ShoppingCart,
-  ClipboardList, Trophy, AlertTriangle, Plus, ArrowUpRight,
-  Users, Package
-} from 'lucide-react'
-import { AIAnalytics } from '@/components/admin/ai-analytics'
-import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip, ResponsiveContainer, BarChart, Bar
-} from 'recharts'
+const allowedSections = new Set([
+  'dashboard',
+  'pos',
+  'tokens',
+  'inventory',
+  'bookings',
+  'work-orders',
+  'machines',
+  'customers',
+  'employees',
+  'expenses',
+  'loyalty',
+  'coupons',
+  'reports',
+  'documents',
+])
 
-const currency = (n: number) =>
-  new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(n)
+export default async function DashboardPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ section?: string }>
+}) {
+  const resolvedSearchParams = await searchParams
+  const section = resolvedSearchParams?.section
+  const routeKey = section && allowedSections.has(section) ? section : 'dashboard'
 
 export default function AdminDashboard() {
   const { profile } = useAuth()
@@ -269,3 +269,4 @@ export default function AdminDashboard() {
     </div>
   )
 }
+

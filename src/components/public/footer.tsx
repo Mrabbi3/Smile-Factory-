@@ -17,6 +17,9 @@ const legalLinks = [
 ]
 
 export function Footer() {
+  const factoryPattern =
+    "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E\")"
+
   return (
     <footer className="w-full bg-zinc-50 text-zinc-800 relative border-t border-zinc-200">
       <div className="absolute inset-0 factory-pattern opacity-10 pointer-events-none" />

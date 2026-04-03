@@ -1,0 +1,8 @@
+{
+    "container":  "stitch/exports/screens",
+    "description":  "Containerized Stitch get_screen export for the home page reference.",
+    "files":  {
+                  "screen":  "stitch/exports/screens/home-page-enhanced-logo-branding.json",
+                  "index":  "stitch/exports/screens/index.json"
+              }
+}

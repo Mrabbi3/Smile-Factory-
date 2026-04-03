@@ -1,0 +1,17 @@
+[
+    {
+        "name":  "get_project",
+        "description":  "Retrieves the details of a specific Stitch project using its project name.",
+        "file":  "stitch/exports/tools/get-project.json"
+    },
+    {
+        "name":  "list_screens",
+        "description":  "Lists all screens within a given Stitch project.",
+        "file":  "stitch/exports/tools/list-screens.json"
+    },
+    {
+        "name":  "get_screen",
+        "description":  "Retrieves the details of a specific screen within a project.",
+        "file":  "stitch/exports/tools/get-screen.json"
+    }
+]
