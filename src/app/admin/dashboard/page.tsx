@@ -1,30 +1,35 @@
-﻿import { StitchPageRenderer } from '@/components/admin/stitch-page-renderer'
+﻿'use client'
 
-const allowedSections = new Set([
-  'dashboard',
-  'pos',
-  'tokens',
-  'inventory',
-  'bookings',
-  'work-orders',
-  'machines',
-  'customers',
-  'employees',
-  'expenses',
-  'loyalty',
-  'coupons',
-  'reports',
-  'documents',
-])
-
-export default async function DashboardPage({
-  searchParams,
-}: {
-  searchParams?: Promise<{ section?: string }>
-}) {
-  const resolvedSearchParams = await searchParams
-  const section = resolvedSearchParams?.section
-  const routeKey = section && allowedSections.has(section) ? section : 'dashboard'
+import { useEffect, useState } from 'react'
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase/client'
+import { useAuth } from '@/hooks/use-auth'
+import { Skeleton } from '@/components/ui/skeleton'
+import { Badge } from '@/components/ui/badge'
+import { AIAnalytics } from '@/components/admin/ai-analytics'
+import { safeFormatDate, currency } from '@/lib/utils'
+import { startOfDay, subDays, format } from 'date-fns'
+import { toast } from 'sonner'
+import {
+  DollarSign,
+  TrendingUp,
+  Coins,
+  ShoppingCart,
+  Calendar,
+  Trophy,
+  ClipboardList,
+  Plus,
+  AlertTriangle,
+} from 'lucide-react'
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from 'recharts'
 
 export default function AdminDashboard() {
   const { profile } = useAuth()
@@ -269,4 +274,3 @@ export default function AdminDashboard() {
     </div>
   )
 }
-
