@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { Zap, Settings, Award, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BUSINESS_INFO } from '@/lib/constants'
@@ -185,6 +186,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   )
 }

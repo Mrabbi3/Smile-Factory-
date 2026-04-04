@@ -12,3 +12,7 @@ export function safeFormatDate(value: unknown, pattern: string, fallback = '—'
   if (isNaN(date.getTime())) return fallback
   return format(date, pattern)
 }
+
+export function currency(amount: number): string {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(amount)
+}

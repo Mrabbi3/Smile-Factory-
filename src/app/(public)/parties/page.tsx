@@ -1,7 +1,5 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import { ArrowDown, Check, Eye } from 'lucide-react'
-import PhotoFramePlaceholder from '../../../components/public/photo-frame-placeholder'
 import {
   PartyPopper, Users, Clock, ArrowRight, Phone, ArrowDown, Eye,
   CheckCircle, UserPlus, Pizza, Cake, Gift, Settings, Info,
@@ -126,7 +124,7 @@ export default function PartiesPage() {
             </div>
           </div>
         </div>
-      </header>
+      </section>
 
       {/* Add-Ons */}
       <section className="py-24 bg-white relative overflow-hidden">
@@ -217,6 +215,6 @@ export default function PartiesPage() {
           </div>
         </div>
       </section>
-    </main>
+    </>
   )
 }
