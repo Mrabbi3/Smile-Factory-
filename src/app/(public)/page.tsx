@@ -1,12 +1,11 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import {
   Gamepad2,
   PartyPopper,
   Trophy,
-  Star,
   ArrowRight,
-  Coins,
   Users,
   CalendarDays,
   CreditCard,
@@ -15,8 +14,8 @@ import {
   Gift,
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { BUSINESS_INFO, TOKEN_PRICING } from '@/lib/constants'
+import { ReviewsSection } from '@/components/public/reviews-section'
 
 export const metadata: Metadata = {
   title: 'Home | The Smile Factory',
@@ -59,21 +58,9 @@ const features = [
   },
 ]
 
-const reviews = [
-  {
-    text: "Best arcade in Brigantine! We come every summer and the kids never want to leave. The prizes are actually worth the tickets!",
-    author: 'Sarah M., Family Vacationer',
-  },
-  {
-    text: "Had my son's 8th birthday here. Everything was so organized, the staff was amazing, and the kids had a blast. Highly recommend the party packages.",
-    author: 'David L., Local Parent',
-  },
-]
-
 export default function HomePage() {
   return (
     <>
-      {/* Hero */}
       <header className="relative pt-40 pb-24 px-6 overflow-hidden min-h-[700px] lg:min-h-[850px] flex items-center justify-center bg-white blueprint-gears">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <div className="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] -translate-x-1/2" />
@@ -84,13 +71,16 @@ export default function HomePage() {
             Family Fun Since {BUSINESS_INFO.established}
           </span>
           <div className="flex flex-col items-center justify-center mb-8">
-            <span className="text-3xl md:text-4xl font-black text-zinc-400/80 italic mb-4 uppercase tracking-tighter font-display">
-              Welcome to
-            </span>
-            <h1 className="text-5xl md:text-7xl font-black industrial-text leading-[0.9] tracking-tighter italic uppercase font-display">
-              <span className="rivet" />
-              The Smile Factory!
-              <span className="rivet" />
+            <Image
+              src="/branding/smile-factory-logo.png"
+              alt="The Smile Factory Logo"
+              width={360}
+              height={360}
+              className="mx-auto mb-6 h-auto w-full max-w-[360px] drop-shadow-2xl transition-transform duration-700 hover:scale-105"
+              priority
+            />
+            <h1 className="text-4xl md:text-6xl font-black industrial-text leading-[0.9] tracking-tighter italic uppercase font-display">
+              Arcade &amp; Family Fun Center
             </h1>
           </div>
           <p className="max-w-2xl mx-auto text-xl text-zinc-600 mb-12">
@@ -115,7 +105,6 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* Features (Bento) */}
       <section className="py-24 px-8 bg-zinc-50/80 relative">
         <div className="absolute inset-0 factory-pattern opacity-50 pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
@@ -167,7 +156,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Token Pricing */}
       <section className="py-24 px-8 bg-white relative">
         <div className="max-w-7xl mx-auto text-center relative z-10">
           <h2 className="text-4xl md:text-5xl font-black tracking-tighter mb-4 uppercase italic font-display">
@@ -219,7 +207,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Social Feed */}
       <section className="py-24 px-8 bg-zinc-50 overflow-hidden relative border-y border-gray-200">
         <div className="absolute inset-0 factory-pattern opacity-30 pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
@@ -256,42 +243,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Reviews */}
-      <section className="py-24 px-8 bg-white border-t border-zinc-100">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-zinc-100 p-1.5 rounded-2xl shadow-inner flex mb-12 overflow-hidden border border-zinc-200">
-            <div className="flex-1 py-4 text-primary font-black uppercase tracking-widest bg-white rounded-xl shadow-sm border border-zinc-200 text-center text-sm font-display">
-              Real Reviews
-            </div>
-            <div className="flex-1 py-4 text-zinc-500 font-black uppercase tracking-widest text-center text-sm font-display">
-              Leave a Review
-            </div>
-          </div>
-          <div className="space-y-8">
-            {reviews.map((review) => (
-              <div
-                key={review.author}
-                className="p-10 rounded-2xl bg-zinc-50 border border-zinc-100 relative"
-              >
-                <div className="flex gap-1 text-primary mb-6">
-                  {Array.from({ length: 5 }).map((_, i) => (
-                    <Star key={i} className="size-5 fill-primary text-primary" />
-                  ))}
-                </div>
-                <p className="text-xl text-zinc-800 mb-6 font-medium italic leading-relaxed">
-                  &ldquo;{review.text}&rdquo;
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-1 bg-primary rounded-full" />
-                  <span className="text-sm font-black text-zinc-400 uppercase tracking-widest">
-                    — {review.author}
-                  </span>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      <ReviewsSection />
     </>
   )
 }

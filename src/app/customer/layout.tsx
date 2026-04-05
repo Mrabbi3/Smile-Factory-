@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useAuth } from '@/hooks/use-auth'
@@ -18,7 +19,6 @@ import {
   Coins,
   Gift,
   UserCircle,
-  Smile,
 } from 'lucide-react'
 
 const navItems = [
@@ -34,11 +34,14 @@ function CustomerSidebar({ onNavigate }: { onNavigate?: () => void }) {
 
   return (
     <div className="flex h-full flex-col bg-card">
-      {/* Logo — Joy Assembler gradient icon */}
       <div className="flex h-16 items-center gap-3 px-5">
-        <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
-          <Smile className="size-5" />
-        </div>
+        <Image
+          src="/branding/smile-factory-logo.png"
+          alt="The Smile Factory"
+          width={36}
+          height={36}
+          className="size-9 object-contain"
+        />
         <span className="text-lg font-bold tracking-tight font-display">Smile Factory</span>
       </div>
       <ScrollArea className="flex-1 py-3">

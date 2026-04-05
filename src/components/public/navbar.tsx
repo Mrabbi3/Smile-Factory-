@@ -1,10 +1,10 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { Menu, X, Gamepad2, CalendarDays } from 'lucide-react'
-import { SITE_NAME } from '@/lib/constants'
+import { Menu, X, CalendarDays } from 'lucide-react'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -27,15 +27,18 @@ export function Navbar() {
   return (
     <header className="fixed top-0 z-50 w-full border-b border-gray-100 shadow-sm glass-nav">
       <nav className="relative flex w-full max-w-full items-center justify-between px-4 py-3 md:px-8 md:py-4">
-        {/* Logo */}
         <Link
           href="/"
           className="flex shrink-0 items-center gap-2.5 transition-opacity hover:opacity-80"
         >
-          <div className="gradient-primary flex size-10 items-center justify-center rounded-full text-primary-foreground shadow-ambient">
-            <Gamepad2 className="size-5" />
-          </div>
-          <span className="font-display text-lg font-black tracking-tight">{SITE_NAME}</span>
+          <Image
+            src="/branding/smile-factory-logo.png"
+            alt="The Smile Factory"
+            width={44}
+            height={44}
+            className="size-11 object-contain"
+            priority
+          />
         </Link>
 
         {/* Desktop: centered navigation */}

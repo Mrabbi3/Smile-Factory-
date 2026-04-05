@@ -1,6 +1,7 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Gamepad2, MapPin, Phone, Clock, CreditCard, Wallet, Banknote } from 'lucide-react'
-import { SITE_NAME, BUSINESS_INFO } from '@/lib/constants'
+import { MapPin, Phone, Clock, CreditCard, Wallet, Banknote } from 'lucide-react'
+import { BUSINESS_INFO } from '@/lib/constants'
 
 const quickLinks = [
   { href: '/', label: 'Home' },
@@ -26,11 +27,14 @@ export function Footer() {
       <div className="grid grid-cols-1 md:grid-cols-4 gap-12 px-8 lg:px-12 py-20 max-w-7xl mx-auto relative z-10">
         {/* Brand */}
         <div>
-          <Link href="/" className="mb-8 flex items-center gap-2.5 inline-flex">
-            <div className="flex size-10 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
-              <Gamepad2 className="size-5" />
-            </div>
-            <span className="text-lg font-black tracking-tight font-display">{SITE_NAME}</span>
+          <Link href="/" className="mb-8 inline-flex items-center gap-2.5">
+            <Image
+              src="/branding/smile-factory-logo.png"
+              alt="The Smile Factory"
+              width={48}
+              height={48}
+              className="size-12 object-contain"
+            />
           </Link>
           <p className="mt-6 text-sm text-zinc-500 leading-relaxed">
             Making families smile in Brigantine since {BUSINESS_INFO.established}. Quality games, great prizes, and unforgettable memories.

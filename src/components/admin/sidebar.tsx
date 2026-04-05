@@ -1,5 +1,6 @@
 'use client'
 
+import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@/lib/utils'
@@ -18,7 +19,6 @@ import {
   BarChart3,
   FileText,
   Settings,
-  Smile,
 } from 'lucide-react'
 
 interface NavItem {
@@ -118,12 +118,16 @@ export function AdminSidebar({
     <div className="flex h-full flex-col bg-white border-r border-gray-200">
       <div className="p-6 pb-4">
         <div className="flex items-center gap-3 mb-2">
-          <div className="flex size-9 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-ambient">
-            <Smile className="size-5" />
-          </div>
+          <Image
+            src="/branding/smile-factory-logo.png"
+            alt="The Smile Factory"
+            width={40}
+            height={40}
+            className="size-10 object-contain"
+          />
           <span className="text-lg font-bold tracking-tight font-display">Smile Factory</span>
         </div>
-        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] pl-12">Joy Assembler Admin</p>
+        <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] pl-[52px]">Staff Admin Portal</p>
       </div>
 
       <ScrollArea className="flex-1 py-3">

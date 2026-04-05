@@ -1,6 +1,7 @@
 'use client'
 
 import { useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useActionState, useEffect } from 'react'
 import { toast } from 'sonner'
@@ -15,7 +16,7 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card'
-import { ArrowLeft, KeyRound, Loader2 } from 'lucide-react'
+import { ArrowLeft, Loader2 } from 'lucide-react'
 import { verifyStaffKey } from './actions'
 
 export default function AdminLoginPage() {
@@ -30,18 +31,23 @@ export default function AdminLoginPage() {
 
   return (
     <div className="pattern-industrial flex min-h-svh flex-col items-center justify-center px-4 py-12">
-      <div className="mb-8 flex flex-col items-center gap-2">
-        <div className="flex items-center gap-3">
-          <div className="flex size-12 items-center justify-center rounded-xl bg-gradient-primary text-white">
-            <KeyRound className="size-6" />
-          </div>
+      <div className="mb-8 flex flex-col items-center gap-4">
+        <Image
+          src="/branding/smile-factory-logo.png"
+          alt="The Smile Factory"
+          width={80}
+          height={80}
+          className="size-20 object-contain"
+          priority
+        />
+        <div className="text-center">
           <h1 className="font-display text-2xl font-bold tracking-tight">
             Staff Access
           </h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Enter the owner access key to continue
+          </p>
         </div>
-        <p className="text-sm text-muted-foreground">
-          Enter the owner access key to continue
-        </p>
       </div>
       <div className="w-full max-w-md">
         <Card className="rounded-2xl shadow-elevated">
