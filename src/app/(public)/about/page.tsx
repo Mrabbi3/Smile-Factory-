@@ -57,7 +57,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 relative">
             <div className="aspect-square bg-white p-2 rounded-2xl shadow-2xl relative rotate-3 overflow-hidden flex items-center justify-center">
               <Image
-                src="/about-photos/about2.png"
+                src="/photos/about2.png"
                 alt="About Smile Factory Hero"
                 fill
                 style={{ objectFit: 'cover' }}
@@ -124,7 +124,7 @@ export default function AboutPage() {
             <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="bg-zinc-100 rounded-2xl overflow-hidden min-h-[300px] relative group border border-zinc-200 shadow-md flex items-center justify-center">
                 <Image
-                  src="/about-photos/about1.png"
+                  src="/photos/about1.png"
                   alt="About Smile Factory Frame 1"
                   fill
                   style={{ objectFit: 'cover' }}
@@ -134,7 +134,7 @@ export default function AboutPage() {
               </div>
               <div className="bg-zinc-100 rounded-2xl overflow-hidden min-h-[300px] relative group border border-zinc-200 shadow-md flex items-center justify-center">
                 <Image
-                  src="/about-photos/about3.png"
+                  src="/photos/about3.png"
                   alt="About Smile Factory Frame 2"
                   fill
                   style={{ objectFit: 'cover' }}
