@@ -14,16 +14,13 @@ export default function AuthLayout({
           <Image
             src="/branding/smile-factory-logo.png"
             alt="The Smile Factory"
-            width={88}
-            height={88}
-            className="size-20 object-contain"
+            width={320}
+            height={128}
+            className="h-auto w-full max-w-[320px] object-contain"
             priority
           />
         </Link>
         <div className="text-center">
-          <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
-            The Smile Factory
-          </h1>
           <p className="text-sm text-muted-foreground mt-1">
             Arcade &amp; Family Fun Center
           </p>
