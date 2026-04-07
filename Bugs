@@ -5,3 +5,5 @@ and will not let you submit the booking if no package is selected.
 
 2. Customer login page uses a generic smile icon above the sign-in form instead of the official smile-factory-logo.png branding asset.
 
+Fixed 2026-04-07: Customer sign-in and staff access now use the same Smile Factory logo treatment shown on the home page, positioned above each form.
+
