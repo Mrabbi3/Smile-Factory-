@@ -1,0 +1,343 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ═══════════════════════════════════════════════════
+   THE JOY ASSEMBLER — Design System Tokens
+   "Industrial celebration of play"
+   ═══════════════════════════════════════════════════ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-work-sans);
+  --font-display: var(--font-epilogue);
+  --font-mono: var(--font-geist-mono);
+
+  /* Surface hierarchy tokens */
+  --color-surface: var(--surface);
+  --color-surface-low: var(--surface-container-low);
+  --color-surface-high: var(--surface-container-high);
+  --color-surface-highest: var(--surface-container-highest);
+
+  /* Brand gradient endpoints */
+  --color-primary-container: var(--primary-container);
+  --color-tertiary: var(--tertiary);
+  --color-tertiary-foreground: var(--tertiary-foreground);
+
+  /* shadcn mappings */
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+  --radius-4xl: calc(var(--radius) + 16px);
+}
+
+:root {
+  /* Joy Assembler radius — generous, rounded */
+  --radius: 1rem;
+
+  /* ── Surface Hierarchy (Tonal Layering) ── */
+  --surface: #f6f6f6;
+  --surface-container-low: #f0f1f1;
+  --surface-container-high: #e6e7e7;
+  --surface-container-highest: #dbdddd;
+
+  /* ── Core Palette ── */
+  --background: #f6f6f6;
+  --foreground: #2d2f2f;
+
+  --card: #ffffff;
+  --card-foreground: #2d2f2f;
+
+  --popover: #ffffff;
+  --popover-foreground: #2d2f2f;
+
+  /* Poppy Red — primary brand */
+  --primary: #bb0100;
+  --primary-foreground: #ffefed;
+  --primary-container: #ff7763;
+
+  /* Soft rose — secondary */
+  --secondary: #ffc2c6;
+  --secondary-foreground: #852233;
+
+  /* Neutral tones — muted & accent */
+  --muted: #f0f1f1;
+  --muted-foreground: #6b6e6e;
+
+  --accent: #f0f1f1;
+  --accent-foreground: #2d2f2f;
+
+  /* Tertiary — purple accent for chips/special elements */
+  --tertiary: #7b40a2;
+  --tertiary-foreground: #f3e8ff;
+
+  --destructive: #dc2626;
+
+  /* ── No-Line Rule: borders are near-invisible ── */
+  --border: #e6e7e700;
+  --input: #dbdddd;
+  --ring: #bb0100;
+
+  /* ── Chart palette ── */
+  --chart-1: #bb0100;
+  --chart-2: #ff7763;
+  --chart-3: #7b40a2;
+  --chart-4: #ffc2c6;
+  --chart-5: #2d2f2f;
+
+  /* ── Sidebar (admin) ── */
+  --sidebar: #ffffff;
+  --sidebar-foreground: #2d2f2f;
+  --sidebar-primary: #bb0100;
+  --sidebar-primary-foreground: #ffefed;
+  --sidebar-accent: #f0f1f1;
+  --sidebar-accent-foreground: #2d2f2f;
+  --sidebar-border: #e6e7e700;
+  --sidebar-ring: #bb0100;
+
+  /* ── Ambient shadow (Joy Assembler style) ── */
+  --shadow-ambient: 0 4px 32px rgba(45, 47, 47, 0.04);
+  --shadow-elevated: 0 8px 40px rgba(45, 47, 47, 0.06);
+}
+
+.dark {
+  --surface: #1a1b1b;
+  --surface-container-low: #212222;
+  --surface-container-high: #2a2b2b;
+  --surface-container-highest: #333434;
+
+  --background: #1a1b1b;
+  --foreground: #e8e9e9;
+
+  --card: #212222;
+  --card-foreground: #e8e9e9;
+
+  --popover: #212222;
+  --popover-foreground: #e8e9e9;
+
+  --primary: #ff6b5e;
+  --primary-foreground: #1a1b1b;
+  --primary-container: #bb0100;
+
+  --secondary: #5c2233;
+  --secondary-foreground: #ffc2c6;
+
+  --muted: #2a2b2b;
+  --muted-foreground: #9a9c9c;
+
+  --accent: #2a2b2b;
+  --accent-foreground: #e8e9e9;
+
+  --tertiary: #b47fe0;
+  --tertiary-foreground: #2a1540;
+
+  --destructive: #ef4444;
+
+  --border: rgba(255, 255, 255, 0.06);
+  --input: #333434;
+  --ring: #ff6b5e;
+
+  --chart-1: #ff6b5e;
+  --chart-2: #ff9e90;
+  --chart-3: #b47fe0;
+  --chart-4: #5c2233;
+  --chart-5: #e8e9e9;
+
+  --sidebar: #212222;
+  --sidebar-foreground: #e8e9e9;
+  --sidebar-primary: #ff6b5e;
+  --sidebar-primary-foreground: #1a1b1b;
+  --sidebar-accent: #2a2b2b;
+  --sidebar-accent-foreground: #e8e9e9;
+  --sidebar-border: rgba(255, 255, 255, 0.06);
+  --sidebar-ring: #ff6b5e;
+
+  --shadow-ambient: 0 4px 32px rgba(0, 0, 0, 0.2);
+  --shadow-elevated: 0 8px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ═══════════════════════════════════════════════════
+   BASE LAYER — Joy Assembler Foundation
+   ═══════════════════════════════════════════════════ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    border-color: transparent;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-work-sans), system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Typography — Epilogue for headings, Work Sans for body */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-epilogue), system-ui, sans-serif;
+    color: var(--foreground);
+    letter-spacing: -0.02em;
+  }
+
+  /* No black text — always use on-surface */
+  p, span, li, td, th, label, a {
+    color: var(--foreground);
+  }
+}
+
+/* ═══════════════════════════════════════════════════
+   UTILITY CLASSES — Joy Assembler Specials
+   ═══════════════════════════════════════════════════ */
+
+@layer utilities {
+  /* Signature gradient for CTAs */
+  .gradient-primary {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-container) 100%);
+  }
+
+  .gradient-primary-hover {
+    background: linear-gradient(135deg, color-mix(in srgb, var(--primary) 90%, black) 0%, color-mix(in srgb, var(--primary-container) 90%, black) 100%);
+  }
+
+  /* Glassmorphism for floating elements */
+  .glass {
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+
+  .dark .glass {
+    background: rgba(33, 34, 34, 0.72);
+  }
+
+  /* Ambient shadow (factory-style soft lift) */
+  .shadow-ambient {
+    box-shadow: var(--shadow-ambient);
+  }
+
+  .shadow-elevated {
+    box-shadow: var(--shadow-elevated);
+  }
+
+  /* Ghost border (15% opacity, felt not seen) */
+  .ghost-border {
+    box-shadow: inset 0 0 0 1px rgba(172, 173, 173, 0.15);
+  }
+
+  /* Surface hierarchy helpers */
+  .surface-base { background-color: var(--surface); }
+  .surface-low { background-color: var(--surface-container-low); }
+  .surface-high { background-color: var(--surface-container-high); }
+  .surface-highest { background-color: var(--surface-container-highest); }
+
+  /* Font family helpers */
+  .font-display {
+    font-family: var(--font-epilogue), system-ui, sans-serif;
+  }
+
+  .font-body {
+    font-family: var(--font-work-sans), system-ui, sans-serif;
+  }
+
+  /* Industrial pattern overlay (subtle 2% opacity gear pattern) */
+  .pattern-industrial {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%232d2f2f' fill-opacity='0.02'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+
+  .diamond-plate {
+    background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l2 13 13 2-13 2-2 13-2-13-13-2 13-2z' fill='%23f1f1f1' fill-opacity='0.4'/%3E%3C/svg%3E");
+  }
+
+  .factory-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+  }
+
+  .blueprint-gears {
+    background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20zm0-25c2.2 0 4-1.8 4-4V45c0-2.2-1.8-4-4-4s-4 1.8-4 4v6c0 2.2 1.8 4 4 4zm43.3 18c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zm11.7 43.3c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4s-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4zm-18 43.3c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zM100 155c-2.2 0-4 1.8-4 4v6c0 2.2 1.8 4 4 4s4-1.8 4-4v-6c0-2.2-1.8-4-4-4zm-43.3-18c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7zM45 100c0-2.2-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4s1.8 4 4 4h6c2.2 0 4-1.8 4-4zm11.7-43.3c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7z' fill='%23e5e7eb' fill-opacity='0.4'/%3E%3C/svg%3E");
+  }
+
+  .industrial-text {
+    color: var(--primary);
+    text-shadow: 2px 2px 0px rgba(0,0,0,0.1), 0 0 10px rgba(187,1,0,0.15);
+  }
+
+  .rivet {
+    width: 8px;
+    height: 8px;
+    background: #ccc;
+    border-radius: 50%;
+    box-shadow: inset -1px -1px 2px rgba(0,0,0,0.3), 1px 1px 1px rgba(255,255,255,0.8);
+    display: inline-block;
+    margin: 0 4px;
+  }
+
+  .glass-nav {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.85);
+  }
+
+  .prize-gear-spin:hover .gear-icon {
+    transform: rotate(90deg);
+    transition: transform 0.5s ease;
+  }
+}
+
+@keyframes public-page-slide-in {
+  from {
+    opacity: 0;
+    transform: translate3d(18px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.public-page-transition {
+  animation: public-page-slide-in 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform, opacity;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .public-page-transition {
+    animation: none;
+  }
+}

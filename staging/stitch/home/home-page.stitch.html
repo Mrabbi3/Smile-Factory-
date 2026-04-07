@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>The Smile Factory | Family Fun Arcade</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#FF0000",
+                        "background-light": "#f8f5f5",
+                        "background-dark": "#230f0f",
+                        "inverse-primary": "#ff5540",
+                        "surface": "#fcfcfc",
+                        "on-surface": "#2d2f2f",
+                        "on-primary": "#ffffff",
+                        "primary-container": "#FF0000",
+                        "secondary": "#a03646",
+                        "factory-gray": "#e5e7eb"
+                    },
+                    fontFamily: {
+                        "display": ["Epilogue"],
+                        "headline": ["Epilogue"],
+                        "body": ["Work Sans"],
+                        "label": ["Work Sans"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Work Sans', sans-serif; background-color: #fcfcfc; color: #2d2f2f; }
+        h1, h2, h3, h4 { font-family: 'Epilogue', sans-serif; }
+        .material-symbols-outlined { font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24; }
+        .bg-gradient-primary { background: linear-gradient(135deg, #FF0000 0%, #cc0000 100%); }
+        .glass-nav { backdrop-filter: blur(16px); background: rgba(255, 255, 255, 0.85); }
+        .prize-gear-spin:hover .gear-icon { transform: rotate(90deg); transition: transform 0.5s ease; }
+        
+        .factory-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+        }
+        
+        .blueprint-gears {
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20zm0-25c2.2 0 4-1.8 4-4V45c0-2.2-1.8-4-4-4s-4 1.8-4 4v6c0 2.2 1.8 4 4 4zm43.3 18c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zm11.7 43.3c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4s-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4zm-18 43.3c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zM100 155c-2.2 0-4 1.8-4 4v6c0 2.2 1.8 4 4 4s4-1.8 4-4v-6c0-2.2-1.8-4-4-4zm-43.3-18c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7zM45 100c0-2.2-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4s1.8 4 4 4h6c2.2 0 4-1.8 4-4zm11.7-43.3c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7z' fill='%23e5e7eb' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+
+        .diamond-plate {
+            background-color: #fcfcfc;
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l2 13 13 2-13 2-2 13-2-13-13-2 13-2z' fill='%23f1f1f1' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+
+        .industrial-text {
+            color: #FF0000;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1), 0 0 10px rgba(255,0,0,0.2);
+            position: relative;
+        }
+
+        .rivet {
+            width: 8px;
+            height: 8px;
+            background: #ccc;
+            border-radius: 50%;
+            box-shadow: inset -1px -1px 2px rgba(0,0,0,0.3), 1px 1px 1px rgba(255,255,255,0.8);
+            display: inline-block;
+            margin: 0 4px;
+        }
+
+        /* Mobile Menu Animation */
+        #mobile-menu {
+            transition: all 0.3s ease-in-out;
+            transform: translateY(-100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        #mobile-menu.open {
+            transform: translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface diamond-plate">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 glass-nav shadow-sm border-b border-gray-100">
+<div class="flex justify-between items-center px-4 md:px-8 py-3 md:py-4 max-w-full w-full relative">
+<!-- Logo -->
+<div class="flex items-center gap-2 shrink-0">
+<img alt="The Smile Factory Logo" class="w-auto h-12 md:h-16" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<!-- Desktop Navigation: Centered Links -->
+<div class="hidden lg:flex items-center space-x-6 xl:space-x-10 absolute left-1/2 -translate-x-1/2">
+<a class="text-primary border-b-2 pb-0.5 font-['Epilogue'] font-bold transition-all border-primary text-sm uppercase tracking-tight" href="#">Home</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold text-sm uppercase tracking-tight" href="#">About</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold text-sm uppercase tracking-tight" href="#">Pricing</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold text-sm uppercase tracking-tight" href="#">Parties</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold text-sm uppercase tracking-tight" href="#">Gallery</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold text-sm uppercase tracking-tight" href="#">Contact</a>
+</div>
+<!-- Right Side: CTAs & Hamburger -->
+<div class="flex items-center gap-3 md:gap-4 shrink-0">
+<div class="hidden sm:flex items-center gap-4 mr-2">
+<a class="text-zinc-600 font-['Epilogue'] font-bold hover:text-red-600 transition-colors text-sm" href="#">Sign In</a>
+<a class="text-zinc-600 font-['Epilogue'] font-bold hover:text-red-600 transition-colors text-sm" href="#">Staff</a>
+</div>
+<button class="bg-gradient-primary text-on-primary px-4 md:px-6 py-2 rounded-full font-bold hover:opacity-80 transition-all active:scale-95 shadow-md flex items-center gap-2 text-xs md:text-sm">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+<span class="hidden xs:inline">Book a Party</span>
+<span class="xs:hidden">Book</span>
+</button>
+<!-- Mobile Toggle -->
+<button class="lg:hidden text-zinc-800 p-2 hover:bg-zinc-100 rounded-lg transition-colors" id="menu-toggle">
+<span class="material-symbols-outlined text-2xl" id="menu-icon">menu</span>
+</button>
+</div>
+</div>
+<!-- Mobile Navigation Overlay -->
+<div class="lg:hidden absolute top-full left-0 w-full bg-white border-b border-zinc-200 shadow-xl py-6 px-8 flex flex-col gap-6" id="mobile-menu">
+<div class="flex flex-col gap-4">
+<a class="text-primary font-['Epilogue'] font-black uppercase text-lg tracking-tight" href="#">Home</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold uppercase text-lg tracking-tight" href="#">About</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold uppercase text-lg tracking-tight" href="#">Pricing</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold uppercase text-lg tracking-tight" href="#">Parties</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold uppercase text-lg tracking-tight" href="#">Gallery</a>
+<a class="text-zinc-600 hover:text-red-600 transition-colors font-['Epilogue'] font-bold uppercase text-lg tracking-tight" href="#">Contact</a>
+</div>
+<hr class="border-zinc-100"/>
+<div class="flex flex-col gap-4">
+<a class="text-zinc-600 font-['Epilogue'] font-bold hover:text-red-600 transition-colors" href="#">Sign In</a>
+<a class="text-zinc-600 font-['Epilogue'] font-bold hover:text-red-600 transition-colors" href="#">Staff Portal</a>
+</div>
+</div>
+</nav>
+<script>
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIcon = document.getElementById('menu-icon');
+
+    menuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        menuIcon.innerText = isOpen ? 'close' : 'menu';
+    });
+
+    // Close menu when clicking links
+    mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('open');
+            menuIcon.innerText = 'menu';
+        });
+    });
+</script>
+<!-- Hero Section -->
+<header class="relative pt-40 pb-24 px-6 overflow-hidden min-h-[950px] flex items-center justify-center bg-white blueprint-gears">
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-1/4 -left-20 w-[600px] h-[600px] bg-red-50/40 rounded-full blur-[100px] transform -translate-x-1/2"></div>
+<div class="absolute bottom-0 right-0 w-[800px] h-[800px] bg-red-50/30 rounded-full blur-[120px] transform translate-x-1/3 translate-y-1/3"></div>
+<div class="absolute top-0 right-1/4 w-[400px] h-[400px] bg-red-50/20 rounded-full blur-[80px]"></div>
+<div class="absolute top-40 right-10 opacity-[0.05] transform rotate-12">
+<span class="material-symbols-outlined text-[300px]">settings</span>
+</div>
+<div class="absolute bottom-20 left-10 opacity-[0.03] transform -rotate-45">
+<span class="material-symbols-outlined text-[400px]">settings_slow_motion</span>
+</div>
+</div>
+<div class="max-w-6xl mx-auto text-center relative z-10">
+<span class="inline-block px-4 py-1.5 rounded-full bg-red-100/80 text-red-700 text-sm font-black tracking-widest uppercase mb-8 border border-red-200">
+            Family Fun Since 2006
+        </span>
+<div class="flex flex-col items-center justify-center mb-8">
+<span class="text-3xl md:text-4xl font-black text-zinc-400/80 italic mb-4 uppercase tracking-tighter">Welcome to</span>
+<div class="relative inline-block mb-6">
+<img alt="The Smile Factory Logo Large" class="w-full max-w-[500px] h-auto mx-auto transform hover:scale-105 transition-transform duration-700 filter drop-shadow-2xl" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<h1 class="text-5xl md:text-7xl font-black industrial-text leading-[0.9] tracking-tighter italic uppercase">
+<span class="rivet"></span>The Smile Factory!<span class="rivet"></span>
+</h1>
+</div>
+<p class="max-w-2xl mx-auto text-xl text-zinc-600 font-body mb-12">
+            Brigantine's favorite arcade and family fun center. With over 41 games, birthday party packages, and a prize counter bursting with rewards — smiles are guaranteed!
+        </p>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+<button class="w-full sm:w-auto px-12 py-5 rounded-full bg-gradient-primary text-on-primary text-xl font-black tracking-tight hover:opacity-90 active:scale-95 transition-all shadow-xl flex items-center justify-center gap-3">
+                Book a Party <span class="material-symbols-outlined">build</span>
+</button>
+<button class="w-full sm:w-auto px-12 py-5 rounded-full bg-white border-2 border-zinc-200 text-zinc-800 text-xl font-black tracking-tight hover:bg-zinc-50 active:scale-95 transition-all flex items-center justify-center gap-3 shadow-md">
+                View Pricing <span class="material-symbols-outlined">payments</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Features Section (Bento Style) -->
+<section class="py-24 px-8 bg-zinc-50/80 relative">
+<div class="absolute inset-0 factory-pattern opacity-50 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-2xl">
+<h2 class="text-4xl md:text-5xl font-black text-on-surface tracking-tighter mb-4">Why Families Love Us</h2>
+<p class="text-lg text-on-surface-variant">Everything you need for an unforgettable day of fun, all under one roof.</p>
+</div>
+<div class="h-1.5 w-32 bg-primary rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+<div class="md:col-span-2 group bg-white p-10 rounded-lg shadow-sm hover:shadow-xl transition-all border border-gray-100 relative overflow-hidden">
+<div class="relative z-10">
+<div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-primary mb-8 border border-red-200">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">sports_esports</span>
+</div>
+<h3 class="text-2xl font-black mb-4 uppercase tracking-tight">41+ Games</h3>
+<p class="text-zinc-600 mb-8 text-lg">Will eventually be a clickable link with photos of all arcade games.</p>
+<a class="inline-flex items-center text-primary font-black uppercase text-sm tracking-widest hover:gap-3 transition-all gap-2" href="#">Browse Games <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-5 group-hover:opacity-20 transition-all duration-500">
+<span class="material-symbols-outlined text-[15rem]">joystick</span>
+</div>
+</div>
+<div class="md:col-span-2 group bg-white p-10 rounded-lg shadow-sm hover:shadow-xl transition-all border border-gray-100 relative overflow-hidden">
+<div class="relative z-10">
+<div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-primary mb-8 border border-red-200">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">cake</span>
+</div>
+<h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Birthday Parties</h3>
+<p class="text-zinc-600 mb-8 text-lg">Goes to the book a party link for seamless party planning and massive fun.</p>
+<a class="inline-flex items-center text-primary font-black uppercase text-sm tracking-widest hover:gap-3 transition-all gap-2" href="#">Plan a Party <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-5 group-hover:opacity-20 transition-all duration-500">
+<span class="material-symbols-outlined text-[15rem]">celebration</span>
+</div>
+</div>
+<div class="md:col-span-2 group bg-white p-10 rounded-lg shadow-sm hover:shadow-xl transition-all border border-gray-100 relative overflow-hidden prize-gear-spin">
+<div class="relative z-10">
+<div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-primary mb-8 gear-icon border border-red-200">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">workspace_premium</span>
+</div>
+<h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Prize Counter</h3>
+<p class="text-zinc-600 mb-6 text-lg">Win tickets and redeem them for awesome prizes. From giant plushies to high-tech gadgets!</p>
+<div class="flex gap-3">
+<span class="px-4 py-1.5 bg-zinc-100 text-zinc-700 rounded-md text-xs font-black uppercase tracking-widest border border-zinc-200">Tickets</span>
+<span class="px-4 py-1.5 bg-zinc-100 text-zinc-700 rounded-md text-xs font-black uppercase tracking-widest border border-zinc-200">Rewards</span>
+</div>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-5 group-hover:opacity-20 transition-all duration-500">
+<span class="material-symbols-outlined text-[15rem]">settings</span>
+</div>
+</div>
+<div class="md:col-span-2 group bg-white p-10 rounded-lg shadow-sm hover:shadow-xl transition-all border border-gray-100 relative overflow-hidden">
+<div class="relative z-10">
+<div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-primary mb-8 border border-red-200">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">family_restroom</span>
+</div>
+<h3 class="text-2xl font-black mb-4 uppercase tracking-tight">Family Fun</h3>
+<p class="text-zinc-600 mb-8 text-lg">A safe, clean, and welcoming space where families make memories together across generations.</p>
+<p class="text-md font-black italic text-primary">"Making Brigantine Smile Since '06"</p>
+</div>
+<div class="absolute -right-8 -bottom-8 opacity-5 group-hover:opacity-20 transition-all duration-500">
+<span class="material-symbols-outlined text-[15rem]">groups</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Pricing Section -->
+<section class="py-24 px-8 bg-white relative">
+<div class="max-w-7xl mx-auto text-center relative z-10">
+<h2 class="text-4xl md:text-5xl font-black text-on-surface tracking-tighter mb-4 uppercase italic">Token Pricing</h2>
+<p class="text-lg text-zinc-600 mb-16">Stock up and save! The more you play, the more you win.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="bg-zinc-50 p-10 rounded-2xl border-2 border-transparent hover:border-primary/20 transition-all group flex flex-col items-center">
+<span class="text-primary font-black text-6xl mb-6">$1</span>
+<div class="h-1 w-12 bg-zinc-200 mb-6 group-hover:w-20 transition-all"></div>
+<span class="text-2xl font-black text-on-surface uppercase tracking-tight">3 Tokens</span>
+<button class="mt-10 w-full py-4 rounded-xl bg-white border border-zinc-200 text-zinc-800 font-black uppercase tracking-widest text-sm group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all shadow-sm">SELECT</button>
+</div>
+<div class="bg-white p-10 rounded-2xl border-4 border-primary transition-all group flex flex-col items-center scale-105 shadow-2xl relative z-20 bg-zinc-50 border-2 border-transparent hover:border-primary/20">
+<span class="text-primary font-black text-6xl mb-6">$5</span>
+<div class="h-1 w-12 bg-primary/20 mb-6 group-hover:w-20 transition-all"></div>
+<span class="text-2xl font-black text-on-surface uppercase tracking-tight">15 Tokens</span>
+<button class="mt-10 w-full py-4 rounded-xl bg-primary text-on-primary font-black uppercase tracking-widest text-sm transition-all shadow-md hover:opacity-90 bg-white border-zinc-200 text-zinc-800 group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary">SELECT</button>
+</div>
+<div class="bg-zinc-50 p-10 rounded-2xl border-2 border-transparent hover:border-primary/20 transition-all group flex flex-col items-center bg-white border-4 border-primary scale-105 shadow-2xl relative z-20"><div class="absolute -top-5 bg-primary text-on-primary px-6 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-lg">Most Popular</div>
+<span class="text-primary font-black text-6xl mb-6">$10</span>
+<div class="h-1 w-12 bg-zinc-200 mb-6 group-hover:w-20 transition-all"></div>
+<span class="text-2xl font-black text-on-surface uppercase tracking-tight">30 Tokens</span>
+<button class="mt-10 w-full py-4 rounded-xl bg-white border border-zinc-200 text-zinc-800 font-black uppercase tracking-widest text-sm group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all shadow-sm bg-primary text-on-primary hover:opacity-90">BUY NOW</button>
+</div>
+<div class="bg-zinc-50 p-10 rounded-2xl border-2 border-transparent hover:border-primary/20 transition-all group flex flex-col items-center">
+<span class="text-primary font-black text-6xl mb-6">$20</span>
+<div class="h-1 w-12 bg-zinc-200 mb-6 group-hover:w-20 transition-all"></div>
+<span class="text-2xl font-black text-on-surface uppercase tracking-tight">66 Tokens</span>
+<p class="text-sm text-primary font-black mt-3 italic">+6 Bonus Tokens!</p>
+<button class="mt-8 w-full py-4 rounded-xl bg-white border border-zinc-200 text-zinc-800 font-black uppercase tracking-widest text-sm group-hover:bg-primary group-hover:text-on-primary group-hover:border-primary transition-all shadow-sm">SELECT</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Media Section -->
+<section class="py-24 px-8 bg-zinc-50 overflow-hidden relative border-y border-gray-200">
+<div class="absolute inset-0 factory-pattern opacity-30 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="flex flex-col items-center mb-12 text-center">
+<div class="inline-flex items-center gap-4 mb-4">
+<div class="h-px w-12 bg-primary"></div>
+<span class="text-primary font-black uppercase tracking-widest text-sm">Live Social Feed</span>
+<div class="h-px w-12 bg-primary"></div>
+</div>
+<h2 class="text-4xl md:text-5xl font-black mb-4 italic uppercase tracking-tighter">Join the Factory Floor</h2>
+<p class="text-lg text-zinc-600 max-w-2xl">Follow us for weekly high scores, prize updates, and community smiles! Tag us in your photos to be featured.</p>
+<div class="flex gap-4 mt-6">
+<a class="w-10 h-10 bg-white border border-zinc-200 rounded-full flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-all" href="#"><svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"></path></svg></a>
+<a class="w-10 h-10 bg-white border border-zinc-200 rounded-full flex items-center justify-center text-primary shadow-sm hover:bg-primary hover:text-on-primary transition-all" href="#"><svg class="w-5 h-5 fill-current" viewbox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"></path></svg></a>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="relative border-[4px] border-black shadow-xl rounded-2xl overflow-hidden group bg-white">
+<div class="aspect-square overflow-hidden">
+<img alt="Arcade Action" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4MW4RU_8wkjcsW81pxjJ6Mzwyekh9D_Qu7KSgQecij2ub0RL_TPb1qxotcmh9Abdbs_6COIF0h856j8PVjLSLKCyqJG8hc0DwKsOUMlBKp9MY2GgiKIk6goPXoYH2tNXhT3JYrFyeTQtmb6Ij-aTDB6Wf2himk7h1snTljo2NntgOXUupFL7EzzP7X3d8W2Mm0pumsl-a7FRvdxT0j3RsbnEvXEp1POJGMhC_Hd3r-13ddImK8dxYPv7EZ4szxfGXnku-Wm0HHU2P"/>
+</div>
+</div>
+<div class="relative border-[4px] border-black shadow-xl rounded-2xl overflow-hidden group bg-white">
+<div class="aspect-square overflow-hidden">
+<img alt="Family Fun" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAWH85SPNFdSLFfq_kt2vk4sZ8z3A-KlVRZyUTo-pLb72JUVDDDtTJ1OSwDBAsJ4nEiBgSdCvkD69nZ3dvLZZAsVjIlwHEqq0n7tDODz3zNd4S1D19U5VBAjDRRqdNgUZrJUMDEISiMDMP7AbzR-3Rn1R52oJ61Bo0MhXHexbbRjjP2ZhBhdiVePwMvMX2QGmbkKE0fBQxNd7RfOa96rnNF4OjtPsYVXoUSf-X8S89Sc6FgkJGrzcWTYgrNK9wS08qnvtF_ClLW3_bP"/>
+</div>
+</div>
+<div class="relative border-[4px] border-black shadow-xl rounded-2xl overflow-hidden group bg-white">
+<div class="aspect-square overflow-hidden">
+<img alt="Prize Ticket" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDdfLeSOzkmOPAogppbx2qm8FEcWt3pQuEL8vDWOOtMMeQDKWB2SGeuA2LeuKEn7f6WTiaU5GvD8TvHGq-OKFkNjyli_bkE2cN9E0RF4et3JB4g3sOPN-ew-ErBvaOySxJHb5wbZ4jip14VZMDJzSstW2TsE0cE6M6fGYB4DyrA5vGNYsuAozX2QTRT-60zEmIlu9AmNseNvyJjxS-OMcOOBmKv6O6FlHzhUv7ltFnvxMtFgg4Ap-0lsuyzciuY08EmZEI2nxPA1xJ"/>
+</div>
+</div>
+<div class="relative border-[4px] border-black shadow-xl rounded-2xl overflow-hidden group bg-white">
+<div class="aspect-square overflow-hidden">
+<img alt="Claw Win" class="w-full h-full object-cover group-hover:scale-110 transition-duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPMcTn2mnEis2gMu2TUH6etEW4J1VryYqMZwnevFYVi8tsnqDFYeBM-d_9ivDTdghW54awcmUjaSzOu7QOlkM-mp_RXsN4L-Fc8o-PAKqq3BvnWUIHja0kmobK3Di1yuC0jfV1Fvyq5Kxsi84jsT5Cum5ARyv-pWkVYxgfSHRvJ9rd0Jpb2qQpUDTniWvR6xVeusQLrecd3ONWCpr7nAZCt74ZLoZ2W0qlJKZFEXqSrZdM7arPWacmBsRZvCDj30lwdqN6zo8-qhsy"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Reviews Tab Section -->
+<section class="py-24 px-8 bg-white border-t border-zinc-100">
+<div class="max-w-4xl mx-auto">
+<div class="bg-zinc-100 p-1.5 rounded-2xl shadow-inner flex mb-12 overflow-hidden border border-zinc-200">
+<button class="flex-1 py-4 text-primary font-black uppercase tracking-widest bg-white rounded-xl shadow-sm border border-zinc-200">Real Reviews</button>
+<button class="flex-1 py-4 text-zinc-500 font-black uppercase tracking-widest hover:bg-zinc-200/50 transition-all rounded-xl">Leave a Review</button>
+</div>
+<div class="space-y-8">
+<div class="p-10 rounded-2xl bg-zinc-50 border border-zinc-100 relative">
+<div class="flex gap-1 text-primary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-xl text-zinc-800 mb-6 font-medium italic leading-relaxed">"Best arcade in Brigantine! We come every summer and the kids never want to leave. The prizes are actually worth the tickets!"</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-1 bg-primary rounded-full"></div>
+<span class="text-sm font-black text-zinc-400 uppercase tracking-widest">— Sarah M., Family Vacationer</span>
+</div>
+</div>
+<div class="p-10 rounded-2xl bg-zinc-50 border border-zinc-100 relative">
+<div class="flex gap-1 text-primary mb-6">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<p class="text-xl text-zinc-800 mb-6 font-medium italic leading-relaxed">"Had my son's 8th birthday here. Everything was so organized, the staff was amazing, and the kids had a blast. Highly recommend the party packages."</p>
+<div class="flex items-center gap-4">
+<div class="w-10 h-1 bg-primary rounded-full"></div>
+<span class="text-sm font-black text-zinc-400 uppercase tracking-widest">— David L., Local Parent</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-zinc-50 text-zinc-800 relative border-t border-zinc-200">
+<div class="absolute inset-0 factory-pattern opacity-10 pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 w-full relative z-10">
+<div class="md:col-span-1">
+<div class="mb-8">
+<img alt="The Smile Factory Logo" class="w-auto h-24" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<p class="text-md text-zinc-500 leading-relaxed">Making families smile in Brigantine since 2006. Quality games, great prizes, and unforgettable memories.</p>
+</div>
+<div>
+<h4 class="font-black text-on-surface text-lg mb-8 uppercase tracking-widest">Quick Links</h4>
+<ul class="space-y-4 text-zinc-500 font-medium">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Home</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Pricing</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Birthday Parties</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Games Gallery</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-on-surface text-lg mb-8 uppercase tracking-widest">Legal &amp; Info</h4>
+<ul class="space-y-4 text-zinc-500 font-medium">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Terms of Service</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Safety Rules</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Feedback</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-black text-on-surface text-lg mb-8 uppercase tracking-widest">Connect</h4>
+<ul class="space-y-6 text-zinc-500 font-medium"><li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary">location_on</span><span>1307 W Brigantine Ave # B, Brigantine, NJ 08203</span></li><li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary">call</span><span>(609) 266-3866</span></li><li class="flex items-start gap-3"><span class="material-symbols-outlined text-primary">schedule</span><div class="flex flex-col"><span>Sat-Sun: 10am - 10pm</span><span>Mon-Fri: 12pm - 10pm</span></div></li><li><a class="bg-primary text-white px-6 py-2 rounded-lg font-black uppercase text-xs tracking-widest hover:opacity-90 transition-all inline-block shadow-md" href="#">Staff Login</a></li></ul>
+</div>
+</div>
+<div class="px-12 py-8 border-t border-zinc-200 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10 bg-zinc-100/50">
+<p class="text-sm text-zinc-400 font-medium uppercase tracking-widest">© 2024 The Smile Factory Arcade. Built for Joy.</p>
+<div class="flex gap-8 opacity-40">
+<span class="material-symbols-outlined">payments</span>
+<span class="material-symbols-outlined">credit_card</span>
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+</div>
+</footer>
+</body></html>

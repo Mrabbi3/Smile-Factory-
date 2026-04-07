@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#FF0000",
+              "surface": "#fcfcfc",
+              "on-surface": "#2d2f2f",
+              "on-primary": "#ffffff",
+              "primary-container": "#FF0000",
+              "secondary": "#a03646",
+              "secondary-container": "#ffc2c6",
+              "on-secondary-container": "#852233",
+              "surface-container-low": "#f8f5f5",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#e1e3e3",
+              "surface-variant": "#dbdddd",
+              "on-surface-variant": "#5a5c5c",
+              "tertiary": "#7b40a2",
+              "on-tertiary": "#fdeeff",
+              "error": "#b41340"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .factory-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+        }
+        .blueprint-gears {
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20zm0-25c2.2 0 4-1.8 4-4V45c0-2.2-1.8-4-4-4s-4 1.8-4 4v6c0 2.2 1.8 4 4 4zm43.3 18c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zm11.7 43.3c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4s-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4zm-18 43.3c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zM100 155c-2.2 0-4 1.8-4 4v6c0 2.2 1.8 4 4 4s4-1.8 4-4v-6c0-2.2-1.8-4-4-4zm-43.3-18c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7zM45 100c0-2.2-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4s1.8 4 4 4h6c2.2 0 4-1.8 4-4zm11.7-43.3c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7z' fill='%23e5e7eb' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+        .diamond-plate {
+            background-color: #fcfcfc;
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l2 13 13 2-13 2-2 13-2-13-13-2 13-2z' fill='%23f1f1f1' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body diamond-plate">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/85 backdrop-blur-md border-b border-gray-100 shadow-sm">
+<div class="flex justify-between items-center px-8 py-3 max-w-full mx-auto relative">
+<div class="flex items-center gap-2">
+<img alt="The Smile Factory Logo" class="w-auto h-12 md:h-16" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<div class="hidden lg:flex items-center space-x-10 absolute left-1/2 -translate-x-1/2 font-headline font-bold text-sm uppercase tracking-tight">
+<a class="text-zinc-600 hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-zinc-600 hover:text-primary transition-colors" href="#">About</a>
+<a class="text-zinc-600 hover:text-primary transition-colors" href="#">Pricing</a>
+<a class="text-primary border-b-2 border-primary pb-0.5" href="#">Parties</a>
+<a class="text-zinc-600 hover:text-primary transition-colors" href="#">Gallery</a>
+<a class="text-zinc-600 hover:text-primary transition-colors" href="#">Contact</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden sm:flex items-center gap-4 mr-2 font-headline font-bold text-sm">
+<a class="text-zinc-600 hover:text-primary transition-colors" href="#">Sign In</a>
+</div>
+<button class="bg-gradient-to-r from-primary to-[#cc0000] text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm shadow-md hover:opacity-90 active:scale-95 transition-all flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                    Book a Party
+                </button>
+</div>
+</div>
+</nav>
+<!-- Hero Section -->
+<header class="relative pt-48 pb-24 overflow-hidden blueprint-gears bg-white">
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="grid lg:grid-cols-2 gap-16 items-center">
+<div class="space-y-8">
+<span class="inline-block px-4 py-1.5 bg-red-100/80 text-primary rounded-full text-sm font-black tracking-widest uppercase border border-red-200">The Joy Assembly Line</span>
+<h1 class="text-6xl md:text-8xl font-black font-headline text-on-surface leading-[0.9] tracking-tighter italic uppercase">
+                        ENGINEER <br/>THE <span class="text-primary">ULTIMATE</span> BIRTHDAY.
+                    </h1>
+<p class="text-xl text-zinc-600 max-w-lg font-body leading-relaxed">
+                        High-octane fun, precision-planned celebrations. We handle the logistics; you focus on the high scores.
+                    </p>
+<div class="flex flex-wrap gap-6 pt-4">
+<button class="bg-gradient-to-r from-primary to-[#cc0000] text-on-primary px-10 py-5 rounded-full font-headline font-bold text-lg shadow-xl hover:opacity-90 active:scale-95 transition-all flex items-center gap-3">
+                            View Packages <span class="material-symbols-outlined">arrow_downward</span>
+</button>
+<button class="px-10 py-5 rounded-full font-headline font-bold text-zinc-800 border-2 border-zinc-200 bg-white hover:bg-zinc-50 active:scale-95 transition-all flex items-center gap-3 shadow-md">
+                            Take a Tour <span class="material-symbols-outlined">visibility</span>
+</button>
+</div>
+</div>
+<div class="relative">
+<div class="aspect-square rounded-lg overflow-hidden shadow-2xl rotate-3 scale-105 border-[16px] border-white">
+<img alt="Birthday Party at Smile Factory" class="w-full h-full object-cover" data-alt="Vibrant arcade room with neon lights, children cheering around a colorful air hockey table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB0I5E-U956KI1Y8VFx0FrFn3dHcCArwJ_olazhocHb3XGW8vq--CQHTxbRYREqrKy2JreQaMnZu9AunOUnWzkK8ce0wFnHZqGr3XxbWozNEt5yOCmoXwSnh2lPlXg3wR_jjazk09jujRZZxFeHpjTOB6gVxGZQ_YSczx_uqZwdNcvYmO1CNhoPXvxsZAel8kulAnXT8EvzZvDb78rnDJNSWw0g5TVoQEWj0jeBw9PCJtT1Mo8B2jvn5v9lxTSl5CMYwxQSE-1thXzy"/>
+</div>
+<div class="absolute -bottom-8 -left-8 bg-tertiary text-on-tertiary p-8 rounded-lg shadow-xl max-w-xs animate-pulse">
+<span class="material-symbols-outlined text-4xl mb-2">settings_suggest</span>
+<h3 class="font-headline font-bold text-xl uppercase italic">Factory Special</h3>
+<p class="text-sm opacity-90">Book any weekday party and get 500 bonus tickets for the birthday engineer!</p>
+</div>
+</div>
+</div>
+</div>
+</header>
+<!-- Packages Section -->
+<section class="py-24 bg-zinc-50/80 relative">
+<div class="absolute inset-0 factory-pattern opacity-30 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="mb-20 text-center space-y-4">
+<h2 class="text-4xl md:text-5xl font-black font-headline tracking-tighter uppercase italic">Party Blueprints</h2>
+<div class="w-24 h-2 bg-primary mx-auto rounded-full"></div>
+</div>
+<div class="grid grid-cols-1 gap-12">
+<!-- Package: The Classic -->
+<div class="bg-white rounded-lg p-10 flex flex-col md:flex-row gap-10 group hover:shadow-2xl transition-all duration-500 border border-gray-100 max-w-5xl mx-auto w-full">
+<div class="flex-1 space-y-8">
+<div class="flex justify-between items-start border-b border-zinc-100 pb-6">
+<div>
+<h3 class="text-3xl font-black font-headline text-primary uppercase italic">Classic Package</h3>
+<p class="text-zinc-500 mt-1">The essential factory experience.</p>
+</div>
+<div class="text-right">
+<span class="block text-4xl font-black font-headline text-on-surface">$400</span>
+<span class="text-xs font-black uppercase tracking-widest text-zinc-400">For 12 Children</span>
+</div>
+</div>
+<ul class="space-y-3 font-body text-zinc-700">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>2 Hour Party in Private Decorated Party Room</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>Private Party Hosts</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>2 slices of Pizza per child</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>Soda, Juice, &amp; Chips</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>All Paper Products</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>$7 per Child Worth of Tokens (21 Tokens)</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>$60 worth of tokens for parent to distribute</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary text-xl">check_circle</span>
+<span>Extra tickets for the Birthday Child</span>
+</li>
+</ul>
+<button class="w-full py-4 bg-on-surface text-white rounded-full font-headline font-bold uppercase tracking-widest hover:bg-primary transition-all shadow-md">Select Blueprint</button>
+</div>
+<div class="flex-1 rounded-lg overflow-hidden relative border-4 border-zinc-50 shadow-inner min-h-[400px]">
+<img alt="Party setup" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxtAnRE_84fUqoP9Ur5gRnnNPXfz7i_Ku3DAzHN2pWOLAuLQWaoSuWP1PhY4pHgzLUqY4vlrhinQW69DDCJGuV9Uv9Q3ZPCp3MNSjTSVCr4whvRcnvDwW3lAbCbeyOxu-EFlY4rVbko4FiGy3-abGcMEsOk22Q1T3hfGEtxYxDBo27hqkmg0DwIyM7QkfWsh938o8v79LAmESJ3_7SY9HQq_KvgEHLq7rMuKcp_grfUKFEm7nZo3EYn_BrbAr7OCTjAUzAQF7_LUOJ"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Custom Add-Ons Section -->
+<section class="py-24 bg-white relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-8 relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-xl">
+<h2 class="text-4xl font-black font-headline uppercase italic tracking-tighter">Part Upgrades</h2>
+<p class="text-zinc-500 mt-4">Fine-tune your celebration with these precision components.</p>
+</div>
+<div class="flex gap-2">
+<div class="w-12 h-2 bg-primary rounded-full"></div>
+<div class="w-6 h-2 bg-red-300 rounded-full"></div>
+<div class="w-3 h-2 bg-tertiary rounded-full"></div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="bg-zinc-50 p-8 rounded-lg group hover:bg-primary transition-all duration-300 border border-zinc-100 cursor-default">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:text-white mb-4 transition-colors">person_add</span>
+<h4 class="font-headline font-bold uppercase group-hover:text-white transition-colors text-sm">Additional Child</h4>
+<p class="text-sm text-zinc-500 group-hover:text-white/80 mt-2 transition-colors">+$14.95/child</p>
+</div>
+<div class="bg-zinc-50 p-8 rounded-lg group hover:bg-primary transition-all duration-300 border border-zinc-100 cursor-default">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:text-white mb-4 transition-colors">local_pizza</span>
+<h4 class="font-headline font-bold uppercase group-hover:text-white transition-colors text-sm">Extra Pizza</h4>
+<p class="text-sm text-zinc-500 group-hover:text-white/80 mt-2 transition-colors">+$12.00 each</p>
+</div>
+<div class="bg-zinc-50 p-8 rounded-lg group hover:bg-primary transition-all duration-300 border border-zinc-100 cursor-default">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:text-white mb-4 transition-colors">cake</span>
+<h4 class="font-headline font-bold uppercase group-hover:text-white transition-colors text-sm">Custom Gear Cake</h4>
+<p class="text-sm text-zinc-500 group-hover:text-white/80 mt-2 transition-colors">+$45.00</p>
+</div>
+<div class="bg-zinc-50 p-8 rounded-lg group hover:bg-primary transition-all duration-300 border border-zinc-100 cursor-default">
+<span class="material-symbols-outlined text-4xl text-primary group-hover:text-white mb-4 transition-colors">card_giftcard</span>
+<h4 class="font-headline font-bold uppercase group-hover:text-white transition-colors text-sm">Factory Swag Bags</h4>
+<p class="text-sm text-zinc-500 group-hover:text-white/80 mt-2 transition-colors">+$8.00/child</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Inquire CTA -->
+<section class="py-24 bg-zinc-50/50">
+<div class="max-w-4xl mx-auto px-8">
+<div class="bg-white rounded-xl p-16 text-center relative overflow-hidden shadow-2xl border border-zinc-100">
+<div class="absolute inset-0 factory-pattern opacity-10 pointer-events-none"></div>
+<div class="relative z-10 space-y-10">
+<h2 class="text-5xl md:text-6xl font-black font-headline uppercase italic leading-none tracking-tighter">Ready to start the <br/><span class="text-primary italic">production line?</span></h2>
+<p class="text-xl text-zinc-600 max-w-lg mx-auto">Dates fill up fast. Get your inquiry in today and lock in your factory floor time.</p>
+<div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+<input class="w-full sm:w-80 px-8 py-5 rounded-full border-2 border-zinc-100 bg-zinc-50 focus:border-primary focus:ring-0 transition-all font-body text-lg" placeholder="Enter your email" type="email"/>
+<button class="bg-primary text-white px-12 py-5 rounded-full font-headline font-bold uppercase tracking-widest shadow-xl shadow-primary/30 hover:scale-105 active:scale-95 transition-all text-lg">Inquire Now</button>
+</div>
+</div>
+<!-- Background visual -->
+<div class="absolute inset-0 flex items-center justify-center opacity-[0.03] select-none pointer-events-none">
+<span class="text-[20rem] font-black font-headline">SMILE</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="w-full bg-white border-t border-zinc-200 relative overflow-hidden">
+<div class="absolute inset-0 factory-pattern opacity-10 pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-7xl mx-auto relative z-10">
+<div class="space-y-8">
+<div class="flex items-center gap-2">
+<img alt="The Smile Factory Logo" class="w-auto h-24" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<p class="text-zinc-500 text-sm leading-relaxed">Making families smile in Brigantine since 2006. Quality games, great prizes, and unforgettable memories.</p>
+</div>
+<div>
+<h4 class="font-headline font-black text-on-surface text-lg mb-8 uppercase tracking-widest italic">Quick Links</h4>
+<ul class="space-y-4 text-zinc-500 font-bold text-sm">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Home</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Pricing</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Birthday Parties</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Games Gallery</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline font-black text-on-surface text-lg mb-8 uppercase tracking-widest italic">Legal &amp; Info</h4>
+<ul class="space-y-4 text-zinc-500 font-bold text-sm">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Terms of Service</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Safety Rules</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Feedback</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline font-black text-on-surface text-lg mb-8 uppercase tracking-widest italic">Connect</h4>
+<ul class="space-y-6 text-zinc-500 font-bold text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>1307 W Brigantine Ave # B,<br/>Brigantine, NJ 08203</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<span>(609) 266-3866</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<div class="flex flex-col">
+<span>Sat-Sun: 10am - 10pm</span>
+<span>Mon-Fri: 12pm - 10pm</span>
+</div>
+</li>
+<li>
+<a class="bg-primary text-white px-6 py-2 rounded-lg font-black uppercase text-xs tracking-widest hover:opacity-90 transition-all inline-block shadow-md" href="#">Staff Login</a>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-zinc-100 py-8 text-center text-zinc-400 uppercase tracking-widest text-[10px] font-bold">
+            © 2024 THE SMILE FACTORY ARCADE. BUILT FOR JOY.
+        </div>
+</footer>
+</body></html>

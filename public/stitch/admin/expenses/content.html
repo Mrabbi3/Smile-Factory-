@@ -1,0 +1,317 @@
+﻿<main class="flex-1 ml-72 min-h-screen">
+<!-- TopAppBar -->
+<header class="sticky top-0 z-40 w-full bg-surface h-16 px-8 flex justify-between items-center border-b border-surface-container left-72">
+<h2 class="font-['Work_Sans'] font-medium text-lg text-red-700">Operations Dashboard</h2>
+<div class="flex items-center gap-6">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">search</span>
+<input class="pl-10 pr-4 py-1.5 bg-surface-container-highest border-none rounded-full text-sm focus:ring-2 focus:ring-primary w-64 transition-all" placeholder="Search logistics..." type="text"/>
+</div>
+<div class="flex items-center gap-4 text-slate-500">
+<button class="cursor-pointer hover:opacity-80"><span class="material-symbols-outlined">notifications</span></button>
+<button class="cursor-pointer hover:opacity-80 flex items-center gap-2">
+<span class="material-symbols-outlined">account_circle</span>
+<span class="text-sm font-semibold">Admin. User</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Dashboard Canvas -->
+<div class="p-8 space-y-8 max-w-7xl mx-auto">
+<!-- Page Header -->
+<div class="flex justify-between items-end">
+<div>
+<h1 class="text-5xl font-black text-on-surface tracking-tighter mb-2">Expense Tracking</h1>
+<p class="text-on-surface-variant font-medium">Financial health monitor for the Smile Factory floor.</p>
+</div>
+<div class="flex gap-3">
+<button class="bg-surface-container-low text-on-surface px-6 py-2.5 rounded-full font-bold flex items-center gap-2 hover:bg-surface-container-high transition-colors">
+<span class="material-symbols-outlined">filter_list</span>
+                        Filter
+                    </button>
+<button class="industrial-gradient text-white px-8 py-2.5 rounded-full font-bold flex items-center gap-2 shadow-lg shadow-red-900/10 hover:scale-[1.02] transition-transform">
+<span class="material-symbols-outlined">add_circle</span>
+                        Log Expense
+                    </button>
+</div>
+</div>
+<!-- KPI Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- KPI Card 1 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-on-surface-variant text-sm font-bold uppercase tracking-wider mb-1">Monthly Total</p>
+<h3 class="text-3xl font-black text-on-surface">$24,850.00</h3>
+<div class="mt-4 flex items-center text-error font-bold text-sm">
+<span class="material-symbols-outlined text-sm mr-1">trending_up</span>
+                            12% vs last month
+                        </div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl text-surface-container opacity-20 pointer-events-none group-hover:rotate-12 transition-transform duration-500">payments</span>
+</div>
+<!-- KPI Card 2 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-on-surface-variant text-sm font-bold uppercase tracking-wider mb-1">Cash Expenses</p>
+<h3 class="text-3xl font-black text-on-surface">$4,210.50</h3>
+<div class="mt-4 flex items-center text-slate-500 font-bold text-sm">
+<span class="material-symbols-outlined text-sm mr-1">video_stable</span>
+                            Within budget limits
+                        </div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl text-surface-container opacity-20 pointer-events-none group-hover:rotate-12 transition-transform duration-500">account_balance_wallet</span>
+</div>
+<!-- KPI Card 3 -->
+<div class="bg-surface-container-lowest p-6 rounded-lg relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-on-surface-variant text-sm font-bold uppercase tracking-wider mb-1">Card Terminal</p>
+<h3 class="text-3xl font-black text-on-surface">$20,639.50</h3>
+<div class="mt-4 flex items-center text-primary-dim font-bold text-sm">
+<span class="material-symbols-outlined text-sm mr-1">credit_card</span>
+                            94 transactions processed
+                        </div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl text-surface-container opacity-20 pointer-events-none group-hover:rotate-12 transition-transform duration-500">credit_card</span>
+</div>
+<!-- KPI Card 4 -->
+<div class="bg-tertiary-container p-6 rounded-lg relative overflow-hidden group">
+<div class="relative z-10">
+<p class="text-on-tertiary-container text-sm font-bold uppercase tracking-wider mb-1">Ticket Surplus</p>
+<h3 class="text-3xl font-black text-on-tertiary-container">1.2M</h3>
+<div class="mt-4 flex items-center text-on-tertiary-container/70 font-bold text-sm">
+<span class="material-symbols-outlined text-sm mr-1">confirmation_number</span>
+                            Inventory value: $12k
+                        </div>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-8xl text-white/20 pointer-events-none group-hover:scale-110 transition-transform duration-500">stars</span>
+</div>
+</div>
+<!-- Bento Layout Content -->
+<div class="grid grid-cols-12 gap-8">
+<!-- Main Log Table (Col 8) -->
+<div class="col-span-12 lg:col-span-8 space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="text-2xl font-black tracking-tight text-on-surface">Live Assembly Line Log</h2>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-bold text-on-surface-variant">Maintenance</span>
+<span class="px-3 py-1 bg-surface-container-high rounded-full text-xs font-bold text-on-surface-variant">Supplies</span>
+</div>
+</div>
+<div class="bg-surface-container-lowest rounded-lg overflow-hidden border border-surface-container">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low">
+<th class="px-6 py-4 font-bold text-sm text-on-surface-variant uppercase tracking-widest">Date / ID</th>
+<th class="px-6 py-4 font-bold text-sm text-on-surface-variant uppercase tracking-widest">Description</th>
+<th class="px-6 py-4 font-bold text-sm text-on-surface-variant uppercase tracking-widest">Category</th>
+<th class="px-6 py-4 font-bold text-sm text-on-surface-variant uppercase tracking-widest text-right">Amount</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-5">
+<div class="text-sm font-bold text-on-surface">Oct 24, 2023</div>
+<div class="text-[10px] text-slate-400 font-mono tracking-tighter">EX-4821-SF</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">build</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Hydraulic Fluid Refill</div>
+<div class="text-xs text-on-surface-variant">Main Claw Machine Maintenance</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black uppercase">Maintenance</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="text-sm font-black text-on-surface">$450.00</div>
+<div class="text-[10px] text-slate-400">Card Terminal â€¢ ...9012</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-5">
+<div class="text-sm font-bold text-on-surface">Oct 23, 2023</div>
+<div class="text-[10px] text-slate-400 font-mono tracking-tighter">EX-4820-SF</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">inventory_2</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Bulk Plushies (Series 4)</div>
+<div class="text-xs text-on-surface-variant">Vendor: JoyWorld Imports</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 rounded-full text-[10px] font-black uppercase">Prizes</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="text-sm font-black text-on-surface">$2,100.00</div>
+<div class="text-[10px] text-slate-400">Wire Transfer</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-5">
+<div class="text-sm font-bold text-on-surface">Oct 22, 2023</div>
+<div class="text-[10px] text-slate-400 font-mono tracking-tighter">EX-4819-SF</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">bolt</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Power Substation Billing</div>
+<div class="text-xs text-on-surface-variant">Monthly Utilities (Peak Season)</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-surface-container-highest text-on-surface-variant px-3 py-1 rounded-full text-[10px] font-black uppercase">Utilities</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="text-sm font-black text-on-surface">$3,840.12</div>
+<div class="text-[10px] text-slate-400">Auto-Pay â€¢ Direct Debit</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors cursor-pointer group">
+<td class="px-6 py-5">
+<div class="text-sm font-bold text-on-surface">Oct 21, 2023</div>
+<div class="text-[10px] text-slate-400 font-mono tracking-tighter">EX-4818-SF</div>
+</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors">
+<span class="material-symbols-outlined">ink_eraser</span>
+</div>
+<div>
+<div class="text-sm font-bold text-on-surface">Thermal Printer Rolls</div>
+<div class="text-xs text-on-surface-variant">Stationery &amp; Floor Supplies</div>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-black uppercase">Supplies</span>
+</td>
+<td class="px-6 py-5 text-right">
+<div class="text-sm font-black text-on-surface">$120.45</div>
+<div class="text-[10px] text-slate-400">Petty Cash</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="p-4 bg-surface-container-low text-center">
+<button class="text-primary font-bold text-sm hover:underline">View All 245 Records</button>
+</div>
+</div>
+</div>
+<!-- Category Breakdown & Visuals (Col 4) -->
+<div class="col-span-12 lg:col-span-4 space-y-8">
+<!-- Spending Visual Section -->
+<div class="bg-surface-container-lowest p-8 rounded-lg shadow-sm border border-surface-container">
+<h3 class="text-xl font-black text-on-surface mb-6">Category Breakdown</h3>
+<div class="space-y-6">
+<!-- Maintenance -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface-variant">Maintenance</span>
+<span class="text-on-surface">45%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary" style="width: 45%;"></div>
+</div>
+</div>
+<!-- Prizes -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface-variant">Prizes</span>
+<span class="text-on-surface">30%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-tertiary" style="width: 30%;"></div>
+</div>
+</div>
+<!-- Utilities -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface-variant">Utilities</span>
+<span class="text-on-surface">15%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-on-surface-variant" style="width: 15%;"></div>
+</div>
+</div>
+<!-- Supplies -->
+<div class="space-y-2">
+<div class="flex justify-between text-xs font-bold uppercase tracking-wider">
+<span class="text-on-surface-variant">Supplies</span>
+<span class="text-on-surface">10%</span>
+</div>
+<div class="w-full h-3 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary" style="width: 10%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Machine Status / Efficiency Metric -->
+<div class="industrial-gradient p-8 rounded-lg text-white shadow-xl">
+<div class="flex items-center gap-4 mb-6">
+<div class="p-3 bg-white/20 rounded-lg backdrop-blur-md">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">settings_suggest</span>
+</div>
+<h3 class="text-xl font-black">Efficiency Metric</h3>
+</div>
+<p class="text-on-primary/80 text-sm leading-relaxed mb-6">
+                            Maintenance spending is currently <span class="font-bold underline">exceeding</span> the projected operational budget by $2.4k this quarter. Check Work Orders for recurring machine faults.
+                        </p>
+<button class="w-full bg-white text-primary py-3 rounded-full font-black text-sm uppercase tracking-widest hover:bg-on-primary transition-colors">
+                            Audit Machines
+                        </button>
+</div>
+<!-- Small Prize Gear Component -->
+<div class="bg-white p-6 rounded-lg flex items-center justify-between group cursor-pointer hover:bg-slate-50 transition-colors border border-surface-container">
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 bg-tertiary/10 rounded-full flex items-center justify-center text-tertiary group-hover:rotate-180 transition-transform duration-700">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">settings</span>
+</div>
+<div>
+<h4 class="font-black text-on-surface">Prize Gear Optimization</h4>
+<p class="text-xs text-on-surface-variant">Inventory auto-restock enabled.</p>
+</div>
+</div>
+<span class="material-symbols-outlined text-slate-300">chevron_right</span>
+</div>
+</div>
+</div>
+<!-- Footer Graphic / Secondary Section -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-12">
+<div class="lg:col-span-2 relative h-48 rounded-lg overflow-hidden group border border-surface-container">
+<img alt="Factory Schematics" class="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBgtNMD__tEGf9SRWh4oyIfpPCpH9FV96PsrBFBlozBj6lv6MkjRt4iyMIjOT19fpTjio7FxPH-tcP702zMhC3ODaJJOyrkUnhaxEvqmzkJ0SdiWJOk-4sR3zLYAEOYlXk3a5YvZgx77PpPuzIphx0H9EeQG10kGnGtWNsgUE-0HDLVu_FTuQ4OT_DJA9gyo2Ku7ltZaAo05aUxZ_ln3628Ap2fXCacn9-qo6y_BfR9Iq3LxYpwnvjGqCxZTW_2ZQSR3jzHe6hDVsCb"/>
+<div class="absolute inset-0 bg-gradient-to-r from-surface to-transparent flex items-center px-12">
+<div class="max-w-md">
+<h4 class="text-2xl font-black text-on-surface tracking-tighter mb-2">Technical Documentation</h4>
+<p class="text-on-surface-variant text-sm font-medium">Review machine manuals and part costs for precise expense allocation.</p>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-high p-8 rounded-lg flex flex-col justify-center">
+<h4 class="font-black text-on-surface text-lg mb-2">Need Financial Assistance?</h4>
+<p class="text-on-surface-variant text-sm mb-6">Our accounting team is available for real-time factory audits.</p>
+<button class="flex items-center gap-2 text-primary font-bold hover:gap-3 transition-all">
+                        Contact Support
+                        <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</main>

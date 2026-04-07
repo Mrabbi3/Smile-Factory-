@@ -1,0 +1,287 @@
+﻿<main class="ml-64 min-h-screen">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-64 right-0 z-40 bg-white/80 backdrop-blur-xl border-b border-zinc-200/50 flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-8">
+<h2 class="font-headline font-black text-2xl text-red-700 tracking-tight uppercase">The Smile Factory</h2>
+<div class="relative w-96">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-zinc-400">search</span>
+<input class="w-full bg-surface-container-low border-none rounded-full pl-10 pr-4 py-2 focus:ring-2 focus:ring-primary/20 text-sm" placeholder="Search serial numbers, models..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-zinc-500 hover:bg-zinc-100 rounded-full transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-red-600 rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-zinc-500 hover:bg-zinc-100 rounded-full transition-colors">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-zinc-200 mx-2"></div>
+<div class="flex items-center gap-3">
+<div class="text-right">
+<p class="text-xs font-bold text-on-surface">Admin Manager</p>
+<p class="text-[10px] text-zinc-500">Shift A-04</p>
+</div>
+<img class="w-10 h-10 rounded-full object-cover border-2 border-zinc-100 shadow-sm" data-alt="portrait of a professional male manager in a modern industrial office setting with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASoS3YPC3YWM8csHTubWVqOr4AOY3sAtfuxgBsI0rhqTsM_SbIckM-ATiYfJ4DKrU20bIzFS0Sz2sR3R_w-wRnpVas9F9utGD5-z4tr4TQkfhr225McI_51ZTjP2FFmxYt2Cz-APBggpdQFux32UeqMMHwidstWdc3F0J7Gym_hrF9JPSr32P9vuGFFAtcLJv1rseRXqNpgxVA6ZzkkoPfw_PbkiEZeJoihA1qkWSAjkFOOrtj7zMPyL0AelFaBledmn1KWNGPtESh"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="pt-24 px-8 pb-12">
+<!-- Header Section -->
+<div class="flex justify-between items-end mb-8">
+<div>
+<nav class="flex items-center gap-2 text-xs text-zinc-400 mb-2 font-medium">
+<span>ASSETS</span>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">MACHINES</span>
+</nav>
+<h1 class="text-4xl font-headline font-black text-on-background tracking-tighter">Machine Management</h1>
+</div>
+<button class="bg-primary text-on-primary flex items-center gap-2 px-6 py-3 rounded-full font-bold shadow-xl shadow-primary/30 hover:shadow-primary/40 transition-all hover:-translate-y-1">
+<span class="material-symbols-outlined">add</span>
+                    Add New Machine
+                </button>
+</div>
+<!-- Stats Row: Bento Grid Style -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-red-700 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="z-10">
+<p class="text-zinc-500 text-sm font-bold uppercase tracking-wider">Total Machines</p>
+<h3 class="text-4xl font-headline font-black mt-2">142</h3>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-zinc-50 text-8xl group-hover:text-red-50 transition-colors">videogame_asset</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-emerald-500 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="z-10">
+<p class="text-zinc-500 text-sm font-bold uppercase tracking-wider">Active</p>
+<h3 class="text-4xl font-headline font-black mt-2">128</h3>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-zinc-50 text-8xl group-hover:text-emerald-50 transition-colors">bolt</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-amber-500 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="z-10">
+<p class="text-zinc-500 text-sm font-bold uppercase tracking-wider">Maintenance</p>
+<h3 class="text-4xl font-headline font-black mt-2">9</h3>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-zinc-50 text-8xl group-hover:text-amber-50 transition-colors">build</span>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-l-4 border-zinc-400 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="z-10">
+<p class="text-zinc-500 text-sm font-bold uppercase tracking-wider">Inactive</p>
+<h3 class="text-4xl font-headline font-black mt-2">5</h3>
+</div>
+<span class="material-symbols-outlined absolute -right-4 -bottom-4 text-zinc-50 text-8xl group-hover:text-zinc-100 transition-colors">power_settings_new</span>
+</div>
+</div>
+<!-- Main Content: Industrial Table -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden">
+<div class="px-6 py-4 border-b border-zinc-100 flex justify-between items-center bg-zinc-50/50">
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-4 py-2 bg-white rounded-md text-sm font-bold border border-zinc-200 hover:bg-zinc-50">
+<span class="material-symbols-outlined text-sm">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 bg-white rounded-md text-sm font-bold border border-zinc-200 hover:bg-zinc-50">
+<span class="material-symbols-outlined text-sm">sort</span>
+                            Sort By
+                        </button>
+</div>
+<div class="flex gap-2">
+<span class="px-3 py-1 bg-tertiary-container/30 text-on-tertiary-container rounded-full text-xs font-bold flex items-center gap-1">
+<span class="material-symbols-outlined text-xs">settings</span>
+                            Prize Gear Active
+                        </span>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-zinc-50 text-zinc-500 uppercase text-[10px] tracking-[0.15em] font-black border-b border-zinc-100">
+<th class="px-6 py-4">Machine ID</th>
+<th class="px-6 py-4">Name</th>
+<th class="px-6 py-4">Category</th>
+<th class="px-6 py-4">Status</th>
+<th class="px-6 py-4">Last Service</th>
+<th class="px-6 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-zinc-50">
+<!-- Row 1 -->
+<tr class="hover:bg-zinc-50/50 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-zinc-400">#AC-94021</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">sports_esports</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Neon Racer GT</p>
+<p class="text-xs text-zinc-400">Deluxe Cabinet</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-wider">Racing</span>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-2 text-emerald-600 text-xs font-bold">
+<span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                        Online
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-zinc-500">Oct 12, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">history</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-red-600"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-zinc-50/50 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-zinc-400">#AC-94025</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">token</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Mega Claw v2</p>
+<p class="text-xs text-zinc-400">Premium Prize</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-wider">Redemption</span>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-2 text-amber-600 text-xs font-bold">
+<span class="w-2 h-2 bg-amber-500 rounded-full"></span>
+                                        Service Required
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-zinc-500">Aug 28, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">history</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-red-600"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-zinc-50/50 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-zinc-400">#AC-94031</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">videogame_asset</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Space Invaders</p>
+<p class="text-xs text-zinc-400">Retro Classic</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-wider">Arcade</span>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-2 text-emerald-600 text-xs font-bold">
+<span class="w-2 h-2 bg-emerald-500 rounded-full"></span>
+                                        Online
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-zinc-500">Nov 01, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">history</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-red-600"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-zinc-50/50 transition-colors group">
+<td class="px-6 py-5 font-mono text-xs text-zinc-400">#AC-94042</td>
+<td class="px-6 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-red-50 flex items-center justify-center text-primary">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<div>
+<p class="font-bold text-on-surface">Ticket Typhoon</p>
+<p class="text-xs text-zinc-400">High Volume</p>
+</div>
+</div>
+</td>
+<td class="px-6 py-5">
+<span class="px-3 py-1 rounded-full bg-zinc-100 text-zinc-600 text-[10px] font-bold uppercase tracking-wider">Redemption</span>
+</td>
+<td class="px-6 py-5">
+<span class="flex items-center gap-2 text-zinc-400 text-xs font-bold">
+<span class="w-2 h-2 bg-zinc-300 rounded-full"></span>
+                                        Offline
+                                    </span>
+</td>
+<td class="px-6 py-5 text-sm text-zinc-500">Sep 15, 2023</td>
+<td class="px-6 py-5 text-right">
+<div class="flex justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">edit</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-primary"><span class="material-symbols-outlined">history</span></button>
+<button class="p-2 hover:bg-zinc-100 rounded-full text-zinc-400 hover:text-red-600"><span class="material-symbols-outlined">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="px-6 py-4 bg-zinc-50/50 border-t border-zinc-100 flex justify-between items-center text-xs font-bold text-zinc-400">
+<p>SHOWING 4 OF 142 MACHINES</p>
+<div class="flex gap-1">
+<button class="w-8 h-8 rounded bg-white border border-zinc-200 flex items-center justify-center text-zinc-500 hover:bg-primary hover:text-white transition-colors">1</button>
+<button class="w-8 h-8 rounded bg-white border border-zinc-200 flex items-center justify-center text-zinc-500 hover:bg-zinc-100">2</button>
+<button class="w-8 h-8 rounded bg-white border border-zinc-200 flex items-center justify-center text-zinc-500 hover:bg-zinc-100">3</button>
+<button class="w-8 h-8 rounded bg-white border border-zinc-200 flex items-center justify-center text-zinc-500 hover:bg-zinc-100">
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Asymmetric Layout Detail Section -->
+<div class="mt-12 grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-white rounded-lg p-8 shadow-sm relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8">
+<span class="material-symbols-outlined text-zinc-50 text-[120px]">analytics</span>
+</div>
+<div class="relative z-10">
+<h4 class="font-headline font-black text-xl mb-4 text-red-700">Earnings Performance</h4>
+<p class="text-sm text-zinc-500 mb-8 max-w-md">Machine AC-94021 (Neon Racer GT) is currently outperforming its category average by 24.3% this week.</p>
+<div class="flex items-end gap-2 h-32">
+<div class="w-8 bg-primary/20 rounded-t-md h-[40%]"></div>
+<div class="w-8 bg-primary/20 rounded-t-md h-[55%]"></div>
+<div class="w-8 bg-primary/20 rounded-t-md h-[45%]"></div>
+<div class="w-8 bg-primary/20 rounded-t-md h-[70%]"></div>
+<div class="w-8 bg-primary/20 rounded-t-md h-[60%]"></div>
+<div class="w-8 bg-primary rounded-t-md h-[95%]"></div>
+<div class="w-8 bg-primary/40 rounded-t-md h-[80%]"></div>
+</div>
+</div>
+</div>
+<div class="bg-red-700 rounded-lg p-8 shadow-xl text-on-primary flex flex-col justify-between">
+<div>
+<div class="w-12 h-12 bg-white/10 rounded-full flex items-center justify-center mb-6">
+<span class="material-symbols-outlined">warning</span>
+</div>
+<h4 class="font-headline font-black text-xl mb-2">Maintenance Alert</h4>
+<p class="text-sm opacity-80 leading-relaxed">Hydraulic feedback on racing simulator cabinets requires inspection every 48 operating hours. 3 machines are pending.</p>
+</div>
+<button class="mt-8 bg-white text-primary font-bold py-3 rounded-full hover:bg-red-50 transition-colors">
+                        View Work Orders
+                    </button>
+</div>
+</div>
+</div>
+</main>

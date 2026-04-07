@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "#FF0000",
+              "on-primary": "#ffffff",
+              "primary-container": "#FF0000",
+              "secondary": "#a03646",
+              "surface": "#fcfcfc",
+              "on-surface": "#2d2f2f",
+              "background": "#f8f5f5",
+              "outline-variant": "#e5e7eb",
+              "surface-container-low": "#f0f1f1",
+              "on-surface-variant": "#5a5c5c"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            display: inline-block;
+            vertical-align: middle;
+        }
+        .diamond-plate {
+            background-color: #fcfcfc;
+            background-image: url("data:image/svg+xml,%3Csvg width='30' height='30' viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M15 0l2 13 13 2-13 2-2 13-2-13-13-2 13-2z' fill='%23f1f1f1' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+        .factory-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm20 20l20 20M0 40L20 20M20 0l20 20M0 20L20 0' stroke='%23e5e7eb' stroke-width='0.5' fill='none'/%3E%3C/svg%3E");
+        }
+        .blueprint-gears {
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='200' viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M100 70c-16.5 0-30 13.5-30 30s13.5 30 30 30 30-13.5 30-30-13.5-30-30-30zm0 10c11 0 20 9 20 20s-9 20-20 20-20-9-20-20 9-20 20-20zm0-25c2.2 0 4-1.8 4-4V45c0-2.2-1.8-4-4-4s-4 1.8-4 4v6c0 2.2 1.8 4 4 4zm43.3 18c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zm11.7 43.3c0 2.2 1.8 4 4 4h6c2.2 0 4-1.8 4-4s-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4zm-18 43.3c1.6 1.6 4.1 1.6 5.7 0l4.2-4.2c1.6-1.6 1.6-4.1 0-5.7s-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7zM100 155c-2.2 0-4 1.8-4 4v6c0 2.2 1.8 4 4 4s4-1.8 4-4v-6c0-2.2-1.8-4-4-4zm-43.3-18c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7zM45 100c0-2.2-1.8-4-4-4h-6c-2.2 0-4 1.8-4 4s1.8 4 4 4h6c2.2 0 4-1.8 4-4zm11.7-43.3c-1.6-1.6-4.1-1.6-5.7 0l-4.2 4.2c-1.6 1.6-1.6 4.1 0 5.7s4.1 1.6 5.7 0l4.2-4.2c1.6-1.6-1.6-4.1 0-5.7z' fill='%23e5e7eb' fill-opacity='0.4'/%3E%3C/svg%3E");
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-container selection:text-on-primary diamond-plate">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm border-b border-gray-100">
+<div class="flex justify-between items-center px-8 py-3 max-w-full mx-auto relative">
+<!-- Logo -->
+<div class="flex items-center gap-2 shrink-0">
+<img alt="The Smile Factory Logo" class="w-auto h-12 md:h-16" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<!-- Centered Navigation -->
+<div class="hidden lg:flex items-center space-x-10 absolute left-1/2 -translate-x-1/2">
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Home</a>
+<a class="text-primary border-b-2 border-primary pb-0.5 transition-all font-headline font-bold text-sm uppercase tracking-tight" href="#">About</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Pricing</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Parties</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Gallery</a>
+<a class="text-zinc-600 hover:text-primary transition-colors font-headline font-bold text-sm uppercase tracking-tight" href="#">Contact</a>
+</div>
+<!-- Right Side Actions -->
+<div class="flex items-center gap-4 shrink-0">
+<button class="hidden lg:block text-zinc-600 font-headline font-bold text-sm hover:text-primary transition-colors">Sign In</button>
+<button class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-headline font-bold text-sm hover:opacity-90 active:scale-95 transition-all shadow-md flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">calendar_month</span>
+                    Book a Party
+                </button>
+</div>
+</div>
+</nav>
+<main class="pt-20 overflow-x-hidden">
+<!-- Hero Section -->
+<section class="relative min-h-[819px] flex items-center justify-center px-6 blueprint-gears">
+<div class="max-w-screen-xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center relative z-10">
+<div class="lg:col-span-7">
+<span class="inline-block px-4 py-1.5 bg-red-100/80 text-primary rounded-full text-xs font-black uppercase tracking-widest mb-8 border border-red-200">
+                        EST. 2006
+                    </span>
+<h1 class="font-headline text-6xl md:text-8xl font-black leading-none text-on-surface mb-8 italic uppercase tracking-tighter">
+                        WELCOME TO <br/>
+<span class="text-primary" style="text-shadow: 2px 2px 0px rgba(0,0,0,0.1);">OUR FACTORY</span>
+</h1>
+<p class="text-xl text-on-surface-variant max-w-xl mb-10 leading-relaxed font-body">
+                        Where mechanical precision meets raw, unadulterated joy. We've spent nearly two decades engineering the perfect environment for play.
+                    </p>
+<div class="flex flex-wrap gap-4">
+<button class="bg-primary text-on-primary px-10 py-4 rounded-full font-headline font-bold text-lg flex items-center gap-2 hover:opacity-90 transition-all shadow-xl">
+                            EXPLORE THE FLOOR
+                            <span class="material-symbols-outlined">precision_manufacturing</span>
+</button>
+</div>
+</div>
+<div class="lg:col-span-5 relative">
+<div class="aspect-square bg-white p-4 rounded-lg shadow-2xl relative transform rotate-3 overflow-hidden">
+<img class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition-all duration-700 rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBXRzaLR_MDKc8Jy2HMoOxsw1iu-5db8eYFqYDUq5_m-6llpYsKUf-yl6kE_c5pP4IHynbOEuzHkiVJH2kpETvOaxoGC2cDy_6V1CuBKxJU19dApzZzCwTfjNBRIDztpV-INySblLi36eso6cLSWSV6k5ZObCrZMZTbz0Gh5GEuTa_6eYFifqtmhYUoOC-i91BUZpwHlpmaFKKfNZ0DhLL0Xdc0kJ9Jw5AgdtCU84lCE0bus8Le405PaJupV4NmpakYB61jraPDL1sm"/>
+<div class="absolute inset-0 bg-primary/10 mix-blend-multiply pointer-events-none"></div>
+</div>
+<!-- Decorative Large Logo Element -->
+<div class="absolute -bottom-12 -left-12 font-headline font-black text-9xl text-gray-200 opacity-50 select-none -z-10">
+                        SMILE
+                    </div>
+</div>
+</div>
+</section>
+<!-- Our Mission -->
+<section class="py-24 px-6 bg-zinc-50/80 relative">
+<div class="absolute inset-0 factory-pattern opacity-50 pointer-events-none"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+<div class="max-w-2xl">
+<h2 class="font-headline text-5xl font-black mb-4 uppercase tracking-tighter italic">Our Mission: <br/><span class="text-primary">Joy Engineered</span></h2>
+<p class="text-lg text-on-surface-variant font-body">We don't just provide games; we assemble experiences. Every ticket, every light, and every gear is calibrated for maximum impact.</p>
+</div>
+<div class="h-1.5 w-32 bg-primary rounded-full hidden md:block mb-4"></div>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-4xl text-primary">settings_suggest</span>
+<span class="material-symbols-outlined text-4xl text-red-200">build</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<!-- Mission Card 1 -->
+<div class="bg-white p-10 rounded-lg hover:shadow-xl transition-all group border border-gray-100">
+<div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:rotate-180 transition-transform duration-700 border border-red-200">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">bolt</span>
+</div>
+<h3 class="font-headline text-2xl font-black mb-4 uppercase tracking-tight">HIGH-OCTANE FUN</h3>
+<p class="text-on-surface-variant leading-relaxed font-body">Velocity is our baseline. We curate games that challenge reflexes and ignite the competitive spirit of every Joy Assembler.</p>
+</div>
+<!-- Mission Card 2 -->
+<div class="bg-white p-10 rounded-lg hover:shadow-xl transition-all group border border-gray-100">
+<div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:rotate-180 transition-transform duration-700 border border-red-200">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">settings</span>
+</div>
+<h3 class="font-headline text-2xl font-black mb-4 uppercase tracking-tight">PRECISION ENGINEERING</h3>
+<p class="text-on-surface-variant leading-relaxed font-body">Our floor is a living machine. From prize distribution to climate control, every detail is optimized for your comfort and thrill.</p>
+</div>
+<!-- Mission Card 3 -->
+<div class="bg-white p-10 rounded-lg md:col-span-2 lg:col-span-1 hover:shadow-xl transition-all group border border-gray-100">
+<div class="w-16 h-16 bg-red-100 rounded-2xl flex items-center justify-center text-primary mb-8 group-hover:rotate-180 transition-transform duration-700 border border-red-200">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+</div>
+<h3 class="font-headline text-2xl font-black mb-4 uppercase tracking-tight">UNRIVALED QUALITY</h3>
+<p class="text-on-surface-variant leading-relaxed font-body">We maintain the highest standards in the industry. If it isn't the best version of the game, it doesn't belong on our factory floor.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Our History -->
+<section class="py-24 px-6 overflow-hidden bg-white">
+<div class="max-w-7xl mx-auto">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+<div class="md:col-span-4 bg-primary text-on-primary p-12 rounded-lg flex flex-col justify-between shadow-2xl">
+<div>
+<h2 class="font-headline text-7xl font-black mb-6 italic tracking-tighter">SINCE<br/>2006</h2>
+<p class="text-xl font-medium opacity-90 font-body">A legacy built on laughter and high-scores. We've been the heart of the city's entertainment for nearly two decades.</p>
+</div>
+<div class="mt-12">
+<span class="material-symbols-outlined text-9xl opacity-20 transform -rotate-12">history_edu</span>
+</div>
+</div>
+<div class="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
+<div class="bg-zinc-100 rounded-lg overflow-hidden min-h-[300px] relative group border border-zinc-200 shadow-md">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCNfzi752VBoZKOIu8vW3NW0ofsSWVZ8EU_j3OL_nNCtudqccTKsu4MK_U6fVri3XDubRysqlkrVsrTbRDdpKh5AXZfxv9SQH7kbFmu4PtqPY8tF6Zb8WpHktGo5cSx82uxJusgaeH88IVmpuvi0308NIhx0XaxnkNHp5mPf-uNVEh30Pu5-H3pQhy3BonRdNJ9z7nMhOq2j1Ylo43pF7jj9O8w_tKp6xJQIl_NYtBWhDTdJdZ4JnqAmOymbbt6LHNHU7sc39vamtX"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+<p class="text-white font-headline font-bold text-xl uppercase tracking-tighter">The First Assembly (2006)</p>
+</div>
+</div>
+<div class="bg-zinc-100 rounded-lg overflow-hidden min-h-[300px] relative group border border-zinc-200 shadow-md">
+<img class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD4hGORd6lb0PNbuAdRkZpdhK0ZNgx4rcEb6YoXPbfYc8HL4_chobDkP_XbJctdQyb3q63U8KBNEzPZOJ0Yl33hCnQp56tazx1OXY3Gdonbkov7bRt1YaxNVD_ycBGLCSvf1s-KqkDMKaT-MR0IgT1rVHTlBmyjkWE5jRTS0HHwabEDkAtjWH3-GT3chtu5V01swuDfu5qVumVgAx8DydcgpDHuy4QZYILvkt6f-g1l0L_HQh-Ef4I8d2QPf4Y7c6bVUa5Q5mZ1kCvY"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-end p-8">
+<p class="text-white font-headline font-bold text-xl uppercase tracking-tighter">The Modern Era (2024)</p>
+</div>
+</div>
+<div class="sm:col-span-2 bg-zinc-50 p-12 rounded-lg border border-zinc-100 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-8 opacity-5">
+<span class="material-symbols-outlined text-[8rem]">settings</span>
+</div>
+<h4 class="font-headline text-2xl font-black mb-6 text-primary uppercase tracking-tight italic">GROWING THE MACHINE</h4>
+<p class="text-on-surface-variant text-lg leading-relaxed mb-8 font-body">
+                                What started as a small collection of 15 classic machines in an industrial warehouse has evolved into a 30,000 square-foot multisensory playground. We've survived the digital shift by leaning into what makes us special: the physical, tactile, and social experience of real-world play.
+                            </p>
+<div class="flex flex-wrap items-center gap-10">
+<div class="text-center">
+<div class="text-4xl font-black font-headline text-on-surface">150+</div>
+<div class="text-xs uppercase font-bold text-primary tracking-widest mt-1">Machines</div>
+</div>
+<div class="w-px h-10 bg-zinc-200"></div>
+<div class="text-center">
+<div class="text-4xl font-black font-headline text-on-surface">2M+</div>
+<div class="text-xs uppercase font-bold text-primary tracking-widest mt-1">Happy Souls</div>
+</div>
+<div class="w-px h-10 bg-zinc-200"></div>
+<div class="text-center">
+<div class="text-4xl font-black font-headline text-on-surface">50k</div>
+<div class="text-xs uppercase font-bold text-primary tracking-widest mt-1">Prizes Won</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Staff Section -->
+<!-- CTA Section -->
+<section class="py-24 px-6 blueprint-gears relative overflow-hidden">
+<div class="max-w-4xl mx-auto bg-zinc-900 text-white rounded-3xl p-12 md:p-20 text-center relative shadow-2xl border-4 border-primary">
+<div class="absolute top-0 right-0 p-8 opacity-10">
+<span class="material-symbols-outlined text-[10rem]">precision_manufacturing</span>
+</div>
+<h2 class="font-headline text-4xl md:text-6xl font-black mb-8 leading-tight italic uppercase tracking-tighter">READY TO START THE MACHINE?</h2>
+<p class="text-lg opacity-80 mb-12 max-w-xl mx-auto font-body">Join the thousands of visitors who have found their smile at the Factory. Book your visit or party today.</p>
+<div class="flex flex-col sm:row gap-6 justify-center">
+<button class="bg-primary text-on-primary px-12 py-5 rounded-full font-headline font-bold text-xl hover:scale-105 transition-transform shadow-xl">
+                        RESERVE NOW
+                    </button>
+<button class="bg-white/10 backdrop-blur-md text-white border border-white/30 px-12 py-5 rounded-full font-headline font-bold text-xl hover:bg-white/20 transition-all">
+                        VIEW PRICING
+                    </button>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="w-full border-t border-zinc-200 bg-zinc-50 relative">
+<div class="absolute inset-0 factory-pattern opacity-10 pointer-events-none"></div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 px-12 py-20 max-w-full mx-auto font-body text-sm relative z-10">
+<div class="col-span-1 md:col-span-1">
+<div class="mb-8">
+<img alt="The Smile Factory Logo" class="w-auto h-24" src="https://lh3.googleusercontent.com/aida/ADBb0ugSszXNnCQGRcbBdi0KBPUjOsQRQVoMpkDXoSyPeavMGPSgigkxz_NCCprxP9u-pM3VyCqzBJyXayGY51afsqif-rxD4XDVeFN1TGkUKcEFR8FBaHHWBHmClxYleIi5bKyO9l_11VW56AsjX7E7q1ldg_gyVboRrkp72E1UmKPuThLlZlkcv7O0LJyTaNTBhKbc_QmSmJfzzZQAgczKVug3EEQ2MZITUmhiKYm_dyNaCjWhSDsgNJz6tmKzEksIlLdVQX1uraKpqx0"/>
+</div>
+<p class="text-zinc-500 leading-relaxed font-body">Making families smile in Brigantine since 2006. Quality games, great prizes, and unforgettable memories.</p>
+</div>
+<div>
+<h5 class="font-headline font-black mb-8 uppercase tracking-widest text-zinc-900 text-lg">Quick Links</h5>
+<ul class="space-y-4 text-zinc-500 font-medium">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Home</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Pricing</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Birthday Parties</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Gallery</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-headline font-black mb-8 uppercase tracking-widest text-zinc-900 text-lg">Legal &amp; Info</h5>
+<ul class="space-y-4 text-zinc-500 font-medium">
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Terms of Service</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Safety Rules</a></li>
+<li><a class="hover:text-primary transition-all flex items-center gap-2" href="#"><span class="w-1.5 h-1.5 bg-primary rounded-full"></span> Feedback</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-headline font-black mb-8 uppercase tracking-widest text-zinc-900 text-lg">Connect</h5>
+<ul class="space-y-6 text-zinc-500 font-medium">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">location_on</span>
+<span>1307 W Brigantine Ave # B, <br/>Brigantine, NJ 08203</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">call</span>
+<span>(609) 266-3866</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary">schedule</span>
+<div class="flex flex-col">
+<span>Sat-Sun: 10am - 10pm</span>
+<span>Mon-Fri: 12pm - 10pm</span>
+</div>
+</li>
+<li>
+<button class="bg-primary text-white px-6 py-2 rounded-lg font-black uppercase text-xs tracking-widest hover:opacity-90 transition-all shadow-md">
+                            STAFF LOGIN
+                        </button>
+</li>
+</ul>
+</div>
+</div>
+<div class="px-12 py-8 max-w-full mx-auto border-t border-zinc-200 bg-zinc-100/50 flex flex-col md:flex-row justify-between items-center gap-4 relative z-10">
+<p class="text-zinc-400 text-xs font-black uppercase tracking-widest">© 2024 THE SMILE FACTORY ARCADE. BUILT FOR JOY.</p>
+<div class="flex gap-8 opacity-40">
+<span class="material-symbols-outlined">payments</span>
+<span class="material-symbols-outlined">credit_card</span>
+<span class="material-symbols-outlined">account_balance_wallet</span>
+</div>
+</div>
+</footer>
+</body></html>

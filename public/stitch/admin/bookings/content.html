@@ -1,0 +1,236 @@
+﻿<main class="ml-64 min-h-screen">
+<!-- TopNavBar Shell -->
+<header class="fixed top-0 left-64 right-0 z-40 bg-white/80 backdrop-blur-xl shadow-sm border-b border-zinc-200/50 flex justify-between items-center px-8 py-4">
+<div class="flex items-center gap-8">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline">search</span>
+<input class="pl-10 pr-4 py-2 bg-surface-container-highest border-none rounded-full w-64 focus:ring-2 focus:ring-primary focus:bg-white transition-all text-sm" placeholder="Search bookings..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="flex items-center gap-2 px-5 py-2 rounded-full border border-outline/20 font-bold text-on-surface-variant hover:bg-surface-container transition-all">
+<span class="material-symbols-outlined">calendar_today</span>
+                    Calendar View
+                </button>
+<button class="flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-primary to-primary-container text-on-primary font-bold shadow-md shadow-primary/20 hover:scale-105 active:scale-95 transition-all">
+<span class="material-symbols-outlined">add</span>
+                    Add New
+                </button>
+<div class="h-8 w-[1px] bg-zinc-200 mx-2"></div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant cursor-pointer hover:text-primary transition-colors">notifications</span>
+<div class="w-10 h-10 rounded-full overflow-hidden bg-surface-container-high border-2 border-white shadow-sm">
+<img alt="Manager Avatar" data-alt="Close up portrait of a professional manager smiling, corporate photography, soft studio lighting, clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAcp49hbnbhKeazJFZ_hLev7DAfJcgUt7Na0w8JB8qUDTqfhc5eR93g1xE4_aIRi-0YBz6889D1i2UfWiWmvNk4VrQy5QHLM0wELktx2mRkNeeQibRehZ0R4lAxivXPxdrA2YzbX-ROYaR3-7IV4BvldSBvJaQ1OsgGs7Bcaoje6rx_oeAA36YBAWxD6u8bTWs49LFEx3QwD1xMAsAEC3KSyPuqiiT-nzxJUER35Ja36oSYzpp-m3MbKMwuV3oBXmuL5fdeZJRqr4ZT"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Area -->
+<div class="pt-24 px-8 pb-12">
+<!-- Header Title -->
+<div class="mb-10">
+<h2 class="font-headline text-4xl font-black text-on-surface tracking-tight uppercase leading-none">Bookings Management</h2>
+<p class="text-on-surface-variant mt-2 font-medium">Assembling Joy: One Event at a Time</p>
+</div>
+<!-- Stats Row: Bento Style -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-10">
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-primary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-primary/10 rounded-lg text-primary">
+<span class="material-symbols-outlined">event_upcoming</span>
+</div>
+<span class="text-xs font-bold text-primary bg-primary/10 px-2 py-1 rounded">+12%</span>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Upcoming</p>
+<h3 class="text-3xl font-black font-headline mt-1">42</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-tertiary">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-tertiary/10 rounded-lg text-tertiary">
+<span class="material-symbols-outlined">calendar_month</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">This Month</p>
+<h3 class="text-3xl font-black font-headline mt-1">128</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-amber-500">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-amber-500/10 rounded-lg text-amber-600">
+<span class="material-symbols-outlined">payments</span>
+</div>
+<span class="text-xs font-bold text-amber-600 bg-amber-500/10 px-2 py-1 rounded">Pending</span>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Pending Deposits</p>
+<h3 class="text-3xl font-black font-headline mt-1">14</h3>
+</div>
+<div class="bg-surface-container-lowest p-6 rounded-lg shadow-sm border-b-4 border-green-600">
+<div class="flex justify-between items-start mb-4">
+<div class="p-2 bg-green-600/10 rounded-lg text-green-600">
+<span class="material-symbols-outlined">trending_up</span>
+</div>
+</div>
+<p class="text-on-surface-variant text-sm font-semibold uppercase tracking-wider">Revenue</p>
+<h3 class="text-3xl font-black font-headline mt-1">$24,850</h3>
+</div>
+</div>
+<!-- Main Table Section -->
+<div class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden border border-outline-variant/10">
+<!-- Table Tabs -->
+<div class="flex items-center px-6 border-b border-surface-container">
+<button class="px-6 py-5 text-sm font-bold border-b-2 border-primary text-primary transition-all">Upcoming</button>
+<button class="px-6 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">All</button>
+<button class="px-6 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">Completed</button>
+<button class="px-6 py-5 text-sm font-medium text-on-surface-variant hover:text-primary transition-all">Cancelled</button>
+</div>
+<!-- Custom Industrial Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant text-xs uppercase tracking-widest font-bold">
+<th class="px-8 py-4">Date &amp; Time</th>
+<th class="px-8 py-4">Contact</th>
+<th class="px-8 py-4">Kids</th>
+<th class="px-8 py-4">Status</th>
+<th class="px-8 py-4 text-right">Deposit</th>
+<th class="px-8 py-4 text-center">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                            MAY 24
+                                        </div>
+<div>
+<p class="font-bold text-on-surface">Friday, May 24</p>
+<p class="text-xs text-on-surface-variant">02:00 PM - 04:00 PM</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="font-bold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-on-surface-variant">Birthday: Leo (7 yrs)</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1">
+<span class="font-bold text-on-surface">15</span>
+<span class="material-symbols-outlined text-sm text-tertiary">child_care</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full tracking-tighter">Confirmed</span>
+</td>
+<td class="px-8 py-5 text-right font-bold text-on-surface">
+                                    $250.00
+                                </td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                            MAY 25
+                                        </div>
+<div>
+<p class="font-bold text-on-surface">Saturday, May 25</p>
+<p class="text-xs text-on-surface-variant">10:00 AM - 12:30 PM</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="font-bold text-on-surface">Marcus Thompson</p>
+<p class="text-xs text-on-surface-variant">Team Celebration: Hawks</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1">
+<span class="font-bold text-on-surface">22</span>
+<span class="material-symbols-outlined text-sm text-tertiary">child_care</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-amber-100 text-amber-700 text-[10px] font-black uppercase rounded-full tracking-tighter">Pending Dep.</span>
+</td>
+<td class="px-8 py-5 text-right font-bold text-amber-600">
+                                    $0.00
+                                </td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">more_vert</span></button>
+</div>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-primary/10 text-primary flex items-center justify-center font-bold text-xs flex-shrink-0">
+                                            MAY 25
+                                        </div>
+<div>
+<p class="font-bold text-on-surface">Saturday, May 25</p>
+<p class="text-xs text-on-surface-variant">04:30 PM - 06:30 PM</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="font-bold text-on-surface">Emily Chen</p>
+<p class="text-xs text-on-surface-variant">Birthday: Ava (5 yrs)</p>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1">
+<span class="font-bold text-on-surface">12</span>
+<span class="material-symbols-outlined text-sm text-tertiary">child_care</span>
+</div>
+</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-green-100 text-green-700 text-[10px] font-black uppercase rounded-full tracking-tighter">Confirmed</span>
+</td>
+<td class="px-8 py-5 text-right font-bold text-on-surface">
+                                    $250.00
+                                </td>
+<td class="px-8 py-5">
+<div class="flex items-center justify-center gap-2">
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">edit</span></button>
+<button class="p-2 hover:bg-white rounded-full text-on-surface-variant hover:text-primary transition-all"><span class="material-symbols-outlined text-xl">more_vert</span></button>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="p-6 bg-surface-container-low border-t border-surface-container flex justify-between items-center">
+<p class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Showing 1-10 of 42 upcoming bookings</p>
+<div class="flex gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-bold text-sm">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-full bg-white border border-outline-variant/30 text-on-surface-variant hover:text-primary transition-all">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Promotion / Feature Card -->
+<div class="mt-10 bg-gradient-to-br from-tertiary to-on-tertiary-container rounded-xl p-8 text-white flex items-center justify-between relative overflow-hidden shadow-2xl">
+<div class="relative z-10 max-w-lg">
+<h4 class="font-headline text-3xl font-black uppercase leading-tight">Optimization Alert</h4>
+<p class="mt-2 text-on-tertiary font-medium">Machine #4 and Party Room B are available for a 20% bundle discount this Sunday. Assembler intelligence suggests 4 high-value leads are browsing.</p>
+<button class="mt-6 px-8 py-3 bg-white text-tertiary font-bold rounded-full hover:scale-105 active:scale-95 transition-all">View Analytics</button>
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-1/3 opacity-10 pointer-events-none">
+<span class="material-symbols-outlined text-[200px]" style="font-variation-settings: 'FILL' 1;">precision_manufacturing</span>
+</div>
+</div>
+</div>
+</main>

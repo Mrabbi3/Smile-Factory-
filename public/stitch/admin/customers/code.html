@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Customers Directory | Smile Factory</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Epilogue:wght@400;700;800;900&amp;family=Work+Sans:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary": "#fdeeff",
+              "tertiary-fixed": "#d697ff",
+              "secondary-container": "#ffc2c6",
+              "surface": "#f6f6f6",
+              "inverse-primary": "#ff5540",
+              "on-background": "#2d2f2f",
+              "tertiary-dim": "#6e3395",
+              "surface-bright": "#f6f6f6",
+              "surface-dim": "#d3d5d5",
+              "on-secondary-fixed": "#6a0c22",
+              "tertiary-fixed-dim": "#c889f1",
+              "on-tertiary-fixed": "#2a0044",
+              "primary": "#bb0100",
+              "on-surface": "#2d2f2f",
+              "surface-container-highest": "#dbdddd",
+              "primary-fixed-dim": "#ff5b47",
+              "outline-variant": "#acadad",
+              "on-primary": "#ffefed",
+              "tertiary-container": "#d697ff",
+              "tertiary": "#7b40a2",
+              "surface-container-lowest": "#ffffff",
+              "on-tertiary-fixed-variant": "#56197d",
+              "background": "#f6f6f6",
+              "secondary-dim": "#902a3b",
+              "on-secondary-fixed-variant": "#912b3c",
+              "primary-dim": "#a40100",
+              "surface-container-high": "#e1e3e3",
+              "primary-fixed": "#ff7763",
+              "on-tertiary-container": "#4c0a73",
+              "secondary": "#a03646",
+              "on-secondary-container": "#852233",
+              "error-container": "#f74b6d",
+              "surface-variant": "#dbdddd",
+              "error": "#b41340",
+              "error-dim": "#a70138",
+              "outline": "#767777",
+              "on-error": "#ffefef",
+              "secondary-fixed-dim": "#ffaeb4",
+              "on-surface-variant": "#5a5c5c",
+              "on-primary-fixed-variant": "#600000",
+              "primary-container": "#ff7763",
+              "on-primary-container": "#4f0000",
+              "surface-tint": "#bb0100",
+              "inverse-surface": "#0c0f0f",
+              "surface-container": "#e7e8e8",
+              "surface-container-low": "#f0f1f1",
+              "on-primary-fixed": "#000000",
+              "on-error-container": "#510017",
+              "inverse-on-surface": "#9c9d9d",
+              "on-secondary": "#ffefef",
+              "secondary-fixed": "#ffc2c6"
+            },
+            fontFamily: {
+              "headline": ["Epilogue"],
+              "body": ["Work Sans"],
+              "label": ["Work Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .bg-industrial-gradient {
+            background: linear-gradient(135deg, #bb0100 0%, #ff7763 100%);
+        }
+        body {
+            background-color: #f6f6f6;
+            color: #2d2f2f;
+            font-family: 'Work Sans', sans-serif;
+        }
+    
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+        }
+        .active-tab {
+            background-color: #fef2f2;
+            color: #bb0100;
+            border-right: 4px solid #bb0100;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface">
+<!-- SideNavBar (Authority: SCREEN_134) -->
+<aside class="fixed left-0 top-0 h-full w-72 z-50 flex flex-col bg-white border-r border-gray-200 shadow-sm overflow-y-auto">
+<div class="p-8">
+<img alt="Smile Factory Logo" class="w-full max-w-[180px] h-auto mb-4" src="/branding/smile-factory-logo.png"/>
+<p class="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Joy Assembler Admin</p>
+</div>
+<nav class="flex-1 px-4 pb-10 space-y-6">
+<!-- Main -->
+<div>
+<a class="flex items-center gap-3 px-4 py-3 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg font-medium" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="grid_view">grid_view</span>
+<span class="text-sm">Dashboard</span>
+</a>
+</div>
+<!-- Operations Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Operations</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="point_of_sale">point_of_sale</span>
+<span class="text-sm font-medium">POS/ Token Sales</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="receipt_long">receipt_long</span>
+<span class="text-sm font-medium">Token Transactions</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="inventory">inventory</span>
+<span class="text-sm font-medium">Prize Inventory</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="event_note">event_note</span>
+<span class="text-sm font-medium">Bookings</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="build_circle">build_circle</span>
+<span class="text-sm font-medium">Work Orders</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="precision_manufacturing">precision_manufacturing</span>
+<span class="text-sm font-medium">Machines</span>
+</a>
+</div>
+<!-- People Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">People</p>
+<a class="flex items-center gap-3 px-4 py-3 active-tab font-bold transition-all" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="groups">groups</span>
+<span class="text-sm">Customers</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="badge">badge</span>
+<span class="text-sm font-medium">Employee</span>
+</a>
+</div>
+<!-- Finance & Rewards Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Finance &amp; Rewards</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span>
+<span class="text-sm font-medium">Expenses</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="stars">stars</span>
+<span class="text-sm font-medium">Loyalty</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="confirmation_number">confirmation_number</span>
+<span class="text-sm font-medium">Coupons</span>
+</a>
+</div>
+<!-- Administration Header -->
+<div class="space-y-1">
+<p class="px-4 text-[10px] font-black uppercase tracking-widest text-gray-400 mb-2">Administration</p>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="assessment">assessment</span>
+<span class="text-sm font-medium">Reports</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="description">description</span>
+<span class="text-sm font-medium">Documents</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-2 text-gray-500 hover:text-primary hover:bg-red-50 transition-all rounded-lg" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</a>
+</div>
+</nav>
+</aside>
+<!-- Main Content Area -->
+<main class="min-h-screen ml-72">
+<!-- TopAppBar -->
+<header class="fixed top-0 right-0 left-72 glass-nav h-20 flex justify-between items-center px-10 z-40 border-b border-gray-100">
+<div class="flex items-center flex-1 max-w-xl">
+<div class="relative w-full">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-gray-400" data-icon="search">search</span>
+<input class="w-full bg-gray-100 border-none rounded-full pl-12 pr-6 py-3 text-sm focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-gray-400" placeholder="Search directory..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-6">
+<button class="relative p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+<span class="absolute top-2 right-2 w-2 h-2 bg-primary rounded-full border-2 border-white"></span>
+</button>
+<button class="p-2 text-gray-500 hover:bg-gray-100 rounded-full transition-colors">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+</button>
+<div class="h-8 w-[1px] bg-gray-200"></div>
+<div class="flex items-center gap-4">
+<div class="text-right">
+<p class="text-sm font-bold text-gray-900">John Miller</p>
+<p class="text-[10px] text-gray-500 font-medium">Operations Unit</p>
+</div>
+<div class="w-10 h-10 rounded-full bg-gray-200 overflow-hidden ring-2 ring-white shadow-sm">
+<span class="material-symbols-outlined text-4xl text-gray-400">account_circle</span>
+</div>
+</div>
+</div>
+</header>
+<!-- Dashboard Body -->
+<div class="p-8 space-y-10">
+<!-- Hero KPIs: Bento Style Asymmetry -->
+<div class="grid grid-cols-12 gap-6">
+<!-- Main KPI: Total Registered -->
+<div class="col-span-12 md:col-span-5 bg-surface-container-lowest rounded-lg p-8 shadow-sm flex flex-col justify-between relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+<span class="material-symbols-outlined text-[120px]" data-icon="groups">groups</span>
+</div>
+<div>
+<p class="text-slate-500 font-bold uppercase tracking-widest text-xs mb-2">Total Registered Customers</p>
+<h3 class="text-5xl font-black font-['Epilogue'] text-on-surface tracking-tighter">12,482</h3>
+</div>
+<div class="mt-6 flex items-center gap-2 text-emerald-600 font-bold">
+<span class="material-symbols-outlined" data-icon="trending_up">trending_up</span>
+<span>12% Increase from last year</span>
+</div>
+</div>
+<!-- Secondary KPI: New Customers -->
+<div class="col-span-12 md:col-span-3 bg-primary text-on-primary rounded-lg p-8 shadow-lg flex flex-col justify-between industrial-gradient">
+<div>
+<p class="opacity-80 font-bold uppercase tracking-widest text-xs mb-2">New Customers (30d)</p>
+<h3 class="text-4xl font-black font-['Epilogue'] tracking-tighter">458</h3>
+</div>
+<div class="mt-6">
+<div class="h-1.5 w-full bg-on-primary/20 rounded-full overflow-hidden">
+<div class="h-full bg-on-primary w-3/4"></div>
+</div>
+<p class="text-[10px] mt-2 font-medium opacity-70">75% of monthly target reached</p>
+</div>
+</div>
+<!-- Specialized KPI: Prize Gear Chip Style -->
+<div class="col-span-12 md:col-span-4 bg-tertiary-container text-on-tertiary-container rounded-lg p-8 shadow-sm flex flex-col justify-between">
+<div class="flex justify-between items-start">
+<div>
+<p class="opacity-80 font-bold uppercase tracking-widest text-xs mb-2">Top Tier Loyalty</p>
+<h3 class="text-4xl font-black font-['Epilogue'] tracking-tighter">1,204</h3>
+</div>
+<div class="bg-tertiary p-3 rounded-full flex items-center justify-center animate-spin-slow">
+<span class="material-symbols-outlined text-on-tertiary" data-icon="settings">settings</span>
+</div>
+</div>
+<div class="mt-6 flex gap-2">
+<span class="px-3 py-1 bg-tertiary text-on-tertiary rounded-full text-xs font-bold uppercase">Gold Level</span>
+<span class="px-3 py-1 bg-on-tertiary-container/10 text-on-tertiary-container rounded-full text-xs font-bold uppercase">Active</span>
+</div>
+</div>
+</div>
+<!-- Customer Directory Table -->
+<section class="bg-surface-container-lowest rounded-lg shadow-sm overflow-hidden">
+<div class="px-8 py-6 flex justify-between items-center bg-surface-container-low/50">
+<h4 class="font-['Epilogue'] font-black text-xl">Customer Directory</h4>
+<div class="flex gap-4">
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-bold border-2 border-slate-200 rounded-full hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="filter_list">filter_list</span>
+                            Filter
+                        </button>
+<button class="flex items-center gap-2 px-4 py-2 text-sm font-bold border-2 border-slate-200 rounded-full hover:bg-slate-50 transition-colors">
+<span class="material-symbols-outlined text-lg" data-icon="download">download</span>
+                            Export
+                        </button>
+</div>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-slate-400 text-xs font-bold uppercase tracking-widest border-b border-surface-container">
+<th class="px-8 py-4">Customer</th>
+<th class="px-8 py-4">Contact Info</th>
+<th class="px-8 py-4">Join Date</th>
+<th class="px-8 py-4">Loyalty Status</th>
+<th class="px-8 py-4">Account Status</th>
+<th class="px-8 py-4 text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container">
+<!-- Row 1 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a smiling man with neat hair and professional attire against a clean neutral background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9PVeeYxioRD3cUnD6qVdfL9982yotgrKgh39BjRdfwPKrRhUFbu3ZboFt4yEsouLwSLRfRejlF6u4luhMkzKzm6Zk3-ZOOPkBI19crZb8vH6qIoVDDNxQLKxtsgpRLHzxcJVVBHo-C3ka--YOQcZli_IcOTM4-sbNNxbFNnki9f5gkr-I6JLDB8-ejoYhUGJW2fCPH1YTGZNekS3hxHfP8RqgiIewhM1_XveSMWz_raEheRapfvxyFRYU-bVIbO38RQxN3VlV29bG"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Marcus Sterling</p>
+<p class="text-xs text-slate-500">ID: SF-90210</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-medium">marcus.s@example.com</p>
+<p class="text-xs text-slate-500">+1 (555) 123-4567</p>
+</td>
+<td class="px-8 py-5 text-sm font-medium text-slate-600">Oct 12, 2023</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary rounded-full text-[10px] font-black uppercase tracking-tighter">Elite Platinum</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-xs font-bold text-emerald-700">Active</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a young woman laughing with bright energetic lighting in a modern interior setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbo7ujkGkXgKDc3Ux4P3nZk33C1uSYt5aJbM6COljG7OXhgquS0MKFqaJQ1XGyUAAer647GtVpICleDImpddpAxSXHgu90S08rHydnrY50FtGs_N8d-Zvr3QjBtRTXmNwvlrrPv2V7USlCKi-ZlzbXMWROV_X12ruIpIMdR5sVZTKjvTpXKTXm6JyR5gZotystaGGCKd223txpFY08tyrBwSTZ9C88o7znZWhy_HpThJ7NTjGJ3UyqeG2W1Qud_GKNS6h-6MicAVNq"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Elena Rodriguez</p>
+<p class="text-xs text-slate-500">ID: SF-88342</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-medium">elena.rod@webmail.com</p>
+<p class="text-xs text-slate-500">+1 (555) 987-6543</p>
+</td>
+<td class="px-8 py-5 text-sm font-medium text-slate-600">Jan 04, 2024</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-primary/10 text-primary rounded-full text-[10px] font-black uppercase tracking-tighter">Gold Tier</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-xs font-bold text-emerald-700">Active</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="close-up of a stylish man with a short beard and a neutral expression looking directly at the camera" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5_b1ec8kc-p6PdeWb_I124kZDxvSN0w145Pcnb5ABxlkA1UEAo7h6dUlf8e_9ZCOBG9oMNuQJauxw3Y-ceOmiD0xLacS6WmQVDK3g0b12-7xd2imdglsrXQ4TjawkZ4jLaULpbN93OHAj9TLBcgfnuUerbFtvLRmw_ypNKtc-kNBdXJzWrvOYi49pMSEymzC4yiBd7Fr6GW6BBla2j5KUyIA54p4_9e1g1DANQDzYFKWWyjv76MzO6iosDitDL4Yr9rTeLJkwdtEb"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Jackson Thorne</p>
+<p class="text-xs text-slate-500">ID: SF-44129</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-medium">j.thorne@factory.io</p>
+<p class="text-xs text-slate-500">+1 (555) 444-2211</p>
+</td>
+<td class="px-8 py-5 text-sm font-medium text-slate-600">Nov 28, 2023</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-slate-100 text-slate-500 rounded-full text-[10px] font-black uppercase tracking-tighter">New Member</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-slate-300"></div>
+<span class="text-xs font-bold text-slate-500">Inactive</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="px-8 py-5">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-slate-200 overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="portrait of a focused professional woman in a bright office environment with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAU59lDEa38ncqqTQ4CEU8n61EWQL4q6IH7KxEJ3l_uecMkjrrJIPNpGhGpME9C5KurR8at5I8zEu0XQcE5qOga08rejH-Qvpq-fT_Iy7WZ71NAWI-n0cqcGEk-0Px3OAoS-3B8mjJd6kQEUBuswj9PDIa15he25MdvMllNVIkOfSrug3Ge7NZFBw78YvVcNOqLsNv3suElSuWDDyKIXKwpHVtSmbagGd5eUUfpll--v43ngx33zFkhm3yFwS7nwM7nGLgr_-V3czOB"/>
+</div>
+<div>
+<p class="font-bold text-on-surface">Sarah Jenkins</p>
+<p class="text-xs text-slate-500">ID: SF-77102</p>
+</div>
+</div>
+</td>
+<td class="px-8 py-5">
+<p class="text-sm font-medium">sjenk@cloudmail.net</p>
+<p class="text-xs text-slate-500">+1 (555) 001-9922</p>
+</td>
+<td class="px-8 py-5 text-sm font-medium text-slate-600">Feb 15, 2024</td>
+<td class="px-8 py-5">
+<span class="px-3 py-1 bg-tertiary/10 text-tertiary rounded-full text-[10px] font-black uppercase tracking-tighter">Elite Platinum</span>
+</td>
+<td class="px-8 py-5">
+<div class="flex items-center gap-1.5">
+<div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+<span class="text-xs font-bold text-emerald-700">Active</span>
+</div>
+</td>
+<td class="px-8 py-5 text-right">
+<button class="material-symbols-outlined text-slate-400 hover:text-primary transition-colors" data-icon="more_vert">more_vert</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Industrial Style Pagination -->
+<div class="px-8 py-6 flex justify-between items-center bg-surface-container-low/30">
+<p class="text-xs font-bold text-slate-500 uppercase tracking-widest">Showing 1 to 4 of 12,482 customers</p>
+<div class="flex items-center gap-2">
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-slate-200 hover:border-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_left">chevron_left</span>
+</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg bg-primary text-on-primary font-bold">1</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 font-bold transition-colors">2</button>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-slate-100 font-bold transition-colors">3</button>
+<span class="px-2">...</span>
+<button class="w-10 h-10 flex items-center justify-center rounded-lg border-2 border-slate-200 hover:border-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="chevron_right">chevron_right</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<footer class="p-8 mt-12 border-t border-slate-200">
+<div class="flex justify-between items-center text-slate-400 text-[10px] font-black uppercase tracking-widest">
+<p>© 2024 SMILE FACTORY - THE JOY ASSEMBLER OPERATIONS UNIT</p>
+<div class="flex gap-6">
+<a class="hover:text-primary" href="#">System Health</a>
+<a class="hover:text-primary" href="#">Protocol Docs</a>
+<a class="hover:text-primary" href="#">v2.4.1-Industrial</a>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

@@ -1,0 +1,8 @@
+{
+    "container":  "stitch/exports/screens",
+    "description":  "Containerized Stitch list_screens export.",
+    "files":  {
+                  "index":  "stitch/exports/screens/index.json",
+                  "screensDirectory":  "stitch/exports/screens"
+              }
+}
