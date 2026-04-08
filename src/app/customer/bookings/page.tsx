@@ -61,10 +61,18 @@ export default function CustomerBookingsPage() {
           supabase.from('party_bookings').select('*').eq('customer_id', user.id).order('booking_date', { ascending: false }),
           supabase.from('party_packages').select('*').eq('is_active', true),
         ])
-        if (bRes.error) console.error('Bookings fetch error:', bRes.error)
-        if (pRes.error) console.error('Packages fetch error:', pRes.error)
-        setBookings(bRes.data || [])
-        setPackages(pRes.data || [])
+        if (bRes.error) {
+          console.error('Bookings fetch error:', bRes.error)
+        }
+        if (pRes.error) {
+          console.error('Packages fetch error:', pRes.error)
+          toast.error(`Failed to load packages: ${pRes.error.message}`)
+        }
+        const bookingsData = bRes.data || []
+        const packagesData = pRes.data || []
+        console.log('Packages loaded:', packagesData)
+        setBookings(bookingsData)
+        setPackages(packagesData)
       } catch (err) {
         console.error('Bookings load error:', err)
         toast.error('Failed to load bookings')
@@ -73,7 +81,7 @@ export default function CustomerBookingsPage() {
       }
     }
     load()
-  }, [user])
+  }, [user?.id])
 
   const submitBooking = async () => {
     if (!form.package_id || !form.booking_date || !form.start_time) {
@@ -172,12 +180,19 @@ export default function CustomerBookingsPage() {
           <div className="grid gap-4 py-4">
             <div className="space-y-2">
               <Label className="font-display">Package *</Label>
-              <Select value={form.package_id} onValueChange={(v) => setForm({ ...form, package_id: v })}>
-                <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select a package" /></SelectTrigger>
-                <SelectContent>
-                  {packages.map(p => <SelectItem key={p.id} value={p.id}>{p.name} — {currency(p.base_price)} (up to {p.max_kids} kids)</SelectItem>)}
-                </SelectContent>
-              </Select>
+              {packages.length === 0 ? (
+                <div className="rounded-xl bg-red-50 p-3 text-sm text-red-800 flex items-center gap-2 shadow-ambient">
+                  <AlertTriangle className="h-4 w-4 shrink-0" />
+                  No party packages available. Please contact us.
+                </div>
+              ) : (
+                <Select value={form.package_id} onValueChange={(v) => setForm({ ...form, package_id: v })}>
+                  <SelectTrigger className="rounded-xl"><SelectValue placeholder="Select a package" /></SelectTrigger>
+                  <SelectContent>
+                    {packages.map(p => <SelectItem key={p.id} value={p.id}>{p.name} — {currency(p.base_price)} (up to {p.max_kids} kids)</SelectItem>)}
+                  </SelectContent>
+                </Select>
+              )}
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -223,7 +238,7 @@ export default function CustomerBookingsPage() {
           </div>
           <DialogFooter>
             <Button variant="outline" onClick={() => setDialogOpen(false)} className="rounded-xl">Cancel</Button>
-            <Button onClick={submitBooking} disabled={saving} className="rounded-xl">{saving ? 'Submitting...' : 'Submit Booking Request'}</Button>
+            <Button onClick={submitBooking} disabled={saving || packages.length === 0} className="rounded-xl">{saving ? 'Submitting...' : 'Submit Booking Request'}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
