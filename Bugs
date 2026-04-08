@@ -7,3 +7,7 @@ and will not let you submit the booking if no package is selected.
 
 Fixed 2026-04-07: Customer sign-in and staff access now use the same Smile Factory logo treatment shown on the home page, positioned above each form.
 
+
+3. Public navbar links overlap at intermediate desktop widths when resizing, causing Contact to collide with Sign In and Staff.
+
+Fixed 2026-04-07: Updated navbar responsive breakpoints so desktop nav/auth links and mobile menu do not render in conflicting width ranges.
