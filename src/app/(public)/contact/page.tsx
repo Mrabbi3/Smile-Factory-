@@ -1,6 +1,7 @@
 'use client'
 
 import { useActionState, useEffect, useState } from 'react'
+import Image from 'next/image'
 import Link from 'next/link'
 import { toast } from 'sonner'
 import {
@@ -187,8 +188,19 @@ export default function ContactPage() {
             </div>
           </div>
 
+          {/* Location Photo */}
+          <div className="rounded-2xl overflow-hidden h-[300px] relative shadow-sm border border-gray-100">
+            <Image
+              src="/contact-photo.png"
+              alt="The Smile Factory"
+              fill
+              className="object-cover"
+              priority
+            />
+          </div>
+
           {/* Map Placeholder */}
-          <div className="rounded-2xl overflow-hidden h-[300px] relative shadow-sm border border-gray-100 bg-zinc-100 flex items-center justify-center group">
+          <div className="rounded-2xl overflow-hidden h-[300px] relative shadow-sm border border-gray-100 bg-zinc-100 flex items-center justify-center group hidden">
             <div className="text-center text-zinc-400">
               <MapPin className="size-12 mx-auto mb-3 opacity-30" />
               <p className="font-display font-bold text-sm">Map Coming Soon</p>

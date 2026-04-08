@@ -60,7 +60,7 @@ export function Navbar() {
 
         {/* Right */}
         <div className="flex shrink-0 items-center gap-3 md:gap-4">
-          <div className="mr-2 hidden items-center gap-4 xl:flex">
+          <div className="mr-2 hidden items-center gap-4 2xl:flex">
             <Link
               href="/login"
               className="font-display text-sm font-bold text-zinc-600 transition-colors hover:text-primary"

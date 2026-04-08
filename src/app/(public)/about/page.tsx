@@ -111,7 +111,7 @@ export default function AboutPage() {
       <section className="py-24 px-6 overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-            <div className="md:col-span-4 gradient-primary text-primary-foreground p-12 rounded-2xl flex flex-col justify-between shadow-2xl">
+            <div className="md:col-span-4 bg-gradient-to-br from-red-600 to-red-700 text-white p-12 rounded-2xl flex flex-col justify-between shadow-2xl">
               <div>
                 <h2 className="font-display text-7xl font-black mb-6 italic tracking-tighter">
                   SINCE<br />{BUSINESS_INFO.established}
