@@ -42,12 +42,12 @@ export function Navbar() {
         </Link>
 
         {/* Desktop: centered navigation */}
-        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 xl:gap-10 xl:flex">
+        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-4 xl:gap-8 xl:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className={`font-display text-sm font-bold uppercase tracking-tight transition-all ${
+              className={`font-display text-sm font-bold uppercase tracking-tight transition-all whitespace-nowrap ${
                 isActive(link.href)
                   ? 'border-b-2 border-primary pb-0.5 text-primary'
                   : 'text-zinc-600 hover:text-primary'
@@ -60,7 +60,7 @@ export function Navbar() {
 
         {/* Right */}
         <div className="flex shrink-0 items-center gap-3 md:gap-4">
-          <div className="mr-2 hidden items-center gap-4 2xl:flex">
+          <div className="mr-2 hidden items-center gap-3 xl:flex">
             <Link
               href="/login"
               className="font-display text-sm font-bold text-zinc-600 transition-colors hover:text-primary"
