@@ -41,6 +41,34 @@ insert into public.party_packages (name, description, base_price, max_kids, dura
     ]'::jsonb
   );
 
+-- Deluxe Party Package
+insert into public.party_packages (name, description, base_price, max_kids, duration_minutes, includes, add_ons) values
+  (
+    'Deluxe Birthday Party Package',
+    'For larger groups or those looking for an upgraded experience, our Deluxe package includes everything in the Classic plus extra perks!',
+    600,
+    20,
+    120,
+    '[
+      "2 hours of unlimited play",
+      "Private party room",
+      "Pizza and drinks for all kids",
+      "Paper plates, napkins, and utensils",
+      "Birthday cake table setup",
+      "Dedicated party host",
+      "Party invitations (digital)",
+      "20 tokens per child",
+      "Small prize bag per child"
+    ]'::jsonb,
+    '[
+      {"name": "Extra child", "price": 25},
+      {"name": "Upgrade to deluxe prize bags", "price": 50},
+      {"name": "Extra 30 minutes", "price": 75},
+      {"name": "Custom cake (serves 20)", "price": 60},
+      {"name": "Balloon arch decoration", "price": 45}
+    ]'::jsonb
+  );
+
 -- System settings
 insert into public.system_settings (key, value, description) values
   ('card_minimum',           '10',  'Minimum dollar amount for card payments'),
