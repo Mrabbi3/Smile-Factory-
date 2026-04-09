@@ -12,3 +12,7 @@ Fixed 2026-04-07: Customer sign-in and staff access now use the same Smile Facto
 3. Public navbar links overlap at intermediate desktop widths when resizing, causing Contact to collide with Sign In and Staff.
 
 Fixed 2026-04-07: Updated navbar responsive breakpoints so desktop nav/auth links and mobile menu do not render in conflicting width ranges.
+
+4. we need to add staff add founds for customers that have an account 
+we need to add where we keep track of the customer that do not have an account and we can send an email to them and keep track of their balence
+add the manual book to digital book for the customers that dont have an account
