@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import { Gamepad2, Heart, Star, Trophy, Settings } from 'lucide-react'
 import { BUSINESS_INFO } from '@/lib/constants'
 
@@ -9,17 +10,53 @@ export const metadata: Metadata = {
 }
 
 const arcadePhotos = [
-  { label: 'Arcade Controls', span: 'col-span-1 md:col-span-2 aspect-[16/9]' },
-  { label: 'Gamer Portrait', span: 'aspect-square' },
-  { label: 'Racing Games', span: 'aspect-square' },
-  { label: 'Motion Blur Lights', span: 'col-span-1 md:col-span-2 aspect-[21/9]' },
+  {
+    label: 'Arcade Controls',
+    span: 'col-span-1 md:col-span-2 aspect-[16/9]',
+    src: '/gallery-photos/gallery3.jpg',
+    alt: 'Arcade controls at The Smile Factory',
+  },
+  {
+    label: 'Gamer Portrait',
+    span: 'aspect-square',
+    src: '/gallery-photos/gallery4.jpg',
+    alt: 'Gamer portrait at The Smile Factory',
+  },
+  {
+    label: 'Racing Games',
+    span: 'aspect-square',
+    src: '/gallery-photos/gallery2.jpg',
+    alt: 'Racing games at The Smile Factory',
+  },
+  {
+    label: 'Motion Blur Lights',
+    span: 'col-span-1 md:col-span-2 aspect-[21/9]',
+    src: '/gallery-photos/gallery6.jpg',
+    alt: 'Motion blur lights in the arcade',
+  },
 ]
 
 const birthdayPhotos = [
-  { label: 'Kids Celebrating' },
-  { label: 'Birthday Cake' },
-  { label: 'Friends Playing' },
-  { label: 'Party Atmosphere' },
+  {
+    label: 'Kids Celebrating',
+    src: '/gallery-photos/birthday1.jpg',
+    alt: 'Kids celebrating at The Smile Factory',
+  },
+  {
+    label: 'Birthday Cake',
+    src: '/gallery-photos/birthday2.jpg',
+    alt: 'Birthday cake at The Smile Factory',
+  },
+  {
+    label: 'Friends Playing',
+    src: '/gallery-photos/birthday3.jpg',
+    alt: 'Friends playing games at The Smile Factory',
+  },
+  {
+    label: 'Party Atmosphere',
+    src: '/gallery-photos/birthday4.jpg',
+    alt: 'Birthday party atmosphere at The Smile Factory',
+  },
 ]
 
 const prizeWinners = [
@@ -29,8 +66,59 @@ const prizeWinners = [
 ]
 
 const socialFeed = [
-  'Tokens in Hand', 'Game Graphics', 'Arcade Floor', 'Red Button',
-  'Prize Machine', 'Tickets Dispenser', 'Classic Controller', 'Neon Sign',
+  {
+    label: 'Tokens in Hand',
+    src: '/gallery-photos/tag1.jpg',
+    alt: 'Tokens in hand',
+  },
+  {
+    label: 'Game Graphics',
+    src: '/gallery-photos/tag2.jpg',
+    alt: 'Game graphics',
+  },
+  {
+    label: 'Arcade Floor',
+    src: '/gallery-photos/tag3.jpg',
+    alt: 'Arcade floor',
+  },
+  {
+    label: 'Red Button',
+    src: '/gallery-photos/tag4.jpg',
+    alt: 'Red arcade button',
+  },
+  {
+    label: 'Prize Machine',
+    src: '/gallery-photos/tag5.jpg',
+    alt: 'Prize machine',
+  },
+  {
+    label: 'Tickets Dispenser',
+    src: '/gallery-photos/tag6.jpg',
+    alt: 'Tickets dispenser',
+  },
+  {
+    label: 'Classic Controller',
+    src: '/gallery-photos/tag7.jpg',
+    alt: 'Classic controller',
+  },
+  {
+    label: 'Neon Sign',
+    src: '/gallery-photos/tag8.jpg',
+    alt: 'Neon sign',
+  },
+]
+
+const prizeGalleryPhotos = [
+  {
+    label: 'Prize Wall',
+    src: '/gallery-photos/jackpot1.jpg',
+    alt: 'Prize wall at The Smile Factory',
+  },
+  {
+    label: 'Happy Winner',
+    src: '/gallery-photos/jackpot2.jpg',
+    alt: 'Happy winner at The Smile Factory',
+  },
 ]
 
 export default function GalleryPage() {
@@ -44,17 +132,25 @@ export default function GalleryPage() {
               Visual Archive
             </span>
             <h1 className="text-6xl md:text-8xl font-black font-display leading-[0.9] tracking-tighter italic uppercase">
-              THE <span className="text-primary">SMILE</span><br />FACTORY
+              THE <span className="text-primary">SMILE</span>
+              <br />
+              FACTORY
             </h1>
             <p className="text-xl text-zinc-500 max-w-xl leading-relaxed">
-              Step into the assembly line of joy. From the high-score heroics to the neon-drenched birthday celebrations, witness the factory in full production mode.
+              Step into the assembly line of joy. From the high-score heroics to the
+              neon-drenched birthday celebrations, witness the factory in full production mode.
             </p>
           </div>
-          <div className="flex-1 w-full aspect-video rounded-2xl overflow-hidden bg-zinc-200 shadow-2xl relative group border-4 border-zinc-900 flex items-center justify-center">
-            <div className="text-center text-zinc-400">
-              <Gamepad2 className="size-16 mx-auto mb-4 opacity-30" />
-              <p className="font-display font-bold">Arcade Atmosphere</p>
-            </div>
+
+          <div className="flex-1 w-full aspect-video rounded-2xl overflow-hidden bg-zinc-200 shadow-2xl relative group border-4 border-zinc-900">
+            <Image
+              src="/gallery-photos/gallery1.jpg"
+              alt="Arcade atmosphere at The Smile Factory"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="rounded-2xl"
+              priority
+            />
           </div>
         </div>
       </section>
@@ -64,19 +160,26 @@ export default function GalleryPage() {
         {/* Arcade Action */}
         <div className="space-y-8">
           <div className="flex items-end justify-between border-b-2 border-primary/10 pb-4">
-            <h2 className="text-4xl font-black font-display tracking-tight uppercase italic">Arcade Action</h2>
-            <span className="text-primary font-black tracking-tighter text-6xl opacity-10 font-display">01</span>
+            <h2 className="text-4xl font-black font-display tracking-tight uppercase italic">
+              Arcade Action
+            </h2>
+            <span className="text-primary font-black tracking-tighter text-6xl opacity-10 font-display">
+              01
+            </span>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {arcadePhotos.map((photo) => (
               <div
                 key={photo.label}
-                className={`${photo.span} rounded-2xl overflow-hidden border-[6px] border-zinc-900 shadow-xl group bg-zinc-100 flex items-center justify-center min-h-[200px]`}
+                className={`${photo.span} rounded-2xl overflow-hidden border-[6px] border-zinc-900 shadow-xl group bg-zinc-100 min-h-[200px] relative`}
               >
-                <div className="text-center text-zinc-400 group-hover:text-primary transition-colors">
-                  <Gamepad2 className="size-10 mx-auto mb-2 opacity-30" />
-                  <p className="text-sm font-display font-bold">{photo.label}</p>
-                </div>
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
             ))}
           </div>
@@ -85,19 +188,26 @@ export default function GalleryPage() {
         {/* Birthday Smiles */}
         <div className="space-y-8">
           <div className="flex items-end justify-between border-b-2 border-primary/10 pb-4">
-            <h2 className="text-4xl font-black font-display tracking-tight uppercase italic">Birthday Smiles</h2>
-            <span className="text-primary font-black tracking-tighter text-6xl opacity-10 font-display">02</span>
+            <h2 className="text-4xl font-black font-display tracking-tight uppercase italic">
+              Birthday Smiles
+            </h2>
+            <span className="text-primary font-black tracking-tighter text-6xl opacity-10 font-display">
+              02
+            </span>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {birthdayPhotos.map((photo) => (
               <div
                 key={photo.label}
-                className="aspect-[3/4] rounded-2xl overflow-hidden border-[6px] border-zinc-900 shadow-xl group bg-zinc-100 flex items-center justify-center"
+                className="aspect-[3/4] rounded-2xl overflow-hidden border-[6px] border-zinc-900 shadow-xl group bg-zinc-100 relative"
               >
-                <div className="text-center text-zinc-400 group-hover:text-primary transition-colors">
-                  <Heart className="size-10 mx-auto mb-2 opacity-30" />
-                  <p className="text-sm font-display font-bold">{photo.label}</p>
-                </div>
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
               </div>
             ))}
           </div>
@@ -106,29 +216,40 @@ export default function GalleryPage() {
         {/* Prize Winners */}
         <div className="space-y-8">
           <div className="flex items-end justify-between border-b-2 border-primary/10 pb-4">
-            <h2 className="text-4xl font-black font-display tracking-tight uppercase italic">Prize Winners</h2>
-            <span className="text-primary font-black tracking-tighter text-6xl opacity-10 font-display">03</span>
+            <h2 className="text-4xl font-black font-display tracking-tight uppercase italic">
+              Prize Winners
+            </h2>
+            <span className="text-primary font-black tracking-tighter text-6xl opacity-10 font-display">
+              03
+            </span>
           </div>
+
           <div className="flex flex-col md:flex-row gap-8">
             <div className="flex-1 bg-white rounded-2xl p-8 shadow-sm border-l-8 border-primary">
               <div className="flex items-center gap-4 mb-6">
                 <Star className="size-8 text-primary fill-primary" />
-                <h3 className="text-2xl font-black font-display tracking-tighter italic">JACKPOT JUNCTION</h3>
+                <h3 className="text-2xl font-black font-display tracking-tighter italic">
+                  JACKPOT JUNCTION
+                </h3>
               </div>
+
               <div className="grid grid-cols-2 gap-4">
-                {['Prize Wall', 'Happy Winner'].map((label) => (
+                {prizeGalleryPhotos.map((photo) => (
                   <div
-                    key={label}
-                    className="aspect-square rounded-2xl overflow-hidden border-[6px] border-zinc-900 shadow-xl bg-zinc-100 flex items-center justify-center"
+                    key={photo.label}
+                    className="aspect-square rounded-2xl overflow-hidden border-[6px] border-zinc-900 shadow-xl bg-zinc-100 relative"
                   >
-                    <div className="text-center text-zinc-400">
-                      <Trophy className="size-8 mx-auto mb-2 opacity-30" />
-                      <p className="text-xs font-display font-bold">{label}</p>
-                    </div>
+                    <Image
+                      src={photo.src}
+                      alt={photo.alt}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                    />
                   </div>
                 ))}
               </div>
             </div>
+
             <div className="flex-1 space-y-4">
               {prizeWinners.map((winner) => (
                 <div
@@ -136,7 +257,9 @@ export default function GalleryPage() {
                   className="bg-zinc-100 rounded-2xl p-6 flex items-center justify-between group hover:bg-white transition-colors border border-zinc-100"
                 >
                   <div className="flex items-center gap-4">
-                    <div className={`w-12 h-12 rounded-full ${winner.color} flex items-center justify-center text-white font-black font-display`}>
+                    <div
+                      className={`w-12 h-12 rounded-full ${winner.color} flex items-center justify-center text-white font-black font-display`}
+                    >
                       {winner.initials}
                     </div>
                     <div>
@@ -163,16 +286,19 @@ export default function GalleryPage() {
               for a chance to be featured.
             </p>
           </div>
+
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {socialFeed.map((label) => (
+            {socialFeed.map((photo) => (
               <div
-                key={label}
-                className="aspect-square bg-zinc-900 rounded-2xl overflow-hidden border-4 border-black shadow-lg group relative flex items-center justify-center"
+                key={photo.label}
+                className="aspect-square bg-zinc-900 rounded-2xl overflow-hidden border-4 border-black shadow-lg group relative"
               >
-                <div className="text-center text-zinc-500 group-hover:text-white transition-colors">
-                  <Gamepad2 className="size-8 mx-auto mb-2 opacity-30" />
-                  <p className="text-xs font-display font-bold">{label}</p>
-                </div>
+                <Image
+                  src={photo.src}
+                  alt={photo.alt}
+                  fill
+                  style={{ objectFit: 'cover' }}
+                />
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <Heart className="size-8 text-white" />
                 </div>

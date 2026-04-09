@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { Coins, CreditCard, Gamepad2, Trophy, PartyPopper, ArrowRight, Settings, Star } from 'lucide-react'
 import { Button } from '@/components/ui/button'
@@ -34,11 +35,16 @@ export default function PricingPage() {
               Fuel your fun with our premium token bundles. No hidden fees, just pure mechanical joy manufactured daily.
             </p>
           </div>
-          <div className="flex-1 w-full aspect-video rounded-2xl bg-zinc-100 relative overflow-hidden group shadow-2xl flex items-center justify-center">
-            <div className="text-center text-zinc-400">
-              <Coins className="size-16 mx-auto mb-4 opacity-20" />
-              <p className="font-display font-bold">Arcade Tokens</p>
-            </div>
+
+          <div className="flex-1 w-full aspect-video rounded-2xl bg-zinc-100 relative overflow-hidden group shadow-2xl">
+            <Image
+              src="/pricing-photos/tickets.jpg"
+              alt="Prize tickets at The Smile Factory"
+              fill
+              style={{ objectFit: 'cover' }}
+              className="rounded-2xl"
+              priority
+            />
           </div>
         </div>
       </header>
@@ -56,6 +62,7 @@ export default function PricingPage() {
               <span className="font-semibold text-sm">Bulk discount applied automatically</span>
             </div>
           </div>
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {TOKEN_PRICING.map((tier, i) => {
               const isPopular = tier.price === 10

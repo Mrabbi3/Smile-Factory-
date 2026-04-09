@@ -58,6 +58,29 @@ const features = [
   },
 ]
 
+const socialFeed = [
+  {
+    label: 'Arcade Action',
+    src: '/homepage-photos/arcade1.jpg',
+    alt: 'Arcade action at The Smile Factory',
+  },
+  {
+    label: 'Family Fun',
+    src: '/homepage-photos/family-fun1.jpg',
+    alt: 'Family fun at The Smile Factory',
+  },
+  {
+    label: 'Prize Tickets',
+    src: '/homepage-photos/prize-tickets1.jpg',
+    alt: 'Prize tickets at The Smile Factory',
+  },
+  {
+    label: 'Claw Wins',
+    src: '/homepage-photos/clawmachine.jpg',
+    alt: 'Claw machine wins at The Smile Factory',
+  },
+]
+
 export default function HomePage() {
   return (
     <>
@@ -89,13 +112,22 @@ export default function HomePage() {
             bursting with rewards — smiles are guaranteed!
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-            <Button asChild size="lg" className="w-full sm:w-auto px-12 py-6 rounded-full gradient-primary text-primary-foreground text-xl font-black tracking-tight hover:opacity-90 shadow-xl border-0">
+            <Button
+              asChild
+              size="lg"
+              className="w-full sm:w-auto px-12 py-6 rounded-full gradient-primary text-primary-foreground text-xl font-black tracking-tight hover:opacity-90 shadow-xl border-0"
+            >
               <Link href="/parties">
                 <CalendarDays className="size-5" />
                 Book a Party
               </Link>
             </Button>
-            <Button asChild variant="outline" size="lg" className="w-full sm:w-auto px-12 py-6 rounded-full border-2 border-zinc-200 bg-white text-zinc-800 text-xl font-black tracking-tight hover:bg-zinc-50 shadow-md">
+            <Button
+              asChild
+              variant="outline"
+              size="lg"
+              className="w-full sm:w-auto px-12 py-6 rounded-full border-2 border-zinc-200 bg-white text-zinc-800 text-xl font-black tracking-tight hover:bg-zinc-50 shadow-md"
+            >
               <Link href="/pricing">
                 <CreditCard className="size-5" />
                 View Pricing
@@ -207,6 +239,7 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* Join the Factory Floor */}
       <section className="py-24 px-8 bg-zinc-50 overflow-hidden relative border-y border-gray-200">
         <div className="absolute inset-0 factory-pattern opacity-30 pointer-events-none" />
         <div className="max-w-7xl mx-auto relative z-10">
@@ -225,17 +258,21 @@ export default function HomePage() {
               Follow us for weekly high scores, prize updates, and community smiles!
             </p>
           </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {['Arcade Action', 'Family Fun', 'Prize Tickets', 'Claw Wins'].map((label) => (
+            {socialFeed.map(({ label, src, alt }) => (
               <div
                 key={label}
                 className="relative border-4 border-black shadow-xl rounded-2xl overflow-hidden group bg-white"
               >
-                <div className="aspect-square overflow-hidden flex items-center justify-center bg-zinc-100">
-                  <div className="text-center text-zinc-400">
-                    <Gamepad2 className="size-12 mx-auto mb-2 opacity-20" />
-                    <p className="text-sm font-bold font-display">{label}</p>
-                  </div>
+                <div className="aspect-square overflow-hidden relative">
+                  <Image
+                    src={src}
+                    alt={alt}
+                    fill
+                    className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                  />
                 </div>
               </div>
             ))}

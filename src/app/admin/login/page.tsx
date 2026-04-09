@@ -32,14 +32,16 @@ export default function AdminLoginPage() {
   return (
     <div className="pattern-industrial flex min-h-svh flex-col items-center justify-center px-4 py-12">
       <div className="mb-8 flex flex-col items-center gap-4">
-        <Image
-          src="/branding/smile-factory-logo.png"
-          alt="The Smile Factory"
-          width={80}
-          height={80}
-          className="size-20 object-contain"
-          priority
-        />
+        <Link href="/" className="transition-transform duration-200 hover:scale-105">
+          <Image
+            src="/branding/smile-factory-logo.png"
+            alt="The Smile Factory"
+            width={320}
+            height={128}
+            className="h-auto w-full max-w-[320px] object-contain"
+            priority
+          />
+        </Link>
         <div className="text-center">
           <h1 className="font-display text-2xl font-bold tracking-tight">
             Staff Access

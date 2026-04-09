@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import {
   PartyPopper, Users, Clock, ArrowRight, Phone, ArrowDown, Eye,
@@ -61,12 +62,17 @@ export default function PartiesPage() {
                 </Button>
               </div>
             </div>
+
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl rotate-3 scale-105 border-[16px] border-white bg-zinc-100 flex items-center justify-center">
-                <div className="text-center text-zinc-400">
-                  <PartyPopper className="size-16 mx-auto mb-4 opacity-20" />
-                  <p className="font-display font-bold">Party Room</p>
-                </div>
+              <div className="aspect-square rounded-2xl overflow-hidden shadow-2xl rotate-3 scale-105 border-[16px] border-white bg-zinc-100 relative">
+                <Image
+                  src="/parties-photos/bdayparty.jpg"
+                  alt="Party Room"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-2xl"
+                  priority
+                />
               </div>
               <div className="absolute -bottom-8 -left-8 bg-[var(--tertiary)] text-white p-8 rounded-2xl shadow-xl max-w-xs">
                 <Settings className="size-8 mb-2" />
@@ -116,11 +122,15 @@ export default function PartiesPage() {
                 <Link href="/customer/bookings">Select Blueprint</Link>
               </Button>
             </div>
-            <div className="flex-1 rounded-2xl overflow-hidden relative border-4 border-zinc-50 shadow-inner min-h-[400px] bg-zinc-100 flex items-center justify-center">
-              <div className="text-center text-zinc-400">
-                <PartyPopper className="size-16 mx-auto mb-4 opacity-20" />
-                <p className="font-display font-bold">Party Setup</p>
-              </div>
+
+            <div className="flex-1 rounded-2xl overflow-hidden relative border-4 border-zinc-50 shadow-inner min-h-[400px] bg-zinc-100">
+              <Image
+                src="/parties-photos/cupcake.jpg"
+                alt="Party Setup"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="rounded-2xl"
+              />
             </div>
           </div>
         </div>

@@ -42,7 +42,7 @@ export function Navbar() {
         </Link>
 
         {/* Desktop: centered navigation */}
-        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 xl:gap-10 lg:flex">
+        <div className="absolute left-1/2 hidden -translate-x-1/2 items-center gap-6 xl:gap-10 xl:flex">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -60,7 +60,7 @@ export function Navbar() {
 
         {/* Right */}
         <div className="flex shrink-0 items-center gap-3 md:gap-4">
-          <div className="mr-2 hidden items-center gap-4 sm:flex">
+          <div className="mr-2 hidden items-center gap-4 2xl:flex">
             <Link
               href="/login"
               className="font-display text-sm font-bold text-zinc-600 transition-colors hover:text-primary"
@@ -85,7 +85,7 @@ export function Navbar() {
 
           <button
             type="button"
-            className="rounded-lg p-2 text-zinc-800 transition-colors hover:bg-zinc-100 lg:hidden"
+            className="rounded-lg p-2 text-zinc-800 transition-colors hover:bg-zinc-100 xl:hidden"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-expanded={mobileOpen}
             aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
@@ -97,7 +97,7 @@ export function Navbar() {
 
       {/* Mobile: slides down from under the bar */}
       <div
-        className={`absolute left-0 top-full w-full border-b border-zinc-200 bg-white/95 shadow-xl backdrop-blur-md transition-all duration-300 ease-out lg:hidden ${
+        className={`absolute left-0 top-full w-full border-b border-zinc-200 bg-white/95 shadow-xl backdrop-blur-md transition-all duration-300 ease-out xl:hidden ${
           mobileOpen
             ? 'pointer-events-auto translate-y-0 opacity-100'
             : 'pointer-events-none -translate-y-full opacity-0'

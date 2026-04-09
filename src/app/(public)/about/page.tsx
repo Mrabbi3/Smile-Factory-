@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { Zap, Settings, Award, ArrowRight } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { BUSINESS_INFO } from '@/lib/constants'
+import Image from 'next/image'
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -54,14 +55,15 @@ export default function AboutPage() {
             </Button>
           </div>
           <div className="lg:col-span-5 relative">
-            <div className="aspect-square bg-white p-4 rounded-2xl shadow-2xl relative rotate-3 overflow-hidden">
-              <div className="w-full h-full bg-zinc-100 rounded-xl flex items-center justify-center">
-                <div className="text-center text-zinc-400">
-                  <Settings className="size-16 mx-auto mb-4 opacity-20" />
-                  <p className="font-display font-bold">The Smile Factory</p>
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
+            <div className="aspect-square bg-white p-2 rounded-2xl shadow-2xl relative rotate-3 overflow-hidden flex items-center justify-center">
+              <Image
+                src="/about-photos/building2.jpg"
+                alt="About Smile Factory Hero"
+                fill
+                style={{ objectFit: 'cover' }}
+                className="rounded-xl"
+                priority
+              />
             </div>
             <div className="absolute -bottom-12 -left-12 font-display font-black text-9xl text-gray-200 opacity-50 select-none -z-10">
               SMILE
@@ -109,7 +111,7 @@ export default function AboutPage() {
       <section className="py-24 px-6 overflow-hidden bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
-            <div className="md:col-span-4 gradient-primary text-primary-foreground p-12 rounded-2xl flex flex-col justify-between shadow-2xl">
+            <div className="md:col-span-4 bg-gradient-to-br from-red-600 to-red-700 text-white p-12 rounded-2xl flex flex-col justify-between shadow-2xl">
               <div>
                 <h2 className="font-display text-7xl font-black mb-6 italic tracking-tighter">
                   SINCE<br />{BUSINESS_INFO.established}
@@ -121,16 +123,24 @@ export default function AboutPage() {
             </div>
             <div className="md:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-8">
               <div className="bg-zinc-100 rounded-2xl overflow-hidden min-h-[300px] relative group border border-zinc-200 shadow-md flex items-center justify-center">
-                <div className="text-center text-zinc-400">
-                  <Settings className="size-12 mx-auto mb-2 opacity-20" />
-                  <p className="font-display font-bold text-sm">The First Assembly ({BUSINESS_INFO.established})</p>
-                </div>
+                <Image
+                  src="/about-photos/racemachines.jpg"
+                  alt="About Smile Factory Frame 1"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-xl"
+                  priority
+                />
               </div>
               <div className="bg-zinc-100 rounded-2xl overflow-hidden min-h-[300px] relative group border border-zinc-200 shadow-md flex items-center justify-center">
-                <div className="text-center text-zinc-400">
-                  <Settings className="size-12 mx-auto mb-2 opacity-20" />
-                  <p className="font-display font-bold text-sm">The Modern Era (2024)</p>
-                </div>
+                <Image
+                  src="/about-photos/overallgames.jpg"
+                  alt="About Smile Factory Frame 2"
+                  fill
+                  style={{ objectFit: 'cover' }}
+                  className="rounded-xl"
+                  priority
+                />
               </div>
               <div className="sm:col-span-2 bg-zinc-50 p-12 rounded-2xl border border-zinc-100 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-8 opacity-5">

@@ -1,5 +1,6 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Smile, ArrowLeft } from 'lucide-react'
+import { ArrowLeft } from 'lucide-react'
 
 export default function AuthLayout({
   children,
@@ -9,16 +10,17 @@ export default function AuthLayout({
   return (
     <div className="flex min-h-svh flex-col items-center justify-center bg-[var(--surface-container-low)] pattern-industrial px-4 py-12">
       <div className="mb-10 flex flex-col items-center gap-4">
-        <Link
-          href="/"
-          className="inline-flex items-center justify-center rounded-full gradient-primary p-3.5 text-white hover:opacity-90 transition-all duration-200 shadow-elevated hover:scale-105"
-        >
-          <Smile className="size-7" />
+        <Link href="/" className="transition-transform duration-200 hover:scale-105">
+          <Image
+            src="/branding/smile-factory-logo.png"
+            alt="The Smile Factory"
+            width={320}
+            height={128}
+            className="h-auto w-full max-w-[320px] object-contain"
+            priority
+          />
         </Link>
         <div className="text-center">
-          <h1 className="font-display text-3xl font-bold tracking-tight text-foreground">
-            The Smile Factory
-          </h1>
           <p className="text-sm text-muted-foreground mt-1">
             Arcade &amp; Family Fun Center
           </p>
