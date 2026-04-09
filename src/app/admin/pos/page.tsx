@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { TOKEN_PRICING, CARD_MINIMUM, LOYALTY_DEAL } from '@/lib/constants'
 import { cn, currency } from '@/lib/utils'
 import { toast } from 'sonner'
-import { CreditCard, Banknote, ShoppingCart, Sparkles } from 'lucide-react'
+import { CreditCard, Banknote, ShoppingCart, Sparkles, Receipt, Printer } from 'lucide-react'
 import {
   Card,
   CardContent,
@@ -16,6 +16,8 @@ import {
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import type { PaymentType } from '@/types/database'
+import { generateTokenReceipt } from '@/lib/pdf/generate-pdf'
+import { format } from 'date-fns'
 
 type SaleMode = 'standard' | 'loyalty'
 
@@ -31,6 +33,14 @@ export default function POSPage() {
   const [tierIndex, setTierIndex] = useState(0)
   const [paymentType, setPaymentType] = useState<PaymentType>('cash')
   const [submitting, setSubmitting] = useState(false)
+  const [lastSale, setLastSale] = useState<{
+    transactionId: string
+    amountPaid: number
+    tokensGiven: number
+    paymentType: PaymentType
+    isLoyalty: boolean
+    date: string
+  } | null>(null)
 
   const selectedTier = TOKEN_PRICING[tierIndex]
   const amountPaid = mode === 'loyalty' ? LOYALTY_DEAL.price : selectedTier.price
@@ -55,14 +65,18 @@ export default function POSPage() {
 
     setSubmitting(true)
     try {
-      const { error } = await supabase.from('token_transactions').insert({
-        customer_id: null,
-        employee_id: user.id,
-        amount_paid: amountPaid,
-        payment_type: paymentType,
-        tokens_given: tokensGiven,
-        is_loyalty_bonus: mode === 'loyalty',
-      })
+      const { data, error } = await supabase
+        .from('token_transactions')
+        .insert({
+          customer_id: null,
+          employee_id: user.id,
+          amount_paid: amountPaid,
+          payment_type: paymentType,
+          tokens_given: tokensGiven,
+          is_loyalty_bonus: mode === 'loyalty',
+        })
+        .select('id, created_at')
+        .single()
 
       if (error) {
         console.error('POS insert error:', error)
@@ -70,14 +84,54 @@ export default function POSPage() {
         return
       }
 
+      const saleInfo = {
+        transactionId: data.id,
+        amountPaid,
+        tokensGiven,
+        paymentType,
+        isLoyalty: mode === 'loyalty',
+        date: format(new Date(data.created_at), 'MMM dd, yyyy h:mm a'),
+      }
+      setLastSale(saleInfo)
+
       toast.success(
-        `Sale recorded: ${currency(amountPaid)} → ${tokensGiven} tokens (${paymentType})`
+        `Sale recorded: ${currency(amountPaid)} → ${tokensGiven} tokens (${paymentType})`,
+        {
+          action: {
+            label: 'Print Receipt',
+            onClick: () => downloadReceipt(saleInfo),
+          },
+        }
       )
       setMode('standard')
       setTierIndex(0)
       setPaymentType('cash')
     } finally {
       setSubmitting(false)
+    }
+  }
+
+  const downloadReceipt = (sale: NonNullable<typeof lastSale>) => {
+    try {
+      const doc = generateTokenReceipt({
+        transactionId: sale.transactionId,
+        date: sale.date,
+        items: [
+          {
+            tokens: sale.tokensGiven,
+            amount: sale.amountPaid,
+            isLoyalty: sale.isLoyalty,
+          },
+        ],
+        totalAmount: sale.amountPaid,
+        totalTokens: sale.tokensGiven,
+        paymentType: sale.paymentType,
+      })
+      doc.save(`receipt-${sale.transactionId.slice(0, 8)}.pdf`)
+      toast.success('Receipt downloaded!')
+    } catch (err) {
+      console.error('Receipt generation error:', err)
+      toast.error('Failed to generate receipt PDF.')
     }
   }
 
@@ -300,6 +354,65 @@ export default function POSPage() {
           </Button>
         </CardContent>
       </Card>
+
+      {lastSale && (
+        <Card className="border border-green-200 bg-green-50/50 shadow-sm rounded-2xl overflow-hidden">
+          <CardHeader className="border-b border-green-100 pb-4">
+            <div className="flex items-center gap-3">
+              <div className="flex size-11 items-center justify-center rounded-xl bg-green-100">
+                <Receipt className="size-6 text-green-700" />
+              </div>
+              <div className="flex-1">
+                <CardTitle className="font-display font-black tracking-tight text-lg text-green-900">
+                  Last sale receipt
+                </CardTitle>
+                <p className="text-sm text-green-700 font-medium mt-0.5">
+                  {lastSale.date}
+                </p>
+              </div>
+            </div>
+          </CardHeader>
+          <CardContent className="pt-4 space-y-3">
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-green-700 font-medium">Transaction</span>
+              <code className="text-xs bg-green-100 px-2 py-0.5 rounded font-bold text-green-900">
+                {lastSale.transactionId.slice(0, 8)}
+              </code>
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-green-700 font-medium">Amount</span>
+              <span className="font-black text-green-900">{currency(lastSale.amountPaid)}</span>
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-green-700 font-medium">Tokens</span>
+              <Badge variant="secondary" className="font-black bg-green-100 text-green-900">
+                {lastSale.tokensGiven}
+              </Badge>
+            </div>
+            <div className="flex items-center justify-between text-sm">
+              <span className="text-green-700 font-medium">Payment</span>
+              <span className="font-bold text-green-900 capitalize">{lastSale.paymentType}</span>
+            </div>
+            {lastSale.isLoyalty && (
+              <Badge className="bg-primary text-primary-foreground font-black text-[10px] uppercase tracking-tight">
+                <Sparkles className="size-3 mr-1" />
+                Loyalty bundle
+              </Badge>
+            )}
+            <div className="pt-2 flex gap-2">
+              <Button
+                type="button"
+                size="sm"
+                className="flex-1 rounded-xl font-black bg-green-700 hover:bg-green-800 text-white"
+                onClick={() => downloadReceipt(lastSale)}
+              >
+                <Printer className="mr-2 size-4" />
+                Download receipt PDF
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      )}
     </div>
   )
 }

@@ -13,7 +13,17 @@ import {
   parseISO,
 } from 'date-fns'
 import { toast } from 'sonner'
-import { BarChart3, Banknote, CreditCard, TrendingDown, TrendingUp } from 'lucide-react'
+import {
+  BarChart3,
+  Banknote,
+  CreditCard,
+  TrendingDown,
+  TrendingUp,
+  FileText,
+  FileSpreadsheet,
+  FileJson,
+  Download,
+} from 'lucide-react'
 import {
   BarChart,
   Bar,
@@ -34,6 +44,8 @@ import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { generateRevenueReport, generateExpenseReport } from '@/lib/pdf/generate-pdf'
+import { generateMultiSheetExcel, formatExpensesForExcel } from '@/lib/excel/generate-excel'
 
 type RangePreset = '7' | '30' | '90' | 'custom'
 
@@ -205,6 +217,159 @@ export default function ReportsPage() {
 
   const netProfit = totals.totalRevenue - expenseTotal
 
+  const periodLabel = `${safeFormatDate(fromStr, 'MMM d, yyyy')} – ${safeFormatDate(toStr, 'MMM d, yyyy')}`
+
+  const handleExportPDF = () => {
+    if (dailyRows.length === 0 && expenses.length === 0) {
+      toast.error('No data to export.')
+      return
+    }
+    try {
+      const revDoc = generateRevenueReport({
+        period: periodLabel,
+        totalRevenue: totals.totalRevenue,
+        cashRevenue: totals.totalCash,
+        cardRevenue: totals.totalCard,
+        transactionCount: totals.totalTransactions,
+        dailyData: dailyRows.map((r) => ({
+          date: safeFormatDate(r.date, 'MMM d, yyyy'),
+          cash: Number(r.total_cash),
+          card: Number(r.total_card),
+          total: Number(r.total_revenue),
+        })),
+      })
+
+      if (expenses.length > 0) {
+        const expDoc = generateExpenseReport(
+          expenses.map((e) => ({
+            expense_date: safeFormatDate(e.expense_date, 'MMM d, yyyy'),
+            description: e.description,
+            category: e.category,
+            payment_method: e.payment_method,
+            amount: Number(e.amount),
+          })),
+          periodLabel
+        )
+        expDoc.save(`smile-factory-expenses-${fromStr}-to-${toStr}.pdf`)
+      }
+
+      revDoc.save(`smile-factory-revenue-${fromStr}-to-${toStr}.pdf`)
+      toast.success('PDF report(s) downloaded!')
+    } catch (err) {
+      console.error('PDF export error:', err)
+      toast.error('Failed to generate PDF.')
+    }
+  }
+
+  const handleExportExcel = () => {
+    if (dailyRows.length === 0 && expenses.length === 0) {
+      toast.error('No data to export.')
+      return
+    }
+    try {
+      const sheets: { name: string; data: Record<string, unknown>[] }[] = []
+
+      if (dailyRows.length > 0) {
+        sheets.push({
+          name: 'Revenue',
+          data: dailyRows.map((r) => ({
+            Date: safeFormatDate(r.date, 'yyyy-MM-dd'),
+            'Total Revenue': Number(r.total_revenue),
+            Cash: Number(r.total_cash),
+            Card: Number(r.total_card),
+            'Token Sales': r.token_sales_count,
+            'Prize Redemptions': r.prize_redemptions_count,
+          })),
+        })
+      }
+
+      if (expenses.length > 0) {
+        sheets.push({
+          name: 'Expenses',
+          data: formatExpensesForExcel(expenses),
+        })
+      }
+
+      sheets.push({
+        name: 'Summary',
+        data: [
+          {
+            Metric: 'Total Revenue',
+            Value: totals.totalRevenue,
+          },
+          { Metric: 'Cash Revenue', Value: totals.totalCash },
+          { Metric: 'Card Revenue', Value: totals.totalCard },
+          { Metric: 'Total Transactions', Value: totals.totalTransactions },
+          { Metric: 'Token Sales', Value: totals.tokenSales },
+          { Metric: 'Prize Redemptions', Value: totals.prizeRedemptions },
+          { Metric: 'Total Expenses', Value: expenseTotal },
+          { Metric: 'Net Profit', Value: netProfit },
+        ],
+      })
+
+      generateMultiSheetExcel(sheets, `smile-factory-report-${fromStr}-to-${toStr}`)
+      toast.success('Excel report downloaded!')
+    } catch (err) {
+      console.error('Excel export error:', err)
+      toast.error('Failed to generate Excel file.')
+    }
+  }
+
+  const handleExportJSON = () => {
+    if (dailyRows.length === 0 && expenses.length === 0) {
+      toast.error('No data to export.')
+      return
+    }
+    try {
+      const report = {
+        generatedAt: new Date().toISOString(),
+        period: { from: fromStr, to: toStr },
+        summary: {
+          totalRevenue: totals.totalRevenue,
+          cashRevenue: totals.totalCash,
+          cardRevenue: totals.totalCard,
+          totalTransactions: totals.totalTransactions,
+          tokenSales: totals.tokenSales,
+          prizeRedemptions: totals.prizeRedemptions,
+          averageTransaction: totals.avgTx,
+          totalExpenses: expenseTotal,
+          netProfit,
+        },
+        dailyRevenue: dailyRows.map((r) => ({
+          date: r.date,
+          totalRevenue: Number(r.total_revenue),
+          cash: Number(r.total_cash),
+          card: Number(r.total_card),
+          tokenSales: r.token_sales_count,
+          prizeRedemptions: r.prize_redemptions_count,
+        })),
+        expenses: expenses.map((e) => ({
+          date: e.expense_date,
+          description: e.description,
+          category: e.category,
+          paymentMethod: e.payment_method,
+          amount: Number(e.amount),
+        })),
+      }
+
+      const blob = new Blob([JSON.stringify(report, null, 2)], {
+        type: 'application/json',
+      })
+      const url = URL.createObjectURL(blob)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = `smile-factory-report-${fromStr}-to-${toStr}.json`
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+      toast.success('JSON report downloaded!')
+    } catch (err) {
+      console.error('JSON export error:', err)
+      toast.error('Failed to generate JSON file.')
+    }
+  }
+
   if (authLoading) {
     return (
       <div className="space-y-6">
@@ -287,16 +452,59 @@ export default function ReportsPage() {
               Custom
             </Button>
           </div>
-          <Button
-            type="button"
-            variant="secondary"
-            size="sm"
-            className="rounded-full font-black"
-            onClick={() => void loadData()}
-            disabled={loading}
-          >
-            Refresh
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              type="button"
+              variant="secondary"
+              size="sm"
+              className="rounded-full font-black"
+              onClick={() => void loadData()}
+              disabled={loading}
+            >
+              Refresh
+            </Button>
+          </div>
+          <div className="flex items-center gap-1 rounded-full border border-gray-200 bg-white p-1 shadow-sm">
+            <span className="pl-2 text-[10px] font-black uppercase tracking-widest text-gray-400">
+              <Download className="inline size-3.5" /> Export
+            </span>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="rounded-full font-black text-red-600 hover:bg-red-50 hover:text-red-700"
+              onClick={handleExportPDF}
+              disabled={loading || (dailyRows.length === 0 && expenses.length === 0)}
+              title="Download PDF report"
+            >
+              <FileText className="mr-1 size-4" />
+              PDF
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="rounded-full font-black text-green-600 hover:bg-green-50 hover:text-green-700"
+              onClick={handleExportExcel}
+              disabled={loading || (dailyRows.length === 0 && expenses.length === 0)}
+              title="Download Excel spreadsheet"
+            >
+              <FileSpreadsheet className="mr-1 size-4" />
+              Excel
+            </Button>
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              className="rounded-full font-black text-blue-600 hover:bg-blue-50 hover:text-blue-700"
+              onClick={handleExportJSON}
+              disabled={loading || (dailyRows.length === 0 && expenses.length === 0)}
+              title="Download JSON data"
+            >
+              <FileJson className="mr-1 size-4" />
+              JSON
+            </Button>
+          </div>
         </div>
       </div>
 
