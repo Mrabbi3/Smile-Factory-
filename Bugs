@@ -16,3 +16,19 @@ Fixed 2026-04-07: Updated navbar responsive breakpoints so desktop nav/auth link
 4. we need to add staff add founds for customers that have an account 
 we need to add where we keep track of the customer that do not have an account and we can send an email to them and keep track of their balence
 add the manual book to digital book for the customers that dont have an account
+
+
+
+Added (milestone 4)
+
+1. add announcement on front end page, staff/owner must be able to do this through backend.
+
+2. add facebook/instagram links (whenever they post on facebook/instagram, it should show on the home page gallery
+
+3. customer page needs ticket count and prize redemption, (backend must reflect whenever a customer redeems a prize)
+
+4. "READY TO START THE MACHINE? Join the thousands of visitors who have found their smile at the Factory. Book your visit or party today." section on about page not very visible, (black background on grey text)
+
+5. On expenses tab of owner page, owner must be able to take a photo of their receipt and be able to view when expenses as logged
+
+6. On gallery page, ticket redemption should  reflect whenever a customer redeems a prize. (prize winners tab)
