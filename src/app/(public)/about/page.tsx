@@ -180,10 +180,10 @@ export default function AboutPage() {
           <div className="absolute top-0 right-0 p-8 opacity-10">
             <Settings className="size-40" />
           </div>
-          <h2 className="font-display text-4xl md:text-6xl font-black mb-8 leading-tight italic uppercase tracking-tighter">
+          <h2 className="font-display text-4xl md:text-6xl font-black mb-8 leading-tight italic uppercase tracking-tighter text-white">
             READY TO START THE MACHINE?
           </h2>
-          <p className="text-lg opacity-80 mb-12 max-w-xl mx-auto">
+          <p className="text-lg text-white mb-12 max-w-xl mx-auto">
             Join the thousands of visitors who have found their smile at the Factory. Book your visit or party today.
           </p>
           <div className="flex flex-col sm:flex-row gap-6 justify-center">
