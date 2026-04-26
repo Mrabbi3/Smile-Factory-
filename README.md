@@ -204,3 +204,5 @@ The Smile Factory Arcade & Family Fun Center
 ## License
 
 This project is developed as part of an academic course and is proprietary to the client.
+
+##last update notes Kelvin working on member POS system 

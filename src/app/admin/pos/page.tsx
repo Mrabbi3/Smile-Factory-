@@ -27,10 +27,32 @@ export default function POSPage() {
   const { user, loading, isManager } = useAuth()
   const supabase = useMemo(() => createClient(), [])
 
+ // Kelvin: Customer selection 
+useEffect(() => {   
+  async function fetchCustomers() {
+    const { data, error } = await supabase
+      .from('customers')
+      .select('*')
+
+    if (error) {
+      console.error('Error fetching customers:', error)
+    } else {
+      setCustomers(data || [])
+    }
+  }
+
+  fetchCustomers()
+}, [supabase]) // Kelvin: Customer selection
+
+
   const [mode, setMode] = useState<SaleMode>('standard')
   const [tierIndex, setTierIndex] = useState(0)
   const [paymentType, setPaymentType] = useState<PaymentType>('cash')
   const [submitting, setSubmitting] = useState(false)
+
+ // Kelvin: Customer selection
+  const [customers, setCustomers] = useState<any[]>([])
+  const [selectedCustomer, setSelectedCustomer] = useState<any>(null)
 
   const selectedTier = TOKEN_PRICING[tierIndex]
   const amountPaid = mode === 'loyalty' ? LOYALTY_DEAL.price : selectedTier.price
@@ -56,7 +78,7 @@ export default function POSPage() {
     setSubmitting(true)
     try {
       const { error } = await supabase.from('token_transactions').insert({
-        customer_id: null,
+        customer_id: selectedCustomer?.id || null,
         employee_id: user.id,
         amount_paid: amountPaid,
         payment_type: paymentType,
@@ -131,6 +153,31 @@ export default function POSPage() {
               <p className="text-sm text-muted-foreground font-medium mt-1">
                 Ring up tokens for walk-in guests
               </p>
+
+              // Kelvin: Customer selection 
+              <div className="mt-4">
+                <select
+                  className="border p-2 rounded w-full"
+                  onChange={(e) => {
+                    const customer = customers.find(c => c.id === e.target.value)
+                    setSelectedCustomer(customer)
+                  }}
+                >
+                  <option value="">Walk-in Guest</option>
+
+                  {customers.map((c) => (
+                    <option key={c.id} value={c.id}>
+                      {c.first_name} {c.last_name} - {c.phone_number}
+                    </option>
+                  ))}
+                 </select>
+
+                {selectedCustomer && (
+                 <p className="text-sm text-green-600 mt-2">
+                   Selected: {selectedCustomer.first_name} {selectedCustomer.last_name}
+                    </p>
+                )}
+              </div>
             </div>
           </div>
         </CardHeader>
