@@ -81,8 +81,14 @@ export async function staffCreateAccount(
   if (error) return { error: error.message }
 
   // If Supabase has email confirmation off (dev) the user is signed in
-  // immediately. Try to promote — no-op if no session yet.
-  await supabase.rpc('promote_to_employee').catch(() => null)
+  // immediately. Try to promote — no-op if no session yet. Wrap in
+  // try/catch because supabase.rpc() returns a builder, not a Promise,
+  // so we can't .catch() it directly.
+  try {
+    await supabase.rpc('promote_to_employee')
+  } catch {
+    /* user not yet authenticated — promotion will run on first sign-in */
+  }
 
   // Either way, send them to the dashboard. If they have a confirmation
   // email pending, that page will surface a "verify your email" toast.
