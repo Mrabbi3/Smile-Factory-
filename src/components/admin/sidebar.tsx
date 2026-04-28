@@ -130,8 +130,8 @@ export function AdminSidebar({
   }
 
   return (
-    <div className="flex h-full flex-col bg-white border-r border-gray-200">
-      <div className="p-6 pb-4">
+    <div className="flex h-full min-h-0 flex-col bg-white border-r border-gray-200">
+      <div className="shrink-0 p-6 pb-4">
         <div className="flex items-center gap-3 mb-2">
           <Image
             src="/branding/smile-factory-logo.png"
@@ -145,7 +145,7 @@ export function AdminSidebar({
         <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] pl-[52px]">Staff Admin Portal</p>
       </div>
 
-      <ScrollArea className="flex-1 py-3">
+      <ScrollArea className="min-h-0 flex-1 py-3">
         <nav className="flex flex-col gap-1 px-3">
           {navSections.map((section, sIdx) => {
             const visibleItems = section.items.filter(canSee)
