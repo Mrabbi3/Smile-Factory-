@@ -82,7 +82,7 @@ export default function CustomerLayout({
 }: {
   children: React.ReactNode
 }) {
-  const { profile, loading, role, signOut } = useAuth()
+  const { profile, loading, role, signOut, user } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -104,6 +104,7 @@ export default function CustomerLayout({
         <TopBar
           profile={loading ? null : profile}
           role={loading ? null : role}
+          fallbackEmail={user?.email}
           onSignOut={async () => {
             await signOut()
             window.location.href = '/login'
