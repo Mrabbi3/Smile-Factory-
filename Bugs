@@ -34,3 +34,6 @@ Added (milestone 4)
 6. On gallery page, ticket redemption should  reflect whenever a customer redeems a prize. (prize winners tab)
 
 7. Remove Chatbot feature
+
+Customer Page
+1. Editing Profile leads to infinite recursion error.
