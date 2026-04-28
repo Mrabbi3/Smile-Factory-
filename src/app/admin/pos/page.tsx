@@ -30,8 +30,10 @@ export default function POSPage() {
   const supabase = useMemo(() => createClient(), [])
   const [tab, setTab] = useState<SaleTab>('packages')
   const [tierIndex, setTierIndex] = useState(0)
-  const [customTokens, setCustomTokens] = useState(10)
-  const [customPrice, setCustomPrice] = useState(5)
+  // Custom mode is now "buy N copies of a package" so totals stay clean
+  // integer multiples (5/10/15/20…) instead of float-math like 5.00001.
+  const [customTierIndex, setCustomTierIndex] = useState(0)
+  const [customQty, setCustomQty] = useState(1)
   const [paymentType, setPaymentType] = useState<PaymentType>('cash')
   const [submitting, setSubmitting] = useState(false)
   const [lookup, setLookup] = useState('')
@@ -47,10 +49,15 @@ export default function POSPage() {
   } | null>(null)
 
   const selectedTier = TOKEN_PRICING[tierIndex]
-  const amountPaid =
-    tab === 'custom' ? customPrice : selectedTier.price
-  const tokensGiven =
-    tab === 'custom' ? customTokens : selectedTier.tokens
+  const customTier = TOKEN_PRICING[customTierIndex]
+  const safeQty = Math.max(1, Math.floor(Number(customQty) || 1))
+  // Multiply price as integer cents to avoid 5.00001-style float drift
+  const customAmountCents = Math.round(customTier.price * 100) * safeQty
+  const customAmountPaid = customAmountCents / 100
+  const customTokensGiven = customTier.tokens * safeQty
+
+  const amountPaid = tab === 'custom' ? customAmountPaid : selectedTier.price
+  const tokensGiven = tab === 'custom' ? customTokensGiven : selectedTier.tokens
 
   const cardBelowMinimum =
     paymentType === 'card' && amountPaid < CARD_MINIMUM
@@ -59,8 +66,7 @@ export default function POSPage() {
       !submitting &&
       !cardBelowMinimum &&
       amountPaid >= 0 &&
-      tokensGiven > 0 &&
-      !(tab === 'custom' && (customTokens <= 0 || customPrice < 0))
+      tokensGiven > 0
 
   const lookupCustomer = async () => {
     const raw = lookup.trim()
@@ -323,29 +329,69 @@ export default function POSPage() {
               </div>
             </TabsContent>
             <TabsContent value="custom" className="mt-4 space-y-4 pt-2">
-              <div className="grid grid-cols-2 gap-4">
-                <div className="space-y-2">
-                  <Label>Tokens</Label>
+              <div className="space-y-2">
+                <Label>Package</Label>
+                <div className="grid grid-cols-2 gap-3">
+                  {TOKEN_PRICING.map((tier, i) => (
+                    <button
+                      key={`custom-${tier.price}`}
+                      type="button"
+                      onClick={() => setCustomTierIndex(i)}
+                      className={cn(
+                        'rounded-xl border-2 p-3 text-left transition-all',
+                        customTierIndex === i
+                          ? 'border-primary bg-primary/5 shadow-sm'
+                          : 'border-gray-100 bg-white hover:border-gray-200'
+                      )}
+                    >
+                      <span className="font-display font-black tracking-tight text-base text-primary">
+                        {currency(tier.price)}
+                      </span>
+                      <span className="block text-xs font-bold mt-0.5">{tier.tokens} tokens</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div className="space-y-2">
+                <Label>Quantity</Label>
+                <div className="flex items-center gap-3">
+                  <button
+                    type="button"
+                    onClick={() => setCustomQty((q) => Math.max(1, q - 1))}
+                    className="rounded-xl border-2 border-gray-100 bg-white px-4 py-2 font-display text-lg font-black hover:border-gray-200"
+                    aria-label="Decrease quantity"
+                  >
+                    −
+                  </button>
                   <Input
                     type="number"
                     min={1}
-                    value={customTokens || ''}
-                    onChange={(e) => setCustomTokens(Number(e.target.value))}
+                    step={1}
+                    value={safeQty}
+                    onChange={(e) =>
+                      setCustomQty(Math.max(1, Math.floor(Number(e.target.value) || 1)))
+                    }
+                    className="text-center text-lg font-black"
                   />
+                  <button
+                    type="button"
+                    onClick={() => setCustomQty((q) => q + 1)}
+                    className="rounded-xl border-2 border-gray-100 bg-white px-4 py-2 font-display text-lg font-black hover:border-gray-200"
+                    aria-label="Increase quantity"
+                  >
+                    +
+                  </button>
                 </div>
-                <div className="space-y-2">
-                  <Label>Price (USD)</Label>
-                  <Input
-                    type="number"
-                    min={0}
-                    step={0.01}
-                    value={customPrice ?? ''}
-                    onChange={(e) => setCustomPrice(Number(e.target.value))}
-                  />
-                </div>
+                <p className="text-xs text-muted-foreground">
+                  {safeQty}× {currency(customTier.price)} ({customTier.tokens} tokens) ={' '}
+                  <span className="font-semibold text-foreground">
+                    {currency(customAmountPaid)}
+                  </span>{' '}
+                  · {customTokensGiven} tokens total
+                </p>
               </div>
               <p className="text-sm text-muted-foreground">
-                Custom packages follow the same card minimum ({currency(CARD_MINIMUM)}) when charging a card.
+                Card minimum {currency(CARD_MINIMUM)} still applies on card sales.
               </p>
             </TabsContent>
           </Tabs>
