@@ -36,12 +36,11 @@ The SFMS consists of three main interfaces:
 - **POS / Token Sales** — Quick sale with packages, custom totals, customer lookup, QR completion
 - **Prize Inventory** — Full CRUD, stock tracking, dynamic ticket pricing
 - **Party Bookings** — Calendar/list view, deposit tracking
-- **Coupons** — Staff-created offers with per-customer assignments (see migrations)
 - **Work Orders** - Task management with priority levels and machine linking
 - **Machine Management** - Directory of 41+ machines, maintenance history, per-machine token adjustment
 - **Expense Tracking** - Cash/card logging, categorization, monthly summaries
 - **Employee Management** - Staff directory, role management (owner/manager/employee)
-- **Coupons** - Staff-issued offers and customer assignment tracking (see database migrations)
+- **Coupons** - Staff-issued offers with per-customer assignments (see migrations)
 - **Reports & Analytics** - Revenue, inventory, booking, expense reports with charts
 - **Document Center** - PDF and Excel generation for all report types
 - **System Settings** - Configurable business parameters
@@ -50,9 +49,7 @@ The SFMS consists of three main interfaces:
 - Personal dashboard with spending overview
 - Party booking system
 - Token purchase history
-- Profile management and saved payment references (pay-at-desk QR flow)
-- Profile management
-
+- Profile management and pay-at-desk QR token buys
 ### Role-Based Access Control
 | Role | Access |
 |---|---|
