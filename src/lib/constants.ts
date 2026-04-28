@@ -23,13 +23,6 @@ export const TOKEN_PRICING = [
   { price: 20, tokens: 66, label: '$20 = 66 Tokens (10% savings!)' },
 ] as const
 
-export const LOYALTY_DEAL = {
-  price: 100,
-  bonusTokens: 30,
-  label: '$100 = $10 worth bonus tokens',
-  minRole: 'manager' as const,
-}
-
 export const CARD_MINIMUM = 10
 
 export const PARTY_CONFIG = {
@@ -62,9 +55,3 @@ export const WORK_ORDER_PRIORITIES = [
   { value: 'urgent', label: 'Urgent', color: 'bg-red-100 text-red-800' },
 ] as const
 
-export const LOYALTY_TIERS = [
-  { tier: 'bronze', minSpend: 0, label: 'Bronze', color: '#CD7F32' },
-  { tier: 'silver', minSpend: 200, label: 'Silver', color: '#C0C0C0' },
-  { tier: 'gold', minSpend: 500, label: 'Gold', color: '#FFD700' },
-  { tier: 'platinum', minSpend: 1000, label: 'Platinum', color: '#E5E4E2' },
-] as const

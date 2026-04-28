@@ -5,9 +5,7 @@ export type WorkOrderPriority = 'low' | 'medium' | 'high' | 'urgent'
 export type WorkOrderStatus = 'open' | 'in_progress' | 'completed' | 'cancelled'
 export type MachineStatus = 'active' | 'maintenance' | 'inactive'
 export type ExpenseCategory = 'maintenance' | 'supplies' | 'prizes' | 'utilities' | 'other'
-export type DiscountType = 'percentage' | 'fixed'
-export type LoyaltyTier = 'bronze' | 'silver' | 'gold' | 'platinum'
-
+export type DiscountType = 'percentage' | 'percent' | 'fixed' | 'free_tokens'
 export interface Profile {
   id: string
   email: string
@@ -17,6 +15,7 @@ export interface Profile {
   role: UserRole
   avatar_url: string | null
   is_active: boolean
+  permissions?: Record<string, boolean> | null
   created_at: string
   updated_at: string
 }
@@ -41,6 +40,7 @@ export interface TokenTransaction {
   tokens_given: number
   is_loyalty_bonus: boolean
   notes: string | null
+  shift_id?: string | null
   created_at: string
 }
 
@@ -86,7 +86,7 @@ export interface Prize {
 export interface PrizeRedemption {
   id: string
   customer_id: string | null
-  employee_id: string
+  employee_id: string | null
   prize_id: string
   tickets_used: number
   quantity: number
@@ -154,25 +154,6 @@ export interface Expense {
   recorded_by: string
   expense_date: string
   receipt_url: string | null
-  created_at: string
-}
-
-export interface LoyaltyAccount {
-  id: string
-  customer_id: string
-  total_spent: number
-  reward_balance: number
-  tier: LoyaltyTier
-  created_at: string
-  updated_at: string
-}
-
-export interface LoyaltyTransaction {
-  id: string
-  loyalty_account_id: string
-  type: 'earn' | 'redeem'
-  amount: number
-  description: string
   created_at: string
 }
 

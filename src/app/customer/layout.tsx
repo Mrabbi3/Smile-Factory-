@@ -19,13 +19,17 @@ import {
   Coins,
   Gift,
   UserCircle,
+  ShoppingBag,
+  Trophy,
 } from 'lucide-react'
 
 const navItems = [
   { label: 'Dashboard', href: '/customer/dashboard', icon: LayoutDashboard },
   { label: 'My Bookings', href: '/customer/bookings', icon: Calendar },
   { label: 'Token History', href: '/customer/tokens', icon: Coins },
-  { label: 'Loyalty Rewards', href: '/customer/loyalty', icon: Gift },
+  { label: 'Buy tokens', href: '/customer/buy-tokens', icon: ShoppingBag },
+  { label: 'Prize shop', href: '/customer/prizes', icon: Trophy },
+  { label: 'Coupons', href: '/customer/coupons', icon: Gift },
   { label: 'My Profile', href: '/customer/profile', icon: UserCircle },
 ]
 
