@@ -180,7 +180,7 @@ export default function AdminTokensPage() {
           Token transactions
         </h1>
         <p className="mt-1 text-muted-foreground">
-          All token sales and loyalty bonuses, newest first.
+          All token sales (standard and bonus-tier packages), newest first.
         </p>
       </div>
 

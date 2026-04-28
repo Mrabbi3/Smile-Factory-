@@ -168,7 +168,7 @@ export default function PricingPageContent() {
             </div>
             <h3 className="text-4xl font-black uppercase italic tracking-tight">The Prize Gear Protocol</h3>
             <p className="mb-8 mt-6 text-lg leading-relaxed text-zinc-600">
-              Join loyalty to earn bonus tokens on every purchase and unlock exclusive tournament-night perks.
+              Staff-issued coupon codes unlock savings on admission and bundles — redemption is tracked per assigned email.
             </p>
             <div className="flex flex-wrap gap-4">
               <div className="inline-flex items-center gap-3 rounded-xl border border-zinc-200 bg-zinc-50 px-6 py-3">

@@ -16,6 +16,7 @@ import {
 import { Button } from '@/components/ui/button'
 import { BUSINESS_INFO, TOKEN_PRICING } from '@/lib/constants'
 import { ReviewsSection } from '@/components/public/reviews-section'
+import { BuyTokensRedirectButton } from '@/components/public/buy-tokens-button'
 
 export const metadata: Metadata = {
   title: 'Home | The Smile Factory',
@@ -223,7 +224,7 @@ export default function HomePage() {
                   {tier.price === 20 && (
                     <p className="text-sm text-primary font-black mt-3 italic">+6 Bonus Tokens!</p>
                   )}
-                  <button
+                  <BuyTokensRedirectButton
                     className={`mt-8 w-full py-4 rounded-xl font-black uppercase tracking-widest text-sm transition-all shadow-sm ${
                       isBestValue
                         ? 'bg-primary text-primary-foreground hover:opacity-90'
@@ -231,7 +232,7 @@ export default function HomePage() {
                     }`}
                   >
                     {isBestValue ? 'BUY NOW' : 'SELECT'}
-                  </button>
+                  </BuyTokensRedirectButton>
                 </div>
               )
             })}

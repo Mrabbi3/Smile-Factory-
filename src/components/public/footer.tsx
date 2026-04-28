@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import { MapPin, Phone, Clock, CreditCard, Wallet, Banknote } from 'lucide-react'
+import { MapPin, Phone, Clock, CreditCard, Wallet, Banknote, Facebook, Instagram } from 'lucide-react'
 import { BUSINESS_INFO } from '@/lib/constants'
 
 const quickLinks = [
@@ -106,6 +106,24 @@ export function Footer() {
                 <span>Sat-Sun: {BUSINESS_INFO.hours.weekend}</span>
                 <span>Mon-Fri: {BUSINESS_INFO.hours.weekday}</span>
               </div>
+            </li>
+            <li className="flex flex-wrap items-center gap-4 pt-2">
+              <a
+                href="https://www.facebook.com/TheSmileFactory/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-bold hover:border-primary hover:text-primary"
+              >
+                <Facebook className="size-4" /> Facebook
+              </a>
+              <a
+                href="https://www.instagram.com/brigantinesmilefactory/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 rounded-lg border border-zinc-200 bg-white px-3 py-2 text-xs font-bold hover:border-primary hover:text-primary"
+              >
+                <Instagram className="size-4" /> Instagram
+              </a>
             </li>
             <li>
               <Link

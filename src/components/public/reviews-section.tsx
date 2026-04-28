@@ -2,61 +2,88 @@
 
 import { FormEvent, useEffect, useState } from 'react'
 import { Star } from 'lucide-react'
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase/client'
+import { Button } from '@/components/ui/button'
 
 type Review = {
   author: string
   role: string
   text: string
+  source: 'site' | 'google'
 }
 
-const initialReviews: Review[] = [
+const fallbackReviews: Review[] = [
   {
     author: 'Sarah M.',
     role: 'Family Vacationer',
-    text: 'Best arcade in Brigantine! We come every summer and the kids never want to leave. The prizes are actually worth the tickets!',
+    text: 'Best arcade in Brigantine! We come every summer and the kids never want to leave.',
+    source: 'site',
   },
   {
     author: 'David L.',
     role: 'Local Parent',
-    text: "Had my son's 8th birthday here. Everything was so organized, the staff was amazing, and the kids had a blast. Highly recommend the party packages.",
+    text: 'Had my son\'s 8th birthday here. The staff was amazing and the kids had a blast.',
+    source: 'site',
   },
 ]
 
-const STORAGE_KEY = 'smile-factory-home-reviews'
-
 export function ReviewsSection() {
   const [activeTab, setActiveTab] = useState<'reviews' | 'form'>('reviews')
-  const [reviews, setReviews] = useState<Review[]>(initialReviews)
+  const [reviews, setReviews] = useState<Review[]>(fallbackReviews)
   const [form, setForm] = useState({ author: '', role: '', text: '' })
 
   useEffect(() => {
-    try {
-      const stored = window.localStorage.getItem(STORAGE_KEY)
-      if (!stored) return
-      const parsed = JSON.parse(stored) as Review[]
-      if (Array.isArray(parsed) && parsed.length > 0) {
-        setReviews([...initialReviews, ...parsed])
+    const sb = createClient()
+    Promise.all([
+      sb
+        .from('site_reviews')
+        .select('body, reviewer_name, reviewer_role, rating')
+        .eq('approved', true)
+        .order('created_at', { ascending: false })
+        .limit(12),
+      sb
+        .from('cached_google_reviews')
+        .select('author_name, body, rating')
+        .order('fetched_at', { ascending: false })
+        .limit(12),
+    ]).then(([siteRes, gRes]) => {
+      const merged: Review[] = []
+      for (const r of siteRes.data ?? []) {
+        merged.push({
+          author: (r.reviewer_name as string)?.trim() || 'Guest',
+          role: ((r.reviewer_role as string)?.trim()) || `${r.rating}★`,
+          text: String(r.body),
+          source: 'site',
+        })
       }
-    } catch {
-      window.localStorage.removeItem(STORAGE_KEY)
-    }
+      for (const r of gRes.data ?? []) {
+        merged.push({
+          author: (r.author_name as string)?.trim() || 'Google reviewer',
+          role: `${r.rating ?? '—'}★ · Google`,
+          text: String(r.body || ''),
+          source: 'google',
+        })
+      }
+      if (merged.length > 0) setReviews(merged)
+    }).catch(() => {})
   }, [])
 
   function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault()
-    const trimmed: Review = {
+    const trimmed = {
       author: form.author.trim(),
       role: form.role.trim(),
       text: form.text.trim(),
     }
     if (!trimmed.author || !trimmed.role || !trimmed.text) return
-
-    const customReviews = [...reviews.slice(initialReviews.length), trimmed]
-    setReviews([...initialReviews, ...customReviews])
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(customReviews))
+    window.location.href =
+      `/login?redirect=${encodeURIComponent('/customer/leave-review')}`
     setForm({ author: '', role: '', text: '' })
     setActiveTab('reviews')
   }
+
+  const preview = reviews.slice(0, 2)
 
   return (
     <section id="reviews" className="py-24 px-8 bg-white border-t border-zinc-100">
@@ -71,7 +98,7 @@ export function ReviewsSection() {
                 : 'text-zinc-500 hover:bg-zinc-200/50 hover:text-primary'
             }`}
           >
-            Real Reviews
+            Recent reviews
           </button>
           <button
             type="button"
@@ -82,13 +109,13 @@ export function ReviewsSection() {
                 : 'text-zinc-500 hover:bg-zinc-200/50 hover:text-primary'
             }`}
           >
-            Leave a Review
+            Leave a review
           </button>
         </div>
 
         {activeTab === 'reviews' ? (
           <div className="space-y-8">
-            {reviews.map((review, idx) => (
+            {preview.map((review, idx) => (
               <div
                 key={`${review.author}-${idx}`}
                 className="p-10 rounded-2xl bg-zinc-50 border border-zinc-100 relative"
@@ -109,9 +136,17 @@ export function ReviewsSection() {
                 </div>
               </div>
             ))}
+            <div className="text-center">
+              <Button asChild variant="outline" className="rounded-full font-black uppercase tracking-widest">
+                <Link href="/reviews">Show more</Link>
+              </Button>
+            </div>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="rounded-2xl border border-zinc-100 bg-zinc-50 p-8 shadow-sm md:p-10">
+            <p className="text-sm text-zinc-600 mb-6">
+              Signed-in customers can submit a full review for moderation. You&apos;ll be asked to sign in next.
+            </p>
             <div className="grid gap-6 md:grid-cols-2">
               <div className="space-y-2">
                 <label className="block text-xs font-black uppercase tracking-widest text-zinc-500">
@@ -157,7 +192,7 @@ export function ReviewsSection() {
                 type="submit"
                 className="inline-flex items-center justify-center rounded-full gradient-primary px-8 py-4 text-sm font-black uppercase tracking-widest text-primary-foreground shadow-lg transition hover:opacity-90"
               >
-                Post Review
+                Continue to sign in & submit
               </button>
               <button
                 type="button"
@@ -170,6 +205,7 @@ export function ReviewsSection() {
           </form>
         )}
       </div>
+      {/* TODO(roadmap): integrate Meta Graph API for live FB/IG post embeds */}
     </section>
   )
 }

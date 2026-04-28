@@ -3,6 +3,7 @@
 import { sendEmail } from '@/lib/email/send-email'
 import { contactFormEmail, contactFormAutoReply } from '@/lib/email/templates/contact-form'
 import { BUSINESS_INFO } from '@/lib/constants'
+import { createClient } from '@/lib/supabase/server'
 
 interface ContactFormState {
   success?: boolean
@@ -23,6 +24,18 @@ export async function submitContactForm(
   }
 
   try {
+    try {
+      const supabase = await createClient()
+      await supabase.from('staff_inquiries').insert({
+        operator_name: name,
+        email,
+        mission_type: subject || null,
+        message,
+      })
+    } catch {
+      /* table may not exist until migration applied */
+    }
+
     await Promise.all([
       sendEmail({
         to: process.env.RESEND_FROM_EMAIL || BUSINESS_INFO.email,

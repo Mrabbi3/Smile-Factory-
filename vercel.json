@@ -1,0 +1,3 @@
+{
+  "crons": [{ "path": "/api/reviews/sync-google", "schedule": "0 4 * * *" }]
+}

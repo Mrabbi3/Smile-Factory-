@@ -19,16 +19,21 @@ const pageTitles: Record<string, string> = {
   '/admin/customers': 'Customers',
   '/admin/employees': 'Employees',
   '/admin/expenses': 'Expenses',
-  '/admin/loyalty': 'Loyalty',
   '/admin/coupons': 'Coupons',
+  '/admin/reviews': 'Review Moderation',
+  '/admin/inquiries': 'Inquiries',
+  '/admin/alerts': 'Site Alerts',
+  '/admin/shifts': 'Shift reconciliation',
   '/admin/reports': 'Reports',
   '/admin/documents': 'Documents',
   '/admin/settings': 'Settings',
   '/customer/dashboard': 'Dashboard',
   '/customer/bookings': 'My Bookings',
   '/customer/tokens': 'Token History',
-  '/customer/loyalty': 'Loyalty Rewards',
   '/customer/profile': 'My Profile',
+  '/customer/buy-tokens': 'Buy Tokens',
+  '/customer/leave-review': 'Leave a Review',
+  '/customer/coupons': 'My Coupons',
 }
 
 interface TopBarProps {

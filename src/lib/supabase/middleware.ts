@@ -14,7 +14,16 @@ export async function updateSession(request: NextRequest) {
 
   const isAuthPage = path === '/login' || path === '/register' || path === '/forgot-password' || path === '/reset-password'
   const isAdminLoginPage = path === '/admin/login'
-  const isPublicPage = path === '/' || path.startsWith('/about') || path.startsWith('/pricing') || path.startsWith('/parties') || path.startsWith('/gallery') || path.startsWith('/contact') || path.startsWith('/offline') || path.startsWith('/auth/callback')
+  const isPublicPage =
+    path === '/' ||
+    path.startsWith('/about') ||
+    path.startsWith('/pricing') ||
+    path.startsWith('/parties') ||
+    path.startsWith('/gallery') ||
+    path.startsWith('/contact') ||
+    path.startsWith('/reviews') ||
+    path.startsWith('/offline') ||
+    path.startsWith('/auth/callback')
   const isProtected = path.startsWith('/admin') || path.startsWith('/customer')
 
   // Create the Supabase client with cookie handling to keep session alive

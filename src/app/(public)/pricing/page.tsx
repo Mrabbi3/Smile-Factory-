@@ -1,8 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
-import Link from 'next/link'
-import { Coins, CreditCard, Gamepad2, Trophy, PartyPopper, ArrowRight, Settings, Star } from 'lucide-react'
-import { Button } from '@/components/ui/button'
+import { CreditCard, Gamepad2, Trophy, Settings } from 'lucide-react'
+import { BuyTokensRedirectButton } from '@/components/public/buy-tokens-button'
 import { TOKEN_PRICING, BUSINESS_INFO } from '@/lib/constants'
 
 export const metadata: Metadata = {
@@ -92,15 +91,15 @@ export default function PricingPage() {
                       +6 Bonus Tokens Included
                     </div>
                   )}
-                  <button
+                  <BuyTokensRedirectButton
                     className={`mt-auto w-full py-4 rounded-xl font-display font-bold uppercase tracking-widest text-xs transition-all ${
                       isPopular
                         ? 'bg-primary text-primary-foreground shadow-lg hover:opacity-90'
                         : 'bg-zinc-50 hover:bg-primary hover:text-primary-foreground'
                     }`}
                   >
-                    {isPopular ? 'Select' : 'Select'}
-                  </button>
+                    Buy now
+                  </BuyTokensRedirectButton>
                 </div>
               )
             })}
@@ -134,36 +133,18 @@ export default function PricingPage() {
         </div>
       </section>
 
-      {/* Loyalty CTA */}
+      {/* Staff-issued promo codes */}
       <section className="pb-32 px-8">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row gap-0 bg-white rounded-3xl overflow-hidden shadow-2xl border border-zinc-100">
-          <div className="md:w-2/5 h-80 md:h-auto overflow-hidden bg-zinc-100 flex items-center justify-center">
-            <div className="text-center text-zinc-400">
-              <Star className="size-16 mx-auto mb-4 opacity-20" />
-              <p className="font-display font-bold">Loyalty Program</p>
-            </div>
-          </div>
-          <div className="flex-1 p-12 md:p-16 flex flex-col justify-center">
-            <div className="bg-primary/10 text-primary px-4 py-1.5 rounded-full text-[10px] font-black w-fit mb-6 tracking-widest uppercase border border-primary/20 font-display">
-              MEMBER BENEFIT
-            </div>
-            <h3 className="font-display font-black text-4xl mb-6 tracking-tighter uppercase italic">
-              The Prize Gear Protocol
-            </h3>
-            <p className="text-zinc-500 text-lg leading-relaxed mb-8">
-              Join our loyalty program to earn bonus tokens on every purchase. Members get exclusive access and priority entry on special event nights.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-3 px-6 py-3 bg-zinc-50 border border-zinc-100 rounded-xl">
-                <Settings className="size-5 text-primary" />
-                <span className="text-sm font-black uppercase tracking-tight">Priority Support</span>
-              </div>
-              <div className="flex items-center gap-3 px-6 py-3 bg-zinc-50 border border-zinc-100 rounded-xl">
-                <Star className="size-5 text-primary" />
-                <span className="text-sm font-black uppercase tracking-tight">Exclusive Rewards</span>
-              </div>
-            </div>
-          </div>
+        <div className="max-w-7xl mx-auto rounded-3xl bg-zinc-50 border border-zinc-100 px-10 py-16 text-center shadow-sm">
+          <h3 className="font-display font-black text-3xl mb-4 tracking-tight uppercase italic">
+            Coupons & locker codes
+          </h3>
+          <p className="text-zinc-600 max-w-2xl mx-auto leading-relaxed mb-8">
+            Promotional coupons are emailed to registered customers — single redemption per assignment. Combine with token packs on your next visit.
+          </p>
+          <BuyTokensRedirectButton variant="outline" className="rounded-full px-8 py-6 text-sm font-black uppercase tracking-widest">
+            Get tokens online
+          </BuyTokensRedirectButton>
         </div>
       </section>
     </>

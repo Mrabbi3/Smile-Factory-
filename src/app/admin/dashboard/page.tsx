@@ -6,7 +6,6 @@ import { createClient } from '@/lib/supabase/client'
 import { useAuth } from '@/hooks/use-auth'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Badge } from '@/components/ui/badge'
-import { AIAnalytics } from '@/components/admin/ai-analytics'
 import { safeFormatDate, currency } from '@/lib/utils'
 import { startOfDay, subDays, format } from 'date-fns'
 import { toast } from 'sonner'
@@ -233,8 +232,6 @@ export default function AdminDashboard() {
         </div>
       </div>
 
-      <AIAnalytics />
-
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         <div className="p-8 pb-4">
           <h3 className="text-xl font-black font-display tracking-tight">Recent Transactions</h3>
@@ -262,7 +259,7 @@ export default function AdminDashboard() {
                       <td className="text-right font-medium">{currency(tx.amount_paid)}</td>
                       <td className="text-right">{tx.tokens_given}</td>
                       <td><Badge variant={tx.payment_type === 'cash' ? 'secondary' : 'outline'}>{tx.payment_type}</Badge></td>
-                      <td>{tx.is_loyalty_bonus && <Badge variant="default" className="bg-warning text-warning-foreground">Loyalty</Badge>}</td>
+                      <td>{tx.is_loyalty_bonus ? <Badge variant="default" className="bg-warning text-warning-foreground">Bonus tier</Badge> : <span className="text-muted-foreground">—</span>}</td>
                     </tr>
                   ))}
                 </tbody>

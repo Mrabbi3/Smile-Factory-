@@ -25,7 +25,7 @@ export function formatTransactionsForExcel(transactions: any[]) {
     'Amount': t.amount_paid,
     'Tokens': t.tokens_given,
     'Payment Type': t.payment_type,
-    'Loyalty Bonus': t.is_loyalty_bonus ? 'Yes' : 'No',
+    'Bonus tier pkg': t.is_loyalty_bonus ? 'Yes' : 'No',
     'Notes': t.notes || '',
   }))
 }

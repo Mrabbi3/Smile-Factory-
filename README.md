@@ -6,9 +6,9 @@ A comprehensive web-based management platform for The Smile Factory Arcade & Fam
 
 The SFMS consists of three main interfaces:
 
-1. **Public Website** - Customer-facing pages with arcade info, pricing, party packages, and AI chatbot
-2. **Admin Dashboard** - Full operational management for owners, managers, and employees
-3. **Customer Portal** - Personal accounts with booking, loyalty tracking, and purchase history
+1. **Public Website** — Customer-facing pages with arcade info, pricing, parties, and news-style alerts
+2. **Admin Dashboard** — Full operational management for owners, managers, and employees
+3. **Customer Portal** — Personal accounts with bookings, QR pay-at-desk token buys, prize tickets, and purchase history
 
 ## Tech Stack
 
@@ -21,7 +21,6 @@ The SFMS consists of three main interfaces:
 | **Recharts** | Analytics charts and data visualization |
 | **jsPDF** + **jspdf-autotable** | PDF report generation |
 | **SheetJS (xlsx)** | Excel export functionality |
-| **OpenAI API** | AI chatbot and business analytics |
 | **Zustand** | State management |
 | **Vercel** | Hosting and deployment |
 
@@ -29,38 +28,35 @@ The SFMS consists of three main interfaces:
 
 ### Public Website
 - Modern, mobile-first responsive design with red brand theme
-- 6 pages: Home, About, Pricing, Parties, Gallery, Contact
-- AI-powered chatbot for customer inquiries
+- Core pages: Home, About, Pricing, Parties, Gallery, Contact
+- Top-of-site announcements (Supabase-driven marquee)
 - Service worker for offline resilience
 
 ### Admin Dashboard (10+ modules)
-- **POS / Token Sales** - Quick sale interface with cash/card toggle, $10 card minimum, loyalty deals
-- **Prize Inventory** - Full CRUD, stock tracking, dynamic ticket pricing, redemption logging
-- **Party Bookings** - Calendar/list view, conflict detection, 25+ kids phone redirect, deposit tracking
+- **POS / Token Sales** — Quick sale with packages, custom totals, customer lookup, QR completion
+- **Prize Inventory** — Full CRUD, stock tracking, dynamic ticket pricing
+- **Party Bookings** — Calendar/list view, deposit tracking
 - **Work Orders** - Task management with priority levels and machine linking
 - **Machine Management** - Directory of 41+ machines, maintenance history, per-machine token adjustment
 - **Expense Tracking** - Cash/card logging, categorization, monthly summaries
 - **Employee Management** - Staff directory, role management (owner/manager/employee)
-- **Loyalty & Coupons** - Spending tiers (bronze/silver/gold/platinum), coupon code management
+- **Coupons** - Staff-issued offers with per-customer assignments (see migrations)
 - **Reports & Analytics** - Revenue, inventory, booking, expense reports with charts
 - **Document Center** - PDF and Excel generation for all report types
-- **AI Analytics** - Natural language business queries with data-driven insights
 - **System Settings** - Configurable business parameters
 
 ### Customer Portal
 - Personal dashboard with spending overview
 - Party booking system
 - Token purchase history
-- Loyalty rewards tracker with tier progression
-- Profile management
-
+- Profile management and pay-at-desk QR token buys
 ### Role-Based Access Control
 | Role | Access |
 |---|---|
 | **Owner** | Full access to everything including financial reports and settings |
-| **Manager** | Token sales, loyalty deals, bookings, prizes, work orders |
-| **Employee** | Front-counter token sales, basic prize redemption |
-| **Customer** | Website, own bookings, loyalty rewards, profile |
+| **Manager** | Token sales, bookings, prizes, work orders, inquiries |
+| **Employee** | Front-counter token sales, inquiries, basic operations |
+| **Customer** | Website, own bookings, token history, coupons when assigned, profile |
 
 ## Getting Started
 
@@ -96,14 +92,11 @@ descriptions of each variable. Key ones:
 | `ADMIN_ACCESS_KEY` | Yes | Staff portal PIN(s), comma-separated |
 | `RESEND_API_KEY` | Yes | Resend API key for emails |
 | `RESEND_FROM_EMAIL` | Yes | Verified sender email address |
-| `OPENAI_API_KEY` | No | OpenAI key for AI chatbot |
-
 ### Database Setup
 
 1. Go to your Supabase dashboard
 2. Navigate to SQL Editor
-3. Run the migration file: `supabase/migrations/00001_initial_schema.sql`
-4. Run the seed file: `supabase/seed.sql`
+3. Run every migration in `supabase/migrations/` **in numeric order** (`00001_*` through the latest file), then optional `supabase/seed.sql`.
 
 ### Development
 
@@ -160,8 +153,7 @@ docs/                    # Documentation
 - `party_bookings` - Booking records
 - `work_orders` - Task management
 - `expenses` - Expense tracking
-- `loyalty_accounts` - Customer loyalty
-- `loyalty_transactions` - Reward activity
+Legacy `loyalty_accounts` / `loyalty_transactions` were removed in migration `00002_drop_loyalty.sql` (backed up to `_backup_*` tables).
 - `coupons` - Promotional codes
 - `daily_revenue` - Daily summaries
 - `audit_logs` - Activity auditing
@@ -176,7 +168,7 @@ docs/                    # Documentation
 3. Add environment variables
 4. Deploy
 
-Estimated monthly cost: **$26-41/month** (Supabase Pro $25 + Vercel free + Resend free + optional OpenAI $5-15)
+Estimated monthly cost: **$26-30/month** (Supabase Pro $25 + Vercel free tier + Resend free tier; Google Places optional for review sync)
 
 See [docs/DEPLOYMENT.md](docs/DEPLOYMENT.md) for detailed setup instructions and
 [docs/STAFF-GUIDE.md](docs/STAFF-GUIDE.md) for the staff operations manual.

@@ -19,6 +19,10 @@ import {
   BarChart3,
   FileText,
   Settings,
+  Clock,
+  Mail,
+  MessageSquareQuote,
+  Megaphone,
 } from 'lucide-react'
 
 interface NavItem {
@@ -46,7 +50,13 @@ const navSections: { title?: string; items: NavItem[] }[] = [
         href: '/admin/work-orders',
         icon: ClipboardList,
       },
-      { label: 'Machines', href: '/admin/machines', icon: Cpu },
+      { label: 'Customer inquiries', href: '/admin/inquiries', icon: Mail },
+      {
+        label: 'Shift reconciliation',
+        href: '/admin/shifts',
+        icon: Clock,
+        minRole: 'owner',
+      },
     ],
   },
   {
@@ -70,7 +80,12 @@ const navSections: { title?: string; items: NavItem[] }[] = [
         icon: Receipt,
         minRole: 'owner',
       },
-      { label: 'Loyalty', href: '/admin/loyalty', icon: Gift },
+      {
+        label: 'Review moderation',
+        href: '/admin/reviews',
+        icon: MessageSquareQuote,
+      },
+      { label: 'Site Alerts', href: '/admin/alerts', icon: Megaphone },
       { label: 'Coupons', href: '/admin/coupons', icon: Gift },
     ],
   },
