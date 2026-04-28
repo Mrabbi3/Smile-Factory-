@@ -4,6 +4,26 @@ import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 
+// =====================================================================
+// HOW TO CHANGE THE STAFF ACCESS KEY
+// ---------------------------------------------------------------------
+// 1. Open .env.local and edit:        STAFF_ACCESS_KEY=your-new-key
+// 2. Open Vercel project → Settings → Environment Variables, edit the
+//    STAFF_ACCESS_KEY value to match.
+// 3. Redeploy (Vercel does this automatically when env vars change).
+//
+// Tell your staff the new key. There is no migration step. You can also
+// list multiple acceptable keys with commas, e.g. STAFF_ACCESS_KEY=a,b,c.
+//
+// HOW TO GIVE SOMEONE OWNER ACCESS
+// ---------------------------------------------------------------------
+// Owner role is granted by hand via Supabase. In the SQL editor:
+//   UPDATE public.profiles
+//      SET role = 'owner', updated_at = now()
+//    WHERE email = 'their-email@example.com';
+// They'll see the owner-only menus on their next page load.
+// =====================================================================
+
 const STAFF_COOKIE_NAME = 'staff_access_verified'
 const STAFF_COOKIE_MAX_AGE = 60 * 60 * 8 // 8 hours (one work shift)
 
@@ -23,21 +43,17 @@ function checkRateLimit(ip: string): boolean {
   return cur.count <= MAX_TRIES
 }
 
-/**
- * verifyStaffKey — single login page, two key types managed by the owner.
- *
- *   1. DB-backed access keys (owner-rotatable, see migration 00015):
- *      `verify_access_key` RPC hashes the entered key, looks it up, and
- *      atomically promotes the caller's profile.role to 'owner' or
- *      'employee'.
- *   2. Bootstrap fallback for the very first owner: if no owner key exists
- *      yet, the value of ADMIN_ACCESS_KEY env works once via
- *      `bootstrap_owner_if_no_keys`. After the first run, that fallback is
- *      inert and the owner manages keys from /admin/settings.
- *
- * The staff_access_verified cookie is set on success; middleware checks
- * for it before allowing /admin/* navigation.
- */
+function readStaffKeys(): string[] {
+  const env =
+    process.env.STAFF_ACCESS_KEY ??
+    process.env.ADMIN_ACCESS_KEY ?? // legacy var name still works
+    ''
+  return env
+    .split(',')
+    .map((k) => k.trim())
+    .filter(Boolean)
+}
+
 export async function verifyStaffKey(
   _prev: { error?: string } | null,
   formData: FormData
@@ -47,7 +63,7 @@ export async function verifyStaffKey(
   const ip = xf?.split(',')[0]?.trim() || 'unknown'
 
   if (!checkRateLimit(ip)) {
-    return { error: 'Too many attempts — try again later.' }
+    return { error: 'Too many attempts — try again in a few minutes.' }
   }
 
   const key = formData.get('key')?.toString()?.trim()
@@ -55,52 +71,15 @@ export async function verifyStaffKey(
     return { error: 'Key is required' }
   }
 
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (!user) {
-    // We need an authenticated user so the SECURITY DEFINER RPC knows whose
-    // profile.role to promote. Send them through customer sign-in first;
-    // they'll come right back here once signed in.
-    redirect('/login?redirect=/admin/login')
-  }
-
-  // 1) Try owner-managed DB access keys
-  let promoted: 'owner' | 'employee' | null = null
-  const { data: dbRole, error: dbErr } = await supabase.rpc('verify_access_key', {
-    p_key: key,
-  })
-
-  if (dbErr) {
-    // RPC missing (migration 00015 not yet applied) or transient failure.
-    // We log and fall through so first-owner bootstrap can still succeed.
-    console.error('verify_access_key rpc error:', dbErr.message)
-  }
-
-  if (dbRole === 'owner' || dbRole === 'employee') {
-    promoted = dbRole
-  } else {
-    // 2) Bootstrap fallback for first owner
-    const adminKeyEnv = process.env.ADMIN_ACCESS_KEY
-    if (adminKeyEnv) {
-      const validKeys = adminKeyEnv.split(',').map((k) => k.trim()).filter(Boolean)
-      if (validKeys.includes(key)) {
-        const { data: bootRole, error: bootErr } = await supabase.rpc(
-          'bootstrap_owner_if_no_keys',
-          { p_key: key }
-        )
-        if (bootErr) {
-          console.error('bootstrap_owner_if_no_keys rpc error:', bootErr.message)
-        }
-        if (bootRole === 'owner') {
-          promoted = 'owner'
-        }
-      }
+  const validKeys = readStaffKeys()
+  if (validKeys.length === 0) {
+    return {
+      error: 'Staff access is not configured. Set STAFF_ACCESS_KEY in your environment.',
     }
   }
 
-  if (!promoted) {
-    return { error: 'Invalid access key' }
+  if (!validKeys.includes(key)) {
+    return { error: 'Invalid key' }
   }
 
   const cookieStore = await cookies()
@@ -112,5 +91,16 @@ export async function verifyStaffKey(
     path: '/',
   })
 
-  redirect('/admin/dashboard')
+  // If the user is already signed in, promote them now and drop them on
+  // the dashboard. Otherwise route through /admin/auth so they can sign
+  // in or create an account behind the staff gate.
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
+
+  if (user) {
+    await supabase.rpc('promote_to_employee')
+    redirect('/admin/dashboard')
+  }
+
+  redirect('/admin/auth')
 }
