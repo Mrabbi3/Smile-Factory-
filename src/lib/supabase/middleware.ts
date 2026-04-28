@@ -1,5 +1,6 @@
 import { createServerClient } from '@supabase/ssr'
 import { NextResponse, type NextRequest } from 'next/server'
+import { STAFF_COOKIE_NAME } from '@/lib/staff-gate'
 
 export async function updateSession(request: NextRequest) {
   let supabaseResponse = NextResponse.next({ request })
@@ -54,7 +55,7 @@ export async function updateSession(request: NextRequest) {
 
   // Use getUser() to validate and refresh the session token
   const { data: { user } } = await supabase.auth.getUser()
-  const staffCookie = request.cookies.get('staff_access_verified')?.value
+  const staffCookie = request.cookies.get(STAFF_COOKIE_NAME)?.value
 
   // Public and customer-auth pages — let them through.
   if (isAuthPage || isAdminLoginPage || isPublicPage || !isProtected) {
