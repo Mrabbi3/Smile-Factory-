@@ -25,7 +25,7 @@ export function Navbar() {
   }
 
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-gray-100 shadow-sm glass-nav">
+    <header className="sticky top-0 z-50 w-full border-b border-gray-100 shadow-sm glass-nav">
       <nav className="relative flex w-full max-w-full items-center justify-between px-4 py-3 md:px-8 md:py-4">
         <Link
           href="/"

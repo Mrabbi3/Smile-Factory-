@@ -341,3 +341,30 @@
     animation: none;
   }
 }
+
+/* Public site — scrolling announcement strip (Udemy-style bar above nav) */
+@keyframes sf-marquee-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.sf-marquee-track {
+  animation: sf-marquee-scroll var(--sf-marquee-duration, 45s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sf-marquee-track {
+    animation: none;
+    width: 100%;
+    justify-content: center;
+    transform: none;
+  }
+
+  .sf-marquee-track span[aria-hidden="true"] {
+    display: none;
+  }
+}
