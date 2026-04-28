@@ -24,6 +24,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
+import { RoleGuard } from '@/components/admin/role-guard'
 
 const STAFF_ROLES: UserRole[] = ['owner', 'manager', 'employee']
 
@@ -68,6 +69,14 @@ function EmployeeCardSkeleton() {
 }
 
 export default function EmployeesPage() {
+  return (
+    <RoleGuard allow={['owner']} reason="Employee management is owner-only.">
+      <EmployeesPageInner />
+    </RoleGuard>
+  )
+}
+
+function EmployeesPageInner() {
   const { user, isOwner, isManager } = useAuth()
   const supabase = useMemo(() => createClient(), [])
   const [staff, setStaff] = useState<Profile[]>([])

@@ -23,6 +23,21 @@ function checkRateLimit(ip: string): boolean {
   return cur.count <= MAX_TRIES
 }
 
+/**
+ * verifyStaffKey — single login page, two key types managed by the owner.
+ *
+ *   1. DB-backed access keys (owner-rotatable, see migration 00015):
+ *      `verify_access_key` RPC hashes the entered key, looks it up, and
+ *      atomically promotes the caller's profile.role to 'owner' or
+ *      'employee'.
+ *   2. Bootstrap fallback for the very first owner: if no owner key exists
+ *      yet, the value of ADMIN_ACCESS_KEY env works once via
+ *      `bootstrap_owner_if_no_keys`. After the first run, that fallback is
+ *      inert and the owner manages keys from /admin/settings.
+ *
+ * The staff_access_verified cookie is set on success; middleware checks
+ * for it before allowing /admin/* navigation.
+ */
 export async function verifyStaffKey(
   _prev: { error?: string } | null,
   formData: FormData
@@ -36,18 +51,55 @@ export async function verifyStaffKey(
   }
 
   const key = formData.get('key')?.toString()?.trim()
-  const adminKeyEnv = process.env.ADMIN_ACCESS_KEY
-
-  if (!adminKeyEnv) {
-    return { error: 'Staff access is not configured. Set ADMIN_ACCESS_KEY in .env.local' }
-  }
   if (!key) {
     return { error: 'Key is required' }
   }
 
-  const validKeys = adminKeyEnv.split(',').map((k) => k.trim()).filter(Boolean)
+  const supabase = await createClient()
+  const { data: { user } } = await supabase.auth.getUser()
 
-  if (!validKeys.includes(key)) {
+  if (!user) {
+    // We need an authenticated user so the SECURITY DEFINER RPC knows whose
+    // profile.role to promote. Send them through customer sign-in first;
+    // they'll come right back here once signed in.
+    redirect('/login?redirect=/admin/login')
+  }
+
+  // 1) Try owner-managed DB access keys
+  let promoted: 'owner' | 'employee' | null = null
+  const { data: dbRole, error: dbErr } = await supabase.rpc('verify_access_key', {
+    p_key: key,
+  })
+
+  if (dbErr) {
+    // RPC missing (migration 00015 not yet applied) or transient failure.
+    // We log and fall through so first-owner bootstrap can still succeed.
+    console.error('verify_access_key rpc error:', dbErr.message)
+  }
+
+  if (dbRole === 'owner' || dbRole === 'employee') {
+    promoted = dbRole
+  } else {
+    // 2) Bootstrap fallback for first owner
+    const adminKeyEnv = process.env.ADMIN_ACCESS_KEY
+    if (adminKeyEnv) {
+      const validKeys = adminKeyEnv.split(',').map((k) => k.trim()).filter(Boolean)
+      if (validKeys.includes(key)) {
+        const { data: bootRole, error: bootErr } = await supabase.rpc(
+          'bootstrap_owner_if_no_keys',
+          { p_key: key }
+        )
+        if (bootErr) {
+          console.error('bootstrap_owner_if_no_keys rpc error:', bootErr.message)
+        }
+        if (bootRole === 'owner') {
+          promoted = 'owner'
+        }
+      }
+    }
+  }
+
+  if (!promoted) {
     return { error: 'Invalid access key' }
   }
 
@@ -60,15 +112,5 @@ export async function verifyStaffKey(
     path: '/',
   })
 
-  // Check if user already has an active session
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (user) {
-    // User is already logged in, go straight to admin dashboard
-    redirect('/admin/dashboard')
-  }
-
-  // Otherwise redirect to login page
-  redirect('/login')
+  redirect('/admin/dashboard')
 }

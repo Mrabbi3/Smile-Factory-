@@ -16,7 +16,7 @@ export function tokenReceiptEmail(data: TokenReceiptData): string {
       (item) => `
     <tr>
       <td style="padding:10px 12px;border-bottom:1px solid #e4e4e7;font-size:14px;color:#18181b">
-        ${item.tokens} Tokens${item.isLoyalty ? ' <span style="color:#ca8a04;font-weight:600">(Loyalty Bonus)</span>' : ''}
+        ${item.tokens} Tokens${item.isLoyalty ? ' <span style="color:#ca8a04;font-weight:600">(Bonus)</span>' : ''}
       </td>
       <td style="padding:10px 12px;border-bottom:1px solid #e4e4e7;font-size:14px;color:#18181b;text-align:right">
         $${item.amount.toFixed(2)}

@@ -46,6 +46,7 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { generateRevenueReport, generateExpenseReport } from '@/lib/pdf/generate-pdf'
 import { generateMultiSheetExcel, formatExpensesForExcel } from '@/lib/excel/generate-excel'
+import { RoleGuard } from '@/components/admin/role-guard'
 
 type RangePreset = '7' | '30' | '90' | 'custom'
 
@@ -56,6 +57,14 @@ type ChartRow = {
 }
 
 export default function ReportsPage() {
+  return (
+    <RoleGuard allow={['owner']} reason="Revenue reports are owner-only.">
+      <ReportsPageInner />
+    </RoleGuard>
+  )
+}
+
+function ReportsPageInner() {
   const { user, loading: authLoading } = useAuth()
   const supabase = useMemo(() => createClient(), [])
 
