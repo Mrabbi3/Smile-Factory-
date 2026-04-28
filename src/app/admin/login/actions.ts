@@ -2,7 +2,6 @@
 
 import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
-import { createClient } from '@/lib/supabase/server'
 
 // =====================================================================
 // HOW TO CHANGE THE STAFF ACCESS KEY
@@ -24,8 +23,14 @@ import { createClient } from '@/lib/supabase/server'
 // They'll see the owner-only menus on their next page load.
 // =====================================================================
 
-const STAFF_COOKIE_NAME = 'staff_access_verified'
+export const STAFF_COOKIE_NAME = 'staff_access_verified'
 const STAFF_COOKIE_MAX_AGE = 60 * 60 * 8 // 8 hours (one work shift)
+
+/** Clears the httpOnly staff gate cookie (cannot be removed from client JS). */
+export async function clearStaffGateCookie(): Promise<void> {
+  const cookieStore = await cookies()
+  cookieStore.delete(STAFF_COOKIE_NAME)
+}
 
 const failMap = new Map<string, { count: number; expires: number }>()
 const WINDOW_MS = 15 * 60 * 1000
@@ -91,16 +96,9 @@ export async function verifyStaffKey(
     path: '/',
   })
 
-  // If the user is already signed in, promote them now and drop them on
-  // the dashboard. Otherwise route through /admin/auth so they can sign
-  // in or create an account behind the staff gate.
-  const supabase = await createClient()
-  const { data: { user } } = await supabase.auth.getUser()
-
-  if (user) {
-    await supabase.rpc('promote_to_employee')
-    redirect('/admin/dashboard')
-  }
-
+  // Always send staff to the sign-in screen after the access key. Entering
+  // the key must not skip password entry when a browser still holds a
+  // Supabase session from before — staff sign out fully clears the session,
+  // and this keeps the gate + credentials as two separate steps.
   redirect('/admin/auth')
 }

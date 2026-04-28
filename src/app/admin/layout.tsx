@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { useAuth } from '@/hooks/use-auth'
 import { AdminSidebar } from '@/components/admin/sidebar'
 import { TopBar } from '@/components/admin/top-bar'
+import { clearStaffGateCookie } from '@/app/admin/login/actions'
 import {
   Sheet,
   SheetContent,
@@ -17,12 +18,16 @@ function AdminShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="flex h-svh overflow-hidden bg-[#f9fafb]">
-      <aside className="hidden w-72 shrink-0 lg:block">
+      <aside className="hidden min-h-0 w-72 shrink-0 lg:flex lg:flex-col">
         <AdminSidebar isOwner={isOwner()} isManager={isManager()} />
       </aside>
 
       <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-        <SheetContent side="left" className="w-72 p-0" showCloseButton={false}>
+        <SheetContent
+          side="left"
+          className="flex h-full min-h-0 w-72 flex-col gap-0 overflow-hidden p-0"
+          showCloseButton={false}
+        >
           <SheetTitle className="sr-only">Navigation</SheetTitle>
           <AdminSidebar
             isOwner={isOwner()}
@@ -39,8 +44,8 @@ function AdminShell({ children }: { children: React.ReactNode }) {
           fallbackEmail={user?.email}
           onSignOut={async () => {
             await signOut()
-            document.cookie = 'staff_access_verified=; path=/; max-age=0'
-            window.location.href = '/login'
+            await clearStaffGateCookie()
+            window.location.href = '/admin/login'
           }}
           onMenuToggle={() => setSidebarOpen(true)}
         />
@@ -60,7 +65,11 @@ export default function AdminLayout({
 }) {
   const pathname = usePathname()
 
-  if (pathname === '/admin/login') {
+  if (
+    pathname === '/admin/login' ||
+    pathname === '/admin/auth' ||
+    pathname.startsWith('/admin/auth/')
+  ) {
     return <>{children}</>
   }
 
