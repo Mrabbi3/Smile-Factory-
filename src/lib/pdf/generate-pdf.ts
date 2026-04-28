@@ -203,7 +203,7 @@ export function generateTokenReceipt(data: {
     margin: { left: 4, right: 4 },
     head: [['Item', 'Amt']],
     body: data.items.map((i) => [
-      `${i.tokens} Tokens${i.isLoyalty ? ' (Loyalty)' : ''}`,
+      `${i.tokens} Tokens${i.isLoyalty ? ' (Bonus)' : ''}`,
       `$${i.amount.toFixed(2)}`,
     ]),
     theme: 'plain',

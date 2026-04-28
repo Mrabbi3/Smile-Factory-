@@ -36,6 +36,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
+import { RoleGuard } from '@/components/admin/role-guard'
 
 function toAmount(n: unknown): number {
   if (typeof n === 'number' && !Number.isNaN(n)) return n
@@ -61,6 +62,14 @@ const CATEGORY_BADGE: Record<ExpenseCategory, string> = {
 }
 
 export default function AdminExpensesPage() {
+  return (
+    <RoleGuard allow={['owner']} reason="Expenses are tracked by the business owner only.">
+      <AdminExpensesPageInner />
+    </RoleGuard>
+  )
+}
+
+function AdminExpensesPageInner() {
   const { user, loading: authLoading, isManager } = useAuth()
   const supabase = useMemo(() => createClient(), [])
 

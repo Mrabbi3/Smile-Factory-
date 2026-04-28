@@ -232,7 +232,7 @@ export default function AdminTokensPage() {
                     <TableHead className="text-right">Amount paid</TableHead>
                     <TableHead className="text-right">Tokens given</TableHead>
                     <TableHead>Payment type</TableHead>
-                    <TableHead>Loyalty bonus</TableHead>
+                    <TableHead>Bonus</TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -266,7 +266,7 @@ export default function AdminTokensPage() {
                             variant="warning"
                             className="font-semibold shadow-sm"
                           >
-                            Loyalty bonus
+                            Bonus
                           </Badge>
                         ) : (
                           <span className="text-sm text-muted-foreground">—</span>
