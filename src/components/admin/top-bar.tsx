@@ -39,11 +39,27 @@ const pageTitles: Record<string, string> = {
 interface TopBarProps {
   profile: Profile | null
   role: UserRole | null
+  /** Shown when profile row is missing/failed (before name falls back) */
+  fallbackEmail?: string | null
   onSignOut: () => void
   onMenuToggle: () => void
 }
 
-export function TopBar({ profile, role, onSignOut, onMenuToggle }: TopBarProps) {
+function emailLocalPartInitials(email: string) {
+  const local = email.split('@')[0]?.trim() ?? ''
+  const chars = local.replace(/\./g, '')
+  if (chars.length >= 2) return `${chars[0]!.toUpperCase()}${chars[1]!.toUpperCase()}`
+  if (chars.length === 1) return `${chars[0]!.toUpperCase()}?`
+  return '??'
+}
+
+export function TopBar({
+  profile,
+  role,
+  fallbackEmail,
+  onSignOut,
+  onMenuToggle,
+}: TopBarProps) {
   const pathname = usePathname()
 
   const title =
@@ -55,13 +71,23 @@ export function TopBar({ profile, role, onSignOut, onMenuToggle }: TopBarProps) 
       .replace(/\b\w/g, (c) => c.toUpperCase()) ??
     'Dashboard'
 
-  const initials = profile
-    ? `${(profile.first_name?.[0] ?? '').toUpperCase()}${(profile.last_name?.[0] ?? '').toUpperCase()}`
-    : '??'
-
-  const displayName = profile
+  const nameFromProfile = profile
     ? `${profile.first_name ?? ''} ${profile.last_name ?? ''}`.trim()
-    : 'User'
+    : ''
+
+  const initials =
+    profile && nameFromProfile
+      ? `${(profile.first_name?.[0] ?? '').toUpperCase()}${(profile.last_name?.[0] ?? '').toUpperCase()}`
+      : fallbackEmail
+        ? emailLocalPartInitials(fallbackEmail)
+        : '??'
+
+  const displayName =
+    nameFromProfile ||
+    (fallbackEmail
+      ? (fallbackEmail.split('@')[0] ?? '').replace(/[._-]/g, ' ').trim() || fallbackEmail
+      : '') ||
+    'User'
 
   return (
     <header className="flex h-16 items-center gap-4 glass-nav border-b border-gray-100 px-5">

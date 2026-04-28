@@ -29,9 +29,8 @@ export function useAuth() {
     try {
       const { data, error } = await supabase
         .from('profiles')
-        .select(
-          'id, email, first_name, last_name, phone, role, avatar_url, is_active, permissions, created_at, updated_at'
-        )
+        // Prefer * so deployments without optional columns (e.g. permissions) still work
+        .select('*')
         .eq('id', userId)
         .single()
 

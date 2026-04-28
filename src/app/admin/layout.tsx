@@ -12,7 +12,7 @@ import {
 } from '@/components/ui/sheet'
 
 function AdminShell({ children }: { children: React.ReactNode }) {
-  const { profile, loading, role, signOut, isOwner, isManager } = useAuth()
+  const { profile, loading, role, signOut, isOwner, isManager, user } = useAuth()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
   return (
@@ -36,6 +36,7 @@ function AdminShell({ children }: { children: React.ReactNode }) {
         <TopBar
           profile={loading ? null : profile}
           role={loading ? null : role}
+          fallbackEmail={user?.email}
           onSignOut={async () => {
             await signOut()
             document.cookie = 'staff_access_verified=; path=/; max-age=0'
