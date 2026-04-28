@@ -14,6 +14,10 @@ export async function updateSession(request: NextRequest) {
 
   const isAuthPage = path === '/login' || path === '/register' || path === '/forgot-password' || path === '/reset-password'
   const isAdminLoginPage = path === '/admin/login'
+  // /admin/auth lives BEHIND the access-key gate but does not yet require
+  // a Supabase session (creating an account doesn't have one yet). Allow
+  // it through if the staff cookie is present.
+  const isAdminAuthPage = path === '/admin/auth' || path.startsWith('/admin/auth/')
   const isPublicPage =
     path === '/' ||
     path.startsWith('/about') ||
@@ -50,31 +54,39 @@ export async function updateSession(request: NextRequest) {
 
   // Use getUser() to validate and refresh the session token
   const { data: { user } } = await supabase.auth.getUser()
+  const staffCookie = request.cookies.get('staff_access_verified')?.value
 
-  // Public and auth pages — let them through
+  // Public and customer-auth pages — let them through.
   if (isAuthPage || isAdminLoginPage || isPublicPage || !isProtected) {
     return supabaseResponse
   }
 
-  // Protected routes — check auth
-  const isAdminArea = path.startsWith('/admin')
-  const staffCookie = request.cookies.get('staff_access_verified')?.value
-
-  if (isAdminArea && !isAdminLoginPage) {
-    if (!user) {
-      const url = request.nextUrl.clone()
-      url.pathname = '/login'
-      url.searchParams.set('redirect', path)
-      return NextResponse.redirect(url)
-    }
-
+  // /admin/auth — gated by the access-key cookie ONLY (no user yet).
+  if (isAdminAuthPage) {
     if (!staffCookie) {
       const url = request.nextUrl.clone()
       url.pathname = '/admin/login'
       return NextResponse.redirect(url)
     }
+    return supabaseResponse
   }
 
+  // Other /admin/* — needs a signed-in user AND the access-key cookie.
+  const isAdminArea = path.startsWith('/admin')
+  if (isAdminArea) {
+    if (!staffCookie) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin/login'
+      return NextResponse.redirect(url)
+    }
+    if (!user) {
+      const url = request.nextUrl.clone()
+      url.pathname = '/admin/auth'
+      return NextResponse.redirect(url)
+    }
+  }
+
+  // /customer/* — just needs a signed-in user.
   if (path.startsWith('/customer')) {
     if (!user) {
       const url = request.nextUrl.clone()

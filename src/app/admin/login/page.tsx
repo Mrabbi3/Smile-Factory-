@@ -47,7 +47,7 @@ export default function AdminLoginPage() {
             Staff Access
           </h1>
           <p className="text-sm text-muted-foreground mt-1">
-            Enter the owner access key to continue
+            Enter the staff access key to continue
           </p>
         </div>
       </div>
@@ -56,7 +56,7 @@ export default function AdminLoginPage() {
           <CardHeader className="text-center">
             <CardTitle className="font-display tracking-tight">Staff Access Key</CardTitle>
             <CardDescription>
-              Enter the access key provided by the business owner
+              Required to sign in or create a staff account
             </CardDescription>
           </CardHeader>
           <form action={formAction}>
@@ -82,11 +82,11 @@ export default function AdminLoginPage() {
                 Continue to sign in
               </Button>
               <Link
-                href="/login"
+                href="/"
                 className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors"
               >
                 <ArrowLeft className="size-3" />
-                Back to customer sign in
+                Back to home
               </Link>
             </CardFooter>
           </form>
