@@ -2,6 +2,7 @@
 
 import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
+import { STAFF_COOKIE_NAME } from '@/lib/staff-gate'
 
 // =====================================================================
 // HOW TO CHANGE THE STAFF ACCESS KEY
@@ -23,7 +24,6 @@ import { redirect } from 'next/navigation'
 // They'll see the owner-only menus on their next page load.
 // =====================================================================
 
-export const STAFF_COOKIE_NAME = 'staff_access_verified'
 const STAFF_COOKIE_MAX_AGE = 60 * 60 * 8 // 8 hours (one work shift)
 
 /** Clears the httpOnly staff gate cookie (cannot be removed from client JS). */

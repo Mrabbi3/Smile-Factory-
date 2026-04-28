@@ -3,9 +3,8 @@ import { redirect } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowLeft } from 'lucide-react'
+import { STAFF_COOKIE_NAME } from '@/lib/staff-gate'
 import { StaffAuthTabs } from './staff-auth-tabs'
-
-const STAFF_COOKIE_NAME = 'staff_access_verified'
 
 // Server-side gate: this page is only reachable once the staff access key
 // has been verified at /admin/login (which sets the cookie). Without the

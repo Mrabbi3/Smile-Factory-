@@ -3,12 +3,11 @@
 import { cookies, headers } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
+import { STAFF_COOKIE_NAME } from '@/lib/staff-gate'
 
 // All functions here require the staff_access_verified cookie. Without it
 // nobody can sign in or create an account from this entrypoint, so the
 // staff portal stays gated by the access key.
-
-const STAFF_COOKIE_NAME = 'staff_access_verified'
 
 async function ensureStaffCookie(): Promise<{ error?: string }> {
   const cookieStore = await cookies()
