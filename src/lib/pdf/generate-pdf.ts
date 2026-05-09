@@ -50,7 +50,7 @@ export function generateRevenueReport(data: {
 
   doc.setFontSize(11)
   doc.setTextColor(0, 0, 0)
-  let y = 75
+  const y = 75
 
   const summaryData = [
     ['Total Revenue', `$${data.totalRevenue.toFixed(2)}`],
