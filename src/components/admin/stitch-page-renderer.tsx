@@ -716,26 +716,6 @@ export function StitchPageRenderer({ routeKey }: StitchPageRendererProps) {
     void loadSectionContent(activeRouteKey)
   }, [activeRouteKey, shellReady])
 
-  // Personalize iframe after it loads.
-  useEffect(() => {
-    const iframe = iframeRef.current
-    if (!iframe) return
-
-    const handleIframeLoad = async () => {
-      setShellReady(true)
-      personalizeIframe()
-      setupNavigation()
-      syncSidebarActiveState(activeRouteKey)
-      await loadSectionContent(activeRouteKey)
-    }
-
-    iframe.addEventListener('load', handleIframeLoad)
-
-    return () => {
-      iframe.removeEventListener('load', handleIframeLoad)
-    }
-  }, [userData])
-
   const setupNavigation = () => {
     const iframe = iframeRef.current
     if (!iframe) return
@@ -762,10 +742,30 @@ export function StitchPageRenderer({ routeKey }: StitchPageRendererProps) {
           }
         }
       })
-    } catch (err) {
+    } catch {
       console.log('Cannot access iframe content (cross-origin)')
     }
   }
+
+  // Personalize iframe after it loads.
+  useEffect(() => {
+    const iframe = iframeRef.current
+    if (!iframe) return
+
+    const handleIframeLoad = async () => {
+      setShellReady(true)
+      personalizeIframe()
+      setupNavigation()
+      syncSidebarActiveState(activeRouteKey)
+      await loadSectionContent(activeRouteKey)
+    }
+
+    iframe.addEventListener('load', handleIframeLoad)
+
+    return () => {
+      iframe.removeEventListener('load', handleIframeLoad)
+    }
+  }, [userData])
 
   return (
     <iframe
