@@ -50,6 +50,7 @@ const navSections: { title?: string; items: NavItem[] }[] = [
         href: '/admin/work-orders',
         icon: ClipboardList,
       },
+      { label: 'Machines', href: '/admin/machines', icon: Cpu },
       { label: 'Customer inquiries', href: '/admin/inquiries', icon: Mail },
       {
         label: 'Shift reconciliation',
