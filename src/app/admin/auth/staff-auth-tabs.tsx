@@ -107,6 +107,29 @@ export function StaffAuthTabs() {
                 />
               </div>
               <div className="space-y-2">
+                <Label htmlFor="create-security-question">Security Question</Label>
+                <select
+                  id="create-security-question"
+                  name="security_question"
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+                  required
+                >
+                  <option value="">Select a security question</option>
+                  <option value="What was the name of your first pet?">What was the name of your first pet?</option>
+                  <option value="In what city were you born?">In what city were you born?</option>
+                  <option value="What was the make and model of your first car?">What was the make and model of your first car?</option>
+                </select>
+              </div>
+              <div className="space-y-2">
+                <Label htmlFor="create-security-answer">Security Answer</Label>
+                <Input
+                  id="create-security-answer"
+                  name="security_answer"
+                  placeholder="Your answer"
+                  required
+                />
+              </div>
+              <div className="space-y-2">
                 <Label htmlFor="create-password">Password</Label>
                 <Input
                   id="create-password"
