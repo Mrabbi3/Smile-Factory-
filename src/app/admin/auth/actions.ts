@@ -1,6 +1,6 @@
 'use server'
 
-import { cookies, headers } from 'next/headers'
+import { cookies } from 'next/headers'
 import { redirect } from 'next/navigation'
 import { createClient } from '@/lib/supabase/server'
 import { STAFF_COOKIE_NAME } from '@/lib/staff-gate'
@@ -49,47 +49,40 @@ export async function staffCreateAccount(
   const password = formData.get('password')?.toString() ?? ''
   const firstName = formData.get('first_name')?.toString()?.trim() ?? ''
   const lastName = formData.get('last_name')?.toString()?.trim() ?? ''
+  const securityQuestion = formData.get('security_question')?.toString()
+  const securityAnswer = formData.get('security_answer')?.toString()?.trim()
 
-  if (!email || !password || !firstName) {
-    return { error: 'First name, email and password are required.' }
+  if (!email || !password || !firstName || !securityQuestion || !securityAnswer) {
+    return { error: 'First name, email, password, security question and answer are required.' }
   }
   if (password.length < 6) {
     return { error: 'Password must be at least 6 characters.' }
   }
 
   const supabase = await createClient()
-  const h = await headers()
-  const origin = h.get('origin') ?? ''
 
   const { error } = await supabase.auth.signUp({
     email,
     password,
     options: {
-      // Email confirmation lands them at /admin/auth so they can finish
-      // the staff promotion after verifying.
-      emailRedirectTo: origin
-        ? `${origin}/auth/callback?next=/admin/auth/post-confirm`
-        : undefined,
       data: {
         first_name: firstName,
         last_name: lastName,
+        security_question: securityQuestion,
+        security_answer: securityAnswer,
       },
     },
   })
 
   if (error) return { error: error.message }
 
-  // If Supabase has email confirmation off (dev) the user is signed in
-  // immediately. Try to promote — no-op if no session yet. Wrap in
-  // try/catch because supabase.rpc() returns a builder, not a Promise,
-  // so we can't .catch() it directly.
+  // Since email confirmation is off in production/dev, the user is signed in
+  // immediately. Promote them to employee immediately.
   try {
     await supabase.rpc('promote_to_employee')
   } catch {
     /* user not yet authenticated — promotion will run on first sign-in */
   }
 
-  // Either way, send them to the dashboard. If they have a confirmation
-  // email pending, that page will surface a "verify your email" toast.
   redirect('/admin/dashboard')
 }

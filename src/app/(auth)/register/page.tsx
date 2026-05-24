@@ -17,6 +17,12 @@ import {
 } from '@/components/ui/card'
 import { Loader2, UserPlus, Mail } from 'lucide-react'
 
+const SECURITY_QUESTIONS = [
+  'What was the name of your first pet?',
+  'In what city were you born?',
+  'What was the make and model of your first car?',
+]
+
 export default function RegisterPage() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -24,6 +30,8 @@ export default function RegisterPage() {
   const [phone, setPhone] = useState('')
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [securityQuestion, setSecurityQuestion] = useState('')
+  const [securityAnswer, setSecurityAnswer] = useState('')
   const [loading, setLoading] = useState(false)
   const [emailSent, setEmailSent] = useState(false)
 
@@ -40,20 +48,26 @@ export default function RegisterPage() {
       return
     }
 
+    if (!securityQuestion || !securityAnswer) {
+      toast.error('Please select a security question and provide an answer')
+      return
+    }
+
     setLoading(true)
 
     try {
       const supabase = createClient()
 
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: `${window.location.origin}/auth/callback?next=/customer/dashboard`,
           data: {
             first_name: firstName,
             last_name: lastName,
             phone,
+            security_question: securityQuestion,
+            security_answer: securityAnswer.trim(),
           },
         },
       })
@@ -63,8 +77,14 @@ export default function RegisterPage() {
         return
       }
 
-      setEmailSent(true)
-      toast.success('Check your email to verify your account.')
+      toast.success('Account created successfully!')
+
+      // If email confirmation is turned off, a session is returned immediately.
+      if (data.session) {
+        window.location.href = '/customer/dashboard'
+      } else {
+        setEmailSent(true)
+      }
     } catch {
       toast.error('An unexpected error occurred')
     } finally {
@@ -155,6 +175,33 @@ export default function RegisterPage() {
               value={phone}
               onChange={(e) => setPhone(e.target.value)}
               autoComplete="tel"
+            />
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="securityQuestion">Security Question</Label>
+            <select
+              id="securityQuestion"
+              value={securityQuestion}
+              onChange={(e) => setSecurityQuestion(e.target.value)}
+              className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              required
+            >
+              <option value="">Select a security question</option>
+              {SECURITY_QUESTIONS.map((q) => (
+                <option key={q} value={q}>
+                  {q}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="space-y-2">
+            <Label htmlFor="securityAnswer">Security Answer</Label>
+            <Input
+              id="securityAnswer"
+              placeholder="Your answer"
+              value={securityAnswer}
+              onChange={(e) => setSecurityAnswer(e.target.value)}
+              required
             />
           </div>
           <div className="space-y-2">
