@@ -16,6 +16,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { toast } from 'sonner'
+import { Trash2 } from 'lucide-react'
 
 type Alert = {
   id: string
@@ -113,6 +114,17 @@ export default function AdminAlertsPage() {
     load()
   }
 
+  const remove = async (id: string) => {
+    if (!window.confirm('Are you sure you want to delete this alert?')) return
+    const { error } = await sb.from('site_alerts').delete().eq('id', id)
+    if (error) {
+      toast.error(error.message)
+      return
+    }
+    toast.success('Alert deleted')
+    load()
+  }
+
   const formatWindow = (a: Alert) => {
     const start = new Date(a.starts_at).toLocaleString(undefined, {
       dateStyle: 'short',
@@ -191,9 +203,20 @@ export default function AdminAlertsPage() {
               <p className="text-sm font-medium break-words">{a.message}</p>
               <p className="text-xs text-muted-foreground mt-1">{formatWindow(a)}</p>
             </div>
-            <div className="flex items-center gap-2 shrink-0">
-              <span className="text-xs text-muted-foreground">Active</span>
-              <Switch checked={a.active} onCheckedChange={(v) => void toggle(a.id, v)} />
+            <div className="flex items-center gap-4 shrink-0">
+              <div className="flex items-center gap-2">
+                <span className="text-xs text-muted-foreground">Active</span>
+                <Switch checked={a.active} onCheckedChange={(v) => void toggle(a.id, v)} />
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="text-muted-foreground hover:text-destructive hover:bg-destructive/10 size-8 rounded-lg"
+                onClick={() => void remove(a.id)}
+                aria-label="Delete alert"
+              >
+                <Trash2 className="size-4" />
+              </Button>
             </div>
           </div>
         ))}

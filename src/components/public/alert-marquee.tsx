@@ -1,9 +1,10 @@
 'use client'
 
-import { type CSSProperties, useEffect, useMemo, useState } from 'react'
-import { X } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import { AlertCircle, X } from 'lucide-react'
 import { createClient } from '@/lib/supabase/client'
 import { cn } from '@/lib/utils'
+
 
 /** Load active-visible alerts — filter end time client-side (avoids brittle PostgREST .or(timestamp) parsing). */
 function isAlertVisible(now: Date, ends_at: string | null) {
@@ -68,11 +69,6 @@ export function AlertMarquee() {
 
   const joined = useMemo(() => msgs.map((m) => m.message.trim()).join('  •  '), [msgs])
 
-  const durationSec = useMemo(() => {
-    if (!joined.length) return 45
-    return Math.max(20, Math.min(85, joined.length * 0.55))
-  }, [joined])
-
   if (msgs.length === 0 || dismissed) return null
 
   const dismiss = () => {
@@ -88,46 +84,30 @@ export function AlertMarquee() {
   return (
     <div
       className={cn(
-        'relative z-30 w-full shrink-0 border-b border-black/10',
-        'bg-primary text-primary-foreground shadow-sm'
+        'relative z-30 w-full shrink-0 border-b-2 border-red-700',
+        'bg-gradient-to-r from-red-600 via-red-500 to-red-600 text-white shadow-md'
       )}
       role="region"
       aria-label="Site announcement"
     >
-      <div className="flex items-stretch">
-        <div className="sf-marquee-viewport min-w-0 flex-1 overflow-hidden py-2.5 pr-2 pl-4 sm:py-2 sm:pl-6">
-          <div
-            className="sf-marquee-track flex w-max"
-            style={
-              {
-                '--sf-marquee-duration': `${durationSec}s`,
-              } as CSSProperties
-            }
-          >
-            <span className="inline-block whitespace-nowrap px-6 text-sm font-medium tracking-wide sm:text-[0.8125rem]">
-              {joined}
-              <span className="mx-4 opacity-60" aria-hidden>
-                •
-              </span>
-            </span>
-            <span className="inline-block whitespace-nowrap px-6 text-sm font-medium tracking-wide sm:text-[0.8125rem]" aria-hidden>
-              {joined}
-              <span className="mx-4 opacity-60" aria-hidden>
-                •
-              </span>
-            </span>
-          </div>
+      <div className="max-w-7xl mx-auto px-4 py-2.5 sm:px-6 lg:px-8 relative flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2 flex-1 justify-center text-center">
+          <AlertCircle className="size-4 shrink-0 animate-pulse text-red-100" />
+          <span className="font-display text-sm sm:text-base font-bold tracking-wide text-red-50">
+            {joined}
+          </span>
         </div>
 
         <button
           type="button"
           onClick={dismiss}
-          className="flex shrink-0 items-center justify-center border-l border-white/15 px-3 transition-colors hover:bg-black/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white/80 sm:px-4"
+          className="flex shrink-0 items-center justify-center rounded-lg p-1.5 transition-colors hover:bg-white/10 text-white/90 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-white"
           aria-label="Dismiss announcement"
         >
-          <X className="size-4 opacity-90 sm:size-[1.125rem]" strokeWidth={2.25} />
+          <X className="size-4" strokeWidth={2.5} />
         </button>
       </div>
     </div>
   )
 }
+
