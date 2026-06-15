@@ -21,10 +21,33 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Switch } from '@/components/ui/switch'
+import { ImageUploadField } from '@/components/admin/image-upload-field'
 import { cn } from '@/lib/utils'
 
 function isLowStock(prize: Prize) {
   return prize.stock_quantity <= prize.reorder_threshold
+}
+
+type PrizeForm = {
+  name: string
+  description: string
+  ticket_cost: string
+  stock_quantity: string
+  reorder_threshold: string
+  category: string
+  is_active: boolean
+  image_url: string | null
+}
+
+const EMPTY_PRIZE_FORM: PrizeForm = {
+  name: '',
+  description: '',
+  ticket_cost: '',
+  stock_quantity: '0',
+  reorder_threshold: '5',
+  category: 'general',
+  is_active: true,
+  image_url: null,
 }
 
 export default function InventoryPage() {
@@ -34,15 +57,11 @@ export default function InventoryPage() {
   const [loading, setLoading] = useState(true)
   const [addOpen, setAddOpen] = useState(false)
   const [saving, setSaving] = useState(false)
-  const [form, setForm] = useState({
-    name: '',
-    description: '',
-    ticket_cost: '',
-    stock_quantity: '0',
-    reorder_threshold: '5',
-    category: 'general',
-    is_active: true,
-  })
+  const [form, setForm] = useState<PrizeForm>(EMPTY_PRIZE_FORM)
+
+  const [editTarget, setEditTarget] = useState<Prize | null>(null)
+  const [editForm, setEditForm] = useState<PrizeForm>(EMPTY_PRIZE_FORM)
+  const [editSaving, setEditSaving] = useState(false)
 
   const [stockTarget, setStockTarget] = useState<Prize | null>(null)
   const [stockInput, setStockInput] = useState('')
@@ -80,15 +99,7 @@ export default function InventoryPage() {
   }, [authLoading, loadPrizes])
 
   const resetAddForm = () => {
-    setForm({
-      name: '',
-      description: '',
-      ticket_cost: '',
-      stock_quantity: '0',
-      reorder_threshold: '5',
-      category: 'general',
-      is_active: true,
-    })
+    setForm(EMPTY_PRIZE_FORM)
   }
 
   const handleAddPrize = async (e: React.FormEvent) => {
@@ -124,7 +135,7 @@ export default function InventoryPage() {
         reorder_threshold: Math.round(reorder),
         category: form.category.trim() || 'general',
         is_active: form.is_active,
-        image_url: null,
+        image_url: form.image_url,
       })
 
       if (error) {
@@ -140,6 +151,69 @@ export default function InventoryPage() {
       toast.error('Could not add prize')
     } finally {
       setSaving(false)
+    }
+  }
+
+  const openEditDialog = (prize: Prize) => {
+    setEditTarget(prize)
+    setEditForm({
+      name: prize.name,
+      description: prize.description ?? '',
+      ticket_cost: String(prize.ticket_cost),
+      stock_quantity: String(prize.stock_quantity),
+      reorder_threshold: String(prize.reorder_threshold),
+      category: prize.category,
+      is_active: prize.is_active,
+      image_url: prize.image_url,
+    })
+  }
+
+  const handleEditPrize = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!editTarget) return
+    const name = editForm.name.trim()
+    if (!name) {
+      toast.error('Name is required')
+      return
+    }
+    const ticketCost = Number(editForm.ticket_cost)
+    const reorder = Number(editForm.reorder_threshold)
+    if (!Number.isFinite(ticketCost) || ticketCost < 0) {
+      toast.error('Enter a valid ticket cost')
+      return
+    }
+    if (!Number.isFinite(reorder) || reorder < 0) {
+      toast.error('Enter a valid reorder threshold')
+      return
+    }
+
+    setEditSaving(true)
+    try {
+      const { error } = await supabase
+        .from('prizes')
+        .update({
+          name,
+          description: editForm.description.trim() || null,
+          ticket_cost: Math.round(ticketCost),
+          reorder_threshold: Math.round(reorder),
+          category: editForm.category.trim() || 'general',
+          is_active: editForm.is_active,
+          image_url: editForm.image_url,
+        })
+        .eq('id', editTarget.id)
+
+      if (error) {
+        toast.error(error.message || 'Could not update prize')
+        return
+      }
+      toast.success('Prize updated')
+      setEditTarget(null)
+      await loadPrizes()
+    } catch (err) {
+      console.error(err)
+      toast.error('Could not update prize')
+    } finally {
+      setEditSaving(false)
     }
   }
 
@@ -280,6 +354,16 @@ export default function InventoryPage() {
                 )}
               >
                 <CardHeader className="gap-3">
+                  {prize.image_url && (
+                    <div className="overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={prize.image_url}
+                        alt={prize.name}
+                        className="h-36 w-full object-cover"
+                      />
+                    </div>
+                  )}
                   <div className="flex items-start justify-between gap-2">
                     <CardTitle className="font-display text-lg font-black tracking-tight">
                       {prize.name}
@@ -363,6 +447,15 @@ export default function InventoryPage() {
                       <PencilLine className="size-4" />
                       Stock
                     </Button>
+                    <Button
+                      type="button"
+                      size="sm"
+                      className="rounded-xl font-black uppercase tracking-widest"
+                      onClick={() => openEditDialog(prize)}
+                    >
+                      <PencilLine className="size-4" />
+                      Edit
+                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -404,6 +497,13 @@ export default function InventoryPage() {
                   className="rounded-xl"
                 />
               </div>
+              <ImageUploadField
+                folder="prizes"
+                entityId="new"
+                value={form.image_url}
+                onChange={(url) => setForm((f) => ({ ...f, image_url: url }))}
+                disabled={saving}
+              />
               <div className="grid grid-cols-2 gap-3">
                 <div className="grid gap-2">
                   <Label htmlFor="ticket-cost">Ticket cost</Label>
@@ -478,6 +578,118 @@ export default function InventoryPage() {
                 className="rounded-xl font-black uppercase tracking-widest"
               >
                 {saving ? 'Saving…' : 'Save prize'}
+              </Button>
+            </DialogFooter>
+          </form>
+        </DialogContent>
+      </Dialog>
+
+      <Dialog
+        open={!!editTarget}
+        onOpenChange={(open) => {
+          if (!open) setEditTarget(null)
+        }}
+      >
+        <DialogContent className="sm:max-w-md">
+          <form onSubmit={handleEditPrize}>
+            <DialogHeader>
+              <DialogTitle className="font-display text-xl font-black tracking-tight">
+                Edit prize
+              </DialogTitle>
+              <DialogDescription>
+                Update pricing, details, and the product picture.
+              </DialogDescription>
+            </DialogHeader>
+            <div className="grid gap-4 py-2">
+              <div className="grid gap-2">
+                <Label htmlFor="edit-prize-name">Name</Label>
+                <Input
+                  id="edit-prize-name"
+                  value={editForm.name}
+                  onChange={(e) => setEditForm((f) => ({ ...f, name: e.target.value }))}
+                  required
+                  className="rounded-xl"
+                />
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="edit-prize-desc">Description</Label>
+                <Input
+                  id="edit-prize-desc"
+                  value={editForm.description}
+                  onChange={(e) => setEditForm((f) => ({ ...f, description: e.target.value }))}
+                  placeholder="Short description"
+                  className="rounded-xl"
+                />
+              </div>
+              <ImageUploadField
+                folder="prizes"
+                entityId={editTarget?.id ?? 'prize'}
+                value={editForm.image_url}
+                onChange={(url) => setEditForm((f) => ({ ...f, image_url: url }))}
+                disabled={editSaving}
+              />
+              <div className="grid grid-cols-2 gap-3">
+                <div className="grid gap-2">
+                  <Label htmlFor="edit-ticket-cost">Ticket cost</Label>
+                  <Input
+                    id="edit-ticket-cost"
+                    type="number"
+                    min={0}
+                    value={editForm.ticket_cost}
+                    onChange={(e) => setEditForm((f) => ({ ...f, ticket_cost: e.target.value }))}
+                    className="rounded-xl"
+                  />
+                </div>
+                <div className="grid gap-2">
+                  <Label htmlFor="edit-reorder">Reorder threshold</Label>
+                  <Input
+                    id="edit-reorder"
+                    type="number"
+                    min={0}
+                    value={editForm.reorder_threshold}
+                    onChange={(e) =>
+                      setEditForm((f) => ({ ...f, reorder_threshold: e.target.value }))
+                    }
+                    className="rounded-xl"
+                  />
+                </div>
+              </div>
+              <div className="grid gap-2">
+                <Label htmlFor="edit-category">Category</Label>
+                <Input
+                  id="edit-category"
+                  value={editForm.category}
+                  onChange={(e) => setEditForm((f) => ({ ...f, category: e.target.value }))}
+                  placeholder="general"
+                  className="rounded-xl"
+                />
+              </div>
+              <div className="flex items-center justify-between rounded-xl border border-gray-100 bg-gray-50/80 px-4 py-3">
+                <Label htmlFor="edit-prize-active" className="cursor-pointer font-medium">
+                  Listed as active
+                </Label>
+                <Switch
+                  id="edit-prize-active"
+                  checked={editForm.is_active}
+                  onCheckedChange={(v) => setEditForm((f) => ({ ...f, is_active: v }))}
+                />
+              </div>
+            </div>
+            <DialogFooter>
+              <Button
+                type="button"
+                variant="outline"
+                className="rounded-xl font-black uppercase tracking-widest"
+                onClick={() => setEditTarget(null)}
+              >
+                Cancel
+              </Button>
+              <Button
+                type="submit"
+                disabled={editSaving}
+                className="rounded-xl font-black uppercase tracking-widest"
+              >
+                {editSaving ? 'Saving…' : 'Save changes'}
               </Button>
             </DialogFooter>
           </form>

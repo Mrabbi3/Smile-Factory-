@@ -8,6 +8,14 @@ import { Button } from '@/components/ui/button'
 import {
   Table, TableBody, TableCell, TableHead, TableHeader, TableRow,
 } from '@/components/ui/table'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
 
 type Row = {
   id: string
@@ -23,6 +31,7 @@ export default function AdminInquiriesPage() {
   const sb = createClient()
   const [rows, setRows] = useState<Row[]>([])
   const [filter, setFilter] = useState<'all' | 'new' | 'read' | 'resolved'>('all')
+  const [viewTarget, setViewTarget] = useState<Row | null>(null)
 
   useEffect(() => {
     sb.from('staff_inquiries')
@@ -36,6 +45,12 @@ export default function AdminInquiriesPage() {
   const setStatus = async (id: string, status: string) => {
     await sb.from('staff_inquiries').update({ status }).eq('id', id)
     setRows((prev) => prev.map((r) => (r.id === id ? { ...r, status } : r)))
+  }
+
+  const openMessage = (row: Row) => {
+    setViewTarget(row)
+    // Mark a brand-new inquiry as read once it's opened.
+    if (row.status === 'new') void setStatus(row.id, 'read')
   }
 
   return (
@@ -76,6 +91,9 @@ export default function AdminInquiriesPage() {
                     <Badge>{r.status}</Badge>
                   </TableCell>
                   <TableCell className="space-x-1 text-right">
+                    <Button variant="secondary" size="sm" type="button" onClick={() => openMessage(r)}>
+                      View
+                    </Button>
                     <Button variant="outline" size="sm" type="button" onClick={() => void setStatus(r.id, 'read')}>
                       Read
                     </Button>
@@ -90,6 +108,53 @@ export default function AdminInquiriesPage() {
           {visible.length === 0 && <p className="text-sm text-muted-foreground py-8 text-center">No inquiries yet.</p>}
         </CardContent>
       </Card>
+
+      <Dialog open={!!viewTarget} onOpenChange={(open) => { if (!open) setViewTarget(null) }}>
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl font-black tracking-tight">
+              {viewTarget?.operator_name}
+            </DialogTitle>
+            <DialogDescription>
+              {viewTarget?.email}
+              {viewTarget?.created_at
+                ? ` · ${new Date(viewTarget.created_at).toLocaleString()}`
+                : ''}
+            </DialogDescription>
+          </DialogHeader>
+          {viewTarget && (
+            <div className="space-y-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {viewTarget.mission_type && (
+                  <Badge variant="outline">{viewTarget.mission_type}</Badge>
+                )}
+                <Badge>{viewTarget.status}</Badge>
+              </div>
+              <div className="max-h-[50vh] overflow-y-auto whitespace-pre-wrap rounded-xl border border-gray-100 bg-gray-50/80 p-4 text-sm leading-relaxed text-foreground">
+                {viewTarget.message}
+              </div>
+            </div>
+          )}
+          <DialogFooter className="gap-2 sm:gap-0">
+            {viewTarget?.email && (
+              <Button asChild variant="outline">
+                <a href={`mailto:${viewTarget.email}`}>Reply by email</a>
+              </Button>
+            )}
+            {viewTarget && (
+              <Button
+                type="button"
+                onClick={() => {
+                  void setStatus(viewTarget.id, 'resolved')
+                  setViewTarget(null)
+                }}
+              >
+                Mark resolved
+              </Button>
+            )}
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }
