@@ -221,9 +221,6 @@ export default function HomePage() {
                   <span className="text-2xl font-black uppercase tracking-tight font-display">
                     {tier.tokens} Tokens
                   </span>
-                  {tier.price === 20 && (
-                    <p className="text-sm text-primary font-black mt-3 italic">+6 Bonus Tokens!</p>
-                  )}
                   <BuyTokensRedirectButton
                     className={`mt-8 w-full py-4 rounded-xl font-black uppercase tracking-widest text-sm transition-all shadow-sm ${
                       isBestValue

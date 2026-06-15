@@ -83,14 +83,9 @@ export default function PricingPage() {
                     {tierNames[i]}
                   </span>
                   <div className="text-6xl font-display font-black mb-2">${tier.price}</div>
-                  <div className="text-2xl font-display font-bold text-primary mb-2 italic">
+                  <div className="text-2xl font-display font-bold text-primary mb-4 italic">
                     {tier.tokens} TOKENS
                   </div>
-                  {tier.price === 20 && (
-                    <div className="text-primary font-bold text-[10px] mb-4 uppercase tracking-wider italic">
-                      +6 Bonus Tokens Included
-                    </div>
-                  )}
                   <BuyTokensRedirectButton
                     className={`mt-auto w-full py-4 rounded-xl font-display font-bold uppercase tracking-widest text-xs transition-all ${
                       isPopular

@@ -12,6 +12,13 @@ import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
 import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import {
   Select,
   SelectContent,
   SelectItem,
@@ -69,6 +76,7 @@ export default function AdminBookingsPage() {
   const [loading, setLoading] = useState(true)
   const [statusFilter, setStatusFilter] = useState<'all' | BookingStatus>('all')
   const [updatingId, setUpdatingId] = useState<string | null>(null)
+  const [detailTarget, setDetailTarget] = useState<PartyBooking | null>(null)
 
   const canManageBookings = isManager()
 
@@ -317,6 +325,9 @@ export default function AdminBookingsPage() {
                     <TableHead className="text-right font-display font-semibold tracking-tight">
                       Total
                     </TableHead>
+                    <TableHead className="text-right font-display font-semibold tracking-tight">
+                      Details
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -388,6 +399,17 @@ export default function AdminBookingsPage() {
                       <TableCell className="text-right font-medium tabular-nums">
                         {currency(toNumber(b.total_amount))}
                       </TableCell>
+                      <TableCell className="text-right">
+                        <Button
+                          type="button"
+                          variant="secondary"
+                          size="sm"
+                          className="rounded-xl"
+                          onClick={() => setDetailTarget(b)}
+                        >
+                          View
+                        </Button>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -402,6 +424,86 @@ export default function AdminBookingsPage() {
           Status changes are limited to owners and managers.
         </p>
       )}
+
+      <Dialog
+        open={!!detailTarget}
+        onOpenChange={(open) => {
+          if (!open) setDetailTarget(null)
+        }}
+      >
+        <DialogContent className="sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl font-black tracking-tight">
+              {detailTarget?.contact_name}
+            </DialogTitle>
+            <DialogDescription>
+              {detailTarget
+                ? `${safeFormatDate(detailTarget.booking_date, 'EEEE, MMM d, yyyy')} · ${formatTime(
+                    detailTarget.start_time
+                  )}–${formatTime(detailTarget.end_time)}`
+                : ''}
+            </DialogDescription>
+          </DialogHeader>
+          {detailTarget && (
+            <div className="space-y-4 text-sm">
+              <dl className="grid grid-cols-2 gap-x-4 gap-y-3">
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Phone
+                  </dt>
+                  <dd className="font-medium">{detailTarget.contact_phone}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Email
+                  </dt>
+                  <dd className="font-medium break-all">{detailTarget.contact_email}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Guests
+                  </dt>
+                  <dd className="font-medium">
+                    {detailTarget.num_kids} kids · {detailTarget.num_adults} adults
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Status
+                  </dt>
+                  <dd className="font-medium capitalize">{detailTarget.status}</dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Deposit
+                  </dt>
+                  <dd className="font-medium">
+                    {currency(toNumber(detailTarget.deposit_amount))}{' '}
+                    {detailTarget.deposit_paid ? '(paid' : '(unpaid'}
+                    {detailTarget.deposit_method ? ` · ${detailTarget.deposit_method})` : ')'}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                    Total
+                  </dt>
+                  <dd className="font-medium">{currency(toNumber(detailTarget.total_amount))}</dd>
+                </div>
+              </dl>
+              <div>
+                <p className="mb-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                  Special requests / message
+                </p>
+                <div className="max-h-[40vh] overflow-y-auto whitespace-pre-wrap rounded-xl border border-gray-100 bg-gray-50/80 p-4 leading-relaxed">
+                  {detailTarget.special_requests?.trim()
+                    ? detailTarget.special_requests
+                    : 'No special requests provided.'}
+                </div>
+              </div>
+            </div>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   )
 }

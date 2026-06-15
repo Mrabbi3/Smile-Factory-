@@ -19,13 +19,42 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table'
-import { Calendar, Coins, DollarSign, Loader2, Receipt } from 'lucide-react'
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from '@/components/ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
+import type { PaymentType } from '@/types/database'
+import { Calendar, Coins, DollarSign, Loader2, Pencil, Receipt, Trash2 } from 'lucide-react'
 
 const PAGE_SIZE = 25
 
 export default function AdminTokensPage() {
-  const { loading: authLoading } = useAuth()
+  const { loading: authLoading, isManager } = useAuth()
   const supabase = useMemo(() => createClient(), [])
+  const canManage = isManager()
 
   const [transactions, setTransactions] = useState<TokenTransaction[]>([])
   const [stats, setStats] = useState({
@@ -36,6 +65,17 @@ export default function AdminTokensPage() {
   const [loading, setLoading] = useState(true)
   const [loadingMore, setLoadingMore] = useState(false)
   const [hasMore, setHasMore] = useState(true)
+
+  const [editTarget, setEditTarget] = useState<TokenTransaction | null>(null)
+  const [editForm, setEditForm] = useState({
+    amount_paid: '',
+    tokens_given: '',
+    payment_type: 'cash' as PaymentType,
+  })
+  const [editSaving, setEditSaving] = useState(false)
+
+  const [deleteTarget, setDeleteTarget] = useState<TokenTransaction | null>(null)
+  const [deleting, setDeleting] = useState(false)
 
   const sumAmountPaid = (rows: { amount_paid: number | string }[] | null) =>
     (rows ?? []).reduce((s, r) => s + Number(r.amount_paid ?? 0), 0)
@@ -116,6 +156,79 @@ export default function AdminTokensPage() {
       toast.error('Failed to load more transactions')
     } finally {
       setLoadingMore(false)
+    }
+  }
+
+  const openEdit = (tx: TokenTransaction) => {
+    setEditTarget(tx)
+    setEditForm({
+      amount_paid: String(tx.amount_paid),
+      tokens_given: String(tx.tokens_given),
+      payment_type: tx.payment_type,
+    })
+  }
+
+  const saveEdit = async () => {
+    if (!editTarget) return
+    const amount = Number(editForm.amount_paid)
+    const tokens = Number(editForm.tokens_given)
+    if (!Number.isFinite(amount) || amount < 0) {
+      toast.error('Enter a valid amount paid')
+      return
+    }
+    if (!Number.isInteger(tokens) || tokens < 0) {
+      toast.error('Enter a valid token count')
+      return
+    }
+    setEditSaving(true)
+    try {
+      const { data, error } = await supabase
+        .from('token_transactions')
+        .update({
+          amount_paid: amount,
+          tokens_given: tokens,
+          payment_type: editForm.payment_type,
+        })
+        .eq('id', editTarget.id)
+        .select('*')
+        .single()
+
+      if (error) throw error
+      if (data) {
+        setTransactions((prev) =>
+          prev.map((t) => (t.id === editTarget.id ? (data as TokenTransaction) : t))
+        )
+      }
+      await fetchStats()
+      toast.success('Transaction updated')
+      setEditTarget(null)
+    } catch (err) {
+      console.error('Token transaction update error:', err)
+      toast.error(err instanceof Error ? err.message : 'Could not update transaction')
+    } finally {
+      setEditSaving(false)
+    }
+  }
+
+  const confirmDelete = async () => {
+    if (!deleteTarget) return
+    setDeleting(true)
+    try {
+      const { error } = await supabase
+        .from('token_transactions')
+        .delete()
+        .eq('id', deleteTarget.id)
+
+      if (error) throw error
+      setTransactions((prev) => prev.filter((t) => t.id !== deleteTarget.id))
+      await fetchStats()
+      toast.success('Transaction deleted')
+      setDeleteTarget(null)
+    } catch (err) {
+      console.error('Token transaction delete error:', err)
+      toast.error(err instanceof Error ? err.message : 'Could not delete transaction')
+    } finally {
+      setDeleting(false)
     }
   }
 
@@ -233,6 +346,7 @@ export default function AdminTokensPage() {
                     <TableHead className="text-right">Tokens given</TableHead>
                     <TableHead>Payment type</TableHead>
                     <TableHead>Bonus</TableHead>
+                    {canManage && <TableHead className="text-right">Actions</TableHead>}
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -272,6 +386,32 @@ export default function AdminTokensPage() {
                           <span className="text-sm text-muted-foreground">—</span>
                         )}
                       </TableCell>
+                      {canManage && (
+                        <TableCell className="text-right">
+                          <div className="flex justify-end gap-1">
+                            <Button
+                              type="button"
+                              variant="outline"
+                              size="sm"
+                              className="rounded-xl"
+                              onClick={() => openEdit(tx)}
+                            >
+                              <Pencil className="size-4" />
+                              <span className="sr-only">Edit</span>
+                            </Button>
+                            <Button
+                              type="button"
+                              variant="ghost"
+                              size="sm"
+                              className="rounded-xl text-red-600 hover:bg-red-50 hover:text-red-700"
+                              onClick={() => setDeleteTarget(tx)}
+                            >
+                              <Trash2 className="size-4" />
+                              <span className="sr-only">Delete</span>
+                            </Button>
+                          </div>
+                        </TableCell>
+                      )}
                     </TableRow>
                   ))}
                 </TableBody>
@@ -301,6 +441,121 @@ export default function AdminTokensPage() {
           )}
         </CardContent>
       </Card>
+
+      <Dialog
+        open={!!editTarget}
+        onOpenChange={(open) => {
+          if (!open) setEditTarget(null)
+        }}
+      >
+        <DialogContent className="sm:max-w-sm">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl font-black tracking-tight">
+              Edit transaction
+            </DialogTitle>
+            <DialogDescription>
+              Correct a processed token sale. Totals update automatically.
+            </DialogDescription>
+          </DialogHeader>
+          <div className="grid gap-4 py-2">
+            <div className="grid gap-2">
+              <Label htmlFor="tx-amount">Amount paid ($)</Label>
+              <Input
+                id="tx-amount"
+                type="number"
+                min={0}
+                step="0.01"
+                className="rounded-xl"
+                value={editForm.amount_paid}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, amount_paid: e.target.value }))
+                }
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="tx-tokens">Tokens given</Label>
+              <Input
+                id="tx-tokens"
+                type="number"
+                min={0}
+                className="rounded-xl"
+                value={editForm.tokens_given}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, tokens_given: e.target.value }))
+                }
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="tx-payment">Payment type</Label>
+              <Select
+                value={editForm.payment_type}
+                onValueChange={(v) =>
+                  setEditForm((f) => ({ ...f, payment_type: v as PaymentType }))
+                }
+              >
+                <SelectTrigger id="tx-payment" className="w-full rounded-xl">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="cash">Cash</SelectItem>
+                  <SelectItem value="card">Card</SelectItem>
+                </SelectContent>
+              </Select>
+            </div>
+          </div>
+          <DialogFooter>
+            <Button
+              type="button"
+              variant="outline"
+              className="rounded-xl"
+              onClick={() => setEditTarget(null)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              className="rounded-xl"
+              disabled={editSaving}
+              onClick={() => void saveEdit()}
+            >
+              {editSaving ? 'Saving…' : 'Save changes'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <AlertDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => {
+          if (!open) setDeleteTarget(null)
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this transaction?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {deleteTarget
+                ? `This will permanently remove the ${currency(
+                    Number(deleteTarget.amount_paid)
+                  )} sale (${deleteTarget.tokens_given} tokens). Revenue totals will adjust. This can't be undone.`
+                : ''}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => {
+                e.preventDefault()
+                void confirmDelete()
+              }}
+              disabled={deleting}
+              className="bg-red-600 text-white hover:bg-red-700"
+            >
+              {deleting ? 'Deleting…' : 'Delete transaction'}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }
