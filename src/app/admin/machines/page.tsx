@@ -6,7 +6,7 @@ import { useAuth } from '@/hooks/use-auth'
 import { safeFormatDate, cn } from '@/lib/utils'
 import type { Machine, MachineStatus } from '@/types/database'
 import { toast } from 'sonner'
-import { Cpu } from 'lucide-react'
+import { Cpu, Pencil, Trash2 } from 'lucide-react'
 import {
   Card,
   CardContent,
@@ -22,7 +22,18 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog'
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog'
 import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import {
   Select,
@@ -32,6 +43,7 @@ import {
   SelectValue,
 } from '@/components/ui/select'
 import { Skeleton } from '@/components/ui/skeleton'
+import { ImageUploadField } from '@/components/admin/image-upload-field'
 
 const STATUS_BADGE: Record<MachineStatus, string> = {
   active: 'border border-emerald-200/80 bg-emerald-50 text-emerald-800',
@@ -61,6 +73,26 @@ function MachineCardSkeleton() {
   )
 }
 
+type MachineForm = {
+  name: string
+  machine_type: string
+  tokens_per_play: string
+  location_note: string
+  serial_number: string
+  description: string
+  image_url: string | null
+}
+
+const EMPTY_MACHINE_FORM: MachineForm = {
+  name: '',
+  machine_type: '',
+  tokens_per_play: '1',
+  location_note: '',
+  serial_number: '',
+  description: '',
+  image_url: null,
+}
+
 export default function MachinesPage() {
   const { isManager } = useAuth()
   const supabase = useMemo(() => createClient(), [])
@@ -69,13 +101,14 @@ export default function MachinesPage() {
   const [addOpen, setAddOpen] = useState(false)
   const [saving, setSaving] = useState(false)
   const [statusSavingId, setStatusSavingId] = useState<string | null>(null)
-  const [form, setForm] = useState({
-    name: '',
-    machine_type: '',
-    tokens_per_play: '1',
-    location_note: '',
-    serial_number: '',
-  })
+  const [form, setForm] = useState<MachineForm>(EMPTY_MACHINE_FORM)
+
+  const [editTarget, setEditTarget] = useState<Machine | null>(null)
+  const [editForm, setEditForm] = useState<MachineForm>(EMPTY_MACHINE_FORM)
+  const [editSaving, setEditSaving] = useState(false)
+
+  const [deleteTarget, setDeleteTarget] = useState<Machine | null>(null)
+  const [deleting, setDeleting] = useState(false)
 
   const canManage = isManager()
 
@@ -145,13 +178,7 @@ export default function MachinesPage() {
   }
 
   const resetForm = () => {
-    setForm({
-      name: '',
-      machine_type: '',
-      tokens_per_play: '1',
-      location_note: '',
-      serial_number: '',
-    })
+    setForm(EMPTY_MACHINE_FORM)
   }
 
   const addMachine = async () => {
@@ -184,6 +211,8 @@ export default function MachinesPage() {
           tokens_per_play: tokens,
           location_note,
           serial_number,
+          description: form.description.trim() || null,
+          image_url: form.image_url,
           status: 'active',
         })
         .select('*')
@@ -205,6 +234,93 @@ export default function MachinesPage() {
       toast.error(message)
     } finally {
       setSaving(false)
+    }
+  }
+
+  const openEditDialog = (machine: Machine) => {
+    if (!canManage) {
+      toast.error('Only managers and owners can edit machines')
+      return
+    }
+    setEditTarget(machine)
+    setEditForm({
+      name: machine.name,
+      machine_type: machine.machine_type,
+      tokens_per_play: String(machine.tokens_per_play),
+      location_note: machine.location_note ?? '',
+      serial_number: machine.serial_number ?? '',
+      description: machine.description ?? '',
+      image_url: machine.image_url ?? null,
+    })
+  }
+
+  const saveEdit = async () => {
+    if (!editTarget) return
+    const name = editForm.name.trim()
+    const machineType = editForm.machine_type.trim()
+    const tokens = Number.parseInt(editForm.tokens_per_play, 10)
+    if (!name || !machineType) {
+      toast.error('Name and machine type are required')
+      return
+    }
+    if (!Number.isFinite(tokens) || tokens < 1) {
+      toast.error('Tokens per play must be at least 1')
+      return
+    }
+
+    setEditSaving(true)
+    try {
+      const { data, error } = await supabase
+        .from('machines')
+        .update({
+          name,
+          machine_type: machineType,
+          tokens_per_play: tokens,
+          location_note: editForm.location_note.trim() || null,
+          serial_number: editForm.serial_number.trim() || null,
+          description: editForm.description.trim() || null,
+          image_url: editForm.image_url,
+        })
+        .eq('id', editTarget.id)
+        .select('*')
+        .single()
+
+      if (error) throw error
+      if (data) {
+        setMachines((prev) =>
+          prev
+            .map((m) => (m.id === editTarget.id ? (data as Machine) : m))
+            .sort((a, b) => a.name.localeCompare(b.name))
+        )
+      }
+      toast.success('Machine updated')
+      setEditTarget(null)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Could not update machine'
+      toast.error(message)
+    } finally {
+      setEditSaving(false)
+    }
+  }
+
+  const confirmDelete = async () => {
+    if (!deleteTarget) return
+    setDeleting(true)
+    try {
+      const { error } = await supabase
+        .from('machines')
+        .delete()
+        .eq('id', deleteTarget.id)
+
+      if (error) throw error
+      setMachines((prev) => prev.filter((m) => m.id !== deleteTarget.id))
+      toast.success('Machine deleted')
+      setDeleteTarget(null)
+    } catch (err: unknown) {
+      const message = err instanceof Error ? err.message : 'Could not delete machine'
+      toast.error(message)
+    } finally {
+      setDeleting(false)
     }
   }
 
@@ -295,6 +411,16 @@ export default function MachinesPage() {
               className="rounded-2xl border border-gray-100 bg-white shadow-sm"
             >
               <CardHeader className="space-y-3">
+                {m.image_url && (
+                  <div className="overflow-hidden rounded-xl border border-gray-100 bg-gray-50">
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={m.image_url}
+                      alt={m.name}
+                      className="h-36 w-full object-cover"
+                    />
+                  </div>
+                )}
                 <div className="flex items-start justify-between gap-2">
                   <CardTitle className="font-display text-lg font-black leading-tight tracking-tight">
                     {m.name}
@@ -310,6 +436,11 @@ export default function MachinesPage() {
                   </Badge>
                 </div>
                 <p className="text-sm text-muted-foreground">{m.machine_type}</p>
+                {m.description && (
+                  <p className="text-sm leading-relaxed text-foreground/80">
+                    {m.description}
+                  </p>
+                )}
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="flex flex-wrap items-center gap-2 text-sm">
@@ -367,6 +498,31 @@ export default function MachinesPage() {
                     {safeFormatDate(m.updated_at, 'MMM d, yyyy h:mm a')}
                   </p>
                 </div>
+
+                {canManage && (
+                  <div className="flex gap-2 border-t border-gray-100 pt-3">
+                    <Button
+                      type="button"
+                      variant="outline"
+                      size="sm"
+                      className="flex-1 rounded-xl"
+                      onClick={() => openEditDialog(m)}
+                    >
+                      <Pencil className="size-4" />
+                      Edit
+                    </Button>
+                    <Button
+                      type="button"
+                      variant="ghost"
+                      size="sm"
+                      className="rounded-xl text-red-600 hover:bg-red-50 hover:text-red-700"
+                      onClick={() => setDeleteTarget(m)}
+                    >
+                      <Trash2 className="size-4" />
+                      Delete
+                    </Button>
+                  </div>
+                )}
               </CardContent>
             </Card>
           ))}
@@ -448,6 +604,26 @@ export default function MachinesPage() {
                 placeholder="Optional"
               />
             </div>
+            <div className="grid gap-2">
+              <Label htmlFor="machine-description">Description</Label>
+              <Textarea
+                id="machine-description"
+                className="rounded-xl"
+                value={form.description}
+                onChange={(e) =>
+                  setForm((f) => ({ ...f, description: e.target.value }))
+                }
+                placeholder="Notes about this machine (game details, condition, etc.)"
+                rows={3}
+              />
+            </div>
+            <ImageUploadField
+              folder="machines"
+              entityId="new"
+              value={form.image_url}
+              onChange={(url) => setForm((f) => ({ ...f, image_url: url }))}
+              disabled={saving}
+            />
           </div>
           <DialogFooter className="gap-2 sm:gap-0">
             <Button
@@ -472,6 +648,151 @@ export default function MachinesPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+
+      <Dialog
+        open={!!editTarget}
+        onOpenChange={(open) => {
+          if (!open) setEditTarget(null)
+        }}
+      >
+        <DialogContent className="max-w-lg rounded-2xl border border-gray-100 bg-white shadow-lg sm:max-w-lg">
+          <DialogHeader>
+            <DialogTitle className="font-display text-xl font-black tracking-tight">
+              Edit machine
+            </DialogTitle>
+          </DialogHeader>
+          <div className="grid max-h-[70vh] gap-4 overflow-y-auto py-2 pr-1">
+            <div className="grid gap-2">
+              <Label htmlFor="edit-machine-name">Name</Label>
+              <Input
+                id="edit-machine-name"
+                className="rounded-xl"
+                value={editForm.name}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, name: e.target.value }))
+                }
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="edit-machine-type">Machine type</Label>
+              <Input
+                id="edit-machine-type"
+                className="rounded-xl"
+                value={editForm.machine_type}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, machine_type: e.target.value }))
+                }
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="edit-tokens-per-play">Tokens per play</Label>
+              <Input
+                id="edit-tokens-per-play"
+                type="number"
+                min={1}
+                className="rounded-xl"
+                value={editForm.tokens_per_play}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, tokens_per_play: e.target.value }))
+                }
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="edit-location-note">Location note</Label>
+              <Input
+                id="edit-location-note"
+                className="rounded-xl"
+                value={editForm.location_note}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, location_note: e.target.value }))
+                }
+                placeholder="Floor area, row, or landmark"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="edit-serial-number">Serial number</Label>
+              <Input
+                id="edit-serial-number"
+                className="rounded-xl"
+                value={editForm.serial_number}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, serial_number: e.target.value }))
+                }
+                placeholder="Optional"
+              />
+            </div>
+            <div className="grid gap-2">
+              <Label htmlFor="edit-machine-description">Description</Label>
+              <Textarea
+                id="edit-machine-description"
+                className="rounded-xl"
+                value={editForm.description}
+                onChange={(e) =>
+                  setEditForm((f) => ({ ...f, description: e.target.value }))
+                }
+                placeholder="Notes about this machine (game details, condition, etc.)"
+                rows={3}
+              />
+            </div>
+            <ImageUploadField
+              folder="machines"
+              entityId={editTarget?.id ?? 'machine'}
+              value={editForm.image_url}
+              onChange={(url) => setEditForm((f) => ({ ...f, image_url: url }))}
+              disabled={editSaving}
+            />
+          </div>
+          <DialogFooter className="gap-2 sm:gap-0">
+            <Button
+              type="button"
+              variant="outline"
+              className="rounded-xl"
+              onClick={() => setEditTarget(null)}
+            >
+              Cancel
+            </Button>
+            <Button
+              type="button"
+              className="rounded-xl"
+              disabled={editSaving}
+              onClick={saveEdit}
+            >
+              {editSaving ? 'Saving…' : 'Save changes'}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+
+      <AlertDialog
+        open={!!deleteTarget}
+        onOpenChange={(open) => {
+          if (!open) setDeleteTarget(null)
+        }}
+      >
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Delete this machine?</AlertDialogTitle>
+            <AlertDialogDescription>
+              {deleteTarget
+                ? `"${deleteTarget.name}" will be permanently removed from the directory. This can't be undone.`
+                : ''}
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel disabled={deleting}>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={(e) => {
+                e.preventDefault()
+                void confirmDelete()
+              }}
+              disabled={deleting}
+              className="bg-red-600 text-white hover:bg-red-700"
+            >
+              {deleting ? 'Deleting…' : 'Delete machine'}
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   )
 }

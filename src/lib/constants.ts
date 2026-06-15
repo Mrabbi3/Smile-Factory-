@@ -16,11 +16,14 @@ export const BUSINESS_INFO = {
   brandColor: '#DC2626',
 }
 
+// Flat rate: $1 = 3 tokens at every amount. The old 10% bulk bonus was removed
+// per the client (Jun 2026) — seasonal deals (e.g. "$100 gets $10 free") are now
+// run through staff-issued coupons instead, so they can be toggled on/off.
 export const TOKEN_PRICING = [
   { price: 1, tokens: 3, label: '$1 = 3 Tokens' },
   { price: 5, tokens: 15, label: '$5 = 15 Tokens' },
   { price: 10, tokens: 30, label: '$10 = 30 Tokens' },
-  { price: 20, tokens: 66, label: '$20 = 66 Tokens (10% savings!)' },
+  { price: 20, tokens: 60, label: '$20 = 60 Tokens' },
 ] as const
 
 export const CARD_MINIMUM = 10

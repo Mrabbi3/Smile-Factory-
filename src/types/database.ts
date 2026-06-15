@@ -51,6 +51,8 @@ export interface Machine {
   tokens_per_play: number
   status: MachineStatus
   location_note: string | null
+  description: string | null
+  image_url: string | null
   purchase_date: string | null
   serial_number: string | null
   created_at: string
